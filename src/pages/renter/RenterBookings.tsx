@@ -809,16 +809,16 @@ export default function RenterBookings() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-soft min-w-0">
+    <div className="min-h-screen flex flex-col bg-[#F4F2EE] min-w-0">
       <main className="flex-1 py-8 min-w-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl min-w-0">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-foreground mb-2">
+              <h1 className="font-display text-3xl font-bold text-[#0D1E26] mb-2">
                 {t("bookings.header.title", "Mes réservations")}
               </h1>
-              <p className="text-muted-foreground">
+              <p className="font-body text-[#6B8A8D]">
                 {t(
                   "bookings.header.subtitle",
                   "Gérez vos locations de véhicules"
@@ -827,7 +827,7 @@ export default function RenterBookings() {
             </div>
             <Button
               onClick={() => navigate("/")}
-              className="mt-4 sm:mt-0 bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
+              className="mt-4 sm:mt-0 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
             >
               <Plus className="h-4 w-4 mr-2" />
               {t("bookings.header.newBooking", "Nouvelle réservation")}
@@ -845,10 +845,10 @@ export default function RenterBookings() {
                     size="sm"
                     onClick={() => setActiveFilter(filter)}
                     className={cn(
-                      "flex items-center gap-2 transition-all duration-300 relative shrink-0",
-                      activeFilter === filter 
-                        ? "bg-gradient-lagoon hover:opacity-90 shadow-lagoon text-white" 
-                        : "hover:bg-primary-soft hover:text-primary"
+                      "flex items-center gap-2 transition-all duration-300 relative shrink-0 rounded-xl font-body",
+                      activeFilter === filter
+                        ? "bg-[#097870] hover:bg-[#097870]/90 text-white shadow-sm"
+                        : "bg-white border border-[#D8D5CF] text-[#6B8A8D] hover:border-[#097870] hover:text-[#097870]"
                     )}
                   >
                     {getFilterIcon(filter)}
@@ -984,9 +984,9 @@ export default function RenterBookings() {
                     "Vous n'avez pas encore effectué de réservation. Découvrez nos véhicules disponibles !"
                   )}
                 </CardDescription>
-                <Button 
+                <Button
                   onClick={() => navigate("/")}
-                  className="bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
+                  className="bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   {t("bookings.empty.cta", "Faire une réservation")}

@@ -13,51 +13,51 @@ export function StatusBadge({ status, size = "md", className }: StatusBadgeProps
   const { t, i18n } = useTranslation(); // defaultNS = "translation"
   
   const statusConfig = {
-    // Booking statuses
-    pending: { 
-      color: "bg-[#fef2e1] text-[#d97706]", 
+    // Booking statuses — tokens Rentanoo
+    pending: {
+      color: "bg-amber-100 text-amber-700",
       label: t('bookings.status.pending'),
       icon: Clock
     },
     pending_payment: {
-      color: "bg-blue-50 text-blue-700",
+      color: "bg-amber-100 text-amber-700",
       label: t('bookings.status.pending_payment'),
       icon: Clock
     },
     confirmed: {
-      color: "bg-green-100 text-green-800",
+      color: "bg-[#097870]/10 text-[#097870]",
       label: t('bookings.status.confirmed')
     },
-    accepted: { 
-      color: "bg-success text-success-foreground", 
+    accepted: {
+      color: "bg-[#097870]/10 text-[#097870]",
       label: t('bookings.status.accepted')
     },
-    declined: { 
-      color: "bg-destructive text-destructive-foreground", 
+    declined: {
+      color: "bg-red-100 text-red-700",
       label: t('bookings.status.declined')
     },
     rejected: {
-      color: "bg-destructive text-destructive-foreground",
+      color: "bg-red-100 text-red-700",
       label: t('bookings.status.rejected')
     },
-    cancelled: { 
-      color: "bg-muted text-muted-foreground", 
+    cancelled: {
+      color: "bg-gray-100 text-gray-600",
       label: t('bookings.status.cancelled')
     },
-    active: { 
-      color: "bg-primary text-primary-foreground", 
+    active: {
+      color: "bg-[#097870]/10 text-[#097870]",
       label: t('bookings.status.active')
     },
     completed: {
-      color: "bg-muted text-muted-foreground",
+      color: "bg-gray-100 text-gray-600",
       label: t('bookings.status.completed')
     },
     terminated: {
-      color: "bg-green-50 text-green-700",
+      color: "bg-gray-100 text-gray-600",
       label: t('bookings.status.terminated')
     },
-    closed: { 
-      color: "bg-muted text-muted-foreground", 
+    closed: {
+      color: "bg-gray-100 text-gray-600",
       label: t('bookings.status.closed')
     },
   

@@ -897,9 +897,9 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary-soft/5 to-background">
-      {/* Hero Section avec gradient */}
-      <div className="relative bg-gradient-lagoon text-white py-12 sm:py-16">
+    <div className="min-h-screen bg-[#F4F2EE]">
+      {/* Hero Section */}
+      <div className="relative bg-[#0D1E26] text-white py-12 sm:py-16">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -922,46 +922,28 @@ export default function Profile() {
 
           {/* Contenu principal */}
           <div className="container mx-auto px-4 py-8 sm:py-12 max-w-4xl">
-            {/* Badge de statut du profil */}
-            <div className="mb-6">
-              <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                calculateProfileCompletion === 100 
-                  ? 'bg-success-soft text-success border border-success-soft/30' 
-                  : calculateProfileCompletion >= 75
-                  ? 'bg-primary-soft text-primary border border-primary-soft/30'
-                  : calculateProfileCompletion >= 50
-                  ? 'bg-warning-soft text-warning border border-warning-soft/30'
-                  : 'bg-muted text-muted-foreground border border-muted/30'
-              }`}>
-                {calculateProfileCompletion === 100 ? (
-                  <>
-                    <span className="w-2 h-2 bg-success rounded-full mr-2 animate-pulse"></span>
-                    {t("profile.completion.full", "Profil complet ✓")}
-                  </>
-                ) : (
-                  <>
-                    <span
-                      className={`w-2 h-2 rounded-full mr-2 ${
-                        calculateProfileCompletion >= 75
-                          ? "bg-primary animate-pulse"
-                          : calculateProfileCompletion >= 50
-                          ? "bg-warning animate-pulse"
-                          : "bg-muted-foreground"
-                      }`}
-                    ></span>
-                    {t(
-                      "profile.completion.partial",
-                      "Profil {{percent}}% complété",
-                      { percent: calculateProfileCompletion }
-                    )}
-                  </>
-                )}
+            {/* Cercle de completion du profil */}
+            <div className="mb-6 flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full border-4 border-[#E8622F] flex items-center justify-center font-display font-bold text-lg text-[#E8622F] bg-white shadow-sm">
+                {calculateProfileCompletion}%
+              </div>
+              <div>
+                <p className="font-display font-semibold text-[#0D1E26] text-sm">
+                  {calculateProfileCompletion === 100
+                    ? "Profil complet"
+                    : "Profil en cours"}
+                </p>
+                <p className="font-body text-[#6B8A8D] text-xs">
+                  {calculateProfileCompletion === 100
+                    ? t("profile.completion.full", "Toutes les informations sont renseignées")
+                    : t("profile.completion.partial", "{{percent}}% complété — continue pour débloquer toutes les fonctionnalités", { percent: calculateProfileCompletion })}
+                </p>
               </div>
             </div>
 
             {/* Section profil avec avatar en vedette */}
         <div className="relative -mt-16 mb-8">
-          <div className="bg-white rounded-2xl shadow-lagoon p-6 sm:p-8 border border-primary-soft/20">
+          <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 border border-[#D8D5CF]">
             <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-6 sm:space-y-0 sm:space-x-8">
               {/* Avatar avec effet de profondeur */}
               <div className="relative">
@@ -1072,71 +1054,67 @@ export default function Profile() {
           </div>
         </div>
 
-            {/* Navigation par onglets pour organiser les sections */}
+            {/* Navigation par onglets — design system */}
         <div className="mb-8">
-          <div className="flex flex-wrap gap-2 justify-center mb-4">
+          <div className="flex flex-wrap gap-2 mb-4">
               <button
                 type="button"
                 onClick={() => handleSectionChange('basic')}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-5 py-2.5 rounded-xl text-sm font-medium font-body transition-all duration-200 border ${
                   activeSection === 'basic'
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'bg-white/80 text-primary border border-primary-soft/30 hover:bg-primary-soft/10'
+                    ? 'bg-[#0D1E26] text-white border-[#0D1E26] shadow-sm'
+                    : 'bg-white text-[#6B8A8D] border-[#D8D5CF] hover:border-[#097870] hover:text-[#097870]'
                 }`}
               >
-                📝 {t("profile.tabs.basic", "Informations de base")}
+                Informations
               </button>
-              {FEATURES.profileAddressEnabled && (
-                <button
-                  type="button"
-                  onClick={() => handleSectionChange('address')}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                    activeSection === 'address'
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'bg-white/80 text-primary border border-primary-soft/30 hover:bg-primary-soft/10'
-                  }`}
-                >
-                  🏠 {t("profile.tabs.address", "Adresse")}
-                </button>
-              )}
               {FEATURES.profileDrivingLicenseEnabled && (
                 <button
                   type="button"
                   onClick={() => handleSectionChange('license')}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`px-5 py-2.5 rounded-xl text-sm font-medium font-body transition-all duration-200 border ${
                     activeSection === 'license'
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'bg-white/80 text-primary border border-primary-soft/30 hover:bg-primary-soft/10'
+                      ? 'bg-[#0D1E26] text-white border-[#0D1E26] shadow-sm'
+                      : 'bg-white text-[#6B8A8D] border-[#D8D5CF] hover:border-[#097870] hover:text-[#097870]'
                   }`}
                 >
-                  🚗 {t("profile.tabs.license", "Permis de conduire")}
+                  Permis
+                </button>
+              )}
+              <Link
+                to="/me/renter/bookings"
+                className="px-5 py-2.5 rounded-xl text-sm font-medium font-body transition-all duration-200 border bg-white text-[#6B8A8D] border-[#D8D5CF] hover:border-[#E8622F] hover:text-[#E8622F]"
+              >
+                Réservations
+              </Link>
+              {FEATURES.profileAddressEnabled && (
+                <button
+                  type="button"
+                  onClick={() => handleSectionChange('address')}
+                  className={`px-5 py-2.5 rounded-xl text-sm font-medium font-body transition-all duration-200 border ${
+                    activeSection === 'address'
+                      ? 'bg-[#0D1E26] text-white border-[#0D1E26] shadow-sm'
+                      : 'bg-white text-[#6B8A8D] border-[#D8D5CF] hover:border-[#097870] hover:text-[#097870]'
+                  }`}
+                >
+                  Adresse
                 </button>
               )}
           </div>
-          
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
 
           {/* Personal Information Form */}
           {activeSection === 'basic' && (
-            <Card className="bg-white/90 backdrop-blur-sm border-primary-soft/20 shadow-soft hover:shadow-lg transition-all duration-300 rounded-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-500">
-            <CardHeader className="bg-gradient-to-r from-primary-soft/20 via-primary-soft/10 to-transparent border-b border-primary-soft/10 p-6">
+            <Card className="bg-white border border-[#D8D5CF] shadow-sm rounded-xl overflow-hidden">
+            <CardHeader className="border-b border-[#D8D5CF] p-6">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl font-bold text-primary flex items-center">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-primary text-lg">👤</span>
-                  </div>
-                  {t("profile.sections.basic.title", "Informations personnelles")}
+                <CardTitle className="font-display text-xl font-bold text-[#0D1E26]">
+                  Informations personnelles
                 </CardTitle>
-                <div className="text-sm text-muted-foreground bg-white/60 px-3 py-1 rounded-full">
-                  {t(
-                    "profile.sections.basic.step",
-                    `Étape 1/${1 + (FEATURES.profileAddressEnabled ? 1 : 0) + (FEATURES.profileDrivingLicenseEnabled ? 1 : 0)}`
-                  )}
-                </div>
               </div>
-              <p className="text-muted-foreground mt-2 ml-12">
+              <p className="font-body text-[#6B8A8D] text-sm mt-1">
                 {t(
                   "profile.sections.basic.subtitle",
                   "Vos informations de base pour personnaliser votre expérience"
@@ -1456,10 +1434,10 @@ export default function Profile() {
                   type="button"
                   onClick={() => saveSection('basic')}
                   disabled={isLoading || !hasSectionChanges('basic')}
-                  className={`px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    hasSectionChanges('basic') 
-                      ? 'bg-primary hover:bg-primary/90 text-white' 
-                      : 'bg-muted text-muted-foreground cursor-not-allowed'
+                  className={`px-6 py-2 rounded-xl text-sm font-body font-medium transition-all duration-200 ${
+                    hasSectionChanges('basic')
+                      ? 'bg-[#E8622F] hover:bg-[#E8622F]/90 text-white'
+                      : 'bg-[#D8D5CF] text-[#6B8A8D] cursor-not-allowed'
                   }`}
                 >
                   {isLoading ? (
@@ -1468,7 +1446,7 @@ export default function Profile() {
                       {t("profile.buttons.saving", "Sauvegarde...")}
                     </>
                   ) : (
-                    hasSectionChanges('basic') 
+                    hasSectionChanges('basic')
                       ? (completedSections.has('basic')
                           ? t("profile.buttons.saveBasicChanges", "Sauvegarder mes modifications")
                           : t("profile.buttons.saveBasicInfo", "Sauvegarder mes informations"))
@@ -1482,20 +1460,12 @@ export default function Profile() {
 
           {/* Address Information */}
           {FEATURES.profileAddressEnabled && activeSection === 'address' && (
-            <Card className="bg-white/90 backdrop-blur-sm border-primary-soft/20 shadow-soft hover:shadow-lg transition-all duration-300 rounded-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-500">
-            <CardHeader className="bg-gradient-to-r from-primary-soft/20 via-primary-soft/10 to-transparent border-b border-primary-soft/10 p-6">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl font-bold text-primary flex items-center">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-primary text-lg">🏠</span>
-                  </div>
-                  {t("profile.sections.address.title", "Adresse")}
-                </CardTitle>
-                <div className="text-sm text-muted-foreground bg-white/60 px-3 py-1 rounded-full">
-                  {t("profile.sections.address.step", "Étape 2/3")}
-                </div>
-              </div>
-              <p className="text-muted-foreground mt-2 ml-12">
+            <Card className="bg-white border border-[#D8D5CF] shadow-sm rounded-xl overflow-hidden">
+            <CardHeader className="border-b border-[#D8D5CF] p-6">
+              <CardTitle className="font-display text-xl font-bold text-[#0D1E26]">
+                {t("profile.sections.address.title", "Adresse")}
+              </CardTitle>
+              <p className="font-body text-[#6B8A8D] text-sm mt-1">
                 {t(
                   "profile.sections.address.subtitle",
                   "Votre adresse pour les livraisons et la localisation"
@@ -1596,10 +1566,10 @@ export default function Profile() {
                   type="button"
                   onClick={() => saveSection('address')}
                   disabled={isLoading || !hasSectionChanges('address')}
-                  className={`px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    hasSectionChanges('address') 
-                      ? 'bg-primary hover:bg-primary/90 text-white' 
-                      : 'bg-muted text-muted-foreground cursor-not-allowed'
+                  className={`px-6 py-2 rounded-xl text-sm font-body font-medium transition-all duration-200 ${
+                    hasSectionChanges('address')
+                      ? 'bg-[#E8622F] hover:bg-[#E8622F]/90 text-white'
+                      : 'bg-[#D8D5CF] text-[#6B8A8D] cursor-not-allowed'
                   }`}
                 >
                   {isLoading ? (
@@ -1608,7 +1578,7 @@ export default function Profile() {
                       {t("profile.buttons.saving", "Sauvegarde...")}
                     </>
                   ) : (
-                    hasSectionChanges('address') 
+                    hasSectionChanges('address')
                       ? (completedSections.has('address')
                           ? t("profile.buttons.saveAddressChanges", "Sauvegarder mes modifications")
                           : t("profile.buttons.saveAddress", "Sauvegarder mon adresse"))
@@ -1622,21 +1592,13 @@ export default function Profile() {
 
           {/* Driver License */}
           {FEATURES.profileDrivingLicenseEnabled && activeSection === 'license' && (
-            <Card className="bg-white/90 backdrop-blur-sm border-primary-soft/20 shadow-soft hover:shadow-lg transition-all duration-300 rounded-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-500">
-            <CardHeader className="bg-gradient-to-r from-primary-soft/20 via-primary-soft/10 to-transparent border-b border-primary-soft/10 p-6">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl font-bold text-primary flex items-center">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-primary text-lg">🚗</span>
-                  </div>
-                  Permis de conduire
-                </CardTitle>
-                <div className="text-sm text-muted-foreground bg-white/60 px-3 py-1 rounded-full">
-                  Étape 3/3
-                </div>
-              </div>
-              <p className="text-muted-foreground mt-2 ml-12">
-                Votre permis pour louer des véhicules en toute sécurité
+            <Card className="bg-white border border-[#D8D5CF] shadow-sm rounded-xl overflow-hidden">
+            <CardHeader className="border-b border-[#D8D5CF] p-6">
+              <CardTitle className="font-display text-xl font-bold text-[#0D1E26]">
+                Permis de conduire
+              </CardTitle>
+              <p className="font-body text-[#6B8A8D] text-sm mt-1">
+                Ton permis pour louer des véhicules en toute sécurité
               </p>
             </CardHeader>
             <CardContent className="space-y-6 p-8">
@@ -1980,10 +1942,10 @@ export default function Profile() {
                   type="button"
                   onClick={() => saveSection('license')}
                   disabled={isLoading || !hasSectionChanges('license')}
-                  className={`px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    hasSectionChanges('license') 
-                      ? 'bg-primary hover:bg-primary/90 text-white' 
-                      : 'bg-muted text-muted-foreground cursor-not-allowed'
+                  className={`px-6 py-2 rounded-xl text-sm font-body font-medium transition-all duration-200 ${
+                    hasSectionChanges('license')
+                      ? 'bg-[#E8622F] hover:bg-[#E8622F]/90 text-white'
+                      : 'bg-[#D8D5CF] text-[#6B8A8D] cursor-not-allowed'
                   }`}
                 >
                   {isLoading ? (
@@ -1992,7 +1954,7 @@ export default function Profile() {
                       Sauvegarde...
                     </>
                   ) : (
-                    hasSectionChanges('license') 
+                    hasSectionChanges('license')
                       ? (completedSections.has('license') ? 'Sauvegarder mes modifications' : 'Sauvegarder mes infos du permis')
                       : 'Sauvegarder cette section'
                   )}
@@ -2005,43 +1967,37 @@ export default function Profile() {
           {/* Submit Button - Visible seulement si profil incomplet */}
           {calculateProfileCompletion < 100 && (
             <div className="pt-6 sm:pt-8 pb-6 sm:pb-8">
-              <div className="bg-gradient-to-r from-primary-soft/20 to-primary-soft/10 rounded-2xl p-6 border border-primary-soft/30">
+              <div className="bg-white rounded-xl p-6 border border-[#D8D5CF] shadow-sm">
                 <div className="text-center">
-                  <h3 className="text-lg font-semibold text-primary mb-2">
+                  <h3 className="font-display text-lg font-semibold text-[#0D1E26] mb-2">
                     {t(
                       "profile.banner.title",
                       "Profil {{percent}}% complété",
                       { percent: calculateProfileCompletion }
                     )}
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-6">
+                  <p className="font-body text-sm text-[#6B8A8D] mb-6">
                     {t(
                       "profile.banner.description",
-                      "{{percent}}% du profil complété. Cliquez pour sauvegarder toutes les modifications.",
+                      "Complète ton profil pour débloquer toutes les fonctionnalités.",
                       { percent: calculateProfileCompletion }
                     )}
                   </p>
-            <Button
-              type="submit"
-              disabled={isLoading}
-                    className="bg-gradient-lagoon text-white hover:opacity-90 shadow-lagoon transition-all duration-300 font-medium py-4 px-8 text-lg min-h-[56px] rounded-xl hover:scale-105 transform"
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    className="bg-[#E8622F] hover:bg-[#E8622F]/90 text-white font-body font-medium py-3 px-8 text-base rounded-xl"
                   >
                     {isLoading ? (
                       <>
                         <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-                        {t(
-                          "profile.buttons.saving",
-                          "Sauvegarde en cours..."
-                        )}
+                        {t("profile.buttons.saving", "Sauvegarde en cours...")}
                       </>
                     ) : (
-                      t(
-                        "profile.buttons.saveAll",
-                        "Sauvegarder tout le profil"
-                      )
+                      t("profile.buttons.saveAll", "Sauvegarder tout le profil")
                     )}
-            </Button>
-          </div>
+                  </Button>
+                </div>
               </div>
             </div>
           )}

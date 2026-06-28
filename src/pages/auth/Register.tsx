@@ -3,10 +3,9 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Car, Eye, EyeOff, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
+import { Eye, EyeOff, ChevronDown, ChevronUp, CheckCircle2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -118,319 +117,333 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-soft flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center space-x-2 group">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-lagoon rounded-2xl shadow-lagoon group-hover:shadow-soft transition-shadow">
-              <Car className="h-7 w-7 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-lagoon bg-clip-text text-transparent">
-              Rentanoo
-            </span>
-          </Link>
+    <div className="min-h-screen bg-[#F4F2EE] flex">
+      {/* Panneau gauche : brand */}
+      <div className="hidden lg:flex lg:w-1/2 bg-[#0B1A1F] items-center justify-center p-12 relative overflow-hidden">
+        {/* Décoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#097870] blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full bg-[#E8622F] blur-3xl" />
         </div>
+        <div className="text-center relative z-10">
+          <span className="font-display font-bold text-5xl text-white block mb-6">Rentanoo</span>
+          <p className="font-body text-white/60 text-lg leading-relaxed">
+            Nosy Be comme tu l'imagines.<br />Sans les galères.
+          </p>
+          <div className="mt-12 flex flex-col gap-3 text-left">
+            {[
+              "Inscription gratuite en 2 minutes",
+              "Réservation immédiate",
+              "Support disponible 7j/7",
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-3 text-white/50 text-sm font-body">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E8622F] flex-shrink-0" />
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-        <Card className="shadow-card">
+      {/* Panneau droit : formulaire */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 overflow-y-auto">
+        <div className="w-full max-w-sm py-8">
+          {/* Logo mobile uniquement */}
+          <div className="lg:hidden text-center mb-8">
+            <span className="font-display font-bold text-3xl text-[#0D1E26]">Rentanoo</span>
+          </div>
+
           {emailConfirmationPending ? (
-            <>
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full">
-                    <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-500" />
-                  </div>
+            /* État post-inscription : confirmation email */
+            <div className="text-center">
+              <div className="flex justify-center mb-6">
+                <div className="w-20 h-20 rounded-full bg-[#097870]/10 border-2 border-[#097870]/20 flex items-center justify-center">
+                  <Mail className="h-10 w-10 text-[#097870]" />
                 </div>
-                <CardTitle className="text-2xl font-bold">Compte créé</CardTitle>
-                <CardDescription className="text-base space-y-3 pt-2">
-                  <span className="block">
-                    Nous avons envoyé un email de confirmation.
-                  </span>
-                  <span className="block font-medium text-foreground">
-                    Votre réservation est enregistrée.
-                  </span>
-                  <span className="block">
-                    Après validation de votre email, vous reviendrez automatiquement
-                    sur votre véhicule.
-                  </span>
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Button
-                  type="button"
-                  onClick={() =>
-                    navigate(buildAuthLink("/auth/login", redirectParam))
-                  }
-                  className="w-full bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
-                >
-                  J&apos;ai confirmé mon email
-                </Button>
-                <p className="text-xs text-muted-foreground text-center">
-                  Vérifiez votre boîte mail (et les spams) avant de continuer.
-                </p>
-              </CardContent>
-            </>
+              </div>
+              <h1 className="font-display font-bold text-2xl text-[#0D1E26] mb-3">
+                Compte créé !
+              </h1>
+              <p className="font-body text-[#6B8A8D] mb-2">
+                Vérifie ta boîte mail — clique sur le lien pour activer ton compte.
+              </p>
+              <p className="font-body text-sm text-[#6B8A8D] mb-2">
+                Ta réservation est enregistrée et t'attend.
+              </p>
+              <p className="font-body text-sm text-[#6B8A8D] mb-8">
+                Après validation de ton email, tu reviendras automatiquement sur ton véhicule.
+              </p>
+              <Button
+                type="button"
+                onClick={() => navigate(buildAuthLink("/auth/login", redirectParam))}
+                className="w-full h-11 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
+              >
+                J&apos;ai confirmé mon email
+              </Button>
+              <p className="font-body text-xs text-[#6B8A8D] text-center mt-4">
+                Vérifie aussi tes spams si tu ne trouves pas l'email.
+              </p>
+            </div>
           ) : (
             <>
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl font-bold">S&apos;inscrire</CardTitle>
-                <CardDescription>
-                  Créez votre compte Rentanoo et rejoignez la communauté
-                </CardDescription>
-              </CardHeader>
+              <h1 className="font-display font-bold text-3xl text-[#0D1E26] mb-2">
+                Crée ton compte
+              </h1>
+              <p className="font-body text-[#6B8A8D] mb-8">
+                Déjà membre ?{" "}
+                <Link
+                  to={buildAuthLink("/auth/login", redirectParam)}
+                  className="text-[#097870] hover:underline font-medium"
+                >
+                  Se connecter
+                </Link>
+              </p>
 
-              <CardContent>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                    {/* Cart context banner */}
-                    {redirectParam?.includes("/panier") && (
-                      <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 text-sm text-primary font-medium text-center">
-                        Connecte-toi ou crée un compte pour envoyer ta demande de réservation — ton panier est sauvegardé.
-                      </div>
-                    )}
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  {/* Cart context banner */}
+                  {redirectParam?.includes("/panier") && (
+                    <div className="rounded-xl bg-[#097870]/10 border border-[#097870]/20 px-4 py-3 text-sm text-[#097870] font-medium text-center font-body">
+                      Crée ton compte pour envoyer ta demande de réservation — ton panier est sauvegardé.
+                    </div>
+                  )}
 
-                    {/* Social Login Buttons */}
-                    <div className="space-y-3">
+                  {/* Google OAuth */}
+                  <div className="space-y-3">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full h-12 border border-[#D8D5CF] rounded-xl hover:bg-[#F4F2EE] font-body"
+                      onClick={async () => {
+                        setLoading(true);
+                        try {
+                          await supabase.auth.signInWithOAuth({
+                            provider: "google",
+                            options: {
+                              redirectTo: buildAuthCallbackUrl(
+                                AUTH_CALLBACK_URL,
+                                redirectParam
+                              ),
+                            },
+                          });
+                        } catch (error) {
+                          toast({
+                            title: "Erreur",
+                            description: "Erreur lors de l'inscription avec Google",
+                            variant: "destructive",
+                          });
+                          setLoading(false);
+                        }
+                      }}
+                      disabled={loading}
+                      data-testid="btn-google-register-header"
+                      aria-label="Continuer avec Google (inscription)"
+                    >
+                      <GoogleIcon className="h-5 w-5 mr-3" />
+                      {loading ? "Redirection..." : "Continuer avec Google"}
+                    </Button>
+                  </div>
+
+                  {/* Séparateur */}
+                  <div className="relative my-2">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-[#D8D5CF]" />
+                    </div>
+                    <div className="relative flex justify-center">
                       <Button
                         type="button"
-                        variant="outline"
-                        className="w-full h-12 border-2 hover:bg-gray-50"
-                        onClick={async () => {
-                          setLoading(true);
-                          try {
-                            await supabase.auth.signInWithOAuth({
-                              provider: "google",
-                              options: {
-                                redirectTo: buildAuthCallbackUrl(
-                                  AUTH_CALLBACK_URL,
-                                  redirectParam
-                                ),
-                              },
-                            });
-                          } catch (error) {
-                            toast({
-                              title: "Erreur",
-                              description: "Erreur lors de l'inscription avec Google",
-                              variant: "destructive",
-                            });
-                            setLoading(false);
-                          }
-                        }}
-                        disabled={loading}
-                        data-testid="btn-google-register-header"
-                        aria-label="Continuer avec Google (inscription)"
+                        variant="ghost"
+                        onClick={() => setShowEmailForm(!showEmailForm)}
+                        className="bg-[#F4F2EE] px-4 text-sm text-[#6B8A8D] hover:text-[#0D1E26] transition-colors font-body"
                       >
-                        <GoogleIcon className="h-5 w-5 mr-3" />
-                        {loading ? "Redirection..." : "Continuer avec Google"}
+                        OU PAR EMAIL
+                        {showEmailForm ? (
+                          <ChevronUp className="ml-2 h-4 w-4" />
+                        ) : (
+                          <ChevronDown className="ml-2 h-4 w-4" />
+                        )}
                       </Button>
                     </div>
+                  </div>
 
-                    {/* Toggle Email Form Button */}
-                    <div className="relative mt-6">
-                      <div className="absolute inset-0 flex items-center">
-                        <span className="w-full border-t" />
-                      </div>
-                      <div className="relative flex justify-center">
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          onClick={() => setShowEmailForm(!showEmailForm)}
-                          className="bg-background px-4 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          OU PAR EMAIL
-                          {showEmailForm ? (
-                            <ChevronUp className="ml-2 h-4 w-4" />
-                          ) : (
-                            <ChevronDown className="ml-2 h-4 w-4" />
+                  {/* Formulaire email — animé */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      showEmailForm
+                        ? "max-h-[800px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    {showEmailForm && (
+                      <div className="space-y-4 pt-2">
+                        <div className="grid grid-cols-2 gap-4">
+                          <FormField
+                            control={form.control}
+                            name="firstName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="font-body text-[#0D1E26]">Prénom</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    placeholder="Jean"
+                                    className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="lastName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="font-body text-[#0D1E26]">Nom</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    placeholder="Dupont"
+                                    className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="font-body text-[#0D1E26]">Email</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="email"
+                                  placeholder="toi@exemple.com"
+                                  className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
                           )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="font-body text-[#0D1E26]">Téléphone</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="tel"
+                                  placeholder="+262 692 12 34 56"
+                                  className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="password"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="font-body text-[#0D1E26]">Mot de passe</FormLabel>
+                              <FormControl>
+                                <div className="relative">
+                                  <Input
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="••••••••"
+                                    className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                                    {...field}
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                  >
+                                    {showPassword ? (
+                                      <EyeOff className="h-4 w-4 text-[#6B8A8D]" />
+                                    ) : (
+                                      <Eye className="h-4 w-4 text-[#6B8A8D]" />
+                                    )}
+                                  </Button>
+                                </div>
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="confirmPassword"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="font-body text-[#0D1E26]">Confirmer le mot de passe</FormLabel>
+                              <FormControl>
+                                <div className="relative">
+                                  <Input
+                                    type={showConfirmPassword ? "text" : "password"}
+                                    placeholder="••••••••"
+                                    className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                                    {...field}
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                  >
+                                    {showConfirmPassword ? (
+                                      <EyeOff className="h-4 w-4 text-[#6B8A8D]" />
+                                    ) : (
+                                      <Eye className="h-4 w-4 text-[#6B8A8D]" />
+                                    )}
+                                  </Button>
+                                </div>
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <Button
+                          type="submit"
+                          className="w-full h-11 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
+                          disabled={loading}
+                        >
+                          {loading ? "Création du compte..." : "Créer mon compte"}
                         </Button>
                       </div>
-                    </div>
-
-                    {/* Email Form - Animated */}
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        showEmailForm
-                          ? "max-h-[800px] opacity-100"
-                          : "max-h-0 opacity-0"
-                      }`}
-                    >
-                      {showEmailForm && (
-                        <div className="space-y-4 pt-4">
-                          <div className="grid grid-cols-2 gap-4">
-                            <FormField
-                              control={form.control}
-                              name="firstName"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Prénom</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="Jean" {...field} />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-
-                            <FormField
-                              control={form.control}
-                              name="lastName"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Nom</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="Dupont" {...field} />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                          </div>
-
-                          <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    type="email"
-                                    placeholder="votre@email.com"
-                                    {...field}
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <FormField
-                            control={form.control}
-                            name="phone"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Téléphone</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    type="tel"
-                                    placeholder="+262 692 12 34 56"
-                                    {...field}
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <FormField
-                            control={form.control}
-                            name="password"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Mot de passe</FormLabel>
-                                <FormControl>
-                                  <div className="relative">
-                                    <Input
-                                      type={showPassword ? "text" : "password"}
-                                      placeholder="••••••••"
-                                      {...field}
-                                    />
-                                    <Button
-                                      type="button"
-                                      variant="ghost"
-                                      size="sm"
-                                      className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                                      onClick={() => setShowPassword(!showPassword)}
-                                    >
-                                      {showPassword ? (
-                                        <EyeOff className="h-4 w-4" />
-                                      ) : (
-                                        <Eye className="h-4 w-4" />
-                                      )}
-                                    </Button>
-                                  </div>
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <FormField
-                            control={form.control}
-                            name="confirmPassword"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Confirmer le mot de passe</FormLabel>
-                                <FormControl>
-                                  <div className="relative">
-                                    <Input
-                                      type={
-                                        showConfirmPassword ? "text" : "password"
-                                      }
-                                      placeholder="••••••••"
-                                      {...field}
-                                    />
-                                    <Button
-                                      type="button"
-                                      variant="ghost"
-                                      size="sm"
-                                      className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                                      onClick={() =>
-                                        setShowConfirmPassword(!showConfirmPassword)
-                                      }
-                                    >
-                                      {showConfirmPassword ? (
-                                        <EyeOff className="h-4 w-4" />
-                                      ) : (
-                                        <Eye className="h-4 w-4" />
-                                      )}
-                                    </Button>
-                                  </div>
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <Button
-                            type="submit"
-                            className="w-full bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
-                            disabled={loading}
-                          >
-                            {loading ? "Création du compte..." : "Créer mon compte"}
-                          </Button>
-                        </div>
-                      )}
-                    </div>
-                  </form>
-                </Form>
-
-                {/* Login Link */}
-                <div className="text-center mt-6">
-                  <p className="text-sm text-muted-foreground">
-                    Déjà un compte ?{" "}
-                    <Link
-                      to={buildAuthLink("/auth/login", redirectParam)}
-                      className="font-medium text-primary hover:underline"
-                    >
-                      Se connecter
-                    </Link>
-                  </p>
-                </div>
-              </CardContent>
+                    )}
+                  </div>
+                </form>
+              </Form>
             </>
           )}
-        </Card>
 
-        {/* Back to Home */}
-        <div className="text-center mt-6">
-          <Link
-            to="/"
-            className="text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            ← Retour à l&apos;accueil
-          </Link>
+          {/* Retour accueil */}
+          <div className="text-center mt-8">
+            <Link
+              to="/"
+              className="text-sm text-[#6B8A8D] hover:text-[#097870] transition-colors font-body"
+            >
+              ← Retour à l'accueil
+            </Link>
+          </div>
         </div>
       </div>
     </div>
