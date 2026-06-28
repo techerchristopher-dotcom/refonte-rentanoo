@@ -223,6 +223,7 @@ export default function MotoVehicleDetails() {
   const [restoredNavState, setRestoredNavState] = useState<VehicleNavState>(null);
   const [manualNavState, setManualNavState] = useState<VehicleNavState>(null);
   const [isCartAddModalOpen, setIsCartAddModalOpen] = useState(false);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const pendingOriginEl = useRef<HTMLElement | null>(null);
   const [lastAddedCartItemId, setLastAddedCartItemId] = useState<string | null>(null);
   const [dateLocale, setDateLocale] = useState<Locale | null>(null);
