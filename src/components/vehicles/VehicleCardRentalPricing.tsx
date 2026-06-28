@@ -28,7 +28,7 @@ export function VehicleCardRentalPricing({
     <div className="flex shrink-0 flex-col items-end text-right">
       <ClientMgaPrice
         amountMga={dailyPrice}
-        primaryClassName="text-2xl font-bold tabular-nums leading-none text-primary"
+        primaryClassName="text-2xl font-mono font-bold tabular-nums leading-none text-[#097870]"
         secondarySuffix={` / ${perDayShort}`}
       />
       {totalSummary ? (
