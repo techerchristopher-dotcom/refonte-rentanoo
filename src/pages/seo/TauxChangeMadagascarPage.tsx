@@ -154,10 +154,10 @@ export default function TauxChangeMadagascarPage() {
         <SeoFaqSection title={t("tauxChangePage.faqTitle")} items={faqItems} />
 
         <SeoCtaPanel title={t("tauxChangePage.ctaTitle")} text={t("tauxChangePage.ctaText")}>
-          <Button asChild className="bg-white text-primary font-semibold hover:bg-white/90 shadow-md">
+          <Button asChild className="bg-ember text-white font-semibold hover:bg-ember/90 shadow-md rounded-xl">
             <Link to="/">{t("tauxChangePage.ctaRent")}</Link>
           </Button>
-          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10 rounded-xl">
             <Link to={SEO_WEATHER_PATH}>{t("tauxChangePage.ctaWeather")}</Link>
           </Button>
         </SeoCtaPanel>

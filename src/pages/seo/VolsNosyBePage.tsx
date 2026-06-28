@@ -266,13 +266,13 @@ export default function VolsNosyBePage() {
         <SeoFaqSection title={t("volsNosyBePage.faqTitle")} items={faqItems} />
 
         <SeoCtaPanel title={t("volsNosyBePage.ctaTitle")} text={t("volsNosyBePage.ctaText")}>
-          <Button asChild className="bg-white text-primary font-semibold hover:bg-white/90 shadow-md">
+          <Button asChild className="bg-ember text-white font-semibold hover:bg-ember/90 shadow-md rounded-xl">
             <Link to="/">{t("volsNosyBePage.ctaRent")}</Link>
           </Button>
-          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10 rounded-xl">
             <Link to={SEO_WEATHER_PATH}>{t("volsNosyBePage.ctaWeather")}</Link>
           </Button>
-          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10 rounded-xl">
             <Link to={SEO_EXCHANGE_PATH}>{t("volsNosyBePage.ctaExchange")}</Link>
           </Button>
         </SeoCtaPanel>

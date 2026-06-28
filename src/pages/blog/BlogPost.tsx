@@ -148,13 +148,13 @@ export default function BlogPost() {
       />
 
       <div className="container mx-auto px-4 py-8 max-w-3xl">
-        <Button variant="ghost" asChild className="mb-6 -ml-2">
+        <Button variant="ghost" asChild className="mb-6 -ml-2 font-display">
           <Link to="/blog"><ArrowLeft className="h-4 w-4 mr-1" /> Blog</Link>
         </Button>
 
         <header className="mb-8">
           {post.image && (
-            <div className="aspect-[16/9] overflow-hidden rounded-xl mb-6 bg-muted/30">
+            <div className="aspect-[16/9] overflow-hidden rounded-xl mb-6">
               <img
                 src={post.image}
                 alt={post.title}
@@ -164,35 +164,35 @@ export default function BlogPost() {
               />
             </div>
           )}
-          <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+          <div className="flex items-center gap-3 font-mono text-sm text-mist mb-3">
             <span className="flex items-center gap-1"><Tag className="h-3 w-3" />{post.category}</span>
             <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{post.readTime} min de lecture</span>
             <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}</time>
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight mb-4">{post.title}</h1>
-          <p className="text-muted-foreground text-base leading-relaxed">{post.excerpt}</p>
+          <h1 className="font-display font-bold text-3xl md:text-4xl tracking-tight leading-tight text-night mb-4">{post.title}</h1>
+          <p className="font-body text-night/70 text-base leading-relaxed">{post.excerpt}</p>
         </header>
 
-        <article className="prose-custom">
+        <article className="prose-custom font-body text-night leading-relaxed">
           {renderContent(post.content)}
         </article>
 
-        <div className="mt-12 p-6 rounded-xl bg-primary/5 border border-primary/20 text-center">
-          <p className="font-semibold mb-2">Prêt à explorer Nosy Be ?</p>
-          <p className="text-sm text-muted-foreground mb-4">Réservez scooter, moto ou hébergement directement en ligne.</p>
-          <Button asChild className="bg-primary text-white">
+        <div className="mt-12 p-6 rounded-xl bg-ocean/5 border border-ocean/20 text-center">
+          <p className="font-display font-semibold text-night mb-2">Prêt à explorer Nosy Be ?</p>
+          <p className="font-body text-sm text-mist mb-4">Réservez scooter, moto ou hébergement directement en ligne.</p>
+          <Button asChild className="bg-ember text-white hover:bg-ember/90 rounded-xl">
             <Link to="/#search-results">Voir les annonces disponibles</Link>
           </Button>
         </div>
 
         {related.length > 0 && (
           <div className="mt-12">
-            <h2 className="font-bold text-lg mb-4">Articles liés</h2>
+            <h2 className="font-display font-bold text-lg text-night mb-4">Articles liés</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {related.map(r => (
-                <Link key={r.slug} to={`/blog/${r.slug}`} className="group p-4 rounded-xl border hover:shadow-md transition-shadow">
-                  <span className="text-xs font-semibold text-primary uppercase tracking-wide">{r.category}</span>
-                  <p className="font-semibold text-sm mt-1 group-hover:text-primary transition-colors">{r.title}</p>
+                <Link key={r.slug} to={`/blog/${r.slug}`} className="group p-4 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow">
+                  <span className="font-mono text-xs text-ocean uppercase tracking-wide">{r.category}</span>
+                  <p className="font-display font-semibold text-sm text-night mt-1 group-hover:text-ocean transition-colors">{r.title}</p>
                 </Link>
               ))}
             </div>

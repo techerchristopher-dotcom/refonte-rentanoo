@@ -35,26 +35,26 @@ export default function BlogIndex() {
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
-              className="group flex flex-col rounded-xl border bg-card shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+              className="group flex flex-col rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow overflow-hidden"
             >
               {post.image && (
-                <div className="aspect-[16/9] overflow-hidden bg-muted/30">
+                <div className="aspect-[16/9] overflow-hidden">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                     decoding="async"
                   />
                 </div>
               )}
               <div className="p-5 flex flex-col gap-3 flex-1">
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">{post.category}</span>
-                <h2 className="font-bold text-base leading-snug group-hover:text-primary transition-colors">{post.title}</h2>
-                <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt}</p>
-                <div className="mt-auto flex items-center justify-between text-xs text-muted-foreground pt-2">
+                <span className="font-mono text-xs text-ocean uppercase tracking-wider">{post.category}</span>
+                <h2 className="font-display font-bold text-base leading-snug text-night line-clamp-2 group-hover:text-ocean transition-colors">{post.title}</h2>
+                <p className="font-body text-sm text-mist line-clamp-3">{post.excerpt}</p>
+                <div className="mt-auto flex items-center justify-between text-xs text-mist pt-2">
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime} min</span>
-                  <span className="flex items-center gap-1 text-primary font-medium">Lire <ArrowRight className="h-3 w-3" /></span>
+                  <span className="flex items-center gap-1 text-ocean font-display font-medium group-hover:text-ember transition-colors">Lire l'article <ArrowRight className="h-3 w-3" /></span>
                 </div>
               </div>
             </Link>

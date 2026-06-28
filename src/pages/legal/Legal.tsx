@@ -73,7 +73,7 @@ export default function Legal() {
               <CardHeader>
                 <CardTitle>Politique de Confidentialité</CardTitle>
                 <CardDescription>
-                  Protection de vos données dans cette démonstration
+                  Protection de vos données personnelles
                 </CardDescription>
               </CardHeader>
               <CardContent className="prose prose-slate max-w-none">

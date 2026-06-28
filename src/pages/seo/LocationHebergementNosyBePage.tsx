@@ -178,7 +178,7 @@ function ListingCard({ v, photos, animDelay }: ListingCardProps) {
   return (
     <Link
       to={path}
-      className="group flex flex-col rounded-xl border bg-card overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lagoon focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary animate-fade-up"
+      className="group flex flex-col rounded-xl border bg-white overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lagoon focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean animate-fade-up"
       style={{ animationDelay: `${animDelay}ms`, animationFillMode: "both" }}
     >
       {/* Zone photo avec mini-carrousel */}
@@ -415,7 +415,7 @@ export default function LocationHebergementNosyBePage() {
           </div>
 
           <h1
-            className={cn("mt-4 text-3xl font-bold tracking-tight md:text-5xl md:leading-[1.1] lg:text-[3.25rem]", !prefersReducedMotion && "animate-fade-up")}
+            className={cn("mt-4 text-3xl font-bold tracking-tight md:text-5xl md:leading-[1.1] lg:text-[3.25rem] font-display", !prefersReducedMotion && "animate-fade-up")}
             style={fadeUp(100)}
           >
             Trouvez votre hébergement idéal à Nosy Be
@@ -695,10 +695,10 @@ export default function LocationHebergementNosyBePage() {
           title="Réservez votre hébergement à Nosy Be"
           text="Logements vérifiés, prix clairs, réservation sécurisée en ligne."
         >
-          <Button asChild className="bg-white text-primary font-semibold hover:bg-white/90 shadow-md">
+          <Button asChild className="bg-ember text-white font-semibold hover:bg-ember/90 shadow-md rounded-xl">
             <Link to="/?cat=accommodation">Voir les hébergements disponibles</Link>
           </Button>
-          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10 rounded-xl">
             <Link to="/">Accueil Rentanoo</Link>
           </Button>
         </SeoCtaPanel>
