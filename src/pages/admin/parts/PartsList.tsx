@@ -18,14 +18,14 @@ export default function PartsList() {
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold">Pièces détachées</h1>
+          <h1 className="text-2xl font-bold font-display">Pièces détachées</h1>
           <p className="text-sm text-muted-foreground">{parts?.length ?? 0} référence(s)</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" asChild>
             <Link to="/admin/parts/movements">Mouvements</Link>
           </Button>
-          <Button asChild>
+          <Button asChild className="bg-[#E8622F] hover:bg-[#E8622F]/90 text-white">
             <Link to="/admin/parts/new">
               <Plus className="h-4 w-4 mr-2" />
               Nouvelle pièce
@@ -49,14 +49,14 @@ export default function PartsList() {
         <CardContent className="p-0 overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>SKU</TableHead>
-                <TableHead>Nom</TableHead>
-                <TableHead>Catégorie</TableHead>
-                <TableHead>Stock</TableHead>
-                <TableHead>Prix achat</TableHead>
-                <TableHead>Prix vente</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+              <TableRow className="bg-[#F4F2EE] border-b border-[#D8D5CF]">
+                <TableHead className="font-display text-sm">SKU</TableHead>
+                <TableHead className="font-display text-sm">Nom</TableHead>
+                <TableHead className="font-display text-sm">Catégorie</TableHead>
+                <TableHead className="font-display text-sm">Stock</TableHead>
+                <TableHead className="font-display text-sm">Prix achat</TableHead>
+                <TableHead className="font-display text-sm">Prix vente</TableHead>
+                <TableHead className="text-right font-display text-sm">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

@@ -26,10 +26,10 @@ export default function WorkshopList() {
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold">Atelier — Réparations</h1>
+          <h1 className="text-2xl font-bold font-display">Atelier — Réparations</h1>
           <p className="text-sm text-muted-foreground">{repairs?.length ?? 0} intervention(s)</p>
         </div>
-        <Button asChild>
+        <Button asChild className="bg-[#E8622F] hover:bg-[#E8622F]/90 text-white">
           <Link to="/admin/workshop/new">
             <Plus className="h-4 w-4 mr-2" />
             Nouvelle intervention
@@ -55,13 +55,13 @@ export default function WorkshopList() {
         <CardContent className="p-0 overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Scooter</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Titre</TableHead>
-                <TableHead>Statut</TableHead>
-                <TableHead>Coût</TableHead>
+              <TableRow className="bg-[#F4F2EE] border-b border-[#D8D5CF]">
+                <TableHead className="font-display text-sm">Date</TableHead>
+                <TableHead className="font-display text-sm">Scooter</TableHead>
+                <TableHead className="font-display text-sm">Type</TableHead>
+                <TableHead className="font-display text-sm">Titre</TableHead>
+                <TableHead className="font-display text-sm">Statut</TableHead>
+                <TableHead className="font-display text-sm">Coût</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -88,7 +88,7 @@ export default function WorkshopList() {
                     </TableCell>
                     <TableCell>{INTERVENTION_TYPE_LABELS[r.intervention_type as keyof typeof INTERVENTION_TYPE_LABELS] ?? r.intervention_type}</TableCell>
                     <TableCell>
-                      <Link to={`/admin/workshop/${r.id}`} className="text-primary hover:underline">
+                      <Link to={`/admin/workshop/${r.id}`} className="text-[#097870] hover:text-[#097870]/80">
                         {r.title}
                       </Link>
                     </TableCell>
