@@ -460,22 +460,40 @@ const OwnerBookings = () => {
   const getStatusBadge = (status: Booking['status']) => {
     switch (status) {
       case 'pending':
-        return <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-300">
+      case 'pending_payment':
+        return <Badge variant="outline" className="bg-amber-100 text-amber-700 border-amber-300">
           <AlertCircle className="h-3 w-3 mr-1" />
           En attente
         </Badge>;
       case 'accepted':
-        return <Badge variant="outline" className="bg-green-50 text-green-700 border-green-300">
+      case 'confirmed':
+        return <Badge variant="outline" className="bg-[#097870]/10 text-[#097870] border-[#097870]/30">
           <CheckCircle className="h-3 w-3 mr-1" />
-          Acceptée
+          Confirmée
+        </Badge>;
+      case 'active':
+        return <Badge variant="outline" className="bg-[#097870]/10 text-[#097870] border-[#097870]/30">
+          <CheckCircle className="h-3 w-3 mr-1" />
+          En cours
+        </Badge>;
+      case 'completed':
+        return <Badge variant="outline" className="bg-gray-100 text-gray-600 border-gray-300">
+          <CheckCircle className="h-3 w-3 mr-1" />
+          Terminée
         </Badge>;
       case 'cancelled':
-        return <Badge variant="outline" className="bg-red-50 text-red-700 border-red-300">
+      case 'rejected':
+        return <Badge variant="outline" className="bg-red-100 text-red-700 border-red-300">
           <XCircle className="h-3 w-3 mr-1" />
           Annulée
         </Badge>;
+      case 'declined':
+        return <Badge variant="outline" className="bg-red-100 text-red-700 border-red-300">
+          <XCircle className="h-3 w-3 mr-1" />
+          Refusée
+        </Badge>;
       case 'closed':
-        return <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-300">
+        return <Badge variant="outline" className="bg-gray-100 text-gray-600 border-gray-300">
           <CheckCircle className="h-3 w-3 mr-1" />
           Terminée
         </Badge>;
@@ -642,10 +660,10 @@ const OwnerBookings = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-[#F4F2EE]">
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#097870] mx-auto mb-4"></div>
             <p className="text-muted-foreground">Chargement...</p>
           </div>
         </div>
@@ -655,11 +673,11 @@ const OwnerBookings = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#F4F2EE]">
       <main className="container mx-auto px-4 py-8 max-w-6xl">
         {/* En-tête */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">
+          <h1 className="font-display text-3xl font-bold text-[#0D1E26] mb-2">
             Mes réservations
           </h1>
         </div>

@@ -245,7 +245,7 @@ export function ExteriorZoneRecapCard({
       {/* Titre de la zone avec style distinctif */}
       <div className="flex justify-center">
         <div className="bg-teal-50 border border-teal-200 rounded-full px-6 py-2 shadow-sm w-fit text-center">
-          <h3 className="text-lg font-semibold text-teal-800 tracking-wide">
+          <h3 className="font-display text-lg font-semibold text-teal-800 tracking-wide">
             {zoneLabel}
           </h3>
         </div>

@@ -895,12 +895,12 @@ export function EtatDesLieuxDepartFormMoto({
         </div>
       )}
       {isReadOnly && (
-        <Card className="border-2 border-blue-500 bg-blue-50">
+        <Card className="border-2 border-[#097870] bg-[#097870]/5">
           <CardContent className="py-4 text-center">
-            <p className="text-sm font-medium text-blue-800">
+            <p className="text-sm font-medium text-[#097870]">
               ✅ Cet état des lieux a été finalisé et est maintenant verrouillé.
             </p>
-            <p className="text-xs text-blue-700 mt-1">
+            <p className="text-xs text-[#097870]/80 mt-1">
               Vous pouvez consulter les informations mais ne plus les modifier.
             </p>
           </CardContent>

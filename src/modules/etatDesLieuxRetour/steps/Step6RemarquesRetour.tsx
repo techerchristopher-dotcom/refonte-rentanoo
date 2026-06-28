@@ -30,7 +30,7 @@ export default function Step6RemarquesRetour({ departData, setValue, watch }: St
     <div className="w-full space-y-4 sm:space-y-5 md:space-y-6">
       {/* En-tête - Typographie mobile-first */}
       <div className="space-y-1.5 sm:space-y-2">
-        <h2 className="text-xl sm:text-2xl font-semibold leading-tight sm:leading-none tracking-tight flex items-center gap-2">
+        <h2 className="font-display text-xl sm:text-2xl font-semibold leading-tight sm:leading-none tracking-tight flex items-center gap-2">
           <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0" />
           <span className="break-words">Remarques retour</span>
         </h2>

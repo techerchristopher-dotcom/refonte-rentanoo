@@ -415,7 +415,7 @@ export function Section3ExterieurMoto({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-semibold mb-2">Extérieur de la moto</h2>
+        <h2 className="font-display text-2xl font-semibold mb-2">Extérieur de la moto</h2>
         <p className="text-muted-foreground text-sm">
           Prenez des photos de chaque zone de la moto pour documenter son état.
         </p>

@@ -676,7 +676,7 @@ export default function Section4Interieur({
   return (
     <div className="space-y-4 bg-gray-50 p-4">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-semibold leading-none tracking-tight flex items-center justify-center gap-2">
+        <h2 className="font-display text-2xl font-semibold leading-none tracking-tight flex items-center justify-center gap-2">
           <Car className="h-6 w-6 text-primary" />
           État intérieur
         </h2>
@@ -821,7 +821,7 @@ export default function Section4Interieur({
                                 document.getElementById('seats-photo-input')?.click();
                               }}
                               disabled={isUploadingPhoto}
-                              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors disabled:opacity-50"
+                              className="inline-flex items-center justify-center rounded-md bg-[#097870] px-3 py-2 text-sm font-medium text-white hover:bg-[#097870]/90 transition-colors disabled:opacity-50"
                             >
                               <CameraIcon className="h-4 w-4" />
                               <span className="ml-1">
@@ -867,7 +867,7 @@ export default function Section4Interieur({
                                   e.stopPropagation();
                                   document.getElementById('seats-photo-input')?.click();
                                 }}
-                                className="mt-3 text-xs text-blue-700 hover:text-blue-800 underline"
+                                className="mt-3 text-xs text-[#097870] hover:text-[#097870]/80 underline"
                               >
                                 Changer la photo
                               </button>
@@ -1244,7 +1244,7 @@ export default function Section4Interieur({
                                 document.getElementById('cleanliness-photo-input')?.click();
                               }}
                               disabled={isUploadingPhoto}
-                              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors disabled:opacity-50"
+                              className="inline-flex items-center justify-center rounded-md bg-[#097870] px-3 py-2 text-sm font-medium text-white hover:bg-[#097870]/90 transition-colors disabled:opacity-50"
                             >
                               <CameraIcon className="h-4 w-4" />
                               <span className="ml-1">
@@ -1290,7 +1290,7 @@ export default function Section4Interieur({
                                   e.stopPropagation();
                                   document.getElementById('cleanliness-photo-input')?.click();
                                 }}
-                                className="mt-3 text-xs text-blue-700 hover:text-blue-800 underline"
+                                className="mt-3 text-xs text-[#097870] hover:text-[#097870]/80 underline"
                               >
                                 Changer la photo
                               </button>
@@ -1537,7 +1537,7 @@ export default function Section4Interieur({
       <Card className="mt-6 border-2 border-primary/20 shadow-lg" data-interior-summary="true">
         <CardContent className="p-6">
           <div className="text-center space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">
+            <h3 className="font-display text-lg font-semibold text-foreground">
               Inspection intérieure complète
             </h3>
             <p className="text-sm text-muted-foreground">
