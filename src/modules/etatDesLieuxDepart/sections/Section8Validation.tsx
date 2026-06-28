@@ -397,7 +397,7 @@ export default function Section8Validation({
   return (
     <div className="space-y-4">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-semibold leading-none tracking-tight flex items-center justify-center gap-2">
+        <h2 className="font-display text-2xl font-semibold leading-none tracking-tight flex items-center justify-center gap-2">
           <CheckCircle2 className="h-6 w-6 text-success" />
           Validation & Signature
         </h2>
@@ -441,7 +441,7 @@ export default function Section8Validation({
         {/* Bannière de section niveau 1 */}
         <div className="flex justify-start items-center">
           <div className="bg-teal-100 border-l-4 border-teal-500 rounded-md px-5 py-2 shadow-sm">
-            <h2 className="text-xl font-bold text-teal-900 tracking-wide">
+            <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide">
               Informations de la location
             </h2>
             <p className="text-sm text-slate-600">
@@ -643,7 +643,7 @@ export default function Section8Validation({
         {/* Bannière de section niveau 1 */}
         <div className="flex justify-start items-center">
           <div className="bg-teal-100 border-l-4 border-teal-500 rounded-md px-5 py-2 shadow-sm">
-            <h2 className="text-xl font-bold text-teal-900 tracking-wide">
+            <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide">
               Récapitulatif extérieur : photos et dégâts par zone
             </h2>
             <p className="text-sm text-slate-600">
@@ -689,7 +689,7 @@ export default function Section8Validation({
             {/* Bannière de section */}
             <div className="flex justify-start items-center">
               <div className="bg-teal-100 border-l-4 border-teal-500 rounded-md px-5 py-2 shadow-sm">
-                <h2 className="text-xl font-bold text-teal-900 tracking-wide">
+                <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide">
                   Récapitulatif jantes : photos et dégâts
                 </h2>
                 <p className="text-sm text-slate-600">
@@ -730,7 +730,7 @@ export default function Section8Validation({
         <section className="space-y-6">
           <div className="flex justify-start items-center">
             <div className="bg-teal-100 border-l-4 border-teal-500 rounded-md px-5 py-2 shadow-sm">
-              <h2 className="text-xl font-bold text-teal-900 tracking-wide">
+              <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide">
                 Photos intérieur du véhicule
               </h2>
               <p className="text-sm text-slate-600">
@@ -800,7 +800,7 @@ export default function Section8Validation({
                 {/* Titre de la zone avec style distinctif */}
                 <div className="flex justify-center">
                   <div className="bg-teal-50 border border-teal-200 rounded-full px-6 py-2 shadow-sm w-fit text-center">
-                    <h3 className="text-lg font-semibold text-teal-800 tracking-wide">
+                    <h3 className="font-display text-lg font-semibold text-teal-800 tracking-wide">
                       État intérieur – Sièges
                     </h3>
                   </div>
@@ -943,7 +943,7 @@ export default function Section8Validation({
         <section className="space-y-6">
           <div className="flex justify-start items-center">
             <div className="bg-teal-100 border-l-4 border-teal-500 rounded-md px-5 py-2 shadow-sm">
-              <h2 className="text-xl font-bold text-teal-900 tracking-wide">
+              <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide">
                 État extérieur (résumé)
               </h2>
             </div>
@@ -984,7 +984,7 @@ export default function Section8Validation({
         <section className="space-y-6">
           <div className="flex justify-start items-center">
             <div className="bg-teal-100 border-l-4 border-teal-500 rounded-md px-5 py-2 shadow-sm">
-              <h2 className="text-xl font-bold text-teal-900 tracking-wide">
+              <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide">
                 État intérieur (résumé)
               </h2>
             </div>
@@ -1060,7 +1060,7 @@ export default function Section8Validation({
             <section className="space-y-6">
               <div className="flex justify-start items-center">
                 <div className="bg-teal-100 border-l-4 border-teal-500 rounded-md px-5 py-2 shadow-sm">
-                  <h2 className="text-xl font-bold text-teal-900 tracking-wide flex items-center gap-2">
+                  <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide flex items-center gap-2">
                     🧰 Accessoires & Équipements – Commentaires
                   </h2>
                 </div>
@@ -1084,7 +1084,7 @@ export default function Section8Validation({
             <section className="space-y-6">
               <div className="flex justify-start items-center">
                 <div className="bg-teal-100 border-l-4 border-teal-500 rounded-md px-5 py-2 shadow-sm">
-                  <h2 className="text-xl font-bold text-teal-900 tracking-wide">
+                  <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide">
                     Remarques & Observations
                   </h2>
                 </div>
@@ -1110,7 +1110,7 @@ export default function Section8Validation({
         {/* Bannière de section niveau 1 - style spécial pour conclusion */}
         <div className="flex justify-start items-center">
           <div className="bg-teal-200 border-l-4 border-teal-600 rounded-md px-5 py-2 shadow-md">
-            <h2 className="text-xl font-bold text-teal-900 tracking-wide flex items-center gap-2">
+            <h2 className="font-display text-xl font-bold text-teal-900 tracking-wide flex items-center gap-2">
               <PenTool className="h-5 w-5" />
               Validation & signatures
             </h2>

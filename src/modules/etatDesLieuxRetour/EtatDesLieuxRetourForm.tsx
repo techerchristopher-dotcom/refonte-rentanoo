@@ -655,7 +655,7 @@ export default function EtatDesLieuxRetourForm({ bookingId }: EtatDesLieuxRetour
           {/* Header du wizard */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
             <div>
-              <h1 className="text-xl sm:text-2xl font-semibold">État des lieux de retour</h1>
+              <h1 className="font-display text-xl sm:text-2xl font-semibold">État des lieux de retour</h1>
               <p className="text-xs sm:text-sm text-muted-foreground">
                 Étape {currentStep} sur {totalSteps}
               </p>

@@ -292,7 +292,7 @@ export default function Section2Releves({
   return (
     <div className="space-y-6">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-semibold leading-none tracking-tight flex items-center justify-center gap-2">
+        <h2 className="font-display text-2xl font-semibold leading-none tracking-tight flex items-center justify-center gap-2">
           <Gauge className="h-6 w-6 text-primary" />
           Relevés du véhicule
         </h2>

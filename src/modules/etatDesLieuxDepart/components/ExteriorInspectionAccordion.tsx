@@ -97,7 +97,7 @@ function StepPanel({
 
         {/* Titre et sous-titre */}
         <div className="flex-1 flex flex-col gap-1 min-w-0">
-          <h3 className="text-base font-semibold text-gray-900">{title}</h3>
+          <h3 className="font-display text-base font-semibold text-gray-900">{title}</h3>
           <p className="text-sm text-gray-600">{subtitle}</p>
         </div>
 
@@ -269,7 +269,7 @@ export default function ExteriorInspectionAccordion() {
     <div className="w-full max-w-2xl mx-auto px-4 py-6 space-y-4">
       {/* En-tête de section */}
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-semibold leading-none tracking-tight">
+        <h2 className="font-display text-2xl font-semibold leading-none tracking-tight">
           🚗 Inspection extérieure
         </h2>
         <p className="text-sm text-muted-foreground mt-2">

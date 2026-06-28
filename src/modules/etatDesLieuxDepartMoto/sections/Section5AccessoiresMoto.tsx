@@ -275,7 +275,7 @@ export function Section5AccessoiresMoto({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
+        <h2 className="font-display text-2xl font-semibold mb-2 flex items-center gap-2">
           <Package className="h-6 w-6 text-primary" />
           Accessoires & Équipements
         </h2>

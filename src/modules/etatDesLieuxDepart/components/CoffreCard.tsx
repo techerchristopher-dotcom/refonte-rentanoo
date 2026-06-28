@@ -76,7 +76,7 @@ export function CoffreCard({
           {stepNumber}
         </div>
         <div className="flex flex-col">
-          <h3 className="text-base font-semibold text-gray-900">
+          <h3 className="font-display text-base font-semibold text-gray-900">
             Coffre & équipements
           </h3>
           <p className="text-sm text-gray-600">
