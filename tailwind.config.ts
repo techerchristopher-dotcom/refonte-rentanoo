@@ -14,6 +14,15 @@ export default {
     },
     extend: {
       colors: {
+        ocean: {
+          deep: '#0B1A1F',
+          DEFAULT: '#097870',
+          glow: '#0FBFB0',
+        },
+        ember: '#E8622F',
+        sand: '#F4F2EE',
+        night: '#0D1E26',
+        mist: '#6B8A8D',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -70,11 +79,18 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['DM Sans', 'sans-serif'],
+        mono: ['DM Mono', 'monospace'],
+      },
       borderRadius: {
-        lg: "var(--radius)",
+        DEFAULT: '0.75rem',
+        lg: '1rem',
+        xl: '1.25rem',
+        '2xl': '1.5rem',
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        "2xl": "1rem",
         "3xl": "1.5rem",
       },
       backgroundImage: {
