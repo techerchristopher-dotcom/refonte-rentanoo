@@ -78,8 +78,8 @@ export default function Profile() {
     setShowLicenseAlert(false);
   };
 
-  // Fonction pour calculer le pourcentage de completion du profil
-  const calculateProfileCompletion = () => {
+  // Calcul du pourcentage de completion du profil (memoïsé pour éviter les recalculs à chaque render)
+  const calculateProfileCompletion = useMemo(() => {
     try {
       const fields: string[] = [
         // Section informations de base
@@ -113,13 +113,14 @@ export default function Profile() {
 
       const completedFields = fields.filter(field => field && field.trim() !== '').length;
       const totalFields = fields.length;
-      
+
       return Math.round((completedFields / totalFields) * 100);
     } catch (error) {
       console.error('Erreur dans calculateProfileCompletion:', error);
       return 0;
     }
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstName, lastName, phone, birthDate, placeOfBirth, bio, addressLine1, postalCode, city, country, driverLicenseNumber, driverLicenseIssueDate, driverLicenseCategory, driverLicenseCountry]);
   const [profileImage, setProfileImage] = useState<string>("");
   const [phone, setPhone] = useState<string | undefined>("");
   const [birthDate, setBirthDate] = useState<Date>();
@@ -857,24 +858,7 @@ export default function Profile() {
     };
   }, [toast]);
 
-  // Gestionnaire d'erreur pour éviter les pages blanches
-  useEffect(() => {
-    const handleError = (error: ErrorEvent) => {
-      console.error('Erreur JavaScript capturée:', error);
-      setHasError(true);
-      toast({
-        title: t("profile.toasts.javascriptError.title", "Erreur"),
-        description: t(
-          "profile.toasts.javascriptError.description",
-          "Une erreur inattendue s'est produite. Veuillez recharger la page."
-        ),
-        variant: "destructive",
-      });
-    };
-
-    window.addEventListener('error', handleError);
-    return () => window.removeEventListener('error', handleError);
-  }, [toast]);
+  // Gestionnaire d'erreur pour éviter les pages blanches (dédupliqué — géré par le useEffect global ci-dessus)
 
   // Affichage d'erreur si une erreur critique s'est produite
   if (hasError) {
@@ -887,9 +871,14 @@ export default function Profile() {
           <p className="text-gray-600 mb-6">
             {t("profile.error.description", "Une erreur s'est produite lors du chargement du profil.")}
           </p>
-          <Button onClick={() => window.location.reload()}>
-            {t("profile.error.reload", "Recharger la page")}
-          </Button>
+          <div className="flex gap-3 justify-center">
+            <Button variant="outline" onClick={() => setHasError(false)}>
+              {t("profile.error.retry", "Réessayer")}
+            </Button>
+            <Button onClick={() => window.location.reload()}>
+              {t("profile.error.reload", "Recharger la page")}
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -936,15 +925,15 @@ export default function Profile() {
             {/* Badge de statut du profil */}
             <div className="mb-6">
               <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                calculateProfileCompletion() === 100 
+                calculateProfileCompletion === 100 
                   ? 'bg-success-soft text-success border border-success-soft/30' 
-                  : calculateProfileCompletion() >= 75
+                  : calculateProfileCompletion >= 75
                   ? 'bg-primary-soft text-primary border border-primary-soft/30'
-                  : calculateProfileCompletion() >= 50
+                  : calculateProfileCompletion >= 50
                   ? 'bg-warning-soft text-warning border border-warning-soft/30'
                   : 'bg-muted text-muted-foreground border border-muted/30'
               }`}>
-                {calculateProfileCompletion() === 100 ? (
+                {calculateProfileCompletion === 100 ? (
                   <>
                     <span className="w-2 h-2 bg-success rounded-full mr-2 animate-pulse"></span>
                     {t("profile.completion.full", "Profil complet ✓")}
@@ -953,9 +942,9 @@ export default function Profile() {
                   <>
                     <span
                       className={`w-2 h-2 rounded-full mr-2 ${
-                        calculateProfileCompletion() >= 75
+                        calculateProfileCompletion >= 75
                           ? "bg-primary animate-pulse"
-                          : calculateProfileCompletion() >= 50
+                          : calculateProfileCompletion >= 50
                           ? "bg-warning animate-pulse"
                           : "bg-muted-foreground"
                       }`}
@@ -963,7 +952,7 @@ export default function Profile() {
                     {t(
                       "profile.completion.partial",
                       "Profil {{percent}}% complété",
-                      { percent: calculateProfileCompletion() }
+                      { percent: calculateProfileCompletion }
                     )}
                   </>
                 )}
@@ -2014,7 +2003,7 @@ export default function Profile() {
           )}
 
           {/* Submit Button - Visible seulement si profil incomplet */}
-          {calculateProfileCompletion() < 100 && (
+          {calculateProfileCompletion < 100 && (
             <div className="pt-6 sm:pt-8 pb-6 sm:pb-8">
               <div className="bg-gradient-to-r from-primary-soft/20 to-primary-soft/10 rounded-2xl p-6 border border-primary-soft/30">
                 <div className="text-center">
@@ -2022,14 +2011,14 @@ export default function Profile() {
                     {t(
                       "profile.banner.title",
                       "Profil {{percent}}% complété",
-                      { percent: calculateProfileCompletion() }
+                      { percent: calculateProfileCompletion }
                     )}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-6">
                     {t(
                       "profile.banner.description",
                       "{{percent}}% du profil complété. Cliquez pour sauvegarder toutes les modifications.",
-                      { percent: calculateProfileCompletion() }
+                      { percent: calculateProfileCompletion }
                     )}
                   </p>
             <Button
