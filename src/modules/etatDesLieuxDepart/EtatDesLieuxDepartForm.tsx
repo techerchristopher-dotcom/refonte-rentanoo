@@ -1651,22 +1651,33 @@ export default function EtatDesLieuxDepartForm({
       validated_at: new Date().toISOString(),
     };
 
-    // POUR L'INSTANT : pas d'appel serveur.
-    console.log("=== PAYLOAD CHECK-IN FINAL ===");
-    console.dir(payload, { depth: null });
-    
-    toast({
-      title: "✅ État des lieux prêt",
-      description: "Le formulaire est prêt. Regarde la console pour voir le payload.",
-      variant: "default",
+    const result = await SupabaseCheckinService.saveCheckinDraft({
+      checkin_id: checkinId,
+      booking_id: bookingId ?? '',
+      owner_id: ownerId ?? null,
+      renter_id: renterId ?? null,
+      status: 'submitted',
+      data: payload,
     });
 
-    // 🔜 plus tard (quand on sera prêts)
-    // await fetch("/api/checkin/submit", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(payload),
-    // });
+    if (result.error) {
+      toast({
+        title: "Erreur",
+        description: "Impossible d'enregistrer l'état des lieux : " + result.error,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (result.data?.id) {
+      setCheckinId(result.data.id);
+    }
+
+    toast({
+      title: "État des lieux enregistré",
+      description: "L'état des lieux de départ a été sauvegardé avec succès.",
+      variant: "default",
+    });
   }
 
   const onSubmit = (data: FormData) => {
