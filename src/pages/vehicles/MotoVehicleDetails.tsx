@@ -167,7 +167,7 @@ const getLocationIcon = (zone: string) => {
 
 
 export default function MotoVehicleDetails() {
-  console.log("🏍️ [DEBUG] MotoVehicleDetails component rendering");
+  if (import.meta.env.DEV) console.log("🏍️ [DEBUG] MotoVehicleDetails component rendering");
 
   const { license } = useParams<{ license: string }>();
   const navigate = useNavigate();
@@ -186,9 +186,9 @@ export default function MotoVehicleDetails() {
     currentLang.startsWith("de") ? "de-DE" :
     "en-US";
 
-  console.log("🏍️ [DEBUG] License from useParams:", license);
-  console.log("🏍️ [DEBUG] Navigate function:", typeof navigate);
-  console.log("🏍️ [DEBUG] Location state:", location.state);
+  if (import.meta.env.DEV) console.log("🏍️ [DEBUG] License from useParams:", license);
+  if (import.meta.env.DEV) console.log("🏍️ [DEBUG] Navigate function:", typeof navigate);
+  if (import.meta.env.DEV) console.log("🏍️ [DEBUG] Location state:", location.state);
 
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [photos, setPhotos] = useState<Photo[]>([]);
@@ -223,6 +223,7 @@ export default function MotoVehicleDetails() {
   const [restoredNavState, setRestoredNavState] = useState<VehicleNavState>(null);
   const [manualNavState, setManualNavState] = useState<VehicleNavState>(null);
   const [isCartAddModalOpen, setIsCartAddModalOpen] = useState(false);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const pendingOriginEl = useRef<HTMLElement | null>(null);
   const [lastAddedCartItemId, setLastAddedCartItemId] = useState<string | null>(null);
   const [dateLocale, setDateLocale] = useState<Locale | null>(null);
@@ -296,20 +297,20 @@ export default function MotoVehicleDetails() {
   }, [loading, vehicle?.id, license]);
 
   useEffect(() => {
-    console.log("🏍️ [DEBUG] MotoVehicleDetails useEffect triggered");
-    console.log("🏍️ [DEBUG] License param:", license);
-    console.log("🏍️ [DEBUG] Current URL:", window.location.href);
+    if (import.meta.env.DEV) console.log("🏍️ [DEBUG] MotoVehicleDetails useEffect triggered");
+    if (import.meta.env.DEV) console.log("🏍️ [DEBUG] License param:", license);
+    if (import.meta.env.DEV) console.log("🏍️ [DEBUG] Current URL:", window.location.href);
     loadVehicleData();
     loadCurrentUser();
   }, [license]);
 
   const loadCurrentUser = async () => {
-    console.log("🔍 [DEBUG] Chargement de l'utilisateur actuel (moto)...");
+    if (import.meta.env.DEV) console.log("🔍 [DEBUG] Chargement de l'utilisateur actuel (moto)...");
     try {
       const result = await ProfileService.getCurrentUserProfile();
-      console.log("📊 [DEBUG] Résultat ProfileService:", result);
-      console.log("👤 [DEBUG] Données utilisateur:", result.data);
-      console.log("❌ [DEBUG] Erreur ProfileService:", result.error);
+      if (import.meta.env.DEV) console.log("📊 [DEBUG] Résultat ProfileService:", result);
+      if (import.meta.env.DEV) console.log("👤 [DEBUG] Données utilisateur:", result.data);
+      if (import.meta.env.DEV) console.log("❌ [DEBUG] Erreur ProfileService:", result.error);
 
       if (result.error) {
         console.error(
@@ -318,7 +319,7 @@ export default function MotoVehicleDetails() {
         );
         setCurrentUser(null);
       } else {
-        console.log("✅ [DEBUG] Utilisateur chargé avec succès");
+        if (import.meta.env.DEV) console.log("✅ [DEBUG] Utilisateur chargé avec succès");
         setCurrentUser(result.data);
       }
     } catch (error) {
@@ -339,13 +340,13 @@ export default function MotoVehicleDetails() {
       // Charger tous les véhicules depuis Supabase
       const allVehicles = await SupabaseVehiclesService.getAvailableVehicles();
 
-      console.log("🏍️ [DEBUG] Tous les véhicules chargés:", allVehicles.length);
-      console.log("🏍️ [DEBUG] License recherchée (moto):", license);
+      if (import.meta.env.DEV) console.log("🏍️ [DEBUG] Tous les véhicules chargés:", allVehicles.length);
+      if (import.meta.env.DEV) console.log("🏍️ [DEBUG] License recherchée (moto):", license);
 
       // Afficher les 8 premiers caractères de chaque véhicule pour debug
       allVehicles.forEach((v, index) => {
         const vehicleLicense = v.id.substring(0, 8).toUpperCase();
-        console.log(
+        if (import.meta.env.DEV) console.log(
           `🏍️ [DEBUG] Véhicule ${index}: ID=${v.id}, License=${vehicleLicense}, Match=${vehicleLicense === license}`
         );
       });
@@ -374,11 +375,11 @@ export default function MotoVehicleDetails() {
         // Mapper le véhicule Supabase vers le type Vehicle (moto)
         const mappedVehicle: Vehicle = mapToMotoVehicle(supabaseVehicle);
 
-        console.log(
+        if (import.meta.env.DEV) console.log(
           "🏍️ [MotoVehicleDetails] Véhicule Supabase original:",
           supabaseVehicle
         );
-        console.log("🏍️ [MotoVehicleDetails] Véhicule mappé (moto):", mappedVehicle);
+        if (import.meta.env.DEV) console.log("🏍️ [MotoVehicleDetails] Véhicule mappé (moto):", mappedVehicle);
 
         setVehicle(mappedVehicle);
 
@@ -473,12 +474,12 @@ export default function MotoVehicleDetails() {
 
   const handleBooking = (userOverride?: User | null) => {
     const activeUser = userOverride ?? currentUser;
-    console.log("🏍️ [DEBUG] Clic sur Réserver (moto)");
-    console.log("👤 [DEBUG] currentUser:", activeUser);
-    console.log("🏍️ [DEBUG] vehicle:", vehicle);
+    if (import.meta.env.DEV) console.log("🏍️ [DEBUG] Clic sur Réserver (moto)");
+    if (import.meta.env.DEV) console.log("👤 [DEBUG] currentUser:", activeUser);
+    if (import.meta.env.DEV) console.log("🏍️ [DEBUG] vehicle:", vehicle);
 
     if (!activeUser) {
-      console.log(
+      if (import.meta.env.DEV) console.log(
         "❌ [DEBUG] Utilisateur non connecté, redirection vers login (moto)"
       );
       const path = `/moto/${license}`;
@@ -530,7 +531,7 @@ export default function MotoVehicleDetails() {
     let bookingDraft = getBookingDraft();
 
     if (!bookingDraft) {
-      console.log(
+      if (import.meta.env.DEV) console.log(
         "📝 [DEBUG] Aucun brouillon existant, création d'un nouveau (moto)"
       );
       bookingDraft = createBookingDraft(
@@ -547,7 +548,7 @@ export default function MotoVehicleDetails() {
         vehicleRentalInfo?.totalCost || 0
       );
     } else {
-      console.log(
+      if (import.meta.env.DEV) console.log(
         "🔄 [DEBUG] Brouillon existant trouvé, mise à jour avec les nouvelles données (moto)"
       );
 
@@ -574,7 +575,7 @@ export default function MotoVehicleDetails() {
 
     bookingDraft = finalizeBookingDraftForCheckout(bookingDraft);
 
-    console.log("💾 [DEBUG] Brouillon final (moto):", bookingDraft);
+    if (import.meta.env.DEV) console.log("💾 [DEBUG] Brouillon final (moto):", bookingDraft);
 
     if (shouldShowComplementaryServicesModal()) {
       setShowComplementaryModal(true);
@@ -751,16 +752,16 @@ export default function MotoVehicleDetails() {
   const handleConfirmBooking = async (
     paymentMethod: BookingPaymentMethod = 'card_online',
   ) => {
-    console.log("✅ [DEBUG] Confirmation de la réservation (moto)");
+    if (import.meta.env.DEV) console.log("✅ [DEBUG] Confirmation de la réservation (moto)");
     setShowConfirmationModal(false);
 
     if (!vehicle) {
-      console.log("❌ [DEBUG] Pas de véhicule, arrêt (moto)");
+      if (import.meta.env.DEV) console.log("❌ [DEBUG] Pas de véhicule, arrêt (moto)");
       return;
     }
 
     if (!vehicle.license) {
-      console.log("❌ [DEBUG] Pas de license, arrêt (moto)");
+      if (import.meta.env.DEV) console.log("❌ [DEBUG] Pas de license, arrêt (moto)");
       return;
     }
 
@@ -1001,15 +1002,15 @@ export default function MotoVehicleDetails() {
   };
 
   const handleContinueWithOneVehicle = () => {
-    console.log("🏍️ [DEBUG] handleContinueWithOneVehicle (moto)");
+    if (import.meta.env.DEV) console.log("🏍️ [DEBUG] handleContinueWithOneVehicle (moto)");
 
     if (!vehicle) {
-      console.log("❌ [DEBUG] Pas de véhicule, arrêt (moto)");
+      if (import.meta.env.DEV) console.log("❌ [DEBUG] Pas de véhicule, arrêt (moto)");
       return;
     }
 
     if (!vehicle.license) {
-      console.log("❌ [DEBUG] Pas de license, arrêt (moto)");
+      if (import.meta.env.DEV) console.log("❌ [DEBUG] Pas de license, arrêt (moto)");
       return;
     }
 

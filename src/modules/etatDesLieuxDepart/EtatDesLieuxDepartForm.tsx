@@ -583,7 +583,7 @@ export default function EtatDesLieuxDepartForm({
           return;
         }
 
-        console.log("[checkin] Booking chargée:", booking);
+        if (import.meta.env.DEV) console.log("[checkin] Booking chargée:", booking);
 
         // Récupérer le locataire et le propriétaire à partir de la booking
         const renter_id_resolved = booking.user_id || null;
@@ -603,11 +603,11 @@ export default function EtatDesLieuxDepartForm({
           returnLocation: bookingData.pickup_location ?? null, // Pour l'instant = departureLocation
         };
 
-        console.log("[checkin] Dates de réservation:", reservationPatch);
+        if (import.meta.env.DEV) console.log("[checkin] Dates de réservation:", reservationPatch);
 
         // ⭐ NOUVEAU : Mettre à jour le reference_number si pas encore défini
         if (bookingData.reference_number != null && !bookingReferenceNumber) {
-          console.log("[checkin] 🔢 Mise à jour reference_number:", bookingData.reference_number);
+          if (import.meta.env.DEV) console.log("[checkin] 🔢 Mise à jour reference_number:", bookingData.reference_number);
           setBookingReferenceNumber(bookingData.reference_number);
         }
 
@@ -643,7 +643,7 @@ export default function EtatDesLieuxDepartForm({
           if (vehicleError) {
             console.error("[checkin] Erreur récupération véhicule:", vehicleError);
           } else if (vehicle) {
-            console.log("[checkin] Véhicule chargé:", vehicle);
+            if (import.meta.env.DEV) console.log("[checkin] Véhicule chargé:", vehicle);
 
             const vehicleData = vehicle as any;
             vehiculePatch = {
@@ -694,7 +694,7 @@ export default function EtatDesLieuxDepartForm({
               renter_id: booking.user_id,
             });
           } else {
-            console.log("[checkin] Profil conducteur chargé:", profile);
+            if (import.meta.env.DEV) console.log("[checkin] Profil conducteur chargé:", profile);
 
             const profileData = profile as any;
             conducteurPatch = {
@@ -750,7 +750,7 @@ export default function EtatDesLieuxDepartForm({
               owner_id: owner_id_resolved,
             });
           } else {
-            console.log("[checkin] Profil propriétaire chargé:", ownerProfile);
+            if (import.meta.env.DEV) console.log("[checkin] Profil propriétaire chargé:", ownerProfile);
 
             const ownerData = ownerProfile as any;
             ownerPatch = {
@@ -789,10 +789,10 @@ export default function EtatDesLieuxDepartForm({
           },
         }));
 
-        console.log("[checkin] Formulaire hydraté avec véhicule + conducteur + driver + owner + reservation ✅");
-        console.log("[checkin] Driver data:", driverPatch);
-        console.log("[checkin] Owner data:", ownerPatch);
-        console.log("[checkin] Reservation data:", reservationPatch);
+        if (import.meta.env.DEV) console.log("[checkin] Formulaire hydraté avec véhicule + conducteur + driver + owner + reservation ✅");
+        if (import.meta.env.DEV) console.log("[checkin] Driver data:", driverPatch);
+        if (import.meta.env.DEV) console.log("[checkin] Owner data:", ownerPatch);
+        if (import.meta.env.DEV) console.log("[checkin] Reservation data:", reservationPatch);
 
         setLoadingInit(false);
         setLoadingProfile(false);
@@ -820,9 +820,9 @@ export default function EtatDesLieuxDepartForm({
    * - N'écrase que si le draft a une valeur (garde les données de profil sinon)
    */
   const hydrateFormFromCheckin = (checkin: any) => {
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("[CHECKIN_DRAFT] 🔄 Début de l'hydratation du formulaire");
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 🔄 Début de l'hydratation du formulaire");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
     const step1 = checkin.data?.step1;
     const step2 = checkin.data?.step2;
@@ -834,7 +834,7 @@ export default function EtatDesLieuxDepartForm({
     if (step1?.identification) {
       const id = step1.identification;
       
-      console.log("[CHECKIN_DRAFT] 📋 Hydratation Step1...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📋 Hydratation Step1...");
       
       // Infos conducteur (seulement si présentes dans le draft)
       if (id.nom) {
@@ -865,15 +865,15 @@ export default function EtatDesLieuxDepartForm({
       
       if (photoRecto) {
         methods.setValue("conducteur.driver_license_photos_recto", photoRecto);
-        console.log("[CHECKIN_DRAFT] ✅ Photo permis recto chargée");
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Photo permis recto chargée");
       }
       
       if (photoVerso) {
         methods.setValue("conducteur.driver_license_photos_verso", photoVerso);
-        console.log("[CHECKIN_DRAFT] ✅ Photo permis verso chargée");
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Photo permis verso chargée");
       }
       
-      console.log("[CHECKIN_DRAFT] ✅ Step1 hydraté");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Step1 hydraté");
     }
 
     // ============================================================================
@@ -882,20 +882,20 @@ export default function EtatDesLieuxDepartForm({
     if (step2?.releves) {
       const rel = step2.releves;
       
-      console.log("[CHECKIN_DRAFT] 📋 Hydratation Step2...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📋 Hydratation Step2...");
       
       // Kilométrage : Priorité JSON, fallback colonne SQL
       const kilometrage = rel.kilometrage ?? checkin.kilometrage_depart ?? null;
       if (kilometrage != null) {
         methods.setValue("releves.kilometrage", kilometrage);
-        console.log("[CHECKIN_DRAFT] ✅ Kilométrage:", kilometrage);
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Kilométrage:", kilometrage);
       }
       
       // Niveau carburant : Priorité JSON, fallback colonne SQL
       const niveauCarburant = rel.niveauCarburant ?? checkin.niveau_carburant ?? null;
       if (niveauCarburant != null) {
         methods.setValue("releves.niveauCarburant", niveauCarburant);
-        console.log("[CHECKIN_DRAFT] ✅ Niveau carburant:", niveauCarburant);
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Niveau carburant:", niveauCarburant);
       }
       
       // ⭐ PHOTOS DASHBOARD : Priorité colonne SQL, fallback JSON
@@ -912,29 +912,29 @@ export default function EtatDesLieuxDepartForm({
         
         methods.setValue("releves.dashboardPhotos", urls);
         
-        console.log(`[CHECKIN_DRAFT] ✅ ${dashboardPhotos.length} photo(s) dashboard chargée(s)`);
+        if (import.meta.env.DEV) console.log(`[CHECKIN_DRAFT] ✅ ${dashboardPhotos.length} photo(s) dashboard chargée(s)`);
       }
       
-      console.log("[CHECKIN_DRAFT] ✅ Step2 hydraté");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Step2 hydraté");
     }
 
     // ============================================================================
     // STEP 3 : Extérieur & Coffre (préparation)
     // ============================================================================
     if (step3) {
-      console.log("[CHECKIN_DRAFT] 📋 Hydratation Step3...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📋 Hydratation Step3...");
       
       // Photos par zone
       if (step3.zonesPhotos) {
         methods.setValue("exteriorInspection.zonesPhotos", step3.zonesPhotos);
         const totalPhotos = Object.values(step3.zonesPhotos).flat().length;
-        console.log(`[CHECKIN_DRAFT] ✅ ${totalPhotos} photo(s) extérieures chargées`);
+        if (import.meta.env.DEV) console.log(`[CHECKIN_DRAFT] ✅ ${totalPhotos} photo(s) extérieures chargées`);
       }
       
       // Dégâts
       if (step3.damageReports && Array.isArray(step3.damageReports)) {
         methods.setValue("damageReports", step3.damageReports);
-        console.log(`[CHECKIN_DRAFT] ✅ ${step3.damageReports.length} dégât(s) chargé(s)`);
+        if (import.meta.env.DEV) console.log(`[CHECKIN_DRAFT] ✅ ${step3.damageReports.length} dégât(s) chargé(s)`);
       }
       
       // Switches zonesHasDamage
@@ -952,7 +952,7 @@ export default function EtatDesLieuxDepartForm({
         methods.setValue("exteriorInspection.propreteExterieure", step3.propreteExterieure);
       }
       
-      console.log("[CHECKIN_DRAFT] ✅ Step3 hydraté");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Step3 hydraté");
     }
 
     // ============================================================================
@@ -960,27 +960,27 @@ export default function EtatDesLieuxDepartForm({
     // ============================================================================
     const step4 = checkin.data?.step4;
     if (step4) {
-      console.log("[CHECKIN_DRAFT] 📋 Hydratation Step4...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📋 Hydratation Step4...");
       
       // Sièges
       if (step4.sieges) {
         methods.setValue("interiorInspection.sieges", step4.sieges);
-        console.log(`[CHECKIN_DRAFT] ✅ Sièges chargés (${step4.sieges.photos?.length || 0} photo(s))`);
+        if (import.meta.env.DEV) console.log(`[CHECKIN_DRAFT] ✅ Sièges chargés (${step4.sieges.photos?.length || 0} photo(s))`);
       }
       
       // Propreté intérieure
       if (step4.propreteGenerale) {
         methods.setValue("interiorInspection.propreteGenerale", step4.propreteGenerale);
-        console.log(`[CHECKIN_DRAFT] ✅ Propreté intérieure chargée (${step4.propreteGenerale.photos?.length || 0} photo(s))`);
+        if (import.meta.env.DEV) console.log(`[CHECKIN_DRAFT] ✅ Propreté intérieure chargée (${step4.propreteGenerale.photos?.length || 0} photo(s))`);
       }
       
       // Équipements
       if (step4.equipements) {
         methods.setValue("interiorInspection.equipements", step4.equipements);
-        console.log("[CHECKIN_DRAFT] ✅ Équipements chargés");
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Équipements chargés");
       }
       
-      console.log("[CHECKIN_DRAFT] ✅ Step4 hydraté");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Step4 hydraté");
     }
 
     // ============================================================================
@@ -988,21 +988,21 @@ export default function EtatDesLieuxDepartForm({
     // ============================================================================
     const step5 = checkin.data?.step5;
     if (step5) {
-      console.log("[CHECKIN_DRAFT] 📋 Hydratation Step5...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📋 Hydratation Step5...");
       
       // Accessoires
       if (step5.accessoires) {
         methods.setValue("accessoires", step5.accessoires);
-        console.log("[CHECKIN_DRAFT] ✅ Accessoires chargés");
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Accessoires chargés");
         if (step5.accessoires.commentaire) {
-          console.log("[CHECKIN_DRAFT] ✅ Commentaire accessoires chargé");
+          if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Commentaire accessoires chargé");
         }
       }
       
       // Stocker aussi step5 pour récupération dans Step 7
       methods.setValue("step5", step5);
       
-      console.log("[CHECKIN_DRAFT] ✅ Step5 hydraté");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Step5 hydraté");
     }
 
     // ============================================================================
@@ -1010,21 +1010,21 @@ export default function EtatDesLieuxDepartForm({
     // ============================================================================
     const step6 = checkin.data?.step6;
     if (step6) {
-      console.log("[CHECKIN_DRAFT] 📋 Hydratation Step6...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📋 Hydratation Step6...");
       
       // Remarques
       if (step6.remarques) {
         methods.setValue("remarques", step6.remarques);
-        console.log("[CHECKIN_DRAFT] ✅ Remarques chargées");
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Remarques chargées");
         if (step6.remarques.observations) {
-          console.log("[CHECKIN_DRAFT] ✅ Observations générales chargées");
+          if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Observations générales chargées");
         }
       }
       
       // Stocker aussi step6 pour récupération dans Step 7
       methods.setValue("step6", step6);
       
-      console.log("[CHECKIN_DRAFT] ✅ Step6 hydraté");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Step6 hydraté");
     }
 
     // ============================================================================
@@ -1032,25 +1032,25 @@ export default function EtatDesLieuxDepartForm({
     // ============================================================================
     if (checkin.snapshot_legal?.booking) {
       const bookingSnapshot = checkin.snapshot_legal.booking;
-      console.log("[CHECKIN_DRAFT] 📋 Hydratation lieux depuis snapshot...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📋 Hydratation lieux depuis snapshot...");
       
       // Injecter le snapshot_legal complet dans le form pour accès dans Step 7
       methods.setValue("snapshot_legal", checkin.snapshot_legal);
       
       if (bookingSnapshot.departureLocation !== undefined) {
         methods.setValue("reservation.departureLocation", bookingSnapshot.departureLocation ?? null);
-        console.log("[CHECKIN_DRAFT] ✅ Lieu de départ hydraté:", bookingSnapshot.departureLocation);
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Lieu de départ hydraté:", bookingSnapshot.departureLocation);
       }
       
       if (bookingSnapshot.returnLocation !== undefined) {
         methods.setValue("reservation.returnLocation", bookingSnapshot.returnLocation ?? null);
-        console.log("[CHECKIN_DRAFT] ✅ Lieu de retour hydraté:", bookingSnapshot.returnLocation);
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Lieu de retour hydraté:", bookingSnapshot.returnLocation);
       }
     }
 
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("[CHECKIN_DRAFT] ✅ Hydratation terminée avec succès");
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Hydratation terminée avec succès");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
   };
 
   /**
@@ -1064,14 +1064,14 @@ export default function EtatDesLieuxDepartForm({
       
       // ⚠️ Attendre que les profils soient chargés d'abord
       if (loadingProfile) {
-        console.log("[CHECKIN_DRAFT] ⏳ Attente du chargement des profils...");
+        if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ⏳ Attente du chargement des profils...");
         return;
       }
       
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-      console.log("[CHECKIN_DRAFT] 🔍 Recherche d'un draft existant...");
-      console.log("[CHECKIN_DRAFT] 📦 Booking ID:", bookingId);
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 🔍 Recherche d'un draft existant...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📦 Booking ID:", bookingId);
+      if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
       
       try {
         const { data: existingCheckin, error } = await supabase
@@ -1089,7 +1089,7 @@ export default function EtatDesLieuxDepartForm({
         }
         
         if (existingCheckin) {
-          console.log("[CHECKIN_DRAFT] ✅ Draft existant trouvé:", {
+          if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ✅ Draft existant trouvé:", {
             id: existingCheckin.id,
             created_at: existingCheckin.created_at,
             updated_at: existingCheckin.updated_at,
@@ -1109,10 +1109,10 @@ export default function EtatDesLieuxDepartForm({
           }
           setIsDraftModalOpen(true);
           
-          console.log("[CHECKIN_DRAFT] 📋 Modal ouverte, en attente du choix utilisateur...");
+          if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📋 Modal ouverte, en attente du choix utilisateur...");
         } else {
-          console.log("[CHECKIN_DRAFT] ℹ️ Aucun draft existant, nouveau check-in");
-          console.log("[CHECKIN_DRAFT] 📝 checkinId reste null (INSERT au 1er save)");
+          if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] ℹ️ Aucun draft existant, nouveau check-in");
+          if (import.meta.env.DEV) console.log("[CHECKIN_DRAFT] 📝 checkinId reste null (INSERT au 1er save)");
         }
       } catch (error) {
         console.error("[CHECKIN_DRAFT] ❌ Exception loadExistingCheckinDraft:", error);
@@ -1214,11 +1214,11 @@ export default function EtatDesLieuxDepartForm({
     draft: CheckinDepartDraft,
     bookingId: string
   ): Promise<{ deletedFiles: number; errors: string[] }> => {
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("[DELETE_DRAFT] 🗑️ Début de la suppression du draft");
-    console.log("[DELETE_DRAFT] Draft ID:", draft.id);
-    console.log("[DELETE_DRAFT] Booking ID:", bookingId);
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("[DELETE_DRAFT] 🗑️ Début de la suppression du draft");
+    if (import.meta.env.DEV) console.log("[DELETE_DRAFT] Draft ID:", draft.id);
+    if (import.meta.env.DEV) console.log("[DELETE_DRAFT] Booking ID:", bookingId);
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     
     const errors: string[] = [];
     let deletedFiles = 0;
@@ -1227,7 +1227,7 @@ export default function EtatDesLieuxDepartForm({
     // 1️⃣ SUPPRIMER LES FICHIERS STORAGE
     // ============================================================================
     const paths = collectAllStoragePathsFromCheckin(draft);
-    console.log(`[DELETE_DRAFT] 📂 ${paths.length} fichier(s) à supprimer`);
+    if (import.meta.env.DEV) console.log(`[DELETE_DRAFT] 📂 ${paths.length} fichier(s) à supprimer`);
     
     if (paths.length > 0) {
       // Supprimer par batch (Supabase accepte un array)
@@ -1241,14 +1241,14 @@ export default function EtatDesLieuxDepartForm({
         // ⚠️ On continue quand même avec la suppression BDD
       } else {
         deletedFiles = paths.length;
-        console.log(`[DELETE_DRAFT] ✅ ${deletedFiles} fichier(s) supprimé(s)`);
+        if (import.meta.env.DEV) console.log(`[DELETE_DRAFT] ✅ ${deletedFiles} fichier(s) supprimé(s)`);
       }
     }
     
     // ============================================================================
     // 2️⃣ SUPPRIMER LA LIGNE BDD
     // ============================================================================
-    console.log("[DELETE_DRAFT] 🗄️ Suppression BDD...");
+    if (import.meta.env.DEV) console.log("[DELETE_DRAFT] 🗄️ Suppression BDD...");
     
     const { error: dbError } = await supabase
       .from("checkin_depart")
@@ -1262,10 +1262,10 @@ export default function EtatDesLieuxDepartForm({
       throw new Error(`Erreur suppression BDD: ${dbError.message}`);
     }
     
-    console.log("[DELETE_DRAFT] ✅ Draft supprimé en BDD");
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("[DELETE_DRAFT] ✅ Suppression terminée avec succès");
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("[DELETE_DRAFT] ✅ Draft supprimé en BDD");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("[DELETE_DRAFT] ✅ Suppression terminée avec succès");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     
     return { deletedFiles, errors };
   };
@@ -1274,7 +1274,7 @@ export default function EtatDesLieuxDepartForm({
    * Réinitialiser le formulaire pour un nouveau check-in
    */
   const resetFormForNewCheckin = () => {
-    console.log("[DRAFT_MODAL] 🔄 Reset du formulaire pour nouveau check-in");
+    if (import.meta.env.DEV) console.log("[DRAFT_MODAL] 🔄 Reset du formulaire pour nouveau check-in");
     
     // 1️⃣ Réinitialiser checkinId
     setCheckinId(null);
@@ -1309,7 +1309,7 @@ export default function EtatDesLieuxDepartForm({
       damageReports: [],  // ⭐ Vider
     });
     
-    console.log("[DRAFT_MODAL] ✅ Formulaire réinitialisé");
+    if (import.meta.env.DEV) console.log("[DRAFT_MODAL] ✅ Formulaire réinitialisé");
   };
 
   // ============================================================================
@@ -1369,7 +1369,7 @@ export default function EtatDesLieuxDepartForm({
     
     const nextStepInfo = stepsWithStatus.find(s => s.id === nextStepId) || stepsWithStatus[0];
     
-    console.log(`[DRAFT_MODAL] 📊 Progression:`, {
+    if (import.meta.env.DEV) console.log(`[DRAFT_MODAL] 📊 Progression:`, {
       completed: stepsWithStatus.filter(s => s.completed).length,
       total: stepsWithStatus.length,
       nextStep: nextStepId,
@@ -1391,7 +1391,7 @@ export default function EtatDesLieuxDepartForm({
       return;
     }
     
-    console.log("[DRAFT_MODAL] ✅ Utilisateur choisit de poursuivre le draft:", existingDraft.id);
+    if (import.meta.env.DEV) console.log("[DRAFT_MODAL] ✅ Utilisateur choisit de poursuivre le draft:", existingDraft.id);
     
     // 1️⃣ Analyser la progression du draft
     const progress = getDraftProgress(existingDraft);
@@ -1399,8 +1399,8 @@ export default function EtatDesLieuxDepartForm({
     // 2️⃣ Initialiser checkinId et status
     setCheckinId(existingDraft.id);
     setCheckinStatus(existingDraft.status || "draft");
-    console.log("[DRAFT_MODAL] ✅ checkinId initialisé:", existingDraft.id);
-    console.log("[DRAFT_MODAL] 📊 Status:", existingDraft.status);
+    if (import.meta.env.DEV) console.log("[DRAFT_MODAL] ✅ checkinId initialisé:", existingDraft.id);
+    if (import.meta.env.DEV) console.log("[DRAFT_MODAL] 📊 Status:", existingDraft.status);
     
     // ⚠️ Vérifier si le check-in est finalisé
     if (existingDraft.status === "completed") {
@@ -1416,7 +1416,7 @@ export default function EtatDesLieuxDepartForm({
     
     // 4️⃣ Rediriger vers l'étape calculée
     setCurrentStep(progress.nextStepId);
-    console.log(`[DRAFT_MODAL] 🔁 Redirection vers Step ${progress.nextStepId} — ${progress.nextStepInfo.label}`);
+    if (import.meta.env.DEV) console.log(`[DRAFT_MODAL] 🔁 Redirection vers Step ${progress.nextStepId} — ${progress.nextStepInfo.label}`);
     
     // 5️⃣ Fermer la modal
     setIsDraftModalOpen(false);
@@ -1430,7 +1430,7 @@ export default function EtatDesLieuxDepartForm({
       description: `Reprise à l'étape ${progress.nextStepId} — ${progress.nextStepInfo.label}`,
     });
     
-    console.log("[DRAFT_MODAL] ✅ Poursuite du draft terminée, formulaire prêt");
+    if (import.meta.env.DEV) console.log("[DRAFT_MODAL] ✅ Poursuite du draft terminée, formulaire prêt");
   };
 
   /**
@@ -1442,14 +1442,14 @@ export default function EtatDesLieuxDepartForm({
       return;
     }
     
-    console.log("[DRAFT_MODAL] 🗑️ Utilisateur choisit de redémarrer à zéro");
+    if (import.meta.env.DEV) console.log("[DRAFT_MODAL] 🗑️ Utilisateur choisit de redémarrer à zéro");
     setIsDeletingDraft(true);
     
     try {
       // 1️⃣ Supprimer draft + fichiers
       const result = await deleteCheckinDraftAndFiles(existingDraft, bookingId);
       
-      console.log("[DRAFT_MODAL] ✅ Suppression terminée:", {
+      if (import.meta.env.DEV) console.log("[DRAFT_MODAL] ✅ Suppression terminée:", {
         deletedFiles: result.deletedFiles,
         errors: result.errors.length,
       });
@@ -1651,22 +1651,33 @@ export default function EtatDesLieuxDepartForm({
       validated_at: new Date().toISOString(),
     };
 
-    // POUR L'INSTANT : pas d'appel serveur.
-    console.log("=== PAYLOAD CHECK-IN FINAL ===");
-    console.dir(payload, { depth: null });
-    
-    toast({
-      title: "✅ État des lieux prêt",
-      description: "Le formulaire est prêt. Regarde la console pour voir le payload.",
-      variant: "default",
+    const result = await SupabaseCheckinService.saveCheckinDraft({
+      checkin_id: checkinId,
+      booking_id: bookingId ?? '',
+      owner_id: ownerId ?? null,
+      renter_id: renterId ?? null,
+      status: 'submitted',
+      data: payload,
     });
 
-    // 🔜 plus tard (quand on sera prêts)
-    // await fetch("/api/checkin/submit", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(payload),
-    // });
+    if (result.error) {
+      toast({
+        title: "Erreur",
+        description: "Impossible d'enregistrer l'état des lieux : " + result.error,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (result.data?.id) {
+      setCheckinId(result.data.id);
+    }
+
+    toast({
+      title: "État des lieux enregistré",
+      description: "L'état des lieux de départ a été sauvegardé avec succès.",
+      variant: "default",
+    });
   }
 
   const onSubmit = (data: FormData) => {
@@ -1799,7 +1810,7 @@ export default function EtatDesLieuxDepartForm({
               setCheckinId(id);
               // ⭐ Phase 1 : Mise à jour immédiate du statut si fourni (sans attendre Supabase)
               if (status) {
-                console.log("[EtatDesLieuxDepartForm] ⚡ Mise à jour immédiate du statut:", status);
+                if (import.meta.env.DEV) console.log("[EtatDesLieuxDepartForm] ⚡ Mise à jour immédiate du statut:", status);
                 setCheckinStatus(status);
               }
               // Charger le status depuis Supabase si non fourni (comportement existant pour compatibilité)

@@ -131,7 +131,7 @@ const getLocationIcon = (zone: string) => {
 };
 
 export default function VehicleDetails() {
-  console.log('🎯 [DEBUG] VehicleDetails component rendering');
+  if (import.meta.env.DEV) console.log('🎯 [DEBUG] VehicleDetails component rendering');
   
   const { license } = useParams<{ license: string }>();
   const navigate = useNavigate();
@@ -154,9 +154,9 @@ export default function VehicleDetails() {
     automatic: t("vehicle.transmission.automatic"),
   };
   
-  console.log('🎯 [DEBUG] License from useParams:', license);
-  console.log('🎯 [DEBUG] Navigate function:', typeof navigate);
-  console.log('🎯 [DEBUG] Location state:', location.state);
+  if (import.meta.env.DEV) console.log('🎯 [DEBUG] License from useParams:', license);
+  if (import.meta.env.DEV) console.log('🎯 [DEBUG] Navigate function:', typeof navigate);
+  if (import.meta.env.DEV) console.log('🎯 [DEBUG] Location state:', location.state);
   
   const [vehicle, setVehicle] = useState<AppVehicle | null>(null);
   const [photos, setPhotos] = useState<Photo[]>([]);
@@ -191,6 +191,7 @@ export default function VehicleDetails() {
   const [restoredNavState, setRestoredNavState] = useState<VehicleNavState>(null);
   const [manualNavState, setManualNavState] = useState<VehicleNavState>(null);
   const [isCartAddModalOpen, setIsCartAddModalOpen] = useState(false);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const pendingOriginEl = useRef<HTMLElement | null>(null);
   // Tracks the cart item ID added during this page visit — enables date update (vs new add) when user re-validates dates
   const [lastAddedCartItemId, setLastAddedCartItemId] = useState<string | null>(null);
@@ -243,26 +244,26 @@ export default function VehicleDetails() {
   }, [loading, vehicle?.id, license]);
 
   useEffect(() => {
-    console.log('🚀 [DEBUG] VehicleDetails useEffect triggered');
-    console.log('🚀 [DEBUG] License param:', license);
-    console.log('🚀 [DEBUG] Current URL:', window.location.href);
+    if (import.meta.env.DEV) console.log('🚀 [DEBUG] VehicleDetails useEffect triggered');
+    if (import.meta.env.DEV) console.log('🚀 [DEBUG] License param:', license);
+    if (import.meta.env.DEV) console.log('🚀 [DEBUG] Current URL:', window.location.href);
     loadVehicleData();
     loadCurrentUser();
   }, [license]);
 
   const loadCurrentUser = async () => {
-    console.log('🔍 [DEBUG] Chargement de l\'utilisateur actuel...');
+    if (import.meta.env.DEV) console.log('🔍 [DEBUG] Chargement de l\'utilisateur actuel...');
     try {
       const result = await ProfileService.getCurrentUserProfile();
-      console.log('📊 [DEBUG] Résultat ProfileService:', result);
-      console.log('👤 [DEBUG] Données utilisateur:', result.data);
-      console.log('❌ [DEBUG] Erreur ProfileService:', result.error);
+      if (import.meta.env.DEV) console.log('📊 [DEBUG] Résultat ProfileService:', result);
+      if (import.meta.env.DEV) console.log('👤 [DEBUG] Données utilisateur:', result.data);
+      if (import.meta.env.DEV) console.log('❌ [DEBUG] Erreur ProfileService:', result.error);
       
       if (result.error) {
         console.error('❌ [DEBUG] ProfileService a retourné une erreur:', result.error);
         setCurrentUser(null);
       } else {
-        console.log('✅ [DEBUG] Utilisateur chargé avec succès');
+        if (import.meta.env.DEV) console.log('✅ [DEBUG] Utilisateur chargé avec succès');
         setCurrentUser(result.data);
       }
     } catch (error) {
@@ -368,10 +369,10 @@ export default function VehicleDetails() {
         };
         
         // 🧪 DEBUG: Vérifier le mapping des services
-        console.log('🔧 [VehicleDetails] Véhicule Supabase original:', vehicle);
-        console.log('🔧 [VehicleDetails] Véhicule mappé:', mappedVehicle);
-        console.log('🔧 [VehicleDetails] Airport service mappé:', mappedVehicle.airport_pickup_service);
-        console.log('🔧 [VehicleDetails] Baby seat service mappé:', mappedVehicle.baby_seat_service);
+        if (import.meta.env.DEV) console.log('🔧 [VehicleDetails] Véhicule Supabase original:', vehicle);
+        if (import.meta.env.DEV) console.log('🔧 [VehicleDetails] Véhicule mappé:', mappedVehicle);
+        if (import.meta.env.DEV) console.log('🔧 [VehicleDetails] Airport service mappé:', mappedVehicle.airport_pickup_service);
+        if (import.meta.env.DEV) console.log('🔧 [VehicleDetails] Baby seat service mappé:', mappedVehicle.baby_seat_service);
         
         setVehicle(mappedVehicle);
 
@@ -445,12 +446,12 @@ export default function VehicleDetails() {
 
   const handleBooking = (userOverride?: User | null) => {
     const activeUser = userOverride ?? currentUser;
-    console.log('🎯 [DEBUG] Clic sur Réserver');
-    console.log('👤 [DEBUG] currentUser:', activeUser);
-    console.log('🚗 [DEBUG] vehicle:', vehicle);
+    if (import.meta.env.DEV) console.log('🎯 [DEBUG] Clic sur Réserver');
+    if (import.meta.env.DEV) console.log('👤 [DEBUG] currentUser:', activeUser);
+    if (import.meta.env.DEV) console.log('🚗 [DEBUG] vehicle:', vehicle);
     
     if (!activeUser) {
-      console.log('❌ [DEBUG] Utilisateur non connecté, redirection vers login');
+      if (import.meta.env.DEV) console.log('❌ [DEBUG] Utilisateur non connecté, redirection vers login');
       const path = `/vehicle/${license}`;
       saveBookingResumeIntent({ path, navState: navigationState });
       trackBookingBlocked({
@@ -501,7 +502,7 @@ export default function VehicleDetails() {
     let bookingDraft = getBookingDraft();
     
     if (!bookingDraft) {
-      console.log('📝 [DEBUG] Aucun brouillon existant, création d\'un nouveau');
+      if (import.meta.env.DEV) console.log('📝 [DEBUG] Aucun brouillon existant, création d\'un nouveau');
       // Créer un nouveau brouillon seulement s'il n'existe pas
       bookingDraft = createBookingDraft(
         vehicle.id,
@@ -517,12 +518,12 @@ export default function VehicleDetails() {
         vehicleRentalInfo?.totalCost || 0
       );
     } else {
-      console.log('🔄 [DEBUG] Brouillon existant trouvé, mise à jour avec les nouvelles données');
-      console.log('🔍 [DEBUG] Services déjà sélectionnés:', bookingDraft.selectedOptions);
+      if (import.meta.env.DEV) console.log('🔄 [DEBUG] Brouillon existant trouvé, mise à jour avec les nouvelles données');
+      if (import.meta.env.DEV) console.log('🔍 [DEBUG] Services déjà sélectionnés:', bookingDraft.selectedOptions);
       
       // ✅ PRÉSERVER les selectedOptions existantes
       const existingSelectedOptions = bookingDraft.selectedOptions || [];
-      console.log('💾 [DEBUG] Préservation de', existingSelectedOptions.length, 'options sélectionnées');
+      if (import.meta.env.DEV) console.log('💾 [DEBUG] Préservation de', existingSelectedOptions.length, 'options sélectionnées');
       
       // Mettre à jour le brouillon existant avec les nouvelles données
       bookingDraft = {
@@ -547,7 +548,7 @@ export default function VehicleDetails() {
 
     bookingDraft = finalizeBookingDraftForCheckout(bookingDraft);
     
-    console.log('💾 [DEBUG] Brouillon final:', bookingDraft);
+    if (import.meta.env.DEV) console.log('💾 [DEBUG] Brouillon final:', bookingDraft);
     
     // Ouvrir la modal de confirmation de réservation
     if (shouldShowComplementaryServicesModal()) {
@@ -711,18 +712,18 @@ export default function VehicleDetails() {
   const handleConfirmBooking = async (
     paymentMethod: BookingPaymentMethod = 'card_online',
   ) => {
-    console.log('✅ [DEBUG] Confirmation de la réservation');
+    if (import.meta.env.DEV) console.log('✅ [DEBUG] Confirmation de la réservation');
     // Fermer la modal de confirmation
     setShowConfirmationModal(false);
     
     // Rediriger directement vers la page de discussion
     if (!vehicle) {
-      console.log('❌ [DEBUG] Pas de véhicule, arrêt');
+      if (import.meta.env.DEV) console.log('❌ [DEBUG] Pas de véhicule, arrêt');
       return;
     }
     
     if (!vehicle.license) {
-      console.log('❌ [DEBUG] Pas de license, arrêt');
+      if (import.meta.env.DEV) console.log('❌ [DEBUG] Pas de license, arrêt');
       return;
     }
     
@@ -751,7 +752,7 @@ export default function VehicleDetails() {
         endDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
       }
       
-      console.log('📅 [DEBUG] Utilisation des dates depuis les critères de recherche:', {
+      if (import.meta.env.DEV) console.log('📅 [DEBUG] Utilisation des dates depuis les critères de recherche:', {
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
         startTime: navigationState.startTime,
@@ -766,7 +767,7 @@ export default function VehicleDetails() {
       endDate.setDate(endDate.getDate() + 1); // demain
       endDate.setHours(14, 0, 0, 0); // 14:00
       
-      console.log('📅 [DEBUG] Utilisation des dates par défaut:', {
+      if (import.meta.env.DEV) console.log('📅 [DEBUG] Utilisation des dates par défaut:', {
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString()
       });
@@ -790,7 +791,7 @@ export default function VehicleDetails() {
       return;
     }
 
-    console.log('⏱️ [DEBUG] Calcul durée facturable:', {
+    if (import.meta.env.DEV) console.log('⏱️ [DEBUG] Calcul durée facturable:', {
       billableDays: pricing.billableDays,
       rentalHours: pricing.rentalHours.toFixed(2),
       totalPrice: pricing.basePrice,
@@ -854,11 +855,11 @@ export default function VehicleDetails() {
       selectedOptions
     };
     
-    console.log('📋 [DEBUG] Données de réservation pour la discussion:', bookingData);
+    if (import.meta.env.DEV) console.log('📋 [DEBUG] Données de réservation pour la discussion:', bookingData);
     
     // 🆕 CRÉER LA RÉSERVATION DANS SU comunesE
     try {
-      console.log('💾 [DEBUG] Création de la réservation dans Supabase...');
+      if (import.meta.env.DEV) console.log('💾 [DEBUG] Création de la réservation dans Supabase...');
       
       const subtotal = basePrice + optionsTotal;
 
@@ -921,7 +922,7 @@ export default function VehicleDetails() {
       }
       
       if (bookingResult.data) {
-        console.log('✅ [DEBUG] Réservation créée avec succès:', bookingResult.data);
+        if (import.meta.env.DEV) console.log('✅ [DEBUG] Réservation créée avec succès:', bookingResult.data);
         try {
           const { data: bookingRow } = await supabase
             .from("bookings")
@@ -959,11 +960,11 @@ export default function VehicleDetails() {
         if (bookingId) {
           url += `&bookingId=${bookingId}`;
         }
-        console.log('🔗 [DEBUG] URL de navigation directe:', url);
+        if (import.meta.env.DEV) console.log('🔗 [DEBUG] URL de navigation directe:', url);
         
         try {
           navigate(url);
-          console.log('✅ [DEBUG] Navigation directe vers la discussion réussie');
+          if (import.meta.env.DEV) console.log('✅ [DEBUG] Navigation directe vers la discussion réussie');
         } catch (error) {
           console.error('❌ [DEBUG] Erreur navigation directe:', error);
         }
@@ -993,22 +994,22 @@ export default function VehicleDetails() {
   };
 
   const handleContinueWithOneVehicle = () => {
-    console.log('🎯 [DEBUG] ===== DÉBUT handleContinueWithOneVehicle =====');
-    console.log('🎯 [DEBUG] Clic sur "Envoyer ma demande maintenant"');
-    console.log('🚗 [DEBUG] Vehicle:', vehicle);
-    console.log('🔍 [DEBUG] Vehicle.license:', vehicle?.license);
-    console.log('🔍 [DEBUG] License type:', typeof vehicle?.license);
-    console.log('🔍 [DEBUG] License value:', vehicle?.license);
+    if (import.meta.env.DEV) console.log('🎯 [DEBUG] ===== DÉBUT handleContinueWithOneVehicle =====');
+    if (import.meta.env.DEV) console.log('🎯 [DEBUG] Clic sur "Envoyer ma demande maintenant"');
+    if (import.meta.env.DEV) console.log('🚗 [DEBUG] Vehicle:', vehicle);
+    if (import.meta.env.DEV) console.log('🔍 [DEBUG] Vehicle.license:', vehicle?.license);
+    if (import.meta.env.DEV) console.log('🔍 [DEBUG] License type:', typeof vehicle?.license);
+    if (import.meta.env.DEV) console.log('🔍 [DEBUG] License value:', vehicle?.license);
     
     if (!vehicle) {
-      console.log('❌ [DEBUG] Pas de véhicule, arrêt');
-      console.log('🎯 [DEBUG] ===== FIN handleContinueWithOneVehicle (pas de véhicule) =====');
+      if (import.meta.env.DEV) console.log('❌ [DEBUG] Pas de véhicule, arrêt');
+      if (import.meta.env.DEV) console.log('🎯 [DEBUG] ===== FIN handleContinueWithOneVehicle (pas de véhicule) =====');
       return;
     }
     
     if (!vehicle.license) {
-      console.log('❌ [DEBUG] Pas de license, arrêt');
-      console.log('🎯 [DEBUG] ===== FIN handleContinueWithOneVehicle (pas de license) =====');
+      if (import.meta.env.DEV) console.log('❌ [DEBUG] Pas de license, arrêt');
+      if (import.meta.env.DEV) console.log('🎯 [DEBUG] ===== FIN handleContinueWithOneVehicle (pas de license) =====');
       return;
     }
     
@@ -1020,20 +1021,20 @@ export default function VehicleDetails() {
     endDate.setHours(18, 0, 0, 0); // 18h00
     
     const url = `/vehicle/${vehicle.license}/booking/discussion?start=${startDate.toISOString()}&end=${endDate.toISOString()}`;
-    console.log('🔗 [DEBUG] URL de navigation:', url);
-    console.log('🚀 [DEBUG] Navigation vers:', url);
-    console.log('🚀 [DEBUG] Avant navigate() - URL actuelle:', window.location.href);
+    if (import.meta.env.DEV) console.log('🔗 [DEBUG] URL de navigation:', url);
+    if (import.meta.env.DEV) console.log('🚀 [DEBUG] Navigation vers:', url);
+    if (import.meta.env.DEV) console.log('🚀 [DEBUG] Avant navigate() - URL actuelle:', window.location.href);
     
     try {
-      console.log('🚀 [DEBUG] Appel navigate()...');
+      if (import.meta.env.DEV) console.log('🚀 [DEBUG] Appel navigate()...');
       navigate(url);
-      console.log('✅ [DEBUG] navigate() appelé avec succès');
-      console.log('🚀 [DEBUG] Après navigate() - URL actuelle:', window.location.href);
+      if (import.meta.env.DEV) console.log('✅ [DEBUG] navigate() appelé avec succès');
+      if (import.meta.env.DEV) console.log('🚀 [DEBUG] Après navigate() - URL actuelle:', window.location.href);
     } catch (error) {
       console.error('❌ [DEBUG] Erreur navigation:', error);
     }
     
-    console.log('🎯 [DEBUG] ===== FIN handleContinueWithOneVehicle =====');
+    if (import.meta.env.DEV) console.log('🎯 [DEBUG] ===== FIN handleContinueWithOneVehicle =====');
   };
 
   if (loading || !vehicle) {
@@ -1081,7 +1082,7 @@ export default function VehicleDetails() {
     ? createVehicleRentalInfo(vehicle.id, dailyRate, navigationState.rentalCalculation)
     : null;
   
-  console.log('💰 [DEBUG] VehicleDetails - Rental Info:', {
+  if (import.meta.env.DEV) console.log('💰 [DEBUG] VehicleDetails - Rental Info:', {
     hasRentalCalculation: !!navigationState?.rentalCalculation,
     rentalDays: navigationState?.rentalCalculation?.rentalDays,
     totalCost: vehicleRentalInfo?.totalCost,
@@ -1164,7 +1165,7 @@ export default function VehicleDetails() {
 
           {/* Services supplémentaires proposés par ce véhicule */}
           {(() => {
-            console.log('🔍 [VehicleDetails] Condition VehicleServiceOptions:', {
+            if (import.meta.env.DEV) console.log('🔍 [VehicleDetails] Condition VehicleServiceOptions:', {
               vehicle: !!vehicle,
               navigationState: !!navigationState,
               rentalCalculation: !!navigationState?.rentalCalculation,

@@ -52,7 +52,7 @@ import { ANALYTICS_BOOKING_CURRENCY, trackGa4Event } from "@/lib/analytics";
 import { ClientMgaPrice } from "@/components/currency/ClientMgaPrice";
 
 const BookingDiscussion = () => {
-  console.log('💬 [DEBUG] BookingDiscussion component rendering');
+  if (import.meta.env.DEV) console.log('💬 [DEBUG] BookingDiscussion component rendering');
   
   const navigate = useNavigate();
   const { license } = useParams<{ license: string }>();
@@ -131,20 +131,20 @@ const BookingDiscussion = () => {
     const currentLangData = i18n.store?.data?.[i18n.language];
     const currentLangNamespaces = currentLangData ? Object.keys(currentLangData) : [];
     
-    console.log("[i18n DEV][BookingDiscussion] === DIAGNOSTIC RUNTIME ===");
-    console.log("[i18n DEV][BookingDiscussion] A. Infos i18n runtime:", i18nDebugInfo);
-    console.log("[i18n DEV][BookingDiscussion] B. Clés critiques:", keyDebugInfo);
-    console.log("[i18n DEV][BookingDiscussion] C. Ressources chargées:", resourcesDebug);
-    console.log("[i18n DEV][BookingDiscussion] C. Namespaces pour langue actuelle:", {
+    if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] === DIAGNOSTIC RUNTIME ===");
+    if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] A. Infos i18n runtime:", i18nDebugInfo);
+    if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] B. Clés critiques:", keyDebugInfo);
+    if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] C. Ressources chargées:", resourcesDebug);
+    if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] C. Namespaces pour langue actuelle:", {
       language: i18n.language,
       namespaces: currentLangNamespaces,
     });
-    console.log("[i18n DEV][BookingDiscussion] === FIN DIAGNOSTIC ===");
+    if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] === FIN DIAGNOSTIC ===");
   }
   
-  console.log('💬 [DEBUG] License from useParams:', license);
-  console.log('💬 [DEBUG] Search params:', Object.fromEntries(searchParams.entries()));
-  console.log('💬 [DEBUG] Current URL:', window.location.href);
+  if (import.meta.env.DEV) console.log('💬 [DEBUG] License from useParams:', license);
+  if (import.meta.env.DEV) console.log('💬 [DEBUG] Search params:', Object.fromEntries(searchParams.entries()));
+  if (import.meta.env.DEV) console.log('💬 [DEBUG] Current URL:', window.location.href);
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [vehicleImageUrl, setVehicleImageUrl] = useState<string | null>(null);
   const [vehiclePhotos, setVehiclePhotos] = useState<{ [key: string]: Photo }>({});
@@ -202,11 +202,11 @@ const BookingDiscussion = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      console.log('🚗 [DEBUG] ===== DÉBUT loadData =====');
-      console.log('🚗 [DEBUG] License:', license);
+      if (import.meta.env.DEV) console.log('🚗 [DEBUG] ===== DÉBUT loadData =====');
+      if (import.meta.env.DEV) console.log('🚗 [DEBUG] License:', license);
       
       if (!license) {
-        console.log('❌ [DEBUG] Pas de license, redirection vers /');
+        if (import.meta.env.DEV) console.log('❌ [DEBUG] Pas de license, redirection vers /');
         navigate('/');
         return;
       }
@@ -215,7 +215,7 @@ const BookingDiscussion = () => {
         // Charger l'utilisateur actuel
         const profileResult = await ProfileService.getCurrentUserProfile();
         if (profileResult.error || !profileResult.data) {
-          console.log('❌ [DEBUG] Utilisateur non connecté');
+          if (import.meta.env.DEV) console.log('❌ [DEBUG] Utilisateur non connecté');
           // TODO(i18n): UNCERTAIN mapping -> motoDetails.errors.loginRequired.description (vérifier contexte)
           toast({
             title: t("error"),
@@ -228,18 +228,18 @@ const BookingDiscussion = () => {
         setCurrentUserId(profileResult.data.id);
         setCurrentUser(profileResult.data);
 
-        console.log('🚗 [DEBUG] Chargement de tous les véhicules...');
+        if (import.meta.env.DEV) console.log('🚗 [DEBUG] Chargement de tous les véhicules...');
         
         // Charger le véhicule par license (même service que VehicleDetails)
         const allVehicles = await SupabaseVehiclesService.getAvailableVehicles();
-        console.log('🚗 [DEBUG] Véhicules chargés:', allVehicles.length);
+        if (import.meta.env.DEV) console.log('🚗 [DEBUG] Véhicules chargés:', allVehicles.length);
         
         // Trouver le véhicule qui correspond à la license (même logique que VehicleDetails)
         const foundVehicle = allVehicles.find(v => v.id.substring(0, 8).toUpperCase() === license.toUpperCase());
-        console.log('🚗 [DEBUG] Véhicule trouvé:', foundVehicle);
+        if (import.meta.env.DEV) console.log('🚗 [DEBUG] Véhicule trouvé:', foundVehicle);
         
         if (!foundVehicle) {
-          console.log('❌ [DEBUG] Véhicule non trouvé, redirection vers /');
+          if (import.meta.env.DEV) console.log('❌ [DEBUG] Véhicule non trouvé, redirection vers /');
           toast({
             title: t("motoDetails.errors.vehicleNotFound.title"),
             description: t("motoDetails.errors.vehicleNotFound.description"),
@@ -275,9 +275,9 @@ const BookingDiscussion = () => {
           vehicleType: (foundVehicle.vehicle_type as Vehicle["vehicleType"]) ?? "car",
         };
 
-        console.log('📸 [DEBUG] ===== IMAGE_URL DU VÉHICULE =====');
-        console.log('📸 [DEBUG] foundVehicle.image_url:', foundVehicle.image_url);
-        console.log('📸 [DEBUG] ===== FIN IMAGE_URL =====');
+        if (import.meta.env.DEV) console.log('📸 [DEBUG] ===== IMAGE_URL DU VÉHICULE =====');
+        if (import.meta.env.DEV) console.log('📸 [DEBUG] foundVehicle.image_url:', foundVehicle.image_url);
+        if (import.meta.env.DEV) console.log('📸 [DEBUG] ===== FIN IMAGE_URL =====');
 
         // Stocker l'image_url du véhicule
         setVehicleImageUrl(foundVehicle.image_url || null);
@@ -293,12 +293,12 @@ const BookingDiscussion = () => {
         setIsOwner(userIsOwner);
         setIsRenter(userIsRenter);
         
-        console.log('👤 [DEBUG] ===== DÉTECTION DU RÔLE =====');
-        console.log('👤 [DEBUG] currentUserId:', profileResult.data.id);
-        console.log('👤 [DEBUG] vehicleOwnerId:', vehicleOwnerId);
-        console.log('👤 [DEBUG] isOwner:', userIsOwner);
-        console.log('👤 [DEBUG] isRenter:', userIsRenter);
-        console.log('👤 [DEBUG] ===== FIN DÉTECTION =====');
+        if (import.meta.env.DEV) console.log('👤 [DEBUG] ===== DÉTECTION DU RÔLE =====');
+        if (import.meta.env.DEV) console.log('👤 [DEBUG] currentUserId:', profileResult.data.id);
+        if (import.meta.env.DEV) console.log('👤 [DEBUG] vehicleOwnerId:', vehicleOwnerId);
+        if (import.meta.env.DEV) console.log('👤 [DEBUG] isOwner:', userIsOwner);
+        if (import.meta.env.DEV) console.log('👤 [DEBUG] isRenter:', userIsRenter);
+        if (import.meta.env.DEV) console.log('👤 [DEBUG] ===== FIN DÉTECTION =====');
 
         // Récupérer les données de réservation depuis Supabase (priorité) ou sessionStorage
         try {
@@ -316,8 +316,8 @@ const BookingDiscussion = () => {
             setCurrentBooking(latestBooking);
             setBookingStatus(latestBooking.status);
             setIsConversationCancelled(latestBooking.status === 'cancelled' || latestBooking.status === 'rejected');
-            console.log('✅ [BookingDiscussion] Réservation trouvée dans Supabase:', latestBooking);
-            console.log('✅ [BookingDiscussion] Statut de la réservation:', latestBooking.status);
+            if (import.meta.env.DEV) console.log('✅ [BookingDiscussion] Réservation trouvée dans Supabase:', latestBooking);
+            if (import.meta.env.DEV) console.log('✅ [BookingDiscussion] Statut de la réservation:', latestBooking.status);
             
             // Reconstruire bookingData depuis Supabase
             const reconstructedBookingData = {
@@ -346,7 +346,7 @@ const BookingDiscussion = () => {
             };
             
             setBookingData(reconstructedBookingData);
-            console.log('✅ [BookingDiscussion] bookingData reconstruit:', reconstructedBookingData);
+            if (import.meta.env.DEV) console.log('✅ [BookingDiscussion] bookingData reconstruit:', reconstructedBookingData);
           }
         } catch (error) {
           console.error('❌ [BookingDiscussion] Erreur lors du chargement depuis Supabase:', error);
@@ -358,30 +358,30 @@ const BookingDiscussion = () => {
           try {
             const parsedData = JSON.parse(storedBookingData);
             setBookingData(parsedData);
-            console.log('📋 [DEBUG] Données de réservation récupérées depuis sessionStorage:', parsedData);
+            if (import.meta.env.DEV) console.log('📋 [DEBUG] Données de réservation récupérées depuis sessionStorage:', parsedData);
           } catch (error) {
             console.error('❌ [DEBUG] Erreur lors du parsing des données de réservation:', error);
           }
         }
 
         // TESTER avec les vraies photos Supabase
-        console.log('📸 [DEBUG] Test des vraies photos Supabase...');
-        console.log('📸 [DEBUG] Véhicule ID:', foundVehicle.id);
+        if (import.meta.env.DEV) console.log('📸 [DEBUG] Test des vraies photos Supabase...');
+        if (import.meta.env.DEV) console.log('📸 [DEBUG] Véhicule ID:', foundVehicle.id);
         
         try {
           // FORCER l'utilisation du PhotoService corrigé
-          console.log('📸 [DEBUG] ===== DÉBUT PhotoService corrigé =====');
-          console.log('📸 [DEBUG] Vehicle ID:', foundVehicle.id);
+          if (import.meta.env.DEV) console.log('📸 [DEBUG] ===== DÉBUT PhotoService corrigé =====');
+          if (import.meta.env.DEV) console.log('📸 [DEBUG] Vehicle ID:', foundVehicle.id);
           
           const vehiclePhotos = await PhotoService.getVehiclePhotos(foundVehicle.id);
-          console.log('📸 [DEBUG] Photos Supabase récupérées:', vehiclePhotos.data);
-          console.log('📸 [DEBUG] Nombre de photos Supabase:', vehiclePhotos.data?.length || 0);
-          console.log('📸 [DEBUG] ===== FIN PhotoService corrigé =====');
+          if (import.meta.env.DEV) console.log('📸 [DEBUG] Photos Supabase récupérées:', vehiclePhotos.data);
+          if (import.meta.env.DEV) console.log('📸 [DEBUG] Nombre de photos Supabase:', vehiclePhotos.data?.length || 0);
+          if (import.meta.env.DEV) console.log('📸 [DEBUG] ===== FIN PhotoService corrigé =====');
           
           if (vehiclePhotos.data && vehiclePhotos.data.length > 0) {
             const primaryPhoto = vehiclePhotos.data.find(photo => photo.isPrimary) || vehiclePhotos.data[0];
-            console.log('📸 [DEBUG] Photo principale Supabase trouvée:', primaryPhoto);
-            console.log('📸 [DEBUG] URL de la photo Supabase:', primaryPhoto.url);
+            if (import.meta.env.DEV) console.log('📸 [DEBUG] Photo principale Supabase trouvée:', primaryPhoto);
+            if (import.meta.env.DEV) console.log('📸 [DEBUG] URL de la photo Supabase:', primaryPhoto.url);
             
             // Convertir vers le format Photo de l'application
             const convertedPhoto = {
@@ -400,7 +400,7 @@ const BookingDiscussion = () => {
             // Mettre à jour vehicleImageUrl avec la photo principale
             setVehicleImageUrl(primaryPhoto.url);
           } else {
-            console.log('📸 [DEBUG] FORCE - Utilisation de la vraie photo Supabase !');
+            if (import.meta.env.DEV) console.log('📸 [DEBUG] FORCE - Utilisation de la vraie photo Supabase !');
             // FORCER l'URL directe de la vraie photo Supabase (construction dynamique depuis env)
             const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
             const storagePath = 'vehicle-photos/exterior_1759781792034_lm9xwpqf8e.jpg';
@@ -414,12 +414,12 @@ const BookingDiscussion = () => {
               url: photoUrl,
               isPrimary: true
             };
-            console.log('📸 [DEBUG] URL forcée:', realSupabasePhoto.url);
+            if (import.meta.env.DEV) console.log('📸 [DEBUG] URL forcée:', realSupabasePhoto.url);
             setVehiclePhotos({ [foundVehicle.id]: realSupabasePhoto });
           }
         } catch (photoError) {
           console.error('📸 [DEBUG] Erreur PhotoService Supabase:', photoError);
-          console.log('📸 [DEBUG] Fallback vers Picsum');
+          if (import.meta.env.DEV) console.log('📸 [DEBUG] Fallback vers Picsum');
           const fallbackPhoto = {
             id: `fallback-${foundVehicle.id}`,
             vehicleId: foundVehicle.id,
@@ -452,13 +452,13 @@ const BookingDiscussion = () => {
       
       const handleLanguageChanged = (lng: string) => {
         // eslint-disable-next-line no-console
-        console.log("[i18n DEV][BookingDiscussion] === CHANGEMENT DE LANGUE ===");
+        if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] === CHANGEMENT DE LANGUE ===");
         // eslint-disable-next-line no-console
-        console.log("[i18n DEV][BookingDiscussion] Langue précédente:", previousLanguage);
+        if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] Langue précédente:", previousLanguage);
         // eslint-disable-next-line no-console
-        console.log("[i18n DEV][BookingDiscussion] Nouvelle langue:", lng);
+        if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] Nouvelle langue:", lng);
         // eslint-disable-next-line no-console
-        console.log("[i18n DEV][BookingDiscussion] === FIN CHANGEMENT ===");
+        if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] === FIN CHANGEMENT ===");
         previousLanguage = lng;
       };
       
@@ -519,7 +519,7 @@ const BookingDiscussion = () => {
                 avatarUrl: ownerProfile.avatar_url || undefined,
               };
               setOwner(ownerUser);
-              console.log('✅ [BookingDiscussion] Propriétaire chargé:', ownerUser);
+              if (import.meta.env.DEV) console.log('✅ [BookingDiscussion] Propriétaire chargé:', ownerUser);
             }
           } catch (error) {
             console.error('❌ [BookingDiscussion] Erreur lors du chargement du propriétaire:', error);
@@ -569,11 +569,11 @@ const BookingDiscussion = () => {
           
           if (existingConv.data) {
             // Conversation existante trouvée, pas besoin de créer
-            console.log('[BookingDiscussion] Conversation existante trouvée pour booking:', bookingIdFromUrl);
+            if (import.meta.env.DEV) console.log('[BookingDiscussion] Conversation existante trouvée pour booking:', bookingIdFromUrl);
             convResult = existingConv;
           } else {
             // Pas de conversation existante, créer une nouvelle (action métier: ouverture de discussion)
-            console.log('[BookingDiscussion] Aucune conversation trouvée, création pour booking:', bookingIdFromUrl);
+            if (import.meta.env.DEV) console.log('[BookingDiscussion] Aucune conversation trouvée, création pour booking:', bookingIdFromUrl);
             convResult = await ConversationsService.getOrCreateConversation({
               vehicleId: vehicle.id,
               renterId: renterId,
@@ -612,8 +612,8 @@ const BookingDiscussion = () => {
               setIsConversationCancelled(booking.status === 'cancelled' || booking.status === 'rejected');
               // Toujours mettre à jour le booking pour avoir le statut à jour
               setCurrentBooking(booking);
-              console.log('✅ [BookingDiscussion] Booking chargé depuis la conversation:', booking);
-              console.log('✅ [BookingDiscussion] Statut du booking:', booking.status);
+              if (import.meta.env.DEV) console.log('✅ [BookingDiscussion] Booking chargé depuis la conversation:', booking);
+              if (import.meta.env.DEV) console.log('✅ [BookingDiscussion] Statut du booking:', booking.status);
             }
           } catch (error) {
             console.error('Erreur chargement statut réservation:', error);
@@ -628,15 +628,15 @@ const BookingDiscussion = () => {
             new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
           );
           setMessages(sortedMessages);
-          console.log('✅ [BookingDiscussion] Messages chargés:', sortedMessages.length);
-          console.log('✅ [BookingDiscussion] Messages:', sortedMessages.map(m => ({ id: m.id, content: m.content.substring(0, 50), senderId: m.senderId, createdAt: m.createdAt })));
+          if (import.meta.env.DEV) console.log('✅ [BookingDiscussion] Messages chargés:', sortedMessages.length);
+          if (import.meta.env.DEV) console.log('✅ [BookingDiscussion] Messages:', sortedMessages.map(m => ({ id: m.id, content: m.content.substring(0, 50), senderId: m.senderId, createdAt: m.createdAt })));
         }
 
         // S'abonner aux changements de messages en temps réel (INSERT + DELETE)
         const subscription = MessagesService.subscribeToMessagesWithCallbacks({
           conversationId: convResult.data.id,
           onInsert: (newMessage) => {
-            console.log('📨 [BookingDiscussion] Nouveau message reçu:', { id: newMessage.id, content: newMessage.content.substring(0, 50), senderId: newMessage.senderId });
+            if (import.meta.env.DEV) console.log('📨 [BookingDiscussion] Nouveau message reçu:', { id: newMessage.id, content: newMessage.content.substring(0, 50), senderId: newMessage.senderId });
             setMessages((prev) => {
               const updated = [...prev, newMessage];
               // Trier par date après l'insertion
@@ -646,7 +646,7 @@ const BookingDiscussion = () => {
           onDelete: (deletedMessageId) => {
             // Retirer le message supprimé de la liste
             setMessages((prev) => prev.filter(msg => msg.id !== deletedMessageId));
-            console.log('🗑️ [BookingDiscussion] Message supprimé en temps réel:', deletedMessageId);
+            if (import.meta.env.DEV) console.log('🗑️ [BookingDiscussion] Message supprimé en temps réel:', deletedMessageId);
           }
         });
 
@@ -656,7 +656,7 @@ const BookingDiscussion = () => {
           convResult.data.id,
           (event) => {
             if (event === 'deleted') {
-              console.log('🗑️ [BookingDiscussion] Conversation supprimée en temps réel');
+              if (import.meta.env.DEV) console.log('🗑️ [BookingDiscussion] Conversation supprimée en temps réel');
               toast({
                 title: t("booking.discussion.toasts.bookingCancelled.title"),
                 description: t("booking.discussion.toasts.bookingCancelled.description"),
@@ -684,7 +684,7 @@ const BookingDiscussion = () => {
                 filter: `id=eq.${convResult.data.bookingId}`,
               },
               (payload) => {
-                console.log('🔄 [BookingDiscussion] Booking mis à jour en temps réel:', payload.new);
+                if (import.meta.env.DEV) console.log('🔄 [BookingDiscussion] Booking mis à jour en temps réel:', payload.new);
                 const updatedBooking = payload.new as any;
                 setCurrentBooking(updatedBooking);
                 setBookingStatus(updatedBooking.status);
@@ -721,7 +721,7 @@ const BookingDiscussion = () => {
     
     if (import.meta.env.DEV) {
       // eslint-disable-next-line no-console
-      console.log("[i18n DEV][BookingDiscussion] formatDate:", {
+      if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] formatDate:", {
         input: date,
         localeUsed: locale,
         i18nLanguage: i18n.language,
@@ -742,7 +742,7 @@ const BookingDiscussion = () => {
     
     if (import.meta.env.DEV) {
       // eslint-disable-next-line no-console
-      console.log("[i18n DEV][BookingDiscussion] formatTime:", {
+      if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] formatTime:", {
         input: date,
         localeUsed: locale,
         i18nLanguage: i18n.language,
@@ -852,7 +852,7 @@ const BookingDiscussion = () => {
 
     if (import.meta.env.DEV) {
       // eslint-disable-next-line no-console
-      console.log("[i18n DEV][BookingDiscussion] calculateRealDuration:", {
+      if (import.meta.env.DEV) console.log("[i18n DEV][BookingDiscussion] calculateRealDuration:", {
         billableDays: pricing.billableDays,
         rentalHours: pricing.rentalHours,
         result,
@@ -899,7 +899,7 @@ const BookingDiscussion = () => {
   };
 
   const handlePayNow = () => {
-    console.log('[BookingDiscussion] handlePayNow called', { 
+    if (import.meta.env.DEV) console.log('[BookingDiscussion] handlePayNow called', { 
       hasBooking: !!currentBooking, 
       hasVehicle: !!vehicle,
       bookingId: currentBooking?.id,

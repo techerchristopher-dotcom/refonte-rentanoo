@@ -63,12 +63,12 @@ export async function generateCheckinReturnPdf(
   checkinReturnId: string,
   options?: GenerateCheckinReturnPdfOptions
 ): Promise<GenerateCheckinReturnPdfResult> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CheckinReturnPdfService] 🎯 Génération PDF d'état des lieux retour", { 
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🎯 Génération PDF d'état des lieux retour", { 
     checkinReturnId,
     skipStatusCheck: options?.skipStatusCheck || false,
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // ⚠️ Vérification de l'environnement (DOM disponible)
   if (typeof window === 'undefined' || typeof document === 'undefined') {
@@ -85,7 +85,7 @@ export async function generateCheckinReturnPdf(
     // ============================================================================
     // ÉTAPE 1 : Charger le checkin_return avec snapshot_legal
     // ============================================================================
-    console.log("[CheckinReturnPdfService] 📥 Chargement du check-in retour...");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 📥 Chargement du check-in retour...");
 
     const { data: checkinReturn, error: checkinError } = await SupabaseCheckinReturnService.getReturnById(checkinReturnId);
 
@@ -101,8 +101,8 @@ export async function generateCheckinReturnPdf(
     // ============================================================================
     // ÉTAPE 2 : Vérifications
     // ============================================================================
-    console.log("[CheckinReturnPdfService] 🔍 Vérifications...");
-    console.log("[CheckinReturnPdfService] 🔍 Checkin retour chargé pour PDF:", {
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔍 Vérifications...");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔍 Checkin retour chargé pour PDF:", {
       checkinReturnId,
       status: checkinReturn.status,
       hasSnapshot: !!checkinReturn.snapshot_legal,
@@ -157,17 +157,17 @@ export async function generateCheckinReturnPdf(
       console.warn("[CheckinReturnPdfService] ⚠️ Impossible de récupérer vehicle_type, utilisation du comportement par défaut (voiture):", error);
     }
 
-    console.log("[CheckinReturnPdfService] ✅ Vérifications OK");
-    console.log("[CheckinReturnPdfService] 📊 Réservation #:", bookingReferenceNumber);
-    console.log("[CheckinReturnPdfService] 🚗 Type de véhicule:", vehicleType || "voiture (défaut)");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] ✅ Vérifications OK");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 📊 Réservation #:", bookingReferenceNumber);
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🚗 Type de véhicule:", vehicleType || "voiture (défaut)");
 
     // ============================================================================
     // ÉTAPE 3 : Générer le PDF (HTML → Canvas → PDF)
     // ============================================================================
-    console.log("[CheckinReturnPdfService] 📄 ÉTAPE 3 : Génération du PDF Blob...");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 📄 ÉTAPE 3 : Génération du PDF Blob...");
 
     const { blob: pdfBlob, error: blobError } = await generatePdfBlob(snapshot, checkinReturn, vehicleType);
-    console.log("[CheckinReturnPdfService] 📄 generatePdfBlob retourné:", {
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 📄 generatePdfBlob retourné:", {
       hasBlob: !!pdfBlob,
       blobSize: pdfBlob ? `${pdfBlob.size} bytes` : "null",
       hasError: !!blobError,
@@ -184,13 +184,13 @@ export async function generateCheckinReturnPdf(
       };
     }
 
-    console.log("[CheckinReturnPdfService] ✅ PDF généré, taille:", pdfBlob.size, "bytes");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] ✅ PDF généré, taille:", pdfBlob.size, "bytes");
 
     // ============================================================================
     // ÉTAPE 4 : Upload vers Supabase Storage
     // ============================================================================
     const storagePath = buildStoragePath(checkinReturnId, bookingReferenceNumber);
-    console.log("[CheckinReturnPdfService] ☁️ Upload du PDF vers Storage...", {
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] ☁️ Upload du PDF vers Storage...", {
       bucket: BUCKET_NAME,
       storagePath,
       pdfSize: pdfBlob.size,
@@ -218,7 +218,7 @@ export async function generateCheckinReturnPdf(
       };
     }
 
-    console.log("[CheckinReturnPdfService] ✅ PDF uploadé avec succès", {
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] ✅ PDF uploadé avec succès", {
       checkinReturnId,
       storagePath,
       uploadData: uploadData?.path || 'N/A',
@@ -232,7 +232,7 @@ export async function generateCheckinReturnPdf(
       .getPublicUrl(storagePath);
 
     const publicUrl = urlData.publicUrl;
-    console.log("[CheckinReturnPdfService] 🔗 URL publique:", publicUrl);
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔗 URL publique:", publicUrl);
 
     if (!publicUrl || typeof publicUrl !== 'string' || publicUrl.trim() === '') {
       const errorMsg = "URL publique invalide ou vide après génération du PDF";
@@ -252,7 +252,7 @@ export async function generateCheckinReturnPdf(
     // ============================================================================
     // ÉTAPE 6 : Mettre à jour legal_pdf_url dans checkin_return
     // ============================================================================
-    console.log("[CheckinReturnPdfService] 💾 Mise à jour legal_pdf_url...", {
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 💾 Mise à jour legal_pdf_url...", {
       checkinReturnId,
       publicUrl,
     });
@@ -283,17 +283,17 @@ export async function generateCheckinReturnPdf(
         error: finalErrorMsg,
       };
     } else {
-      console.log("[CheckinReturnPdfService] ✅ legal_pdf_url mis à jour avec succès", {
+      if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] ✅ legal_pdf_url mis à jour avec succès", {
         checkinReturnId,
         legal_pdf_url: updatedCheckinReturn.legal_pdf_url,
       });
     }
 
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("[CheckinReturnPdfService] ✅ PDF généré avec succès !");
-    console.log("[CheckinReturnPdfService] 📁 Path:", storagePath);
-    console.log("[CheckinReturnPdfService] 🔗 URL:", publicUrl);
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] ✅ PDF généré avec succès !");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 📁 Path:", storagePath);
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔗 URL:", publicUrl);
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
     return {
       pdfStoragePath: storagePath,
@@ -330,7 +330,7 @@ async function generatePdfBlob(
   checkinReturn: CheckinReturn,
   vehicleType: string | null
 ): Promise<{ blob: Blob | null; error: string | null }> {
-  console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : Début");
+  if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : Début");
 
   if (typeof window === 'undefined' || typeof document === 'undefined') {
     const errorMsg = "DOM non disponible : window ou document est undefined";
@@ -342,22 +342,22 @@ async function generatePdfBlob(
 
   try {
     // Import dynamique html2canvas et jsPDF
-    console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : Import dynamique html2canvas...");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : Import dynamique html2canvas...");
     let html2canvas: any;
     try {
       html2canvas = (await import('html2canvas')).default;
-      console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : html2canvas importé:", typeof html2canvas);
+      if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : html2canvas importé:", typeof html2canvas);
     } catch (importError: any) {
       const errorMsg = `Erreur lors du chargement de html2canvas : ${importError?.message || String(importError)}`;
       console.error("[CheckinReturnPdfService] ❌ Erreur import html2canvas:", importError);
       return { blob: null, error: errorMsg };
     }
     
-    console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : Import dynamique jsPDF...");
+    if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : Import dynamique jsPDF...");
     let jsPDF: any;
     try {
       jsPDF = (await import('jspdf')).default;
-      console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : jsPDF importé:", typeof jsPDF);
+      if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🔧 generatePdfBlob : jsPDF importé:", typeof jsPDF);
     } catch (importError: any) {
       const errorMsg = `Erreur lors du chargement de jsPDF : ${importError?.message || String(importError)}`;
       console.error("[CheckinReturnPdfService] ❌ Erreur import jsPDF:", importError);
@@ -461,7 +461,7 @@ async function generatePdfBlob(
     if (tempDiv && typeof document !== 'undefined' && document.body && document.body.contains(tempDiv)) {
       try {
         document.body.removeChild(tempDiv);
-        console.log("[CheckinReturnPdfService] 🧹 tempDiv nettoyé du DOM");
+        if (import.meta.env.DEV) console.log("[CheckinReturnPdfService] 🧹 tempDiv nettoyé du DOM");
       } catch (cleanupError: any) {
         console.warn("[CheckinReturnPdfService] ⚠️ Erreur lors du nettoyage du DOM:", cleanupError);
       }

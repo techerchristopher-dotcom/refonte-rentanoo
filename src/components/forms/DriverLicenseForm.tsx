@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/hooks/use-toast';
 
 interface DriverLicenseFormData {
   licenseNumber: string;
@@ -88,10 +90,31 @@ export const DriverLicenseForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Driver License Form Data:', formData);
-    // Handle form submission
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast({ title: "Erreur", description: "Vous devez être connecté.", variant: "destructive" });
+        return;
+      }
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          driver_license_number: formData.licenseNumber,
+          driver_license_country: formData.issuingCountry,
+          driver_license_issue_date: formData.issueDate || null,
+          driver_license_expiration_date: formData.expiryDate || null,
+          driver_license_category: formData.licenseCategory,
+          driver_license_verified: false,
+          updated_at: new Date().toISOString(),
+        } as any)
+        .eq('id', user.id);
+      if (error) throw error;
+      toast({ title: "Permis enregistré", description: "Vos informations de permis ont été sauvegardées." });
+    } catch (err) {
+      toast({ title: "Erreur", description: "Impossible d'enregistrer le permis.", variant: "destructive" });
+    }
   };
 
   return (

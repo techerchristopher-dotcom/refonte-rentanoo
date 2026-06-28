@@ -143,7 +143,7 @@ function DescriptionTranslationBlock({
 
 export default function ManageVehicle() {
   const { vehicleId } = useParams<{ vehicleId: string }>();
-  console.log("[ManageVehicle] vehicleId from params =", vehicleId);
+  if (import.meta.env.DEV) console.log("[ManageVehicle] vehicleId from params =", vehicleId);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation("common");
@@ -208,7 +208,7 @@ export default function ManageVehicle() {
     vehicleType,
   } = useManageVehicle(vehicleId);
   
-  console.log("[ManageVehicle] Hook states - vehicle =", vehicle, ", loading =", loading, ", formData.brand =", formData.brand);
+  if (import.meta.env.DEV) console.log("[ManageVehicle] Hook states - vehicle =", vehicle, ", loading =", loading, ", formData.brand =", formData.brand);
 
 
   useEffect(() => {
@@ -288,7 +288,7 @@ export default function ManageVehicle() {
         event.preventDefault();
         event.stopPropagation();
         
-        console.log("🚫 Navigation interceptée:", target);
+        if (import.meta.env.DEV) console.log("🚫 Navigation interceptée:", target);
         
         // Déterminer la destination
         let destination = "/";
@@ -311,7 +311,7 @@ export default function ManageVehicle() {
           }
         }
         
-        console.log("🎯 Destination détectée:", destination);
+        if (import.meta.env.DEV) console.log("🎯 Destination détectée:", destination);
         
         // Afficher la modal d'avertissement
         setPendingNavigation(() => () => navigate(destination));
@@ -947,7 +947,7 @@ export default function ManageVehicle() {
     }
 
     try {
-      console.log("Sauvegarde automatique du statut:", newStatus);
+      if (import.meta.env.DEV) console.log("Sauvegarde automatique du statut:", newStatus);
       
       // Convertir le statut en boolean pour le champ available
       const isAvailable = newStatus === 'active';
@@ -967,7 +967,7 @@ export default function ManageVehicle() {
           variant: "destructive",
         });
       } else {
-        console.log("Statut sauvegardé avec succès");
+        if (import.meta.env.DEV) console.log("Statut sauvegardé avec succès");
         toast({
           title: "Statut mis à jour",
           description: `Le véhicule est maintenant ${isAvailable ? 'disponible' : 'indisponible'}`,
@@ -995,7 +995,7 @@ export default function ManageVehicle() {
         break;
       case "year":
         const year = parseInt(value, 10); // Base 10 explicite
-        console.log("🔍 DEBUG - Validation année ManageVehicle:", { value, year, isNaN: isNaN(year) });
+        if (import.meta.env.DEV) console.log("🔍 DEBUG - Validation année ManageVehicle:", { value, year, isNaN: isNaN(year) });
         if (!value || isNaN(year) || year < 1990 || year > 2025) {
           error = "L'année doit être entre 1990 et 2025";
         }
@@ -1090,13 +1090,13 @@ export default function ManageVehicle() {
     if (!vehicleId) return;
     
     try {
-      console.log("Chargement des photos pour le véhicule:", vehicleId);
+      if (import.meta.env.DEV) console.log("Chargement des photos pour le véhicule:", vehicleId);
       const { data, error } = await PhotoService.getVehiclePhotos(vehicleId);
       if (error) {
         console.error("Erreur lors du chargement des photos:", error);
         setPhotos([]);
       } else {
-        console.log("Photos chargées:", data);
+        if (import.meta.env.DEV) console.log("Photos chargées:", data);
         setPhotos(data || []);
       }
     } catch (error) {
@@ -1150,7 +1150,7 @@ export default function ManageVehicle() {
               .from('vehicles')
               .update({ image_url: successfulUploads[0].data?.url })
               .eq('id', vehicleId);
-            console.log('Image principale mise à jour:', successfulUploads[0].data?.url);
+            if (import.meta.env.DEV) console.log('Image principale mise à jour:', successfulUploads[0].data?.url);
           } catch (error) {
             console.error('Erreur lors de la mise à jour de l\'image principale:', error);
           }
@@ -1342,7 +1342,7 @@ export default function ManageVehicle() {
                 .from('vehicles')
                 .update({ image_url: remainingPhotos[0].url })
                 .eq('id', vehicleId);
-              console.log('Image principale mise à jour après suppression:', remainingPhotos[0].url);
+              if (import.meta.env.DEV) console.log('Image principale mise à jour après suppression:', remainingPhotos[0].url);
             } catch (error) {
               console.error('Erreur lors de la mise à jour de l\'image principale:', error);
             }
@@ -1353,7 +1353,7 @@ export default function ManageVehicle() {
                 .from('vehicles')
                 .update({ image_url: null })
                 .eq('id', vehicleId);
-              console.log('Image principale supprimée (plus de photos)');
+              if (import.meta.env.DEV) console.log('Image principale supprimée (plus de photos)');
             } catch (error) {
               console.error('Erreur lors de la suppression de l\'image principale:', error);
             }
@@ -1415,9 +1415,9 @@ export default function ManageVehicle() {
   };
 
   const handleSave = async (): Promise<boolean> => {
-    console.log("🚀 DÉBUT DE LA SAUVEGARDE");
-    console.log("📊 État actuel de pendingConfigurations:", pendingConfigurations);
-    console.log("📊 État actuel de formData:", formData);
+    if (import.meta.env.DEV) console.log("🚀 DÉBUT DE LA SAUVEGARDE");
+    if (import.meta.env.DEV) console.log("📊 État actuel de pendingConfigurations:", pendingConfigurations);
+    if (import.meta.env.DEV) console.log("📊 État actuel de formData:", formData);
     
     if (!vehicle) {
       console.error("Aucun véhicule sélectionné");
@@ -1446,7 +1446,7 @@ export default function ManageVehicle() {
     }
 
     // 🆕 Vérifier s'il y a des configurations en attente
-    console.log("🔍 Vérification des configurations en attente:", pendingConfigurations);
+    if (import.meta.env.DEV) console.log("🔍 Vérification des configurations en attente:", pendingConfigurations);
     
     // 🆕 Vérification supplémentaire : détecter automatiquement les configurations en attente
     const detectedPendingConfigurations: string[] = [];
@@ -1465,14 +1465,14 @@ export default function ManageVehicle() {
       detectedPendingConfigurations.push('Livraison à domicile');
     }
     
-    console.log("🔍 Configurations détectées automatiquement:", detectedPendingConfigurations);
+    if (import.meta.env.DEV) console.log("🔍 Configurations détectées automatiquement:", detectedPendingConfigurations);
     
     // Utiliser la liste la plus complète
     const allPendingConfigurations = [...new Set([...pendingConfigurations, ...detectedPendingConfigurations])];
-    console.log("🔍 Toutes les configurations en attente:", allPendingConfigurations);
+    if (import.meta.env.DEV) console.log("🔍 Toutes les configurations en attente:", allPendingConfigurations);
     
     if (allPendingConfigurations.length > 0) {
-      console.log("⚠️ Configurations en attente détectées, affichage de la modal d'alerte");
+      if (import.meta.env.DEV) console.log("⚠️ Configurations en attente détectées, affichage de la modal d'alerte");
       setPendingConfigurations(allPendingConfigurations); // Mettre à jour l'état
       setShowPendingConfigAlert(true);
       return false; // Empêcher la sauvegarde
@@ -1530,14 +1530,14 @@ export default function ManageVehicle() {
         return false; // Empêcher la sauvegarde
       }
 
-    console.log("Début de la sauvegarde pour le véhicule:", vehicle.id);
-    console.log("Données du formulaire:", formData);
+    if (import.meta.env.DEV) console.log("Début de la sauvegarde pour le véhicule:", vehicle.id);
+    if (import.meta.env.DEV) console.log("Données du formulaire:", formData);
 
     setSaving(true);
     try {
       // Préparer les données de base (toujours présentes dans la DB)
       const yearValue = parseInt(formData.year, 10); // Base 10 explicite
-      console.log("🔍 DEBUG - Conversion année dans handleSave:", { 
+      if (import.meta.env.DEV) console.log("🔍 DEBUG - Conversion année dans handleSave:", { 
         formDataYear: formData.year, 
         yearValue, 
         type: typeof formData.year 
@@ -1587,7 +1587,7 @@ export default function ManageVehicle() {
         deposit_amount: depositAmount,
       };
 
-      console.log("Données à envoyer à Supabase (base):", baseUpdateData);
+      if (import.meta.env.DEV) console.log("Données à envoyer à Supabase (base):", baseUpdateData);
       let result = await SupabaseVehiclesService.updateVehicle(vehicle.id, baseUpdateData);
 
       if (result.error) {
@@ -1595,7 +1595,7 @@ export default function ManageVehicle() {
         throw new Error(`Erreur lors de la sauvegarde: ${result.error}`);
       }
 
-      console.log("Champs de base sauvegardés avec succès");
+      if (import.meta.env.DEV) console.log("Champs de base sauvegardés avec succès");
 
       // Essayer de sauvegarder les champs optionnels
       try {
@@ -1603,7 +1603,7 @@ export default function ManageVehicle() {
         if (optionalResult.error) {
           console.warn("Certains champs optionnels n'ont pas pu être sauvegardés:", optionalResult.error);
         } else {
-          console.log("Champs optionnels sauvegardés avec succès");
+          if (import.meta.env.DEV) console.log("Champs optionnels sauvegardés avec succès");
         }
       } catch (optionalError) {
         console.warn("Erreur lors de la sauvegarde des champs optionnels:", optionalError);
@@ -1620,7 +1620,7 @@ export default function ManageVehicle() {
             variant: "destructive",
           });
         } else {
-          console.log("Champs de remises sauvegardés avec succès");
+          if (import.meta.env.DEV) console.log("Champs de remises sauvegardés avec succès");
         }
       } catch (pricingError) {
         console.warn("Erreur lors de la sauvegarde des remises:", pricingError);
@@ -1654,7 +1654,7 @@ export default function ManageVehicle() {
         if (amenitiesResult.error) {
           console.warn("Les équipements hébergement n'ont pas pu être sauvegardés:", amenitiesResult.error);
         } else {
-          console.log("Équipements hébergement sauvegardés avec succès");
+          if (import.meta.env.DEV) console.log("Équipements hébergement sauvegardés avec succès");
         }
       } catch (amenitiesError) {
         console.warn("Erreur lors de la sauvegarde des équipements hébergement:", amenitiesError);
@@ -1674,7 +1674,7 @@ export default function ManageVehicle() {
         if (bookingResult.error) {
           console.warn("Les conditions de réservation n'ont pas pu être sauvegardées:", bookingResult.error);
         } else {
-          console.log("Conditions de réservation sauvegardées avec succès");
+          if (import.meta.env.DEV) console.log("Conditions de réservation sauvegardées avec succès");
         }
       } catch (bookingError) {
         console.warn("Erreur lors de la sauvegarde des conditions de réservation:", bookingError);
@@ -1696,7 +1696,7 @@ export default function ManageVehicle() {
         if (airportResult.error) {
           console.warn("Les services aéroport n'ont pas pu être sauvegardés:", airportResult.error);
         } else {
-          console.log("Services aéroport sauvegardés avec succès");
+          if (import.meta.env.DEV) console.log("Services aéroport sauvegardés avec succès");
         }
       } catch (airportError) {
         console.warn("Erreur lors de la sauvegarde des services aéroport:", airportError);
@@ -1718,7 +1718,7 @@ export default function ManageVehicle() {
         if (bargePetiteTerreResult.error) {
           console.warn("Les services barge Petite Terre n'ont pas pu être sauvegardés:", bargePetiteTerreResult.error);
         } else {
-          console.log("Services barge Petite Terre sauvegardés avec succès");
+          if (import.meta.env.DEV) console.log("Services barge Petite Terre sauvegardés avec succès");
         }
       } catch (bargePetiteTerreError) {
         console.warn("Erreur lors de la sauvegarde des services barge Petite Terre:", bargePetiteTerreError);
@@ -1740,7 +1740,7 @@ export default function ManageVehicle() {
         if (bargeGrandeTerreResult.error) {
           console.warn("Les services barge Grande Terre n'ont pas pu être sauvegardés:", bargeGrandeTerreResult.error);
         } else {
-          console.log("Services barge Grande Terre sauvegardés avec succès");
+          if (import.meta.env.DEV) console.log("Services barge Grande Terre sauvegardés avec succès");
         }
       } catch (bargeGrandeTerreError) {
         console.warn("Erreur lors de la sauvegarde des services barge Grande Terre:", bargeGrandeTerreError);
@@ -1762,7 +1762,7 @@ export default function ManageVehicle() {
         if (homeDeliveryResult.error) {
           console.warn("Les services livraison à domicile n'ont pas pu être sauvegardés:", homeDeliveryResult.error);
         } else {
-          console.log("Services livraison à domicile sauvegardés avec succès");
+          if (import.meta.env.DEV) console.log("Services livraison à domicile sauvegardés avec succès");
         }
       } catch (homeDeliveryError) {
         console.warn("Erreur lors de la sauvegarde des services livraison à domicile:", homeDeliveryError);
@@ -1783,7 +1783,7 @@ export default function ManageVehicle() {
         if (additionalServicesResult.error) {
           console.warn("Les services additionnels n'ont pas pu être sauvegardés:", additionalServicesResult.error);
         } else {
-          console.log("Services additionnels sauvegardés avec succès");
+          if (import.meta.env.DEV) console.log("Services additionnels sauvegardés avec succès");
         }
       } catch (additionalServicesError) {
         console.warn("Erreur lors de la sauvegarde des services additionnels:", additionalServicesError);
@@ -1806,9 +1806,9 @@ export default function ManageVehicle() {
         listingOwnerId: listingOwnerId || "",
       }));
 
-      console.log("Sauvegarde terminée");
+      if (import.meta.env.DEV) console.log("Sauvegarde terminée");
 
-      console.log("Sauvegarde réussie!");
+      if (import.meta.env.DEV) console.log("Sauvegarde réussie!");
       setHasChanges(false); // Marquer qu'il n'y a plus de changements
       toast({
         title: "Succès",
