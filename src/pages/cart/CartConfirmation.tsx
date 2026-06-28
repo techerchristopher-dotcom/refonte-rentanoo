@@ -90,7 +90,7 @@ export default function CartConfirmation() {
             )}
 
             <p className="text-sm text-muted-foreground text-center">
-              Christopher vous recontacte sous 24h pour confirmer chaque réservation.
+              {user?.user_metadata?.first_name || user?.email || "L'équipe Rentanoo"} vous recontacte sous 24h pour confirmer chaque réservation.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-2.5">
@@ -104,7 +104,7 @@ export default function CartConfirmation() {
               {user && (
                 <Button
                   className="flex-1"
-                  onClick={() => navigate("/me/owner/bookings")}
+                  onClick={() => navigate("/me/renter/bookings")}
                 >
                   Voir mes réservations
                 </Button>
