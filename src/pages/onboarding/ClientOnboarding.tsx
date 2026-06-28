@@ -348,7 +348,7 @@ export default function ClientOnboarding() {
           ) : currentStep === 2 ? (
             <div className="space-y-3">
               <p className="text-sm text-muted-foreground">
-                Confirmez votre compte via l&apos;email reçu, puis revenez ici.
+                Confirmez votre compte via l'email reçu, puis revenez ici.
               </p>
               {checkError && (
                 <p className="text-sm text-destructive">{checkError}</p>
@@ -380,7 +380,7 @@ export default function ClientOnboarding() {
                       Envoi...
                     </>
                   ) : (
-                    "Renvoyer l&apos;email"
+                    "Renvoyer l'email"
                   )}
                 </Button>
               )}
