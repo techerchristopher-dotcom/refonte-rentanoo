@@ -36,6 +36,8 @@ const STATIC_URLS = [
   { loc: "/location-moto-nosy-be", changefreq: "weekly", priority: "0.95" },
   { loc: "/location-quad-nosy-be", changefreq: "weekly", priority: "0.9" },
   { loc: "/location-voiture-nosy-be", changefreq: "weekly", priority: "0.9" },
+  { loc: "/location-4x4-nosy-be", changefreq: "weekly", priority: "0.85" },
+  { loc: "/location-minibus-nosy-be", changefreq: "weekly", priority: "0.85" },
   // --- Pages SEO hébergement ---
   { loc: "/location-hebergement-nosy-be", changefreq: "weekly", priority: "0.95" },
   { loc: "/location-vacances-nosy-be", changefreq: "weekly", priority: "0.95" },
