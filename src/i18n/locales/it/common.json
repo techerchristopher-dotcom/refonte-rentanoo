@@ -1,0 +1,1416 @@
+{
+  "common": {
+    "2024_maycar_tous_droits_rservs_une_initiative_pour": "© 2025 Rentanoo. Tutti i diritti riservati. Noleggio scooter a Nosy Be.",
+    "actualiser_la_page": "Aggiorna la pagina",
+    "annuler": "Annulla",
+    "automatique": "Automatica",
+    "berline": "Berlina",
+    "break_sw": "Station wagon",
+    "cabriolet": "Cabriolet",
+    "citadine": "Utilitaria",
+    "communes": "Comuni",
+    "conditions_dutilisation": "Condizioni d'uso",
+    "connexion": "Accesso",
+    "coup": "Coupé",
+    "crossover": "Crossover",
+    "dates": "Date",
+    "demandes_de_location": "Richieste di noleggio",
+    "devenir_loueur": "Diventa host",
+    "devenir_propritaire": "Diventa proprietario",
+    "diesel": "Diesel",
+    "dpart": "Partenza",
+    "error": "Errore",
+    "essence": "Benzina",
+    "filtres": "Filtri:",
+    "heure_de_dpart": "Orario di partenza",
+    "heure_de_retour": "Orario di ritorno",
+    "heures": "Orari",
+    "hybride": "Ibrida",
+    "inscription": "Registrazione",
+    "la_plateforme_dautopartage_de_mayotte_louez_et_par": "Noleggia il tuo scooter a Nosy Be. Prenotazione 100 % online, consegna in hotel o in aeroporto.",
+    "lectrique": "Elettrica",
+    "lgal": "Legale",
+    "lieu_de_prise_en_charge": "Luogo di ritiro",
+    "loading": "Caricamento...",
+    "louez_des_vhicules_entre_particuliers_dans_le_plus": "Noleggia scooter a Nosy Be e esplora l'isola in libertà",
+    "made_with_pour_le_101me_dpartement_franais": "Realizzato con ❤️ per il 101° dipartimento francese.",
+    "manuelle": "Manuale",
+    "maycar": "Rentanoo",
+    "mayotte": "Nosy Be, Madagascar",
+    "mayotte_france": "Nosy Be, Madagascar",
+    "nosy_be": "Nosy Be, Madagascar",
+    "mentions_lgales": "Note legali",
+    "mes_rservations": "Le mie prenotazioni",
+    "mes_vhicules": "I miei veicoli",
+    "minibus": "Minibus",
+    "monospace": "Monovolume",
+    "navigation": "Navigazione",
+    "par_jour": "al giorno",
+    "partagez_la_route_mayotte": "Esplora Nosy Be in scooter",
+    "pickup": "Pick-up",
+    "points_stratgiques": "Punti strategici",
+    "politique_de_confidentialit": "Informativa sulla privacy",
+    "rechercher_un_vhicule": "Cerca un veicolo",
+    "retour": "Ritorno",
+    "rinitialiser": "Reimposta",
+    "rinitialiser_les_filtres": "Reimposta filtri",
+    "roadster": "Roadster",
+    "sinistre_caution": "Danni e cauzione",
+    "se_connecter": "Accedi",
+    "search": "Cerca",
+    "slectionner_les_dates": "Seleziona le date",
+    "slectionner_les_heures": "Seleziona gli orari",
+    "slectionnez_le_lieu_o_vous_souhaitez_rcuprer_votre": "Seleziona il luogo in cui desideri ritirare il veicolo",
+    "suv": "SUV",
+    "utilisateur_connect": "Utente connesso",
+    "modify": "Modifica",
+    "modifier_mon_profil": "Modifica il mio profilo",
+    "mon_espace": "Il mio spazio",
+    "mon_dashboard": "La mia dashboard",
+    "se_dconnecter": "Disconnettersi",
+    "valider": "Conferma",
+    "valider_mes_dates": "Conferma le mie date",
+    "valider_mes_heures": "Conferma gli orari",
+    "vhicules_disponibles": "Veicoli disponibili",
+    "voir_la_fiche": "Vedi scheda",
+    "rechercher_une_ville_de_prise_en_charge": "Cerca un luogo di ritiro",
+    "aucun_vhicule_disponible_pour_le_moment": "Nessun veicolo disponibile al momento.",
+    "addDates": "Aggiungi le date",
+    "selectDates": "Seleziona le date",
+    "comingSoon": "Disponibile a breve",
+    "vehicle": {
+      "fuel": {
+        "gasoline": "Benzina",
+        "diesel": "Diesel",
+        "electric": "Elettrico",
+        "hybrid": "Ibrido"
+      },
+      "transmission": {
+        "manual": "Manuale",
+        "automatic": "Automatico"
+      },
+      "places_one": "{{count}} posto",
+      "places_other": "{{count}} posti"
+    },
+    "duration": {
+      "day_one": "{{count}} giorno",
+      "day_other": "{{count}} giorni",
+      "hour_one": "{{count}} ora",
+      "hour_other": "{{count}} ore",
+      "separator": " + ",
+      "half_day": "mezza giornata",
+      "half_day_suffix": "e mezzo"
+    },
+    "pricing": {
+      "total_for_duration": "totale {{total}} ({{duration}})",
+      "perDayShort": "giorno",
+      "totalExcludingOptions": "ossia {{total}} (escluse opzioni aggiuntive)",
+      "cardTotalSummary": "{{duration}} · {{total}} totale"
+    },
+    "searchBar": {
+      "departure": "Partenza",
+      "return": "Ritorno",
+      "date": "Data",
+      "time": "Ora",
+      "launchSearch": "Avvio la ricerca",
+      "searching": "Ricerca in corso…"
+    }
+  },
+  "home": {
+    "heroTitle": "Noleggio scooter, moto, auto & alloggio a Nosy Be | Rentanoo",
+    "heroSubtitle": "RENTANOO — la piattaforma di prenotazione 100% online per due ruote e alloggi a Nosy Be",
+    "catalogCta": "Vedi {{count}} veicoli disponibili",
+    "catalogCta_one": "Vedi il veicolo disponibile",
+    "catalogCtaLoading": "Vedi i veicoli disponibili",
+    "catalogCtaAria": "Scorri fino al catalogo veicoli",
+    "trustStrip": {
+      "vehicleCount": "{{count}} veicoli disponibili",
+      "vehicleCount_one": "1 veicolo disponibile",
+      "fromPrice": "Da {{price}}/giorno",
+      "airportDelivery": "Consegna aeroporto",
+      "helmetIncluded": "Casco incluso",
+      "insuranceIncluded": "Assicurazione inclusa",
+      "ariaLabel": "Punti di forza Rentanoo",
+      "accommodationAvailable": "Alloggi disponibili",
+      "secureBooking": "Prenotazione sicura"
+    },
+    "dayContext": {
+      "ariaLabel": "Meteo e tasso di cambio di oggi a Nosy Be",
+      "title": "Nosy Be oggi",
+      "weatherLabel": "Meteo",
+      "flightsLabel": "Voli",
+      "exchangeLabel": "Cambio",
+      "timeLabel": "Ora locale",
+      "timeSub": "Madagascar · UTC+3",
+      "flightsToday": "Prossimi voli oggi",
+      "flightsTomorrow": "Prossimi voli domani",
+      "exchangeShort": "1 € = {{rate}} Ar",
+      "exchangeLiveHint": "Tasso del giorno",
+      "loading": "Caricamento",
+      "exchangeLive": "1 € = {{rate}} Ar (tasso del giorno)",
+      "exchangeManual": "1 € = {{rate}} Ar",
+      "pricesHint": "Prezzi di riferimento in ariary — equivalente € al tasso del giorno",
+      "weatherLinkLabel": "Vedi meteo dettagliata a Nosy Be",
+      "exchangeLinkLabel": "Vedi tasso di cambio Euro Ariary Madagascar",
+      "flightsLinkLabel": "Vedi orari voli aeroporto Nosy Be",
+      "weatherUnavailable": "Meteo non disponibile",
+      "rateTrend": {
+        "up": "Tasso in aumento rispetto a ieri",
+        "down": "Tasso in calo rispetto a ieri",
+        "stable": "Tasso stabile rispetto a ieri"
+      },
+      "rateTrendShort": {
+        "up": "In aumento vs ieri",
+        "down": "In calo vs ieri",
+        "stable": "Stabile vs ieri"
+      },
+      "weather": {
+        "clear": "Soleggiato",
+        "cloudy": "Nuvoloso",
+        "drizzle": "Pioggerella leggera",
+        "fog": "Nebbia",
+        "rain": "Pioggia",
+        "storm": "Temporali",
+        "snow": "Neve"
+      }
+    },
+    "seoBlockTitle": "Noleggio scooter a Nosy Be: semplice, veloce, sicuro",
+    "seoBlock": "Rentanoo ti aiuta a prenotare un noleggio scooter a Nosy Be in pochi clic, appena arrivi in Madagascar. Scegli le date, confronta i modelli disponibili e conferma online. Offriamo la consegna all'aeroporto di Nosy Be (Fascène) o direttamente al tuo hotel per risparmiare tempo dal primo giorno. Casco fornito, consigli per la ripresa e assicurazione inclusa in base all'offerta selezionata: tutto pensato per guidare con serenità durante il tuo soggiorno. Che tu resti un weekend o diverse settimane, avrai una soluzione pratica per esplorare spiagge, villaggi e i luoghi imperdibili dell'isola. Prenota in anticipo in alta stagione per assicurarti la disponibilità del tuo scooter.",
+    "toasts": {
+      "requiredFields": {
+        "title": "Campi obbligatori",
+        "description": "Inserisci almeno un criterio di ricerca"
+      },
+      "incompleteDates": {
+        "title": "Date incomplete",
+        "description": "Seleziona sia una data di inizio che una data di fine"
+      },
+      "invalidDates": {
+        "title": "Date non valide",
+        "description": "La data di inizio deve essere precedente alla data di fine"
+      },
+      "errorSearchAuto": {
+        "title": "Errore",
+        "description": "Impossibile eseguire la ricerca automatica"
+      },
+      "errorSearch": {
+        "title": "Errore",
+        "description": "Impossibile eseguire la ricerca"
+      },
+      "noResults": {
+        "title": "Nessun risultato",
+        "description": "Nessun veicolo disponibile per questi criteri"
+      },
+      "criteriaReset": {
+        "title": "Criteri reimpostati",
+        "description": "Tutti i criteri di ricerca sono stati cancellati."
+      },
+      "searchRestored": {
+        "title": "Ricerca ripristinata",
+        "description": "I criteri salvati sono stati ripristinati e la ricerca è stata rieseguita."
+      },
+      "searchDone": {
+        "title": "Ricerca completata"
+      },
+      "resultsFound_one": "{{count}} veicolo trovato",
+      "resultsFound_other": "{{count}} veicoli trovati"
+    }
+  },
+  "motoDetails": {
+    "back": "Indietro",
+    "loading": "Caricamento del veicolo...",
+    "descriptionTitle": "Descrizione del veicolo",
+    "technicalTitle": "Caratteristiche tecniche",
+    "technical": {
+      "fuel": "Carburante",
+      "transmission": "Cambio",
+      "seats": "Posti",
+      "engine": "Cilindrata",
+      "mileage": "Chilometraggio",
+      "color": "Colore"
+    },
+    "owner": {
+      "title": "Proprietario",
+      "verified": "Verificato",
+      "pending": "In attesa",
+      "memberSince": "Membro da {{date}}",
+      "stats": {
+        "vehicles": "Veicoli",
+        "rentals": "Noleggi",
+        "thisCar": "Questa auto",
+        "thisMoto": "Questa moto"
+      },
+      "keyHandover": "Consegna delle chiavi: Direttamente da {{ownerName}} per ottenere tutti i consigli.",
+      "howItWorks": "Come funziona?",
+      "loadError": "Impossibile caricare le informazioni del proprietario"
+    },
+    "errors": {
+      "vehicleIncompatible": {
+        "title": "Veicolo incompatibile",
+        "description": "Questa pagina è riservata alle moto. Reindirizzamento alla home."
+      },
+      "vehicleNotFound": {
+        "title": "Veicolo non trovato",
+        "description": "Questo veicolo non esiste o non è più disponibile."
+      },
+      "loadError": {
+        "title": "Errore",
+        "description": "Impossibile caricare le informazioni del veicolo."
+      },
+      "loginRequired": {
+        "title": "Accesso richiesto",
+        "description": "Devi essere connesso per prenotare un veicolo."
+      },
+      "missingInfo": {
+        "title": "Informazioni mancanti",
+        "description": "Seleziona le date di noleggio."
+      },
+      "bookingError": {
+        "title": "Errore di prenotazione",
+        "description": "Impossibile creare la prenotazione"
+      },
+      "unexpectedError": {
+        "title": "Errore imprevisto",
+        "description": "Si è verificato un errore durante la creazione della prenotazione"
+      }
+    },
+    "notSpecified": "Non specificato",
+    "reviews": {
+      "title": "Valutazioni",
+      "sample1": {
+        "meta": "2 settimane fa • 3 giorni di noleggio",
+        "text": "Veicolo in perfette condizioni, molto pulito. Pierre è un host premuroso e disponibile. Consigliatissimo!"
+      },
+      "sample2": {
+        "meta": "1 mese fa • 5 giorni di noleggio",
+        "text": "Ottimo veicolo per scoprire l'isola. Economico e affidabile. Comunicazione perfetta con il proprietario."
+      }
+    },
+    "insurance": {
+      "title": "Assicurazione inclusa",
+      "items": {
+        "axa": "Assicurazione completa fornita da AXA",
+        "roadside": "Assistenza stradale 24/7"
+      },
+      "coverageTitle": "Cosa copre l'assicurazione:",
+      "coverage": {
+        "collision": "Danni da collisione",
+        "theft": "Furto e atti vandalici",
+        "glass": "Rottura dei vetri",
+        "fire": "Incendio"
+      },
+      "conditionsTitle": "Condizioni:",
+      "conditions": {
+        "minAge": "Età minima: 21 anni",
+        "licenseYears": "Patente da almeno 2 anni",
+        "deductible": "Franchigia: 800€",
+        "deposit": "Deposito cauzionale: 1000€"
+      }
+    },
+    "benefits": {
+      "title": "Vantaggi per ogni noleggio",
+      "items": {
+        "extension": "Prolungamento facile",
+        "lateReturn": "30 minuti di tolleranza per i ritardi",
+        "support": "Assistenza clienti 7 giorni su 7"
+      }
+    },
+    "legal": {
+      "title": "Informazioni precontrattuali",
+      "paragraph1": "Ai sensi dell'articolo L.221-18 del Codice del consumo francese, hai un diritto di recesso di 14 giorni dalla conclusione del contratto.",
+      "paragraph2": "In caso di controversia puoi ricorrere alla mediazione del consumo o rivolgerti al tribunale competente.",
+      "ctaConditions": "Condizioni generali",
+      "ctaMore": "Scopri di più"
+    }
+  },
+  "footer": {
+    "description": "Piattaforma di noleggio a Nosy Be: scooter, moto, auto e alloggio. Prenotazione 100% online.",
+    "nav": {
+      "scooters": "Scooter & moto",
+      "cars": "Auto",
+      "accommodation": "Alloggi"
+    }
+  },
+  "profile": {
+    "hero": {
+      "back": "Torna alla home",
+      "title": "Il mio profilo",
+      "subtitle": "Gestisci le tue informazioni personali e personalizza la tua esperienza"
+    },
+    "completion": {
+      "full": "Profilo completo ✓",
+      "partial": "Profilo completato al {{percent}}%"
+    },
+    "tabs": {
+      "basic": "Informazioni di base",
+      "address": "Indirizzo",
+      "license": "Patente di guida"
+    },
+    "sections": {
+      "basic": {
+        "title": "Informazioni personali",
+        "step": "Passo 1/3",
+        "subtitle": "Le tue informazioni di base per personalizzare la tua esperienza",
+        "identity": {
+          "title": "Identità"
+        },
+        "contact": {
+          "title": "Contatti"
+        },
+        "personal": {
+          "title": "Informazioni personali"
+        },
+        "bio": {
+          "title": "Presentazione personale"
+        },
+        "phone": {
+          "title": "Telefono"
+        },
+        "status": {
+          "title": "Stato dell'account"
+        },
+        "saved": "Salvato"
+      },
+      "address": {
+        "title": "Indirizzo",
+        "step": "Passo 2/3",
+        "subtitle": "Il tuo indirizzo per consegne e localizzazione",
+        "saved": "Salvato"
+      },
+      "license": {
+        "title": "Patente di guida",
+        "step": "Passo 3/3",
+        "subtitle": "La tua patente per noleggiare veicoli in sicurezza",
+        "saved": "Salvato"
+      }
+    },
+    "form": {
+      "optional": "(opzionale)",
+      "firstName": {
+        "label": "Nome",
+        "placeholder": "Il tuo nome"
+      },
+      "lastName": {
+        "label": "Cognome",
+        "placeholder": "Il tuo cognome"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "tua.email@esempio.com",
+        "helper": "L'email non può essere modificata"
+      },
+      "birthDate": {
+        "label": "Data di nascita",
+        "placeholder": "Seleziona una data",
+        "day": {
+          "placeholder": "Giorno"
+        },
+        "month": {
+          "placeholder": "Mese"
+        },
+        "year": {
+          "placeholder": "Anno"
+        }
+      },
+      "birthPlace": {
+        "label": "Luogo di nascita",
+        "placeholder": "Città, Paese"
+      },
+      "bio": {
+        "label": "Presentati in poche parole",
+        "placeholder": "Parlaci di te, delle tue passioni, del tuo stile di guida... Aiuterà gli altri utenti a conoscerti meglio!",
+        "counter": "{{count}}/500 caratteri"
+      },
+      "phone": {
+        "label": "Numero di telefono",
+        "placeholder": "Numero di telefono"
+      },
+      "avatar": {
+        "loading": "Caricamento in corso...",
+        "helper": "Formati accettati: JPG, PNG. Dimensione max: 5MB"
+      },
+      "address": {
+        "street": {
+          "label": "Indirizzo",
+          "placeholder": "Numero civico e nome della via"
+        },
+        "city": {
+          "label": "Città",
+          "placeholder": "Saint-Denis"
+        },
+        "postalCode": {
+          "label": "CAP",
+          "placeholder": "97400"
+        },
+        "country": {
+          "label": "Paese",
+          "placeholder": "Seleziona un paese"
+        }
+      },
+      "license": {
+        "number": {
+          "label": "Numero della patente",
+          "placeholder": "es: 121075012XXX",
+          "helper": "Per una patente europea, il numero indicato nella sezione 5."
+        },
+        "country": {
+          "label": "Paese di emissione",
+          "placeholder": "Seleziona un paese"
+        },
+        "document": {
+          "label": "Documento della patente",
+          "type": {
+            "pdf": "Documento PDF",
+            "image": "Immagine"
+          },
+          "uploaded": "✓ File della patente caricato con successo",
+          "empty": {
+            "title": "Clicca per caricare la tua patente di guida",
+            "helper": "Formati accettati: PDF, JPG, PNG. Dimensione max: 10MB"
+          }
+        },
+        "issueDate": {
+          "label": "Data di rilascio",
+          "placeholder": "Seleziona una data",
+          "day": {
+            "placeholder": "Giorno"
+          },
+          "month": {
+            "placeholder": "Mese"
+          },
+          "year": {
+            "placeholder": "Anno"
+          },
+          "helper": "Per una patente europea, la data di inizio validità per i veicoli di categoria B."
+        },
+        "category": {
+          "label": "Categoria della patente",
+          "placeholder": "Es: B",
+          "helper": "Categoria della patente (predefinita: B per auto)"
+        },
+        "expirationDate": {
+          "label": "Data di scadenza",
+          "placeholder": "Seleziona una data"
+        }
+      }
+    },
+    "countries": {
+      "france": "Francia",
+      "reunion": "La Réunion",
+      "mayotte": "Nosy Be, Madagascar",
+      "guadeloupe": "Guadalupa",
+      "martinique": "Martinica",
+      "guyane": "Guyana francese",
+      "belgium": "Belgio",
+      "switzerland": "Svizzera",
+      "germany": "Germania",
+      "spain": "Spagna",
+      "italy": "Italia"
+    },
+    "badges": {
+      "role": {
+        "admin": "⚙️ Amministratore",
+        "owner": "🏠 Proprietario",
+        "renter": "👤 Locatario"
+      },
+      "kyc": {
+        "verified": "✅ Verificato",
+        "pending": "⏳ In attesa",
+        "unverified": "❌ Non verificato"
+      }
+    },
+    "buttons": {
+      "saving": "Salvataggio...",
+      "saveSection": "Salva questa sezione",
+      "saveBasicChanges": "Salva le mie modifiche",
+      "saveBasicInfo": "Salva le mie informazioni",
+      "saveAddressChanges": "Salva le mie modifiche",
+      "saveAddress": "Salva il mio indirizzo",
+      "saveLicenseChanges": "Salva le mie modifiche",
+      "saveLicense": "Salva i dati della mia patente",
+      "uploading": "Caricamento...",
+      "saveAll": "Salva l'intero profilo",
+      "license": {
+        "change": "Modifica",
+        "delete": "Elimina",
+        "choose": "Scegli un file"
+      }
+    },
+    "toasts": {
+      "loadError": {
+        "title": "Errore",
+        "description": "Impossibile caricare il profilo: {{error}}"
+      },
+      "unexpectedLoadError": {
+        "title": "Errore",
+        "description": "Si è verificato un errore durante il caricamento del profilo."
+      },
+      "licenseFileTooLarge": {
+        "title": "Errore",
+        "description": "Il file non deve superare i 10MB."
+      },
+      "licenseFileTypeError": {
+        "title": "Errore",
+        "description": "Seleziona un file PDF, JPG o PNG."
+      },
+      "licenseUploadError": {
+        "title": "Errore",
+        "description": "Errore durante il caricamento: {{error}}"
+      },
+      "licenseUpdateError": {
+        "title": "Errore",
+        "description": "Errore durante l'aggiornamento: {{error}}"
+      },
+      "licenseUploadSuccess": {
+        "title": "Successo",
+        "description": "File della patente caricato con successo."
+      },
+      "licenseUploadUnexpectedError": {
+        "title": "Errore",
+        "description": "Si è verificato un errore durante il caricamento del file."
+      },
+      "licenseRemoveError": {
+        "title": "Errore",
+        "description": "Errore durante l'eliminazione: {{error}}"
+      },
+      "licenseRemoveSuccess": {
+        "title": "Successo",
+        "description": "File della patente eliminato con successo."
+      },
+      "licenseRemoveUnexpectedError": {
+        "title": "Errore",
+        "description": "Si è verificato un errore durante l'eliminazione."
+      },
+      "avatarTooLarge": {
+        "title": "Errore",
+        "description": "L'immagine non deve superare i 5MB."
+      },
+      "avatarTypeError": {
+        "title": "Errore",
+        "description": "Seleziona un file immagine valido."
+      },
+      "avatarUploadError": {
+        "title": "Errore",
+        "description": "Errore durante il caricamento: {{error}}"
+      },
+      "avatarUpdateError": {
+        "title": "Errore",
+        "description": "Errore durante l'aggiornamento: {{error}}"
+      },
+      "avatarUploadSuccess": {
+        "title": "Successo",
+        "description": "Foto profilo aggiornata con successo."
+      },
+      "avatarUploadUnexpectedError": {
+        "title": "Errore",
+        "description": "Si è verificato un errore durante il caricamento dell'immagine."
+      },
+      "sectionSaveError": {
+        "title": "Errore",
+        "description": "Errore durante il salvataggio: {{error}}"
+      },
+      "sectionSaveSuccess": {
+        "title": "Sezione salvata",
+        "basic": "Le tue informazioni di base sono state salvate.",
+        "address": "Le informazioni di indirizzo sono state salvate.",
+        "license": "Le informazioni della patente sono state salvate."
+      },
+      "sectionSaveUnexpectedError": {
+        "title": "Errore",
+        "description": "Errore durante il salvataggio: {{error}}"
+      },
+      "profileUpdateError": {
+        "title": "Errore",
+        "description": "Errore durante l'aggiornamento: {{error}}"
+      },
+      "profileUpdateSuccess": {
+        "title": "Profilo aggiornato",
+        "description": "Tutte le tue informazioni sono state salvate con successo."
+      },
+      "profileUpdateUnexpectedError": {
+        "title": "Errore",
+        "description": "Errore durante l'aggiornamento del profilo: {{error}}"
+      },
+      "globalError": {
+        "title": "Errore",
+        "description": "Si è verificato un errore imprevisto. Ricarica la pagina."
+      },
+      "globalSaveError": {
+        "title": "Errore",
+        "description": "Si è verificato un errore di salvataggio. Riprova."
+      },
+      "javascriptError": {
+        "title": "Errore",
+        "description": "Si è verificato un errore imprevisto. Ricarica la pagina."
+      }
+    },
+    "error": {
+      "title": "Errore",
+      "description": "Si è verificato un errore durante il caricamento del profilo.",
+      "reload": "Ricarica la pagina"
+    },
+    "loading": "Caricamento del tuo profilo...",
+    "banner": {
+      "title": "Profilo completato al {{percent}}%",
+      "description": "{{percent}}% del profilo completato. Clicca per salvare tutte le modifiche."
+    },
+    "modal": {
+      "licensePreview": {
+        "title": "Anteprima della patente di guida",
+        "alt": "Patente di guida",
+        "errorTitle": "Impossibile caricare l'immagine",
+        "errorDescription": "Verifica che il file sia stato caricato correttamente e sia accessibile."
+      }
+    },
+    "common": {
+      "learnMore": "Scopri di più..."
+    },
+    "months": {
+      "january": "gennaio",
+      "february": "febbraio",
+      "march": "marzo",
+      "april": "aprile",
+      "may": "maggio",
+      "june": "giugno",
+      "july": "luglio",
+      "august": "agosto",
+      "september": "settembre",
+      "october": "ottobre",
+      "november": "novembre",
+      "december": "dicembre"
+    }
+  },
+  "bookings": {
+    "header": {
+      "title": "Le mie prenotazioni",
+      "subtitle": "Gestisci i tuoi noleggi di veicoli",
+      "newBooking": "Nuova prenotazione"
+    },
+    "filters": {
+      "all": "Tutte",
+      "pending": "In attesa",
+      "active": "In corso",
+      "upcoming": "In arrivo",
+      "past": "Concluse",
+      "cancelled": "Annullate",
+      "refused": "Rifiutate"
+    },
+    "empty": {
+      "title": "Nessuna prenotazione",
+      "description": "Non hai ancora effettuato prenotazioni. Scopri i nostri veicoli disponibili!",
+      "cta": "Effettua una prenotazione"
+    },
+    "emptyFiltered": {
+      "title": "Nessuna prenotazione {{filter}}",
+      "description": "Nessuna prenotazione corrisponde al filtro selezionato. Prova un altro filtro.",
+      "reset": "Vedi tutte le prenotazioni"
+    },
+    "card": {
+      "vehicleDeleted": "Veicolo eliminato",
+      "messageButton": "Messaggio",
+      "messageTooltip": "Ciao {{ownerName}}, clicca qui per chattare con me",
+      "ownerFallback": "Proprietario",
+      "startLabel": "Inizio:",
+      "endLabel": "Fine:",
+      "totalLabel": "Totale:",
+      "servicesTitle": "Servizi aggiuntivi:",
+      "confirm": "Conferma",
+      "finalizeBooking": "Finalizza la mia prenotazione",
+      "activateDeposit": "Attiva cauzione"
+    },
+    "deposit": {
+      "status": {
+        "activated": "Cauzione: attivata",
+        "todo": "Cauzione: da attivare",
+        "none": "Nessuna cauzione"
+      }
+    },
+    "status": {
+      "paymentConfirmed": "Pagamento confermato",
+      "depositPending": "Deposito in attesa",
+      "readyToGo": "Pronto a partire",
+      "paymentDepositValidated": "Pagamento e deposito convalidati",
+      "pending": "In attesa",
+      "pending_payment": "Pagamento in attesa",
+      "confirmed": "Confermato",
+      "rejected": "Rifiutato",
+      "declined": "Rifiutato",
+      "accepted": "Accettato",
+      "closed": "Chiuso",
+      "active": "In corso",
+      "completed": "Completato",
+      "terminated": "Terminata",
+      "cancelled": "Annullata"
+    },
+    "cancel": {
+      "title": "Annulla prenotazione",
+      "description": "Seleziona un motivo o scrivi il tuo messaggio.",
+      "reason": {
+        "dateChange": "Cambio data",
+        "otherOption": "Trovata un'altra opzione",
+        "personalIssue": "Imprevisto personale",
+        "bookingError": "Errore di prenotazione",
+        "custom": "Altro motivo (personalizzato)"
+      },
+      "reasonLabel": "Spiega il tuo motivo",
+      "reasonPlaceholder": "Es: Il mio programma è cambiato...",
+      "back": "Indietro",
+      "confirm": "Conferma",
+      "processing": "Annullamento..."
+    },
+    "toasts": {
+      "cancelError": "Impossibile annullare la prenotazione: {{error}}",
+      "cancelledDescription": "La tua prenotazione è stata annullata. Il proprietario sarà informato.",
+      "unexpectedError": "Si è verificato un errore",
+      "reasonRequired": "Motivo richiesto",
+      "reasonRequiredDescription": "Seleziona un motivo o inserisci un messaggio.",
+      "cancelledSimple": "La tua prenotazione è stata annullata.",
+      "comingSoon": "Funzionalità in arrivo",
+      "comingSoonDescription": "La conferma della prenotazione sarà presto disponibile"
+    },
+    "details": {
+      "title": "Dettagli della tua prenotazione",
+      "referenceNumber": "Prenotazione #{{referenceNumber}}",
+      "createdAt": "Creata il {{date}}",
+      "yearLabel": "Anno {{year}}",
+      "clientInfo": "Informazioni cliente",
+      "lastName": "Cognome",
+      "firstName": "Nome",
+      "phone": "Telefono",
+      "email": "Email",
+      "notProvided": "Non fornito",
+      "pickupZone": "Zona di ritiro",
+      "returnZone": "Zona di restituzione",
+      "hotelName": "Hotel",
+      "notes": "Note",
+      "notSpecified": "Non specificata",
+      "rentalDates": "Date di noleggio",
+      "baseRate": "Tariffa base",
+      "pricePerDayFormat": "{{price}}/giorno × {{duration}}",
+      "downloadPdf": "Scarica PDF",
+      "close": "Chiudi"
+    }
+  },
+  "ownerVehicles": {
+    "loading": "Caricamento...",
+    "header": {
+      "title": "I miei veicoli",
+      "subtitle": "Gestisci i tuoi veicoli e le tue prenotazioni"
+    },
+    "kycRequired": {
+      "title": "Verifica KYC richiesta",
+      "description": "Per pubblicare i tuoi veicoli, devi completare la verifica della tua identità."
+    },
+    "empty": {
+      "title": "Nessun veicolo",
+      "description": "Inizia aggiungendo il tuo primo veicolo alla piattaforma."
+    },
+    "vehicleTypeModal": {
+      "title": "Che tipo di veicolo desideri aggiungere?",
+      "description": "Scegli il tipo di veicolo che vuoi pubblicare sulla piattaforma.",
+      "carLabel": "Auto",
+      "motoLabel": "Moto / Scooter",
+      "cancel": "Annulla"
+    },
+    "card": {
+      "pricePerDay": "Prezzo/giorno",
+      "year": "Anno",
+      "fuel": "Carburante",
+      "actions": {
+        "manage": "Gestisci veicolo",
+        "viewPublic": "Vedi scheda pubblica"
+      }
+    },
+    "addCard": {
+      "title": "Aggiungi un veicolo",
+      "description": "Clicca qui per aggiungere un nuovo veicolo alla tua flotta e iniziare a noleggiarlo",
+      "badge": "Nuovo veicolo"
+    },
+    "motoPlaceholder": {
+      "title": "Moto / Scooter",
+      "description": "Il modulo per aggiungere una moto o uno scooter sarà disponibile a breve.",
+      "backToVehicles": "Torna ai miei veicoli"
+    },
+    "motoForm": {
+      "title": "Aggiungi una moto / scooter",
+      "brand": "Marca",
+      "brandPlaceholder": "Es: Honda",
+      "model": "Modello",
+      "modelPlaceholder": "Es: PCX 125",
+      "year": "Anno",
+      "mileage": "Chilometraggio (approx.)",
+      "kind": "Tipo",
+      "kindPlaceholder": "Seleziona",
+      "kindMoto": "Moto",
+      "kindScooter": "Scooter",
+      "engineCapacity": "Cilindrata (cc)",
+      "licensePlate": "Targa (opzionale)",
+      "seats": "Numero di posti",
+      "fuel": "Carburante",
+      "fuelPlaceholder": "Seleziona",
+      "transmission": "Cambio",
+      "transmissionPlaceholder": "Seleziona",
+      "dailyPrice": "Prezzo al giorno (€)",
+      "description": "Descrizione (opzionale)",
+      "descriptionPlaceholder": "Descrivi lo stato della moto, le dotazioni incluse (casco, top case, ecc.)...",
+      "cancel": "Annulla",
+      "submit": "Crea veicolo",
+      "saving": "Creazione in corso...",
+      "successTitle": "Moto / scooter aggiunto con successo",
+      "successDescription": "Il tuo veicolo è stato creato. Ora puoi gestirlo nell'elenco dei tuoi veicoli.",
+      "errors": {
+        "required": "Compila almeno marca, modello, anno e prezzo al giorno.",
+        "year": "Inserisci un anno valido.",
+        "price": "Inserisci un prezzo al giorno valido.",
+        "generic": "Impossibile creare il veicolo. Riprova."
+      },
+      "photos": {
+        "sectionTitle": "Foto del veicolo",
+        "sectionSubtitle": "Aggiungi almeno una foto della tua moto o scooter per attirare più locatari.",
+        "primaryLabel": "Foto principale",
+        "primaryHint": "Anteriore sinistra – angolo consigliato per valorizzare la moto/scooter",
+        "profileLabel": "Profilo sinistro",
+        "profileHint": "Vista laterale per mostrare bene la linea della moto/scooter",
+        "interiorLabel": "Dettagli / Dotazioni",
+        "interiorHint": "Ad esempio: cruscotto, sella, top case, vani portaoggetti...",
+        "addMore": "Aggiungi foto",
+        "addMoreLimit": "Limite raggiunto (3 foto aggiuntive)",
+        "slotLabel": "Foto {{index}}",
+        "slotOptional": "Opzionale",
+        "changePhoto": "Cambia foto",
+        "deletePhoto": "Elimina",
+        "invalidType": "Seleziona un file immagine valido.",
+        "tooLarge": "La foto deve essere inferiore a 10MB.",
+        "minRequired": "Aggiungi almeno una foto della tua moto o scooter.",
+        "added": "Foto aggiunta",
+        "addedTitle": "Foto aggiunta",
+        "addedDescription": "La tua foto è stata aggiunta con successo.",
+        "additionalAdded": "Foto aggiuntiva aggiunta",
+        "additionalAddedDescription": "La tua foto aggiuntiva è stata aggiunta con successo.",
+        "removed": "Foto eliminata",
+        "removedTitle": "Foto eliminata",
+        "removedDescription": "La foto è stata eliminata con successo."
+      }
+    },
+    "availabilityDialog": {
+      "title": "Conferma modifica disponibilità",
+      "intro": "Disattivando la disponibilità del tuo veicolo:",
+      "point1": "Non sarà più visibile nei risultati di ricerca",
+      "point2": "I clienti non potranno più effettuare nuove prenotazioni",
+      "point3": "Le prenotazioni esistenti restano valide",
+      "confirmQuestion": "Sei sicuro di voler continuare?",
+      "cancel": "Annulla",
+      "confirm": "Conferma disattivazione"
+    },
+    "accessDenied": {
+      "title": "Accesso negato",
+      "description": "Devi essere connesso per accedere a questa pagina.",
+      "login": "Accedi"
+    },
+    "toasts": {
+      "cannotDisable": {
+        "title": "Impossibile disattivare",
+        "description": "Questo veicolo ha prenotazioni attive o future. Annulla prima tali prenotazioni."
+      },
+      "saveStatusError": {
+        "title": "Errore",
+        "description": "Impossibile salvare lo stato: {{message}}"
+      },
+      "statusUpdated": {
+        "title": "Stato aggiornato",
+        "available": "Il veicolo è ora disponibile",
+        "unavailable": "Il veicolo è ora non disponibile"
+      },
+      "genericError": {
+        "title": "Errore",
+        "description": "Si è verificato un errore durante il salvataggio."
+      },
+      "mustBeLoggedIn": {
+        "title": "Errore",
+        "description": "Devi essere connesso per accedere a questa pagina"
+      },
+      "loadVehiclesError": {
+        "title": "Errore",
+        "description": "Impossibile caricare i tuoi veicoli"
+      }
+    }
+  },
+  "booking": {
+    "baseRateLabel": "Tariffa base*:",
+    "excludingFeesNote": "* Escluse opzioni e commissioni di servizio",
+    "reserve": "Prenota",
+    "funnel": {
+      "missingDates": {
+        "title": "Date obbligatorie",
+        "description": "Seleziona le date sulla homepage, poi torna a questa scheda per prenotare."
+      }
+    },
+    "freeCancellation": "Cancellazione gratuita",
+    "includedInPrice": "Incluso nel prezzo",
+    "included": {
+      "insurance": "Assicurazione completa",
+      "roadside": "Assistenza stradale 24/7",
+      "extraDrivers": "Conducenti aggiuntivi gratuiti"
+    },
+    "confirmation": {
+      "title": "Conferma la tua prenotazione",
+      "subtitle": "Controlla i dettagli qui sotto prima di confermare",
+      "returnLocation": "Luogo di restituzione"
+    },
+    "complementaryServices": {
+      "title": "Servizi complementari",
+      "subtitle": "Semplifica arrivo e partenza con le nostre opzioni di trasporto.",
+      "hotelNameLabel": "Nome dell'hotel",
+      "hotelNamePlaceholder": "Es. Royal Beach Hotel",
+      "optionsTotal": "Totale servizi",
+      "continueWithServices": "Continua con i servizi selezionati",
+      "declineAgency": "No grazie, verrò in agenzia",
+      "hotelRequiredTitle": "Nome hotel obbligatorio",
+      "hotelRequiredDescription": "Indica il nome del tuo hotel per la consegna o la restituzione."
+    },
+    "durationLabel": "Durata:",
+    "vehicleRental": "Noleggio veicolo",
+    "selectedOptions": "Opzioni selezionate",
+    "optionsSubtotal": "Subtotale opzioni",
+    "subtotal": "Subtotale",
+    "serviceFee": "Tariffa di servizio ({{percent}}%)",
+    "totalToPay": "TOTALE DA PAGARE",
+    "confirmBooking": "Confermo la mia richiesta di prenotazione",
+    "benefits": {
+      "quickResponse": "Risposta rapida",
+      "quickResponseHint": "Entro 24h",
+      "safePayment": "Pagamento sicuro",
+      "safePaymentHint": "Dopo la validazione",
+      "quickConfirmation": "Conferma rapida",
+      "freeCancellationHint": "Gratuita 48h"
+    },
+    "discussion": {
+      "withRenter": "Discussione con il locatario",
+      "withOwner": "Discussione con il proprietario",
+      "role": {
+        "owner": "Sei il proprietario",
+        "renter": "Sei il locatario"
+      },
+      "dateRange": "Dal {{startDate}} al {{endDate}}",
+      "viewBookingDetails": "Visualizza i dettagli della mia prenotazione",
+      "payRental": "Paga il mio noleggio",
+      "initialMessage": {
+        "renter": "Ciao! Sono interessato al noleggio del tuo veicolo. Ecco i dettagli:",
+        "owner": "Ciao! Hai una nuova richiesta di prenotazione. Ecco i dettagli:"
+      },
+      "departureTime": "Partenza alle {{startTime}}",
+      "pickupLocation": "Ritiro: {{pickupLocation}}",
+      "returnLocation": "Restituzione: {{returnLocation}}",
+      "additionalOptions": "Opzioni aggiuntive:",
+      "optionsTotal": "Inclusi {{optionsTotal}} di opzioni",
+      "confirmAvailability": {
+        "renter": "Puoi confermare la disponibilità? Grazie!",
+        "owner": "Conferma la tua disponibilità!"
+      },
+      "messagePlaceholder": "Scrivi il tuo messaggio...",
+      "conversationCancelled": "Non puoi più chattare. La richiesta di prenotazione è stata annullata o completata. ❌",
+      "conversationCancelledShort": "Non puoi più chattare. La richiesta di prenotazione è stata annullata.",
+      "toasts": {
+        "sendMessageError": "Impossibile inviare il messaggio",
+        "messageSent": {
+          "title": "Messaggio inviato",
+          "description": "Il tuo messaggio è stato inviato al proprietario"
+        },
+        "unexpectedError": "Si è verificato un errore",
+        "loadBookingError": "Impossibile recuperare le informazioni sulla prenotazione",
+        "bookingCancelled": {
+          "title": "Prenotazione annullata",
+          "description": "Questa prenotazione è stata eliminata dal locatario."
+        },
+        "paymentError": {
+          "title": "Errore di pagamento",
+          "description": "Impossibile avviare il pagamento"
+        }
+      }
+    }
+  },
+  "dictionary": {
+    "back": "Torna al dizionario",
+    "definitionsTitle": "Definizioni",
+    "derivationLabel": "Derivazione:",
+    "etymologyTitle": "Etimologia",
+    "noResults": "Nessun risultato per questa ricerca.",
+    "originLabel": "Origine:",
+    "relatedWordsLabel": "Parole correlate:",
+    "searchPlaceholder": "Cerca una parola...",
+    "sourcesTitle": "Fonti",
+    "title": "Dizionario"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "dictionary": "Dizionario",
+    "home": "Home",
+    "login": "Accedi"
+  },
+  "whatsapp": {
+    "contactOnly": "Contatto solo WhatsApp",
+    "contactOnlyShort": "Solo WhatsApp",
+    "sendEmail": "Invia un'email",
+    "directLine": "Linea diretta",
+    "directLineShort": "Chiamaci",
+    "directLineAria": "Chiamaci al +261 37 34 379 12",
+    "floatingButtonAria": "Contatta Rentanoo su WhatsApp",
+    "floatingBubbleMessage": "Ciao! Sono Chris, il responsabile di Rentanoo. Sono disponibile per rispondere alle vostre domande.",
+    "floatingBubbleResponseHint": "Risposta di solito entro 2 ore.",
+    "floatingDragHint": "Tenere premuto per spostare"
+  },
+  "contact": {
+    "title": "Contattaci",
+    "intro": "Preferisci scriverci? Compila il modulo qui sotto.",
+    "formTitle": "Modulo di contatto",
+    "formDescription": "Tutti i campi contrassegnati con un asterisco (*) sono obbligatori.",
+    "fullName": "Nome Cognome",
+    "fullNamePlaceholder": "Il tuo nome completo",
+    "email": "Indirizzo email",
+    "emailPlaceholder": "tua@email.com",
+    "phone": "Numero di telefono",
+    "phonePlaceholder": "+33 6 12 34 56 78",
+    "subject": "Oggetto",
+    "subjectPlaceholder": "Oggetto del tuo messaggio",
+    "message": "Messaggio",
+    "messagePlaceholder": "Il tuo messaggio...",
+    "attachment": "Allegato",
+    "attachmentHint": "Formati accettati: PDF, JPG, PNG, DOC, DOCX (max 10MB)",
+    "optional": "opzionale",
+    "send": "Invia",
+    "sending": "Invio in corso...",
+    "success": "Messaggio inviato!",
+    "successDescription": "Il tuo messaggio è stato inviato con successo. Ti risponderemo il prima possibile.",
+    "error": "Errore",
+    "errorGeneric": "Errore, riprova.",
+    "fileTooLarge": "Il file non deve superare 10MB"
+  },
+  "depositModal": {
+    "title": "Attiva cauzione",
+    "description": "Nessun addebito immediato.\n\nRegistri semplicemente la tua carta per garantire la cauzione di {{amount}}.\nUn blocco potrà essere effettuato automaticamente 48h prima della partenza, poi rilasciato 48h dopo il ritorno se tutto è conforme.\n\nSemplice, sicuro e senza sorprese.",
+    "amountLabel": "Importo della cauzione: {{amount}}",
+    "learnMore": "Scopri di più su cauzione e danni",
+    "loading": "Caricamento modulo...",
+    "submit": "Registra la mia carta",
+    "submitting": "Registrazione...",
+    "cancel": "Annulla"
+  },
+  "seo": {
+    "home": {
+      "title": "Noleggio scooter Nosy Be – Prenotazione online | Rentanoo",
+      "description": "Noleggia il tuo scooter a Nosy Be in pochi clic. Consegna in aeroporto o in hotel. Caschi e assicurazione inclusi. Prenota online."
+    },
+    "contact": {
+      "title": "Contatti – Noleggio scooter Nosy Be | Rentanoo",
+      "description": "Domande sul tuo noleggio scooter a Nosy Be? Contatta Rentanoo: prenotazione, consegna in aeroporto o hotel, assistenza."
+    },
+    "legal": {
+      "title": "Note legali – Rentanoo Nosy Be",
+      "description": "Note legali, condizioni d'uso e privacy policy di Rentanoo, servizio di noleggio scooter a Nosy Be, Madagascar."
+    },
+    "rentMyCar": {
+      "title": "Diventa proprietario – Scooter o auto a Nosy Be | Rentanoo",
+      "description": "Metti il tuo scooter o la tua auto in noleggio a Nosy Be con Rentanoo. Processo semplice, gestione facile, entrate extra."
+    },
+    "rentMyCarRegister": {
+      "title": "Registrazione proprietario – Nosy Be | Rentanoo",
+      "description": "Crea il tuo account proprietario Rentanoo e metti il tuo veicolo in noleggio a Nosy Be. Info e condizioni in pochi minuti."
+    },
+    "sinistreCaution": {
+      "title": "Danni e cauzione – Noleggio scooter Nosy Be | Rentanoo",
+      "description": "In caso di incidente durante il noleggio scooter a Nosy Be: procedura, cauzione, documenti e assicurazione. Rentanoo ti accompagna."
+    },
+    "meteoNosyBe": {
+      "title": "Meteo Nosy Be oggi – Previsioni 7 giorni | Rentanoo",
+      "description": "Meteo in diretta a Nosy Be: temperatura attuale, previsioni 7 giorni e consigli per il soggiorno in Madagascar."
+    },
+    "tauxChange": {
+      "title": "Cambio Euro Ariary Madagascar oggi | Rentanoo",
+      "description": "Cambio EUR/MGA in diretta per il Madagascar: tasso del giorno, andamento 14 giorni e equivalente in ariary a Nosy Be."
+    },
+    "volsNosyBe": {
+      "title": "Voli Nosy Be oggi – Arrivi e partenze Fascène | Rentanoo",
+      "description": "Orari voli aeroporto Nosy Be Fascène (NOS): arrivi e partenze del giorno."
+    },
+    "notFound": {
+      "title": "Pagina non trovata – Rentanoo",
+      "description": "Questa pagina non esiste. Torna alla home per noleggiare uno scooter a Nosy Be con Rentanoo."
+    },
+    "vehicleLoading": {
+      "title": "Caricamento… | Rentanoo",
+      "description": "Noleggia il tuo scooter a Nosy Be in pochi clic. Consegna in aeroporto o in hotel. Caschi e assicurazione inclusi. Prenota online."
+    },
+    "vehicleNotFound": {
+      "title": "Veicolo non trovato – Rentanoo",
+      "description": "Questo veicolo non esiste o non è più disponibile. Torna alla home per scoprire i nostri scooter a Nosy Be."
+    }
+  },
+  "sinistreCaution": {
+    "metaTitle": "Danni e cauzione | RENTANOO - Noleggio Nosy Be",
+    "metaDescription": "In caso di incidente durante il noleggio: procedura sinistro e cauzione, assicurazione carta, documenti da fornire. Rentanoo ti accompagna.",
+    "mailSubject": "Breve aggiornamento dopo il tuo stato di consegna",
+    "illustrationComingSoon": "Illustrazione in arrivo (la aggiungeremo successivamente)",
+    "hero": {
+      "subtitle": "Danni e cauzione",
+      "title": "Niente panico: restiamo calmi e procediamo passo dopo passo.",
+      "description": "Un piccolo incidente può capitare durante un noleggio. Qui ti spieghiamo cosa succede dopo in modo semplice, per evitare stress e mantenere tutto fluido.",
+      "bullet1": "Nessun addebito immediato",
+      "bullet2": "La cauzione non viene addebitata automaticamente",
+      "bullet3": "Serve solo (se necessario) ad anticipare i costi reali",
+      "bullet4": "Mai oltre l'importo giustificato",
+      "ctaProcess": "Comprendere la procedura",
+      "ctaContact": "Contattare Rentanoo",
+      "tip": "Consiglio: tieni questo link, è pensato per essere condiviso dalle nostre email."
+    },
+    "illustration": {
+      "hero": "Illustrazione header (coppia rilassata + scooter, Nosy Be)",
+      "process": "Illustrazione processo (timeline / tappe)",
+      "caution": "Illustrazione cauzione (importo giustificato)",
+      "assurance": "Illustrazione assicurazione (carta / protezione)",
+      "documents": "Illustrazione documenti (fattura / pratiche)",
+      "cta": "Illustrazione zen + processo (noleggiatore)",
+      "faq": "Illustrazione FAQ / assistenza"
+    },
+    "process": {
+      "title": "Come funziona, concretamente",
+      "subtitle": "Teniamo le cose semplici: il proprietario fa il preventivo, Rentanoo verifica, poi ti informiamo prima di ogni decisione.",
+      "step1Title": "1) Preventivo del proprietario (max 48h)",
+      "step1Desc": "Il proprietario stima precisamente le riparazioni necessarie.",
+      "step2Title": "2) Verifica Rentanoo",
+      "step2Desc": "Ci assicuriamo che gli importi siano coerenti, giustificati e documentati.",
+      "step3Title": "3) Informazione + prossimi passi",
+      "step3Desc": "Niente si fa \"alle tue spalle\". Ti teniamo aggiornato prima di ogni azione."
+    },
+    "caution": {
+      "title": "La cauzione: a cosa serve davvero",
+      "subtitle": "La cauzione non è lì per \"punire\". Serve soprattutto ad anticipare i costi reali se è necessaria una riparazione — e solo con giustificativi.",
+      "bullet1": "Nessun addebito automatico",
+      "bullet2": "Se trattenuta: solo su costi giustificati",
+      "bullet3": "Mai oltre l'importo della riparazione",
+      "note": "Importante: se i danni sono inferiori all'importo della cauzione, il resto non viene addebitato."
+    },
+    "assurance": {
+      "title": "Pagamento con carta: un vero vantaggio",
+      "subtitle": "In molti casi puoi fare valere l'assicurazione della tua carta (o un'assicurazione viaggio/personale).",
+      "card": "La cauzione può servire ad anticipare i costi, poi puoi richiedere il rimborso tramite la tua assicurazione, secondo il tuo contratto.",
+      "note": "(Non sostituiamo la tua assicurazione: ti aiutiamo a costituire un fascicolo chiaro.)"
+    },
+    "documents": {
+      "title": "I documenti: te ne facilitiamo la vita",
+      "subtitle": "Rentanoo metterà a disposizione i documenti necessari per il tuo fascicolo (fattura, giustificativi, elementi utili).",
+      "bullet1": "Fattura / giustificativi",
+      "bullet2": "Elementi del fascicolo (foto se necessario)",
+      "bullet3": "Riferimenti della prenotazione"
+    },
+    "cta": {
+      "title": "Promemoria punti chiave (restiamo calmi)",
+      "subtitle": "In sintesi: niente panico, gestiamo tutto con serenità.",
+      "bullet1": "Nessun addebito immediato: nulla viene prelevato \"automaticamente\".",
+      "bullet2": "La cauzione serve solo da anticipo se necessario.",
+      "bullet3": "Mai oltre l'importo reale e giustificato delle riparazioni.",
+      "bullet4": "Ti forniremo fattura + giustificativi per la tua assicurazione (carta / viaggio).",
+      "bullet5": "Il proprietario ha fino a 48h per fare il preventivo, poi Rentanoo verifica.",
+      "button": "Contattare Rentanoo"
+    },
+    "faq": {
+      "intro": "Domande frequenti — rispondiamo in modo semplice.",
+      "q1": "Sarà addebitata tutta la mia cauzione?",
+      "a1": "No. Se ci sono riparazioni, solo la parte corrispondente ai costi reali e giustificati può essere trattenuta. Niente si fa senza verifica.",
+      "q2": "Quando può essere trattenuto un importo?",
+      "a2": "Solo se un danno è confermato e quotato (preventivo/fattura), poi validato dopo verifica da Rentanoo.",
+      "q3": "Perché non passare direttamente dall'assicurazione del veicolo?",
+      "a3": "A seconda dei casi, l'assicurazione del veicolo può implicare procedure e termini specifici. Il percorso \"cauzione + giustificativi\" è spesso più veloce per rimettere il veicolo in condizioni, permettendoti comunque di farti rimborsare tramite la tua assicurazione (carta / viaggio).",
+      "q4": "Posso fare valere l'assicurazione della mia carta?",
+      "a4": "Spesso sì. Molte carte includono una copertura (condizioni variabili). Il pagamento con carta è un vero vantaggio: ti forniamo i documenti necessari per il tuo fascicolo.",
+      "q5": "Quali documenti riceverò?",
+      "a5": "A seconda del caso: fattura, giustificativi, elementi del fascicolo e riferimenti utili. Tutto per presentare serenamente una richiesta di rimborso.",
+      "q6": "E se non sono d'accordo con l'importo?",
+      "a6": "Potrai rispondere e discutere con il team. L'obiettivo: una soluzione giusta, documentata e senza tensioni.",
+      "q7": "Quali sono i termini?",
+      "a7": "Il proprietario ha fino a 48h per fare il preventivo. Poi Rentanoo verifica i documenti. Sei informato ad ogni passaggio importante."
+    },
+    "contact": {
+      "title": "Una domanda? Siamo qui.",
+      "description": "Se qualcosa non è chiaro, contattaci: rispondiamo rapidamente e sempre con calma.",
+      "emailCta": "Scrivere al supporto",
+      "homeCta": "Torna alla home",
+      "tip": "Consiglio: nel tuo messaggio, indica il riferimento della prenotazione se ce l'hai."
+    }
+  },
+  "meteoNosyBePage": {
+    "eyebrow": "Madagascar · Nosy Be",
+    "title": "Meteo Nosy Be oggi",
+    "intro": "Meteo in diretta a Nosy Be e previsioni su 7 giorni per organizzare il viaggio: spiagge, gite in scooter e attività acquatiche.",
+    "liveLabel": "Temperatura attuale",
+    "localTime": "Ora locale",
+    "timezone": "Fuso Indian/Antananarivo (UTC+3)",
+    "forecastTitle": "Previsioni meteo 7 giorni a Nosy Be",
+    "sourceNote": "Fonte: modelli numerici Open-Meteo. Può differire da Météo Madagascar o La Chaîne Météo.",
+    "tableDay": "Giorno",
+    "tableCondition": "Condizioni",
+    "tableTemp": "Min / Max",
+    "seoBlockTitle": "Clima e stagioni a Nosy Be",
+    "seoBlock": "Nosy Be ha clima tropicale con stagione secca (maggio–novembre) e piovosa (dicembre–aprile). Temperature 25–32 °C. Controlla il meteo prima di prenotare lo scooter. Rentanoo consegna all'aeroporto Fascène o in hotel.",
+    "faqTitle": "FAQ — Meteo Nosy Be",
+    "faq": {
+      "items": [
+        {
+          "q": "Periodo migliore per visitare Nosy Be?",
+          "a": "Stagione secca (maggio–novembre): cielo più sereno e mare calmo, ideale per esplorare in scooter."
+        },
+        {
+          "q": "Fa sempre caldo?",
+          "a": "Circa 25–30 °C. In stagione piovosa più umidità — porta una protezione leggera dalla pioggia."
+        },
+        {
+          "q": "Le previsioni sono affidabili?",
+          "a": "24–48 ore sono affidabili; per una settimana usale come tendenza."
+        }
+      ]
+    },
+    "ctaTitle": "Pronto a esplorare Nosy Be?",
+    "ctaText": "Noleggia uno scooter online con Rentanoo: prenotazione rapida, consegna aeroporto o hotel.",
+    "ctaRent": "Noleggia uno scooter",
+    "ctaExchange": "Cambio Euro / Ariary"
+  },
+  "tauxChangePage": {
+    "eyebrow": "Madagascar · MGA",
+    "title": "Cambio Euro / Ariary Madagascar",
+    "intro": "Segui il cambio EUR/MGA per le spese in Madagascar: tasso del giorno, andamento recente e equivalente in ariary a Nosy Be.",
+    "liveLabel": "Tasso del giorno",
+    "liveSource": "Tasso di riferimento Frankfurter (aggiornamento quotidiano).",
+    "manualSource": "Tasso indicativo Rentanoo per la visualizzazione dei prezzi.",
+    "historyTitle": "Andamento EUR → Ariary (14 giorni)",
+    "historyHint": "Dati Frankfurter — i cambi locali possono variare leggermente.",
+    "tableDate": "Data",
+    "tableRate": "1 € in Ariary (MGA)",
+    "seoBlockTitle": "Capire il cambio Euro Ariary a Madagascar",
+    "seoBlock": "L'ariary (MGA) è la moneta ufficiale. A Nosy Be gli euro sono spesso accettati ma il resto in ariary. Rentanoo mostra i prezzi in euro con equivalente ariary. Per spese locali, tieni contanti in MGA.",
+    "faqTitle": "FAQ — Cambio Madagascar",
+    "faq": {
+      "items": [
+        {
+          "q": "Qual è il cambio Euro Ariary oggi?",
+          "a": "Aggiornato quotidianamente via Frankfurter; i cambi locali possono differire di qualche ariary."
+        },
+        {
+          "q": "Si può pagare in euro a Nosy Be?",
+          "a": "A volte nel turismo, ma l'ariary resta la moneta corrente — cambia parte del budget in MGA."
+        },
+        {
+          "q": "Come usa Rentanoo questo tasso?",
+          "a": "Prezzi in euro con equivalente ariary al tasso del giorno per una prenotazione trasparente."
+        }
+      ]
+    },
+    "ctaTitle": "Prenota lo scooter con prezzi in € e Ar",
+    "ctaText": "Confronta i modelli e conferma online — consegna aeroporto Fascène o hotel a Nosy Be.",
+    "ctaRent": "Vedi gli scooter",
+    "ctaWeather": "Meteo Nosy Be"
+  },
+  "volsNosyBePage": {
+    "eyebrow": "Aeroporto Fascène · NOS",
+    "title": "Voli Nosy Be — arrivi e partenze",
+    "intro": "Orari voli all'aeroporto Fascène: prossimi arrivi e partenze, programma su 7 giorni.",
+    "officialDisclaimerTitle": "Orari indicativi — consulta il sito ufficiale",
+    "officialDisclaimerText": "Gli orari mostrati provengono da una fonte terza (AeroDataBox) e possono essere incompleti o diversi dal programma in tempo reale dell'aeroporto Fascène. In caso di dubbio o prima del viaggio, consulta il sito ufficiale dell'aeroporto.",
+    "officialDisclaimerLink": "Orari ufficiali su nosybe-airport.aero",
+    "nextArrival": "Prossimo arrivo",
+    "nextDeparture": "Prossima partenza",
+    "forecastTitle": "Scegli un giorno",
+    "forecastHint": "Programma su 7 giorni da oggi (ora Nosy Be). Dati aggiornati 2 volte al giorno.",
+    "dayToday": "Oggi",
+    "dayTomorrow": "Domani",
+    "arrivalsTitle": "Arrivi",
+    "departuresTitle": "Partenze",
+    "tableTime": "Ora",
+    "tableFlight": "Volo",
+    "tableAirline": "Compagnia",
+    "tableFrom": "Provenienza",
+    "tableTo": "Destinazione",
+    "tableStatus": "Stato",
+    "noFlights": "Nessun volo nella finestra visualizzata",
+    "unavailable": "Orari voli temporaneamente non disponibili",
+    "notConfigured": "Gli orari voli saranno mostrati dopo l'attivazione di AeroDataBox.",
+    "sourceNote": "Fonte: AeroDataBox. Orari indicativi, aggiornati 2 volte al giorno — confermare con la compagnia aerea.",
+    "seoBlockTitle": "Aeroporto Nosy Be Fascène (NOS)",
+    "seoBlock": "Rentanoo consegna il tuo scooter direttamente in aeroporto — prenota online.",
+    "faqTitle": "FAQ — Voli Nosy Be",
+    "faq": {
+      "items": [
+        {
+          "q": "Codice IATA Nosy Be?",
+          "a": "NOS (Fascène)."
+        },
+        {
+          "q": "Scooter in aeroporto?",
+          "a": "Sì, con Rentanoo prenotabile online."
+        },
+        {
+          "q": "Orari garantiti?",
+          "a": "No. Indicativi da fonte terza. Programma ufficiale: nosybe-airport.aero/vols/ o contatta la compagnia."
+        }
+      ]
+    },
+    "ctaTitle": "Atterra sereno a Nosy Be",
+    "ctaText": "Prenota lo scooter con consegna in aeroporto.",
+    "ctaRent": "Noleggia uno scooter",
+    "ctaWeather": "Meteo Nosy Be",
+    "ctaExchange": "Cambio Euro / Ariary"
+  },
+  "categoryShowcase": {
+    "title": "Cosa vuoi noleggiare a Nosy Be?",
+    "subtitle": "Scopri le nostre soluzioni di noleggio disponibili oggi e quelle in arrivo.",
+    "sectionAvailable": "Disponibile ora",
+    "sectionComingSoon": "Prossimamente",
+    "badgeAvailable": "Disponibile ora",
+    "badgeComingSoon": "Prossimamente",
+    "viewAllAvailable": "Vedi tutti i noleggi disponibili",
+    "button": "Esplora",
+    "items": {
+      "scooter": {
+        "label": "Scooter"
+      },
+      "moto": {
+        "label": "Moto"
+      },
+      "quad": {
+        "label": "Quad",
+        "waPrefillMessage": "Ciao Rentanoo,\n\nSono interessato/a al noleggio di quad a Nosy Be.\n\nPotete avvisarmi non appena questo servizio sarà disponibile?\n\nGrazie."
+      },
+      "boat": {
+        "label": "Barca",
+        "waPrefillMessage": "Ciao Rentanoo,\n\nSono interessato/a al noleggio di barche a Nosy Be.\n\nPotete avvisarmi non appena questo servizio sarà disponibile?\n\nGrazie."
+      },
+      "accommodation": {
+        "label": "Alloggio",
+        "waPrefillMessage": "Ciao Rentanoo,\n\nSono interessato/a agli alloggi proposti su Rentanoo (villa, casa, bungalow).\n\nPotete avvisarmi non appena questo servizio sarà disponibile?\n\nGrazie."
+      }
+    }
+  },
+  "explorerFilters": {
+    "categories": {
+      "quad": "Quad / Buggy"
+    },
+    "sub": {
+      "quad": {
+        "buggy": "Buggy",
+        "300cc": "300cc"
+      }
+    },
+    "empty": {
+      "waPrefill": {
+        "quad": "Ciao Rentanoo,\n\nVorrei noleggiare un quad o buggy a Nosy Be. Potete informarmi sulle disponibilità?\n\nGrazie."
+      },
+      "quad": {
+        "title": "Quad & Buggy disponibili",
+        "description": "Scopri Nosy Be in modo diverso — noleggia un quad o buggy con Rentanoo."
+      }
+    }
+  },
+  "homeResults": {
+    "titleQuad": "Quad & Buggy disponibili",
+    "countQuad": "{{count}} quad",
+    "noMatchQuad": "Nessun quad corrisponde ai tuoi filtri."
+  }
+}

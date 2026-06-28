@@ -1,776 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rentanoo — Aperçu redesign homepage</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon (PNG en premier pour Chrome) - ?v= anti-cache car favicons agressivement cachés -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260220">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20260220">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20260220" sizes="any">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260220">
+    <link rel="manifest" href="/site.webmanifest?v=20260220">
+    <meta name="theme-color" content="#287a74">
+    <!-- Preconnect pour réduire le temps de connexion aux domaines critiques -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://tbsgzykqcksmqxpimwry.supabase.co" crossorigin />
+    <link rel="dns-prefetch" href="https://zykwfjxurwmputxwlkxs.supabase.co" />
+    <title>Location scooter, moto, voiture & hébergement à Nosy Be | Rentanoo</title>
+    <meta name="description" content="Réservez en ligne scooter, moto, voiture ou hébergement à Nosy Be. Livraison à l'aéroport Fascène ou à votre hôtel. Assurance incluse. Plateforme 100 % en ligne.">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Rentanoo",
+  "url": "https://rentanoo.com",
+  "image": "https://rentanoo.com/og-rentanoo-nosy-be.webp",
+  "description": "Plateforme de réservation en ligne à Nosy Be : location de scooter, moto, voiture et hébergements (appartements, villas, bungalows). Livraison à l'aéroport Fascène ou à l'hôtel.",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Nosy Be, Madagascar"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Catalogue Rentanoo",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Location scooter Nosy Be" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Location moto Nosy Be" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Location voiture Nosy Be" } },
+      { "@type": "Offer", "itemOffered": { "@type": "LodgingBusiness", "name": "Hébergement Nosy Be" } }
+    ]
+  }
+}
+    </script>
+    <meta name="author" content="Rentanoo" />
 
-  <!-- Google Fonts: Space Grotesk (display) + DM Sans (body) + DM Mono (utility/prices) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://rentanoo.com/og-rentanoo-nosy-be.webp" />
 
-  <!-- Tailwind CSS CDN v3 -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@rentanoo" />
+    <meta name="twitter:image" content="https://rentanoo.com/og-rentanoo-nosy-be.webp" />
+    
+  
+  
+  
+  <meta property="og:title" content="Location scooter, moto, voiture & hébergement à Nosy Be | Rentanoo">
+  <meta name="twitter:title" content="Location scooter, moto, voiture & hébergement à Nosy Be | Rentanoo">
+  <meta property="og:description" content="Réservez en ligne scooter, moto, voiture ou hébergement à Nosy Be. Livraison à l'aéroport Fascène ou à votre hôtel. Assurance incluse. Plateforme 100 % en ligne.">
+  <meta name="twitter:description" content="Réservez en ligne scooter, moto, voiture ou hébergement à Nosy Be. Livraison à l'aéroport Fascène ou à votre hôtel. Assurance incluse. Plateforme 100 % en ligne.">
+
+  <!-- Google tag : GT-TXZW7HG8 (G-WVKC4DHFL3 renvoie 404 en direct — bug Google multi-destinations) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-TXZW7HG8"></script>
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'ocean-deep': '#0B1A1F',
-            'ocean':      '#097870',
-            'ocean-glow': '#0FBFB0',
-            'ember':      '#E8622F',
-            'ember-dark': '#C4521F',
-            'sand':       '#F4F2EE',
-            'night':      '#0D1E26',
-            'mist':       '#6B8A8D',
-          },
-          fontFamily: {
-            'display': ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-            'body':    ['"DM Sans"', 'system-ui', 'sans-serif'],
-            'mono':    ['"DM Mono"', 'monospace'],
-          },
-          fontSize: {
-            'hero':  ['clamp(2.5rem,6vw,4.75rem)', { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '800' }],
-            'h2':    ['clamp(1.5rem,3vw,2.25rem)',  { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '700' }],
-          },
-          boxShadow: {
-            'card':       '0 2px 12px -2px rgba(13,30,38,0.08)',
-            'card-hover': '0 8px 28px -6px rgba(13,30,38,0.18)',
-            'ember':      '0 4px 20px -4px rgba(232,98,47,0.45)',
-          },
-        }
-      }
-    }
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GT-TXZW7HG8');
   </script>
 
-  <style>
-    /* Reset + base */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: "DM Sans", system-ui, sans-serif;
-      background: #F4F2EE;
-      color: #0D1E26;
-      -webkit-font-smoothing: antialiased;
-      margin: 0;
-    }
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1027447536915510');
+  fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
 
-    /* Focus visible */
-    :focus-visible {
-      outline: 2px solid #0FBFB0;
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    /* Live pulse animation */
-    @keyframes livePulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.35; transform: scale(0.85); }
-    }
-    .live-dot { animation: livePulse 1.8s ease-in-out infinite; }
-
-    /* Ticker (mobile) */
-    @keyframes ticker {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .ticker-track { display: flex; animation: ticker 22s linear infinite; width: max-content; }
-    .ticker-track:hover { animation-play-state: paused; }
-    @media (min-width: 768px) {
-      .ticker-track { animation: none; }
-      .ticker-overflow { overflow: visible; }
-    }
-
-    /* Nav transition */
-    #nav-bar {
-      transition: background 0.25s ease, backdrop-filter 0.25s ease, box-shadow 0.25s ease;
-    }
-    #nav-bar.scrolled {
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(13,30,38,0.08);
-    }
-    #nav-bar.scrolled .nav-logo { color: #0D1E26; }
-    #nav-bar.scrolled .nav-logo span { color: #097870; }
-    #nav-bar.scrolled .nav-link { color: #0D1E26; }
-    #nav-bar.scrolled .nav-link:hover { color: #097870; }
-    #nav-bar.scrolled .nav-connect { color: #0D1E26; }
-
-    /* Hero image fade */
-    .hero-img-wrap {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 52%;
-      overflow: hidden;
-    }
-    .hero-img-wrap::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, #0B1A1F 0%, rgba(11,26,31,0.6) 50%, rgba(11,26,31,0.1) 100%);
-      z-index: 1;
-      pointer-events: none;
-    }
-    .hero-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-    }
-
-    /* Category card hover */
-    .cat-card { transition: transform 0.3s ease; }
-    .cat-card:hover { transform: translateY(-4px); }
-    .cat-card:hover .cat-img { transform: scale(1.04); }
-    .cat-img { transition: transform 0.5s ease; }
-
-    /* Listing card hover */
-    .listing-card:hover { box-shadow: 0 8px 28px -6px rgba(13,30,38,0.18); transform: translateY(-3px); }
-    .listing-card { transition: box-shadow 0.25s ease, transform 0.25s ease; }
-    .listing-card:hover .listing-img { transform: scale(1.05); }
-    .listing-img { transition: transform 0.45s ease; }
-
-    /* Step connector */
-    .step-connector {
-      position: absolute;
-      top: 1.5rem; left: calc(50% + 2rem);
-      width: calc(100% - 4rem);
-      height: 1px;
-      background: linear-gradient(to right, #097870, rgba(9,120,112,0.15));
-    }
-
-    /* Testimonial card */
-    .testi-card {
-      border-left: 3px solid #097870;
-    }
-
-    /* Scrollbar hide for ticker */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* Prefers reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .live-dot { animation: none; }
-      .ticker-track { animation: none; }
-      .cat-card, .listing-card, .cat-img, .listing-img { transition: none; }
-    }
-
-    /* Mobile hero fix */
-    @media (max-width: 639px) {
-      .hero-img-wrap { height: 40%; }
-    }
-  </style>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xbpy3oop7z");
+  </script>
+  <!-- End Microsoft Clarity -->
 </head>
 
-<body>
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  NAV                                                       -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<nav id="nav-bar" class="fixed top-0 left-0 right-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-[60px]">
-
-    <!-- Logo -->
-    <a href="/redesign-preview.html" class="nav-logo font-display font-bold text-[1.2rem] text-white tracking-tight flex items-baseline gap-1.5">
-      Rentanoo
-      <span class="text-ocean-glow text-[0.65rem] font-mono font-normal tracking-widest uppercase opacity-80">Nosy Be</span>
-    </a>
-
-    <!-- Center nav (desktop) -->
-    <div class="hidden md:flex items-center gap-1">
-      <a href="#" class="nav-link flex items-center gap-1 px-4 py-2 text-[0.875rem] font-body font-medium text-white/80 hover:text-white rounded-lg transition-colors">
-        Véhicules
-        <svg class="w-3.5 h-3.5 opacity-50" fill="none" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="#" class="nav-link flex items-center gap-1 px-4 py-2 text-[0.875rem] font-body font-medium text-white/80 hover:text-white rounded-lg transition-colors">
-        Hébergements
-        <svg class="w-3.5 h-3.5 opacity-50" fill="none" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-
-    <!-- Right -->
-    <div class="flex items-center gap-2">
-      <a href="#" class="nav-connect hidden sm:block text-[0.875rem] font-body font-medium text-white/70 hover:text-white px-3 py-2 transition-colors">Connexion</a>
-      <a href="#" class="flex items-center gap-1.5 bg-ember hover:bg-ember-dark text-white text-[0.875rem] font-body font-semibold px-4 py-2 rounded-full transition-colors shadow-ember">
-        Réserver
-        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</nav>
-
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  HERO                                                      -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<section class="relative min-h-[100svh] flex flex-col justify-center overflow-hidden bg-ocean-deep pt-[60px]">
-
-  <!-- Lagoon photo: fade-in from bottom -->
-  <div class="hero-img-wrap">
-    <img
-      src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=1920&q=80"
-      alt="Lagon de Nosy Be, Madagascar — vue aérienne"
-      loading="eager"
-    />
-  </div>
-
-  <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 flex flex-col gap-8">
-
-    <!-- Live strip -->
-    <div class="ticker-overflow overflow-hidden" aria-label="Conditions actuelles à Nosy Be">
-      <div class="ticker-track flex items-center gap-6 text-[0.75rem] font-mono text-ocean-glow/90">
-        <!-- Duplicated content for seamless loop on mobile -->
-        <span class="flex items-center gap-2 whitespace-nowrap">
-          <span class="live-dot inline-block w-1.5 h-1.5 rounded-full bg-ocean-glow"></span>
-          <span class="font-semibold tracking-widest text-ocean-glow">LIVE</span>
-        </span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">🌡 28°C  ☀</span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">💨 Vent 12 km/h</span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">🌊 Lagon calme</span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">✈ Prochain vol FDU → NOS : 14h20</span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">🌙 Coucher de soleil 18h47</span>
-        <span class="whitespace-nowrap text-white/50 mx-8">⸺</span>
-        <!-- Repeat for ticker loop -->
-        <span class="flex items-center gap-2 whitespace-nowrap">
-          <span class="inline-block w-1.5 h-1.5 rounded-full bg-ocean-glow"></span>
-          <span class="font-semibold tracking-widest text-ocean-glow">LIVE</span>
-        </span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">🌡 28°C  ☀</span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">💨 Vent 12 km/h</span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">🌊 Lagon calme</span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">✈ Prochain vol FDU → NOS : 14h20</span>
-        <span class="whitespace-nowrap text-white/50">·</span>
-        <span class="whitespace-nowrap">🌙 Coucher de soleil 18h47</span>
-      </div>
-    </div>
-
-    <!-- H1 -->
-    <div>
-      <p class="text-[0.75rem] font-mono text-white/40 uppercase tracking-[0.2em] mb-4">
-        Location · Nosy Be, Madagascar
-      </p>
-      <h1 class="font-display text-hero text-white max-w-3xl">
-        Réserve ton scooter.<br>
-        <span class="text-white/60">Pose tes valises.</span>
-      </h1>
-      <p class="mt-5 text-[1rem] sm:text-[1.125rem] font-body text-white/55 max-w-xl leading-relaxed">
-        Véhicules et hébergements livrés à l'aéroport Fascène ou à ton hôtel.<br class="hidden sm:block"> Assurance incluse.
-      </p>
-    </div>
-
-    <!-- Search form -->
-    <div class="max-w-2xl">
-      <div class="bg-white/[0.07] backdrop-blur-sm border border-white/10 rounded-2xl p-1.5 flex flex-col sm:flex-row gap-1.5">
-        <!-- Arrival -->
-        <label class="flex-1 min-w-0">
-          <span class="sr-only">Date d'arrivée</span>
-          <div class="flex flex-col px-4 py-3 cursor-pointer hover:bg-white/5 rounded-xl transition-colors">
-            <span class="text-[0.65rem] font-mono text-white/40 uppercase tracking-widest mb-0.5">Arrivée</span>
-            <input type="date" class="bg-transparent text-[0.9375rem] font-body text-white font-medium focus:outline-none placeholder-white/30 w-full" />
-          </div>
-        </label>
-        <div class="hidden sm:block w-px bg-white/10 my-2"></div>
-        <!-- Departure -->
-        <label class="flex-1 min-w-0">
-          <span class="sr-only">Date de départ</span>
-          <div class="flex flex-col px-4 py-3 cursor-pointer hover:bg-white/5 rounded-xl transition-colors">
-            <span class="text-[0.65rem] font-mono text-white/40 uppercase tracking-widest mb-0.5">Départ</span>
-            <input type="date" class="bg-transparent text-[0.9375rem] font-body text-white font-medium focus:outline-none w-full" />
-          </div>
-        </label>
-        <div class="hidden sm:block w-px bg-white/10 my-2"></div>
-        <!-- Category -->
-        <div class="flex-1 min-w-0">
-          <div class="flex flex-col px-4 py-3 hover:bg-white/5 rounded-xl transition-colors">
-            <span class="text-[0.65rem] font-mono text-white/40 uppercase tracking-widest mb-0.5">Je cherche</span>
-            <select class="bg-transparent text-[0.9375rem] font-body text-white font-medium focus:outline-none appearance-none cursor-pointer w-full">
-              <option value="" class="text-night">Scooter, villa…</option>
-              <option value="scooter" class="text-night">🛵 Scooter</option>
-              <option value="moto" class="text-night">🏍 Moto</option>
-              <option value="voiture" class="text-night">🚗 Voiture</option>
-              <option value="quad" class="text-night">🚙 Quad / Buggy</option>
-              <option value="hebergement" class="text-night">🏡 Hébergement</option>
-            </select>
-          </div>
-        </div>
-        <!-- CTA -->
-        <button class="flex items-center justify-center gap-2 bg-ember hover:bg-ember-dark text-white font-body font-semibold text-[0.9375rem] px-6 py-3.5 rounded-xl shadow-ember transition-colors shrink-0 sm:rounded-xl" aria-label="Chercher">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 20 20">
-            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.75"/>
-            <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-          </svg>
-          <span class="hidden sm:inline">Chercher</span>
-          <span class="sm:hidden">Chercher des offres</span>
-        </button>
-      </div>
-
-      <!-- Hints -->
-      <div class="flex flex-wrap gap-x-4 gap-y-1.5 mt-3">
-        <span class="text-[0.8rem] font-body text-white/35">→ Livraison à l'aéroport incluse</span>
-        <span class="text-[0.8rem] font-body text-white/35">· Assurance comprise</span>
-        <span class="text-[0.8rem] font-body text-white/35">· Annulation flexible</span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Bottom gradient into next section -->
-  <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-[#0D1E26] z-10 pointer-events-none"></div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  DUAL CATEGORIES (dark, seamless avec hero)               -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<section class="bg-night py-8 sm:py-12" aria-label="Catégories">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <p class="text-[0.7rem] font-mono text-ocean-glow/60 uppercase tracking-[0.2em] mb-6 text-center sm:text-left">
-      Tout Nosy Be en un seul endroit
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-
-      <!-- Véhicules -->
-      <a href="#" class="cat-card relative block rounded-2xl overflow-hidden group" style="min-height: 340px;" aria-label="Voir les véhicules">
-        <div class="absolute inset-0 overflow-hidden">
-          <img
-            class="cat-img absolute inset-0 w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80"
-            alt="Scooter sur route côtière à Nosy Be"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0B1A1F] via-[#0B1A1F]/50 to-transparent"></div>
-        </div>
-
-        <div class="relative z-10 flex flex-col justify-end h-full p-7 sm:p-8" style="min-height: 340px;">
-          <span class="inline-flex items-center gap-1.5 bg-ocean-glow/15 border border-ocean-glow/30 text-ocean-glow text-[0.7rem] font-mono font-medium tracking-wider uppercase px-2.5 py-1 rounded-full w-fit mb-4">
-            <span class="w-1 h-1 rounded-full bg-ocean-glow inline-block"></span>
-            Véhicules
-          </span>
-          <h2 class="font-display text-[1.875rem] sm:text-[2.25rem] font-bold text-white leading-none tracking-tight mb-2">
-            Véhicules
-          </h2>
-          <p class="text-white/55 font-body text-[0.9375rem] mb-5 leading-snug">
-            Scooter, moto, voiture, quad<br>Livraison à Fascène ou à ton hôtel
-          </p>
-          <div class="flex items-center justify-between">
-            <p class="font-mono text-[1.125rem] text-white">
-              dès <span class="text-[1.5rem] font-semibold">10 €</span><span class="text-white/50 text-[0.875rem]">/jour</span>
-            </p>
-            <span class="flex items-center gap-1.5 text-white font-body font-semibold text-[0.9375rem] group-hover:gap-2.5 transition-all">
-              Voir les véhicules
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Hébergements -->
-      <a href="#" class="cat-card relative block rounded-2xl overflow-hidden group" style="min-height: 340px;" aria-label="Voir les hébergements">
-        <div class="absolute inset-0 overflow-hidden">
-          <img
-            class="cat-img absolute inset-0 w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=80"
-            alt="Villa avec piscine à Nosy Be"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0B1A1F] via-[#0B1A1F]/50 to-transparent"></div>
-        </div>
-
-        <div class="relative z-10 flex flex-col justify-end h-full p-7 sm:p-8" style="min-height: 340px;">
-          <span class="inline-flex items-center gap-1.5 bg-ember/15 border border-ember/30 text-ember text-[0.7rem] font-mono font-medium tracking-wider uppercase px-2.5 py-1 rounded-full w-fit mb-4">
-            <span class="w-1 h-1 rounded-full bg-ember inline-block"></span>
-            Hébergements
-          </span>
-          <h2 class="font-display text-[1.875rem] sm:text-[2.25rem] font-bold text-white leading-none tracking-tight mb-2">
-            Hébergements
-          </h2>
-          <p class="text-white/55 font-body text-[0.9375rem] mb-5 leading-snug">
-            Villa, maison, chambre d'hôtes<br>Disponibles à la nuitée ou à la semaine
-          </p>
-          <div class="flex items-center justify-between">
-            <p class="font-mono text-[1.125rem] text-white">
-              dès <span class="text-[1.5rem] font-semibold">22 €</span><span class="text-white/50 text-[0.875rem]">/nuit</span>
-            </p>
-            <span class="flex items-center gap-1.5 text-white font-body font-semibold text-[0.9375rem] group-hover:gap-2.5 transition-all">
-              Voir les hébergements
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  FEATURED LISTINGS                                        -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<section class="bg-sand py-16 sm:py-20" aria-label="Meilleures offres">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <div class="flex items-end justify-between mb-8 sm:mb-10">
-      <div>
-        <p class="text-[0.7rem] font-mono text-ocean/70 uppercase tracking-[0.2em] mb-2">Sélection</p>
-        <h2 class="font-display text-h2 text-night">Les plus réservés<br class="sm:hidden"> cette semaine</h2>
-      </div>
-      <a href="#" class="hidden sm:flex items-center gap-1.5 text-[0.9rem] font-body font-medium text-ocean hover:text-ocean-glow transition-colors">
-        Tout voir
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-
-      <!-- Card 1: Scooter -->
-      <article class="listing-card bg-white rounded-2xl overflow-hidden shadow-card">
-        <div class="relative overflow-hidden" style="aspect-ratio: 4/3;">
-          <img
-            class="listing-img absolute inset-0 w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=500&q=80"
-            alt="Scooter Yamaha NMAX 125cc"
-            loading="lazy"
-          />
-          <span class="absolute top-2.5 left-2.5 bg-ocean/90 backdrop-blur-sm text-white text-[0.65rem] font-mono font-medium tracking-wider uppercase px-2 py-1 rounded-lg">Véhicule</span>
-        </div>
-        <div class="p-3.5 sm:p-4">
-          <div class="flex items-center gap-1 mb-1.5">
-            <span class="text-amber-400 text-[0.75rem]">★★★★★</span>
-            <span class="text-[0.75rem] font-mono text-mist">4,9 <span class="text-mist/60">(38)</span></span>
-          </div>
-          <h3 class="font-display font-semibold text-[0.9375rem] text-night leading-tight mb-1">Scooter 125cc — Yamaha Nmax</h3>
-          <p class="text-[0.8rem] font-body text-mist mb-3">Livraison Fascène incluse · Assurance</p>
-          <div class="flex items-center justify-between">
-            <p class="font-mono text-night"><span class="text-[1.125rem] font-semibold">10 €</span><span class="text-mist text-[0.8rem]">/jour</span></p>
-            <a href="#" class="text-[0.8rem] font-body font-semibold text-ocean hover:text-ocean-glow transition-colors">Réserver →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 2: Voiture -->
-      <article class="listing-card bg-white rounded-2xl overflow-hidden shadow-card">
-        <div class="relative overflow-hidden" style="aspect-ratio: 4/3;">
-          <img
-            class="listing-img absolute inset-0 w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=500&q=80"
-            alt="Voiture 4x4 pour Nosy Be"
-            loading="lazy"
-          />
-          <span class="absolute top-2.5 left-2.5 bg-ocean/90 backdrop-blur-sm text-white text-[0.65rem] font-mono font-medium tracking-wider uppercase px-2 py-1 rounded-lg">Véhicule</span>
-        </div>
-        <div class="p-3.5 sm:p-4">
-          <div class="flex items-center gap-1 mb-1.5">
-            <span class="text-amber-400 text-[0.75rem]">★★★★☆</span>
-            <span class="text-[0.75rem] font-mono text-mist">4,7 <span class="text-mist/60">(21)</span></span>
-          </div>
-          <h3 class="font-display font-semibold text-[0.9375rem] text-night leading-tight mb-1">Voiture 4×4 — 5 places</h3>
-          <p class="text-[0.8rem] font-body text-mist mb-3">Idéal famille · Livraison hôtel</p>
-          <div class="flex items-center justify-between">
-            <p class="font-mono text-night"><span class="text-[1.125rem] font-semibold">38 €</span><span class="text-mist text-[0.8rem]">/jour</span></p>
-            <a href="#" class="text-[0.8rem] font-body font-semibold text-ocean hover:text-ocean-glow transition-colors">Réserver →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 3: Villa -->
-      <article class="listing-card bg-white rounded-2xl overflow-hidden shadow-card">
-        <div class="relative overflow-hidden" style="aspect-ratio: 4/3;">
-          <img
-            class="listing-img absolute inset-0 w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=500&q=80"
-            alt="Villa Lagon d'Azur, Nosy Be"
-            loading="lazy"
-          />
-          <span class="absolute top-2.5 left-2.5 bg-ember/90 backdrop-blur-sm text-white text-[0.65rem] font-mono font-medium tracking-wider uppercase px-2 py-1 rounded-lg">Hébergement</span>
-          <span class="absolute top-2.5 right-2.5 bg-white/95 backdrop-blur-sm text-night text-[0.65rem] font-mono font-semibold px-2 py-1 rounded-lg">★ 5,0</span>
-        </div>
-        <div class="p-3.5 sm:p-4">
-          <div class="flex items-center gap-1 mb-1.5">
-            <span class="text-amber-400 text-[0.75rem]">★★★★★</span>
-            <span class="text-[0.75rem] font-mono text-mist">5,0 <span class="text-mist/60">(14)</span></span>
-          </div>
-          <h3 class="font-display font-semibold text-[0.9375rem] text-night leading-tight mb-1">Villa Lagon d'Azur — piscine</h3>
-          <p class="text-[0.8rem] font-body text-mist mb-3">4 pers. · Vue mer · Nosy Be centre</p>
-          <div class="flex items-center justify-between">
-            <p class="font-mono text-night"><span class="text-[1.125rem] font-semibold">85 €</span><span class="text-mist text-[0.8rem]">/nuit</span></p>
-            <a href="#" class="text-[0.8rem] font-body font-semibold text-ocean hover:text-ocean-glow transition-colors">Réserver →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 4: Bungalow -->
-      <article class="listing-card bg-white rounded-2xl overflow-hidden shadow-card">
-        <div class="relative overflow-hidden" style="aspect-ratio: 4/3;">
-          <img
-            class="listing-img absolute inset-0 w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1570213489059-0aac6626cade?auto=format&fit=crop&w=500&q=80"
-            alt="Bungalow Ylang, vue mer Nosy Be"
-            loading="lazy"
-          />
-          <span class="absolute top-2.5 left-2.5 bg-ember/90 backdrop-blur-sm text-white text-[0.65rem] font-mono font-medium tracking-wider uppercase px-2 py-1 rounded-lg">Hébergement</span>
-        </div>
-        <div class="p-3.5 sm:p-4">
-          <div class="flex items-center gap-1 mb-1.5">
-            <span class="text-amber-400 text-[0.75rem]">★★★★★</span>
-            <span class="text-[0.75rem] font-mono text-mist">4,8 <span class="text-mist/60">(29)</span></span>
-          </div>
-          <h3 class="font-display font-semibold text-[0.9375rem] text-night leading-tight mb-1">Bungalow Ylang — vue mer</h3>
-          <p class="text-[0.8rem] font-body text-mist mb-3">2 pers. · Terrasse · Plage 5 min</p>
-          <div class="flex items-center justify-between">
-            <p class="font-mono text-night"><span class="text-[1.125rem] font-semibold">35 €</span><span class="text-mist text-[0.8rem]">/nuit</span></p>
-            <a href="#" class="text-[0.8rem] font-body font-semibold text-ocean hover:text-ocean-glow transition-colors">Réserver →</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- Mobile "Tout voir" -->
-    <div class="flex justify-center mt-6 sm:hidden">
-      <a href="#" class="flex items-center gap-1.5 text-[0.9rem] font-body font-medium text-ocean">
-        Voir toutes les offres
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  HOW IT WORKS                                             -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<section class="bg-white py-16 sm:py-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <div class="text-center mb-12 sm:mb-14">
-      <p class="text-[0.7rem] font-mono text-ocean/70 uppercase tracking-[0.2em] mb-3">Simple et rapide</p>
-      <h2 class="font-display text-h2 text-night">Comment ça marche ?</h2>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 relative">
-
-      <!-- Connector line (desktop only) -->
-      <div class="absolute hidden sm:block top-6 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-gradient-to-r from-ocean via-ocean/30 to-ocean/10 z-0"></div>
-
-      <!-- Step 1 -->
-      <div class="relative flex flex-col items-center text-center sm:items-start sm:text-left">
-        <div class="relative z-10 w-12 h-12 rounded-2xl bg-ocean/8 border border-ocean/20 flex items-center justify-center mb-5 shrink-0">
-          <svg class="w-5 h-5 text-ocean" fill="none" viewBox="0 0 24 24">
-            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <p class="text-[0.65rem] font-mono text-mist/60 uppercase tracking-widest mb-2">Étape 01</p>
-        <h3 class="font-display font-bold text-[1.1875rem] text-night mb-2">Tu choisis et tu réserves</h3>
-        <p class="font-body text-[0.9375rem] text-mist leading-relaxed">En ligne, depuis La Réunion ou n'importe où. Paiement sécurisé, confirmation immédiate.</p>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="relative flex flex-col items-center text-center sm:items-start sm:text-left">
-        <div class="relative z-10 w-12 h-12 rounded-2xl bg-ocean/8 border border-ocean/20 flex items-center justify-center mb-5 shrink-0">
-          <svg class="w-5 h-5 text-ocean" fill="none" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <p class="text-[0.65rem] font-mono text-mist/60 uppercase tracking-widest mb-2">Étape 02</p>
-        <h3 class="font-display font-bold text-[1.1875rem] text-night mb-2">On livre à ton arrivée</h3>
-        <p class="font-body text-[0.9375rem] text-mist leading-relaxed">À l'aéroport Fascène ou directement à ton hôtel. Assurance incluse, sans surprise.</p>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="relative flex flex-col items-center text-center sm:items-start sm:text-left">
-        <div class="relative z-10 w-12 h-12 rounded-2xl bg-ember/8 border border-ember/20 flex items-center justify-center mb-5 shrink-0">
-          <svg class="w-5 h-5 text-ember" fill="none" viewBox="0 0 24 24">
-            <path d="M12 3v1m0 16v1M4.22 4.22l.7.7M19.08 19.08l.7.7M1 12h2M21 12h2M4.22 19.78l.7-.7M19.08 4.92l.7-.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <p class="text-[0.65rem] font-mono text-mist/60 uppercase tracking-widest mb-2">Étape 03</p>
-        <h3 class="font-display font-bold text-[1.1875rem] text-night mb-2">Tu profites sans galère</h3>
-        <p class="font-body text-[0.9375rem] text-mist leading-relaxed">Nos équipes restent disponibles pendant tout ton séjour. Nosy Be comme tu l'imagines.</p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  TRUST / AVIS                                            -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<section class="bg-sand py-16 sm:py-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <!-- Stats -->
-    <div class="grid grid-cols-3 gap-4 sm:gap-8 mb-14">
-      <div class="text-center sm:text-left">
-        <p class="font-display font-bold text-[2.25rem] sm:text-[3rem] text-night tracking-tight leading-none font-mono">340<span class="text-ocean">+</span></p>
-        <p class="font-body text-[0.875rem] text-mist mt-1.5">avis clients</p>
-      </div>
-      <div class="text-center sm:text-left">
-        <p class="font-display font-bold text-[2.25rem] sm:text-[3rem] text-night tracking-tight leading-none font-mono">4,8<span class="text-[1.5rem] sm:text-[2rem] text-ocean">/5</span></p>
-        <p class="font-body text-[0.875rem] text-mist mt-1.5">note moyenne</p>
-      </div>
-      <div class="text-center sm:text-left">
-        <p class="font-display font-bold text-[2.25rem] sm:text-[3rem] text-night tracking-tight leading-none font-mono">30<span class="text-[1.25rem] sm:text-[1.5rem] text-mist font-body font-normal"> min</span></p>
-        <p class="font-body text-[0.875rem] text-mist mt-1.5">livraison à Fascène</p>
-      </div>
-    </div>
-
-    <!-- Testimonials -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
-      <blockquote class="testi-card bg-white rounded-2xl p-6 shadow-card">
-        <p class="font-body text-[0.9375rem] text-night/80 leading-relaxed mb-5">
-          "Scooter livré à l'aéroport, pile à l'heure. Impeccable. Je ne louerai plus jamais sur place."
-        </p>
-        <footer class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-ocean/10 border border-ocean/20 flex items-center justify-center text-[0.8rem] font-display font-bold text-ocean">MR</div>
-          <div>
-            <p class="font-body font-semibold text-[0.875rem] text-night">Mathieu R.</p>
-            <p class="font-mono text-[0.75rem] text-mist">La Réunion</p>
-          </div>
-        </footer>
-      </blockquote>
-
-      <blockquote class="testi-card bg-white rounded-2xl p-6 shadow-card">
-        <p class="font-body text-[0.9375rem] text-night/80 leading-relaxed mb-5">
-          "La villa était exactement comme sur les photos. Le check-in s'est fait en 2 minutes sur place."
-        </p>
-        <footer class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-ocean/10 border border-ocean/20 flex items-center justify-center text-[0.8rem] font-display font-bold text-ocean">CD</div>
-          <div>
-            <p class="font-body font-semibold text-[0.875rem] text-night">Camille D.</p>
-            <p class="font-mono text-[0.75rem] text-mist">Paris</p>
-          </div>
-        </footer>
-      </blockquote>
-
-      <blockquote class="testi-card bg-white rounded-2xl p-6 shadow-card">
-        <p class="font-body text-[0.9375rem] text-night/80 leading-relaxed mb-5">
-          "Assurance incluse et prix bien en dessous de ce qu'on trouve en arrivant à Nosy Be."
-        </p>
-        <footer class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-ocean/10 border border-ocean/20 flex items-center justify-center text-[0.8rem] font-display font-bold text-ocean">KM</div>
-          <div>
-            <p class="font-body font-semibold text-[0.875rem] text-night">Kevin M.</p>
-            <p class="font-mono text-[0.75rem] text-mist">Île Maurice</p>
-          </div>
-        </footer>
-      </blockquote>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  FOOTER                                                   -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<footer class="bg-ocean text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-14">
-
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 pb-10 border-b border-white/10">
-
-      <div class="col-span-2 sm:col-span-1">
-        <p class="font-display font-bold text-[1.2rem] mb-2">Rentanoo</p>
-        <p class="font-body text-[0.875rem] text-white/55 leading-relaxed max-w-[200px]">
-          Nosy Be comme tu l'imagines.<br>Sans les galères.
-        </p>
-      </div>
-
-      <div>
-        <p class="text-[0.65rem] font-mono text-white/40 uppercase tracking-widest mb-4">Véhicules</p>
-        <ul class="space-y-2.5">
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Scooters</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Motos</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Voitures</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Quads & Buggies</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <p class="text-[0.65rem] font-mono text-white/40 uppercase tracking-widest mb-4">Hébergements</p>
-        <ul class="space-y-2.5">
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Villas</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Maisons</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Chambres d'hôtes</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Bungalows</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <p class="text-[0.65rem] font-mono text-white/40 uppercase tracking-widest mb-4">Rentanoo</p>
-        <ul class="space-y-2.5">
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">À propos</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Devenir opérateur</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Contact</a></li>
-          <li><a href="#" class="font-body text-[0.875rem] text-white/60 hover:text-white transition-colors">Mentions légales</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8">
-      <p class="font-mono text-[0.75rem] text-white/30">© 2026 Rentanoo SAS — Nosy Be, Madagascar</p>
-      <div class="flex items-center gap-2">
-        <span class="live-dot inline-block w-1.5 h-1.5 rounded-full bg-ocean-glow"></span>
-        <p class="font-mono text-[0.75rem] text-ocean-glow/60">Nosy Be · 28°C · Lagon calme</p>
-      </div>
-    </div>
-
-  </div>
-</footer>
-
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  Preview badge (top-right, visible en dev seulement)      -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="fixed bottom-4 right-4 z-50 bg-[#0B1A1F]/95 backdrop-blur border border-white/10 rounded-xl px-4 py-2.5 flex items-center gap-2.5">
-  <span class="live-dot w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span>
-  <span class="text-[0.7rem] font-mono text-white/60 uppercase tracking-wider">Preview redesign</span>
-  <span class="text-white/20">·</span>
-  <a href="/" class="text-[0.7rem] font-mono text-ocean-glow/80 hover:text-ocean-glow transition-colors">← Site actuel</a>
-</div>
-
-
-<script>
-  // Navbar: transparent → solid white on scroll
-  const nav = document.getElementById('nav-bar');
-  const threshold = 60;
-
-  function updateNav() {
-    if (window.scrollY > threshold) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  }
-
-  window.addEventListener('scroll', updateNav, { passive: true });
-  updateNav();
-
-  // Set today's date as min for date inputs
-  const today = new Date().toISOString().split('T')[0];
-  document.querySelectorAll('input[type="date"]').forEach(input => {
-    input.min = today;
-    if (!input.value) input.placeholder = today;
-  });
-</script>
-
-</body>
+  <body>
+    <!-- Meta Pixel (noscript fallback) -->
+    <noscript>
+      <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1027447536915510&ev=PageView&noscript=1"/>
+    </noscript>
+    <div id="root"></div>
+    <div id="date-picker-portal"></div>
+    <div id="radix-portal-root" translate="no" class="notranslate"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

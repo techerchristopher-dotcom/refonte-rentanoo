@@ -1,0 +1,82 @@
+# ============================================
+# FICHIER D'ENVIRONNEMENT - RENTANOO NOSY BE
+# ============================================
+# 
+# ⚠️ INSTRUCTIONS :
+# 1. Copiez ce fichier vers .env.local dans le NOUVEAU projet
+# 2. Remplacez toutes les valeurs [À_REMPLACER] par les vraies valeurs
+# 3. Ne commitez JAMAIS ce fichier avec les vraies clés !
+#
+# ============================================
+
+# ============================================
+# SUPABASE - PROJET RENTANOO (zykwfjxurwmputxwlkxs)
+# ============================================
+# 
+# ⚠️ IMPORTANT : Ce projet utilise le projet Supabase zykwfjxurwmputxwlkxs
+# Récupérez ces valeurs depuis :
+# https://supabase.com/dashboard/project/zykwfjxurwmputxwlkxs/settings/api
+#
+VITE_SUPABASE_URL=https://zykwfjxurwmputxwlkxs.supabase.co
+VITE_SUPABASE_ANON_KEY=[VOTRE_ANON_KEY]
+
+# ============================================
+# SITE URL (NOUVEAU DOMAINE)
+# ============================================
+#
+# ⚠️ IMPORTANT : Changez rentanoo.yt en rentanoo.com
+#
+VITE_PUBLIC_SITE_URL=https://rentanoo.com
+
+# ============================================
+# STRIPE
+# ============================================
+#
+# Option A : Utiliser les MÊMES clés que l'ancien projet (partage du compte Stripe)
+# Option B : Créer un NOUVEAU compte Stripe pour rentanoo.com (séparation complète)
+#
+# Récupérez depuis : https://dashboard.stripe.com/apikeys
+#
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_[VOTRE_CLE_STRIPE]
+
+# ============================================
+# VARIABLES BACKEND (si utilisées côté serveur)
+# ============================================
+#
+# Ces variables NE DOIVENT PAS avoir le préfixe VITE_
+# Elles sont utilisées par le serveur Express (server/index.ts)
+#
+# SUPABASE_URL=https://zykwfjxurwmputxwlkxs.supabase.co
+# SUPABASE_SERVICE_ROLE_KEY=[VOTRE_SERVICE_ROLE_KEY]
+# STRIPE_SECRET_KEY=sk_test_[VOTRE_CLE_SECRETE_STRIPE]
+# STRIPE_WEBHOOK_SECRET=whsec_[VOTRE_WEBHOOK_SECRET]
+
+# ============================================
+# EMAIL (Contact Form)
+# ============================================
+#
+# Configuration pour l'envoi d'emails depuis le formulaire de contact
+# Utilise Nodemailer avec SMTP
+#
+# EMAIL_TO=contact@rentanoo.com
+# EMAIL_FROM=noreply@rentanoo.com
+#
+# Configuration SMTP (exemple Gmail)
+# SMTP_HOST=smtp.gmail.com
+# SMTP_PORT=587
+# SMTP_SECURE=false
+# SMTP_USER=votre-email@gmail.com
+# SMTP_PASS=votre-mot-de-passe-app
+#
+# Note: Pour Gmail, utilisez un "App Password" (pas votre mot de passe normal)
+# Créer un App Password: https://myaccount.google.com/apppasswords
+
+# ============================================
+# NOTES
+# ============================================
+#
+# - Les variables VITE_* sont injectées dans le code au moment du BUILD
+# - Les variables sans préfixe VITE_ sont utilisées côté serveur uniquement
+# - En développement local, ce fichier .env.local est automatiquement chargé
+# - En production (Coolify), configurez ces variables dans le dashboard de déploiement
+#

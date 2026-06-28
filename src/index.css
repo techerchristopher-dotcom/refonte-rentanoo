@@ -1,0 +1,480 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rentanoo Design System - Inspired by Nosy Be lagoon
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Lagoon theme - light mode */
+    --background: 200 30% 97%;
+    --foreground: 200 15% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 15% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 15% 10%;
+
+    /* Primary: Lagoon blue-teal */
+    --primary: 185 84% 25%;
+    --primary-foreground: 0 0% 98%;
+    --primary-soft: 185 45% 85%;
+    --primary-glow: 185 70% 60%;
+
+    /* Secondary: Sandy beige */
+    --secondary: 35 25% 92%;
+    --secondary-foreground: 200 15% 20%;
+
+    /* Muted: Light lagoon tones */
+    --muted: 190 25% 94%;
+    --muted-foreground: 200 10% 45%;
+
+    /* Accent: Coral touch */
+    --accent: 15 75% 85%;
+    --accent-foreground: 15 50% 25%;
+
+    /* Success: Tropical green */
+    --success: 165 85% 35%;
+    --success-foreground: 0 0% 98%;
+    --success-soft: 165 45% 90%;
+
+    /* Warning: Sunset orange */
+    --warning: 25 95% 55%;
+    --warning-foreground: 0 0% 98%;
+    --warning-soft: 25 85% 90%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 190 25% 88%;
+    --input: 190 25% 88%;
+    --ring: 185 84% 25%;
+
+    /* Gradients */
+    --gradient-lagoon: linear-gradient(135deg, hsl(185 84% 25%), hsl(175 70% 40%));
+    --gradient-sunset: linear-gradient(135deg, hsl(25 95% 55%), hsl(15 75% 65%));
+    --gradient-soft: linear-gradient(180deg, hsl(190 25% 97%), hsl(200 30% 94%));
+
+    /* Shadows */
+    --shadow-lagoon: 0 10px 30px -10px hsl(185 84% 25% / 0.2);
+    --shadow-soft: 0 4px 20px -4px hsl(200 10% 20% / 0.1);
+    --shadow-card: 0 2px 12px -2px hsl(200 10% 20% / 0.08);
+
+    /* Animations & Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode lagoon theme */
+    --background: 200 20% 8%;
+    --foreground: 200 10% 92%;
+
+    --card: 200 15% 10%;
+    --card-foreground: 200 10% 92%;
+
+    --popover: 200 15% 10%;
+    --popover-foreground: 200 10% 92%;
+
+    --primary: 185 70% 60%;
+    --primary-foreground: 200 20% 8%;
+    --primary-soft: 185 30% 25%;
+    --primary-glow: 185 80% 70%;
+
+    --secondary: 200 15% 15%;
+    --secondary-foreground: 200 10% 92%;
+
+    --muted: 200 15% 12%;
+    --muted-foreground: 200 8% 55%;
+
+    --accent: 15 50% 60%;
+    --accent-foreground: 15 25% 15%;
+
+    --success: 165 70% 45%;
+    --success-foreground: 200 20% 8%;
+    --success-soft: 165 30% 25%;
+
+    --warning: 25 80% 65%;
+    --warning-foreground: 200 20% 8%;
+    --warning-soft: 25 40% 25%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 200 10% 92%;
+
+    --border: 200 15% 18%;
+    --input: 200 15% 18%;
+    --ring: 185 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ===== ANIMATIONS POUR LA RECHERCHE DE VILLES ===== */
+
+/* Animation d'apparition du dropdown */
+@keyframes dropdownSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animation de disparition du dropdown */
+@keyframes dropdownSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
+
+/* Animation d'apparition des éléments de liste */
+@keyframes listItemSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation de pulsation pour l'icône MapPin */
+@keyframes mapPinPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Animation de shimmer pour les éléments hover */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Animation de bounce pour les boutons */
+@keyframes buttonBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Animation de glow pour les éléments actifs */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 30px rgba(34, 197, 94, 0.4);
+  }
+}
+
+/* Classes utilitaires pour les animations */
+.dropdown-enter {
+  animation: dropdownSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dropdown-exit {
+  animation: dropdownSlideOut 0.2s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.list-item-enter {
+  animation: listItemSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.map-pin-pulse {
+  animation: mapPinPulse 2s infinite;
+}
+
+.shimmer-effect {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.button-bounce:hover {
+  animation: buttonBounce 0.6s ease-in-out;
+}
+
+.glow-effect {
+  animation: glow 2s infinite;
+}
+
+/* ===== Premium SEO & context strip ===== */
+@keyframes premium-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes premium-shimmer-slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.premium-mesh {
+  background-image:
+    radial-gradient(at 40% 20%, hsl(185 70% 60% / 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsl(45 90% 60% / 0.08) 0px, transparent 45%),
+    radial-gradient(at 0% 50%, hsl(175 70% 40% / 0.12) 0px, transparent 50%);
+}
+
+.premium-glass-dark {
+  background: linear-gradient(135deg, hsl(0 0% 100% / 0.14), hsl(0 0% 100% / 0.06));
+  border: 1px solid hsl(0 0% 100% / 0.22);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 4px 24px -4px hsl(200 20% 10% / 0.25),
+    inset 0 1px 0 hsl(0 0% 100% / 0.15);
+}
+
+.premium-glass-light {
+  background: linear-gradient(135deg, hsl(0 0% 100% / 0.95), hsl(190 25% 97% / 0.9));
+  border: 1px solid hsl(var(--border) / 0.7);
+  box-shadow: var(--shadow-card);
+}
+
+.premium-card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-card-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    hsl(0 0% 100% / 0.12) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.premium-card-shine:hover::after {
+  transform: translateX(100%);
+}
+
+.premium-accent-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(45 90% 65% / 0.7),
+    hsl(185 70% 60% / 0.8),
+    transparent
+  );
+}
+
+.premium-accent-top-dark::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(45 90% 75% / 0.5),
+    hsl(0 0% 100% / 0.45),
+    transparent
+  );
+}
+
+.premium-section-title::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin-top: 0.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(45 90% 55% / 0.6));
+}
+
+.premium-cta-panel {
+  background: var(--gradient-lagoon);
+  box-shadow: var(--shadow-lagoon);
+}
+
+.premium-float-slow {
+  animation: premium-float 8s ease-in-out infinite;
+}
+
+/*
+ * Radix Dialog / AlertDialog : overlay parfois laissé monté avec data-state="closed"
+ * mais encore interactif (prod — modale détails locataire). Neutralisation explicite,
+ * indépendante des utilitaires Tailwind (voir src/components/ui/dialog.tsx).
+ */
+[data-dialog-overlay="true"][data-state="closed"],
+[data-alert-dialog-overlay="true"][data-state="closed"] {
+  pointer-events: none !important;
+  opacity: 0 !important;
+  display: none !important;
+}
+
+/* Bouton WhatsApp flottant mobile */
+@keyframes whatsapp-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes whatsapp-halo {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.18);
+  }
+}
+
+.whatsapp-fab-float {
+  animation: whatsapp-float 3.5s ease-in-out infinite;
+}
+
+.whatsapp-fab-halo {
+  animation: whatsapp-halo 2.2s ease-in-out infinite;
+}
+
+@keyframes whatsapp-bubble-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes whatsapp-bubble-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+}
+
+.whatsapp-bubble-enter {
+  animation: whatsapp-bubble-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.whatsapp-bubble-exit {
+  animation: whatsapp-bubble-exit 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-fab-float,
+  .whatsapp-fab-halo {
+    animation: none !important;
+  }
+
+  .whatsapp-bubble-enter,
+  .whatsapp-bubble-exit {
+    animation: none !important;
+  }
+}
+
+@keyframes cart-badge-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.animate-cart-badge-pulse {
+  animation: cart-badge-pulse 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cart-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(13, 148, 136, 0.15); }
+}
+
+.animate-cart-glow {
+  animation: cart-glow-pulse 2s ease-in-out infinite;
+  border-radius: 9999px;
+}
+
+@keyframes modal-shake {
+  0%, 100% { transform: translate(-50%, -50%); }
+  10%, 30%, 50%, 70%, 90% { transform: translate(calc(-50% - 6px), -50%); }
+  20%, 40%, 60%, 80% { transform: translate(calc(-50% + 6px), -50%); }
+}
+
+.animate-modal-shake {
+  animation: modal-shake 500ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-modal-shake {
+    animation: none !important;
+  }
+
+  .animate-cart-badge-pulse,
+  .animate-cart-glow {
+    animation: none !important;
+  }
+}

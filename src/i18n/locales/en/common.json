@@ -1,0 +1,1774 @@
+{
+  "common": {
+    "2024_maycar_tous_droits_rservs_une_initiative_pour": "© 2025 Rentanoo. All rights reserved. Scooter rental in Nosy Be.",
+    "actualiser_la_page": "Refresh page",
+    "annuler": "Cancel",
+    "automatique": "Automatic",
+    "berline": "Sedan",
+    "break_sw": "Estate (SW)",
+    "cabriolet": "Convertible",
+    "citadine": "City car",
+    "communes": "__STRING_NOT_TRANSLATED__",
+    "conditions_dutilisation": "Terms of Service",
+    "connexion": "__STRING_NOT_TRANSLATED__",
+    "coup": "Coupe",
+    "crossover": "Crossover",
+    "dates": "Dates",
+    "demandes_de_location": "Rental requests",
+    "devenir_loueur": "Become a host",
+    "devenir_propritaire": "Become an owner",
+    "diesel": "Diesel",
+    "dpart": "Departure",
+    "error": "Error",
+    "essence": "Gasoline",
+    "filtres": "Filters:",
+    "heure_de_dpart": "Departure time",
+    "heure_de_retour": "Return time",
+    "heures": "Times",
+    "hybride": "Hybrid",
+    "inscription": "Sign up",
+    "la_plateforme_dautopartage_de_mayotte_louez_et_par": "Rent your scooter in Nosy Be. 100% online booking, delivery to your hotel or airport.",
+    "lectrique": "Electric",
+    "lgal": "Legal",
+    "lieu_de_prise_en_charge": "Pickup location",
+    "loading": "Loading...",
+    "louez_des_vhicules_entre_particuliers_dans_le_plus": "Rent scooters in Nosy Be and explore the island at your leisure",
+    "made_with_pour_le_101me_dpartement_franais": "Made with ❤️ for the 101st French department",
+    "manuelle": "Manual",
+    "maycar": "Rentanoo",
+    "mayotte": "Nosy Be, Madagascar",
+    "mayotte_france": "Nosy Be, Madagascar",
+    "nosy_be": "Nosy Be, Madagascar",
+    "mentions_lgales": "Legal Notice",
+    "mes_rservations": "My bookings",
+    "mes_vhicules": "My vehicles",
+    "minibus": "Minibus",
+    "monospace": "MPV",
+    "navigation": "Navigation",
+    "par_jour": "per day",
+    "partagez_la_route_mayotte": "Explore Nosy Be by scooter",
+    "pickup": "Pickup",
+    "points_stratgiques": "__STRING_NOT_TRANSLATED__",
+    "politique_de_confidentialit": "Privacy Policy",
+    "rechercher_un_vhicule": "Search for a vehicle",
+    "retour": "Return",
+    "rinitialiser": "Reset",
+    "rinitialiser_les_filtres": "Reset filters",
+    "rechercher_une_ville_de_prise_en_charge": "Search for a pickup location",
+    "roadster": "Roadster",
+    "se_connecter": "Sign in",
+    "sinistre_caution": "Damage & deposit",
+    "search": "Search",
+    "slectionner_les_dates": "Select dates",
+    "slectionner_les_heures": "Select times",
+    "slectionnez_le_lieu_o_vous_souhaitez_rcuprer_votre": "Select the location where you want to pick up your vehicle",
+    "suv": "SUV",
+    "utilisateur_connect": "Logged in user",
+    "modify": "Modify",
+    "modifier_mon_profil": "Edit my profile",
+    "mon_espace": "My space",
+    "mon_dashboard": "My dashboard",
+    "se_dconnecter": "Log out",
+    "valider": "Confirm",
+    "valider_mes_dates": "Confirm dates",
+    "valider_mes_heures": "Confirm times",
+    "vhicules_disponibles": "Available vehicles",
+    "aucun_vhicule_disponible_pour_le_moment": "No vehicles available at the moment.",
+    "voir_la_fiche": "View details",
+    "addDates": "Add dates",
+    "selectDates": "Select dates",
+    "comingSoon": "Coming soon",
+    "default_location": "Nosy Be, Madagascar",
+    "searchBar": {
+      "departure": "Departure",
+      "return": "Return",
+      "date": "Date",
+      "time": "Time",
+      "launchSearch": "Start my search",
+      "searching": "Searching…"
+    },
+    "vehicle": {
+      "places": "{{count}} seats",
+      "fuel": {
+        "gasoline": "Gasoline",
+        "diesel": "Diesel",
+        "electric": "Electric",
+        "hybrid": "Hybrid"
+      },
+      "transmission": {
+        "manual": "Manual",
+        "automatic": "Automatic"
+      },
+      "places_one": "{{count}} seat",
+      "places_other": "{{count}} seats"
+    },
+    "duration": {
+      "day_one": "{{count}} day",
+      "day_other": "{{count}} days",
+      "hour_one": "{{count}} hour",
+      "hour_other": "{{count}} hours",
+      "separator": " + ",
+      "half_day": "half day",
+      "half_day_suffix": "and a half"
+    },
+    "pricing": {
+      "total_for_duration": "total {{total}} ({{duration}})",
+      "perDayShort": "day",
+      "totalExcludingOptions": "total {{total}} (excluding additional options)"
+    }
+  },
+  "vehicle": {
+    "places": "{{count}} seats",
+    "fuel": {
+      "gasoline": "Gasoline",
+      "diesel": "Diesel",
+      "electric": "Electric",
+      "hybrid": "Hybrid"
+    },
+    "transmission": {
+      "manual": "Manual",
+      "automatic": "Automatic"
+    },
+    "places_one": "{{count}} seat",
+    "places_other": "{{count}} seats"
+  },
+  "pricing": {
+    "total_for_duration": "total {{total}} ({{duration}})",
+    "perDayShort": "day",
+    "perNightShort": "night",
+    "totalExcludingOptions": "total {{total}} (excluding additional options)",
+    "cardTotalSummary": "{{duration}} · {{total}} total"
+  },
+  "booking": {
+    "baseRateLabel": "Base rate*:",
+    "excludingFeesNote": "* Excluding options and service fees",
+    "reserve": "Reserve",
+    "funnel": {
+      "missingDates": {
+        "title": "Dates required",
+        "description": "Select your dates on the homepage, then return to this listing to book."
+      }
+    },
+    "freeCancellation": "Free cancellation",
+    "includedInPrice": "Included in the price",
+    "included": {
+      "insurance": "Comprehensive insurance",
+      "roadside": "24/7 roadside assistance",
+      "extraDrivers": "Free additional drivers"
+    },
+    "confirmation": {
+      "title": "Confirm your booking",
+      "subtitle": "Please review the details below before confirming",
+      "returnLocation": "Return location"
+    },
+    "complementaryServices": {
+      "title": "Complementary services",
+      "subtitle": "Make your arrival and departure easier with our transport options.",
+      "hotelNameLabel": "Hotel name",
+      "hotelNamePlaceholder": "e.g. Royal Beach Hotel",
+      "optionsTotal": "Services total",
+      "continueWithServices": "Continue with selected services",
+      "declineAgency": "No thanks, I'll come to the agency",
+      "hotelRequiredTitle": "Hotel name required",
+      "hotelRequiredDescription": "Please enter your hotel name for delivery or return."
+    },
+    "durationLabel": "Duration:",
+    "vehicleRental": "Vehicle rental",
+    "selectedOptions": "Selected options",
+    "optionsSubtotal": "Options subtotal",
+    "subtotal": "Subtotal",
+    "serviceFee": "Service fee ({{percent}}%)",
+    "reservationFee": "Booking fee ({{percent}}%)",
+    "totalToPay": "TOTAL TO PAY",
+    "paymentMethod": {
+      "title": "Payment method",
+      "recommended": "Recommended",
+      "previewError": "Booking fees could not be loaded. Online card payment is applied by default.",
+      "savingsAmount": "Save {{amount}}",
+      "cardOnline": {
+        "label": "Pay online by card",
+        "hint": "Secure payment via Stripe"
+      },
+      "cashOnSite": {
+        "label": "Pay at the agency",
+        "hint": "Payment when keys are handed over",
+        "accommodation": {
+          "label": "Pay on arrival",
+          "hint": "Payment upon arrival at the property"
+        },
+        "badge": "Pay at the agency",
+        "modalHint": "Payment when keys are handed over at the agency."
+      },
+      "noOnlinePaymentRequired": "No online payment is required",
+      "serviceFeeGeneric": "Service fee"
+    },
+    "confirmBooking": "I confirm my booking request",
+    "benefits": {
+      "quickResponse": "Quick response",
+      "quickResponseHint": "Within 24h",
+      "safePayment": "Secure payment",
+      "safePaymentHint": "After validation",
+      "quickConfirmation": "Quick confirmation",
+      "freeCancellationHint": "Free 48h"
+    },
+    "discussion": {
+      "withRenter": "Discussion with renter",
+      "withOwner": "Discussion with owner",
+      "role": {
+        "owner": "You are the owner",
+        "renter": "You are the renter"
+      },
+      "dateRange": "From {{startDate}} to {{endDate}}",
+      "viewBookingDetails": "View my booking details",
+      "payRental": "Pay my rental",
+      "initialMessage": {
+        "renter": "Hello! I'm interested in renting your vehicle. Here are the details:",
+        "owner": "Hello! You have a new booking request. Here are the details:"
+      },
+      "departureTime": "Departure at {{startTime}}",
+      "pickupLocation": "Pickup: {{pickupLocation}}",
+      "returnLocation": "Return: {{returnLocation}}",
+      "additionalOptions": "Additional options:",
+      "optionsTotal": "Including {{optionsTotal}} of options",
+      "confirmAvailability": {
+        "renter": "Can you confirm availability? Thank you!",
+        "owner": "Please confirm your availability!"
+      },
+      "messagePlaceholder": "Type your message...",
+      "conversationCancelled": "You can no longer chat. The booking request has been cancelled or completed. ❌",
+      "conversationCancelledShort": "You can no longer chat. The booking request has been cancelled.",
+      "toasts": {
+        "sendMessageError": "Unable to send message",
+        "messageSent": {
+          "title": "Message sent",
+          "description": "Your message has been sent to the owner"
+        },
+        "unexpectedError": "An error occurred",
+        "loadBookingError": "Unable to retrieve booking information",
+        "bookingCancelled": {
+          "title": "Booking cancelled",
+          "description": "This booking has been deleted by the renter."
+        },
+        "paymentError": {
+          "title": "Payment error",
+          "description": "Unable to start payment"
+        }
+      }
+    }
+  },
+  "accommodationCard": {
+    "filterLabel": "Accommodation",
+    "typeFallback": "Accommodation"
+  },
+  "locationArea": {
+    "label": "Neighborhood",
+    "placeholder": "Select an area",
+    "loading": "Loading…",
+    "addNew": "Add a new location",
+    "newNamePlaceholder": "e.g. Ambatoloaka",
+    "create": "Add",
+    "creating": "Adding…",
+    "createdTitle": "Area added",
+    "createdDescription": "{{name}} is now selected.",
+    "errors": {
+      "loadTitle": "Error",
+      "createTitle": "Could not add area",
+      "createUnknown": "Unknown error",
+      "requiredTitle": "Area required",
+      "required": "Neighborhood is required for an available accommodation listing."
+    }
+  },
+  "homeFilters": {
+    "area": {
+      "all": "All neighborhoods"
+    }
+  },
+  "listingOwner": {
+    "tab": "Owner",
+    "tabShort": "Owner",
+    "intro": "Public identity shown on the listing. Leave blank to use the manager account profile.",
+    "displayName": "Display name",
+    "displayNamePlaceholder": "E.g. Ambatoloaka Residence, John Doe…",
+    "photo": "Owner photo or logo",
+    "chooseFile": "Choose a file",
+    "removePhoto": "Remove",
+    "uploading": "Uploading…",
+    "photoHelper": "Accepted formats: JPG, PNG, WebP. Max size: 5 MB",
+    "ownerType": "Owner type",
+    "previewHint": "Displayed owner preview",
+    "types": {
+      "individual": "Individual",
+      "agency": "Agency",
+      "residence": "Residence / accommodation",
+      "platformManaged": "Platform managed"
+    },
+    "stats": {
+      "listings": "Listings",
+      "thisListing": "This listing"
+    },
+    "toasts": {
+      "nameRequired": "Enter a display name before adding a photo.",
+      "uploadSuccess": "Owner photo saved.",
+      "uploadError": "Could not upload the owner photo.",
+      "removeSuccess": "Owner photo removed."
+    }
+  },
+  "listingTerms": {
+    "car": {
+      "statsVehicles": "Vehicles",
+      "statsThis": "This car",
+      "rentalLabel": "Vehicle rental",
+      "startDateLabel": "Pick-up",
+      "endDateLabel": "Return",
+      "perNight": "per day",
+      "pickupLocation": "Pickup location",
+      "returnLocation": "Return location",
+      "reviews": {
+        "sample1": {
+          "meta": "2 weeks ago • 3-day rental",
+          "text": "Vehicle in perfect condition, very clean. Pierre is a thoughtful and available host. Highly recommended!"
+        },
+        "sample2": {
+          "meta": "1 month ago • 5-day rental",
+          "text": "Excellent vehicle to explore the island. Economical and reliable. Perfect communication with the owner."
+        }
+      }
+    },
+    "moto": {
+      "statsVehicles": "Vehicles",
+      "statsThis": "This motorbike",
+      "rentalLabel": "Vehicle rental",
+      "startDateLabel": "Pick-up",
+      "endDateLabel": "Return",
+      "perNight": "per day",
+      "pickupLocation": "Pickup location",
+      "returnLocation": "Return location",
+      "reviews": {
+        "sample1": {
+          "meta": "2 weeks ago • 3-day rental",
+          "text": "Vehicle in perfect condition, very clean. Pierre is a thoughtful and available host. Highly recommended!"
+        },
+        "sample2": {
+          "meta": "1 month ago • 5-day rental",
+          "text": "Excellent vehicle to explore the island. Economical and reliable. Perfect communication with the owner."
+        }
+      }
+    },
+    "accommodation": {
+      "statsVehicles": "Accommodations",
+      "statsThis": "This accommodation",
+      "rentalLabel": "Accommodation rental",
+      "startDateLabel": "Check-in",
+      "endDateLabel": "Check-out",
+      "perNight": "per night",
+      "pickupLocation": "Check-in location",
+      "returnLocation": "Check-out location",
+      "reviews": {
+        "sample1": {
+          "meta": "2 weeks ago • 3-night stay",
+          "text": "Impeccable accommodation, very clean and well located. The host is thoughtful and available. Highly recommended!"
+        },
+        "sample2": {
+          "meta": "1 month ago • 5-night stay",
+          "text": "Excellent place to discover Nosy Be. Comfortable and quiet. Perfect communication with the owner."
+        }
+      }
+    }
+  },
+  "accommodationDetails": {
+    "back": "Back",
+    "loading": "Loading accommodation...",
+    "descriptionTitle": "Description",
+    "descriptionHeading": "Rent {{name}} in Nosy Be",
+    "errors": {
+      "vehicleIncompatible": {
+        "title": "Incompatible listing",
+        "description": "This page is for accommodations only."
+      },
+      "vehicleNotFound": {
+        "title": "Accommodation not found",
+        "description": "This accommodation is no longer available."
+      },
+      "loadError": {
+        "title": "Loading error",
+        "description": "Unable to load this accommodation."
+      },
+      "loginRequired": {
+        "title": "Login required",
+        "description": "Sign in to book this accommodation."
+      },
+      "bookingError": {
+        "title": "Booking error",
+        "description": "Unable to create the booking request."
+      },
+      "unexpectedError": {
+        "title": "Error",
+        "description": "An unexpected error occurred."
+      }
+    }
+  },
+  "motoDetails": {
+    "back": "Back",
+    "loading": "Loading vehicle...",
+    "descriptionTitle": "Vehicle description",
+    "technicalTitle": "Technical specifications",
+    "technical": {
+      "fuel": "Fuel",
+      "transmission": "Transmission",
+      "seats": "Seats",
+      "engine": "Engine capacity",
+      "mileage": "Mileage",
+      "color": "Color"
+    },
+    "owner": {
+      "title": "Owner",
+      "verified": "Verified",
+      "pending": "Pending",
+      "memberSince": "Member since {{date}}",
+      "stats": {
+        "vehicles": "Vehicles",
+        "rentals": "Rentals",
+        "thisCar": "This car",
+        "thisMoto": "This motorbike"
+      },
+      "keyHandover": "Key pickup: Directly from {{ownerName}} to get all the advice.",
+      "howItWorks": "How does it work?",
+      "loadError": "Unable to load owner information"
+    },
+    "errors": {
+      "vehicleIncompatible": {
+        "title": "Incompatible vehicle",
+        "description": "This page is reserved for motorcycles. Redirecting to home."
+      },
+      "vehicleNotFound": {
+        "title": "Vehicle not found",
+        "description": "This vehicle does not exist or is no longer available."
+      },
+      "loadError": {
+        "title": "Error",
+        "description": "Unable to load vehicle information."
+      },
+      "loginRequired": {
+        "title": "Login required",
+        "description": "You must be logged in to book a vehicle."
+      },
+      "missingInfo": {
+        "title": "Missing information",
+        "description": "Please select rental dates."
+      },
+      "bookingError": {
+        "title": "Booking error",
+        "description": "Unable to create the booking"
+      },
+      "unexpectedError": {
+        "title": "Unexpected error",
+        "description": "An error occurred while creating the booking"
+      }
+    },
+    "notSpecified": "Not specified",
+    "reviews": {
+      "title": "Reviews",
+      "sample1": {
+        "meta": "2 weeks ago • 3-day rental",
+        "text": "Vehicle in perfect condition, very clean. Pierre is a caring and available host. Highly recommended!"
+      },
+      "sample2": {
+        "meta": "1 month ago • 5-day rental",
+        "text": "Excellent vehicle to explore the island. Economical and reliable. Perfect communication with the owner."
+      }
+    },
+    "insurance": {
+      "title": "Included insurance",
+      "items": {
+        "axa": "Comprehensive insurance provided by AXA",
+        "roadside": "24/7 roadside assistance"
+      },
+      "coverageTitle": "What the insurance covers:",
+      "coverage": {
+        "collision": "Collision damage",
+        "theft": "Theft and vandalism",
+        "glass": "Glass breakage",
+        "fire": "Fire"
+      },
+      "conditionsTitle": "Conditions:",
+      "conditions": {
+        "minAge": "Minimum age: 21",
+        "licenseYears": "Driving license held for 2 years",
+        "deductible": "Excess: €800",
+        "deposit": "Deposit: €1000"
+      }
+    },
+    "benefits": {
+      "title": "Benefits with every rental",
+      "items": {
+        "extension": "Easy extension",
+        "lateReturn": "30 minutes grace period for late returns",
+        "support": "Customer support 7 days a week"
+      }
+    },
+    "legal": {
+      "title": "Pre-contractual information",
+      "paragraph1": "In accordance with Article L.221-18 of the French Consumer Code, you have a 14-day withdrawal period from the conclusion of the contract.",
+      "paragraph2": "In case of dispute, you can use consumer mediation or take the matter to the competent court.",
+      "ctaConditions": "Terms and conditions",
+      "ctaMore": "Learn more"
+    }
+  },
+  "home": {
+    "heroTitle": "Rent scooter, motorbike, car or accommodation in Nosy Be",
+    "heroSubtitle": "RENTANOO, the 100% online rental platform — two-wheelers, cars and accommodations",
+    "catalogCta": "View {{count}} available vehicles",
+    "catalogCta_one": "View the available vehicle",
+    "catalogCtaLoading": "View available vehicles",
+    "catalogCtaAria": "Scroll to the vehicle catalog",
+    "trustStrip": {
+      "vehicleCount": "{{count}} vehicles available",
+      "vehicleCount_one": "1 vehicle available",
+      "fromPrice": "From {{price}}/day",
+      "airportDelivery": "Airport delivery",
+      "helmetIncluded": "Helmet included",
+      "insuranceIncluded": "Insurance included",
+      "ariaLabel": "Rentanoo highlights",
+      "accommodationAvailable": "Accommodations available",
+      "secureBooking": "Secure booking"
+    },
+    "dayContext": {
+      "ariaLabel": "Today's weather and exchange rate in Nosy Be",
+      "title": "Nosy Be today",
+      "weatherLabel": "Weather",
+      "flightsLabel": "Flights",
+      "exchangeLabel": "Rate",
+      "timeLabel": "Local time",
+      "timeSub": "Madagascar · UTC+3",
+      "flightsToday": "Next flights today",
+      "flightsTomorrow": "Next flights tomorrow",
+      "exchangeShort": "1 € = {{rate}} Ar",
+      "exchangeLiveHint": "Today's rate",
+      "loading": "Loading",
+      "exchangeLive": "1 € = {{rate}} Ar (today's rate)",
+      "exchangeManual": "1 € = {{rate}} Ar",
+      "pricesHint": "Reference prices in ariary — € equivalent at today's rate",
+      "weatherLinkLabel": "View detailed weather in Nosy Be",
+      "exchangeLinkLabel": "View Euro to Ariary exchange rate in Madagascar",
+      "flightsLinkLabel": "View flight schedules at Nosy Be airport",
+      "weatherUnavailable": "Weather unavailable",
+      "rateTrend": {
+        "up": "Rate up compared to yesterday",
+        "down": "Rate down compared to yesterday",
+        "stable": "Rate stable compared to yesterday"
+      },
+      "rateTrendShort": {
+        "up": "Up vs yesterday",
+        "down": "Down vs yesterday",
+        "stable": "Stable vs yesterday"
+      },
+      "weather": {
+        "clear": "Sunny",
+        "cloudy": "Cloudy",
+        "drizzle": "Light drizzle",
+        "fog": "Foggy",
+        "rain": "Rain",
+        "storm": "Storms",
+        "snow": "Snow"
+      }
+    },
+    "seoBlockTitle": "Scooter, motorbike and accommodation rental in Nosy Be",
+    "seoBlock": "Rentanoo helps you book your stay in Nosy Be in just a few clicks: scooter or motorbike rental with delivery to Fascène airport or your hotel, plus selected accommodations (apartments, villas, bungalows) across the island. Compare availability, pick your dates and confirm online. Helmet and insurance included on two-wheeler offers; secure booking for your nights. Whether you stay for a weekend or several weeks, explore beaches, villages and must-see spots in Madagascar with ease. Book early during high season to secure availability.",
+    "toasts": {
+      "requiredFields": {
+        "title": "Required fields",
+        "description": "Please provide at least one search criteria"
+      },
+      "incompleteDates": {
+        "title": "Incomplete dates",
+        "description": "Please select both a start date and an end date"
+      },
+      "invalidDates": {
+        "title": "Invalid dates",
+        "description": "Start date must be before end date"
+      },
+      "errorSearchAuto": {
+        "title": "Error",
+        "description": "Unable to run the automatic search"
+      },
+      "errorSearch": {
+        "title": "Error",
+        "description": "Unable to run the search"
+      },
+      "noResults": {
+        "title": "No results",
+        "description": "No vehicles available for these criteria"
+      },
+      "criteriaReset": {
+        "title": "Criteria reset",
+        "description": "All your search criteria have been cleared."
+      },
+      "searchRestored": {
+        "title": "Search restored",
+        "description": "Your saved search criteria have been restored and the search was re-run."
+      },
+      "searchDone": {
+        "title": "Search completed"
+      },
+      "resultsFound_one": "{{count}} vehicle found",
+      "resultsFound_other": "{{count}} vehicles found"
+    }
+  },
+  "footer": {
+    "brand": "RENTANOO",
+    "description": "Rental platform in Nosy Be: scooter, motorcycle, car and accommodation. 100% online booking.",
+    "location": "Nosy Be, Madagascar",
+    "copyright": "© 2025 RENTANOO. All rights reserved.",
+    "madeWith": "Made with ❤️ in Nosy Be",
+    "nav": {
+      "scooters": "Scooters & motorcycles",
+      "cars": "Cars",
+      "accommodation": "Accommodations"
+    }
+  },
+  "profile": {
+    "hero": {
+      "back": "Back to home",
+      "title": "My profile",
+      "subtitle": "Manage your personal information and customize your experience"
+    },
+    "completion": {
+      "full": "Profile complete ✓",
+      "partial": "Profile {{percent}}% completed"
+    },
+    "tabs": {
+      "basic": "Basic information",
+      "address": "Address",
+      "license": "Driving licence"
+    },
+    "sections": {
+      "basic": {
+        "title": "Personal information",
+        "step": "Step 1/3",
+        "subtitle": "Your basic information to personalize your experience",
+        "identity": {
+          "title": "Identity"
+        },
+        "contact": {
+          "title": "Contact"
+        },
+        "personal": {
+          "title": "Personal information"
+        },
+        "bio": {
+          "title": "Personal introduction"
+        },
+        "phone": {
+          "title": "Phone"
+        },
+        "status": {
+          "title": "Account status"
+        },
+        "saved": "Saved"
+      },
+      "address": {
+        "title": "Address",
+        "step": "Step 2/3",
+        "subtitle": "Your address for deliveries and location",
+        "saved": "Saved"
+      },
+      "license": {
+        "title": "Driving licence",
+        "step": "Step 3/3",
+        "subtitle": "Your licence to rent vehicles safely",
+        "saved": "Saved"
+      }
+    },
+    "form": {
+      "optional": "(optional)",
+      "firstName": {
+        "label": "First name",
+        "placeholder": "Your first name"
+      },
+      "lastName": {
+        "label": "Last name",
+        "placeholder": "Your last name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your.email@example.com",
+        "helper": "The email cannot be changed"
+      },
+      "birthDate": {
+        "label": "Date of birth",
+        "placeholder": "Select a date",
+        "day": {
+          "placeholder": "Day"
+        },
+        "month": {
+          "placeholder": "Month"
+        },
+        "year": {
+          "placeholder": "Year"
+        }
+      },
+      "birthPlace": {
+        "label": "Place of birth",
+        "placeholder": "City, Country"
+      },
+      "bio": {
+        "label": "Introduce yourself in a few words",
+        "placeholder": "Tell us about yourself, your passions, your driving style... This will help other users get to know you better!",
+        "counter": "{{count}}/500 characters"
+      },
+      "phone": {
+        "label": "Phone number",
+        "placeholder": "Phone number"
+      },
+      "avatar": {
+        "loading": "Uploading...",
+        "helper": "Accepted formats: JPG, PNG. Max size: 5MB"
+      },
+      "address": {
+        "street": {
+          "label": "Address",
+          "placeholder": "Street number and name"
+        },
+        "city": {
+          "label": "City",
+          "placeholder": "Saint-Denis"
+        },
+        "postalCode": {
+          "label": "Postcode",
+          "placeholder": "97400"
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": "Select a country"
+        }
+      },
+      "license": {
+        "number": {
+          "label": "Licence number",
+          "placeholder": "e.g. 121075012XXX",
+          "helper": "For a European licence, the number shown in section 5."
+        },
+        "country": {
+          "label": "Issuing country",
+          "placeholder": "Select a country"
+        },
+        "document": {
+          "label": "Licence document",
+          "type": {
+            "pdf": "PDF document",
+            "image": "Image"
+          },
+          "uploaded": "✓ Licence file uploaded successfully",
+          "empty": {
+            "title": "Click to upload your driving licence",
+            "helper": "Accepted formats: PDF, JPG, PNG. Max size: 10MB"
+          }
+        },
+        "issueDate": {
+          "label": "Issue date",
+          "placeholder": "Select a date",
+          "day": {
+            "placeholder": "Day"
+          },
+          "month": {
+            "placeholder": "Month"
+          },
+          "year": {
+            "placeholder": "Year"
+          },
+          "helper": "For a European licence, its start of validity date for category B vehicles."
+        },
+        "category": {
+          "label": "Licence category",
+          "placeholder": "e.g. B",
+          "helper": "Licence category (default: B for car)"
+        },
+        "expirationDate": {
+          "label": "Expiry date",
+          "placeholder": "Select a date"
+        }
+      }
+    },
+    "countries": {
+      "france": "France",
+      "reunion": "La Réunion",
+      "mayotte": "Nosy Be, Madagascar",
+      "guadeloupe": "Guadeloupe",
+      "martinique": "Martinique",
+      "guyane": "Guyane",
+      "belgium": "Belgium",
+      "switzerland": "Switzerland",
+      "germany": "Germany",
+      "spain": "Spain",
+      "italy": "Italy"
+    },
+    "badges": {
+      "role": {
+        "admin": "⚙️ Administrator",
+        "owner": "🏠 Owner",
+        "renter": "👤 Renter"
+      },
+      "kyc": {
+        "verified": "✅ Verified",
+        "pending": "⏳ Pending",
+        "unverified": "❌ Not verified"
+      }
+    },
+    "buttons": {
+      "saving": "Saving...",
+      "saveSection": "Save this section",
+      "saveBasicChanges": "Save my changes",
+      "saveBasicInfo": "Save my information",
+      "saveAddressChanges": "Save my changes",
+      "saveAddress": "Save my address",
+      "saveLicenseChanges": "Save my changes",
+      "saveLicense": "Save my licence details",
+      "uploading": "Uploading...",
+      "saveAll": "Save the whole profile",
+      "license": {
+        "change": "Change",
+        "delete": "Delete",
+        "choose": "Choose a file"
+      }
+    },
+    "toasts": {
+      "loadError": {
+        "title": "Error",
+        "description": "Unable to load profile: {{error}}"
+      },
+      "unexpectedLoadError": {
+        "title": "Error",
+        "description": "An error occurred while loading the profile."
+      },
+      "licenseFileTooLarge": {
+        "title": "Error",
+        "description": "The file must not exceed 10MB."
+      },
+      "licenseFileTypeError": {
+        "title": "Error",
+        "description": "Please select a PDF, JPG or PNG file."
+      },
+      "licenseUploadError": {
+        "title": "Error",
+        "description": "Error while uploading: {{error}}"
+      },
+      "licenseUpdateError": {
+        "title": "Error",
+        "description": "Error while updating: {{error}}"
+      },
+      "licenseUploadSuccess": {
+        "title": "Success",
+        "description": "Licence file uploaded successfully."
+      },
+      "licenseUploadUnexpectedError": {
+        "title": "Error",
+        "description": "An error occurred while uploading the file."
+      },
+      "licenseRemoveError": {
+        "title": "Error",
+        "description": "Error while deleting: {{error}}"
+      },
+      "licenseRemoveSuccess": {
+        "title": "Success",
+        "description": "Licence file deleted successfully."
+      },
+      "licenseRemoveUnexpectedError": {
+        "title": "Error",
+        "description": "An error occurred while deleting the file."
+      },
+      "avatarTooLarge": {
+        "title": "Error",
+        "description": "The image must not exceed 5MB."
+      },
+      "avatarTypeError": {
+        "title": "Error",
+        "description": "Please select a valid image file."
+      },
+      "avatarUploadError": {
+        "title": "Error",
+        "description": "Error while uploading: {{error}}"
+      },
+      "avatarUpdateError": {
+        "title": "Error",
+        "description": "Error while updating: {{error}}"
+      },
+      "avatarUploadSuccess": {
+        "title": "Success",
+        "description": "Profile picture updated successfully."
+      },
+      "avatarUploadUnexpectedError": {
+        "title": "Error",
+        "description": "An error occurred while uploading the image."
+      },
+      "sectionSaveError": {
+        "title": "Error",
+        "description": "Error while saving: {{error}}"
+      },
+      "sectionSaveSuccess": {
+        "title": "Section saved",
+        "basic": "Your basic information has been saved.",
+        "address": "Your address information has been saved.",
+        "license": "Your licence information has been saved."
+      },
+      "sectionSaveUnexpectedError": {
+        "title": "Error",
+        "description": "Error while saving: {{error}}"
+      },
+      "profileUpdateError": {
+        "title": "Error",
+        "description": "Error while updating: {{error}}"
+      },
+      "profileUpdateSuccess": {
+        "title": "Profile updated",
+        "description": "All your information has been saved successfully."
+      },
+      "profileUpdateUnexpectedError": {
+        "title": "Error",
+        "description": "Error while updating the profile: {{error}}"
+      },
+      "globalError": {
+        "title": "Error",
+        "description": "An unexpected error occurred. Please reload the page."
+      },
+      "globalSaveError": {
+        "title": "Error",
+        "description": "A save error occurred. Please try again."
+      },
+      "javascriptError": {
+        "title": "Error",
+        "description": "An unexpected error occurred. Please reload the page."
+      }
+    },
+    "error": {
+      "title": "Error",
+      "description": "An error occurred while loading the profile.",
+      "reload": "Reload the page"
+    },
+    "loading": "Loading your profile...",
+    "banner": {
+      "title": "Profile {{percent}}% completed",
+      "description": "{{percent}}% of the profile completed. Click to save all changes."
+    },
+    "modal": {
+      "licensePreview": {
+        "title": "Driving licence preview",
+        "alt": "Driving licence",
+        "errorTitle": "Unable to load the image",
+        "errorDescription": "Check that the file is correctly uploaded and accessible."
+      }
+    },
+    "common": {
+      "learnMore": "Learn more..."
+    },
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "bookings": {
+    "header": {
+      "title": "My bookings",
+      "subtitle": "Manage your vehicle rentals",
+      "newBooking": "New booking"
+    },
+    "filters": {
+      "all": "All",
+      "pending": "Pending",
+      "active": "Ongoing",
+      "upcoming": "Upcoming",
+      "past": "Completed",
+      "cancelled": "Cancelled",
+      "refused": "Refused"
+    },
+    "empty": {
+      "title": "No bookings",
+      "description": "You haven't made any bookings yet. Discover our available vehicles!",
+      "cta": "Make a booking"
+    },
+    "emptyFiltered": {
+      "title": "No {{filter}} bookings",
+      "description": "No bookings match the selected filter. Try another filter.",
+      "reset": "View all bookings"
+    },
+    "card": {
+      "vehicleDeleted": "Vehicle deleted",
+      "messageButton": "Message",
+      "messageTooltip": "Hello {{ownerName}}, click here to chat with me",
+      "ownerFallback": "Owner",
+      "startLabel": "Start:",
+      "endLabel": "End:",
+      "totalLabel": "Total:",
+      "servicesTitle": "Additional services:",
+      "confirm": "Confirm",
+      "finalizeBooking": "Finalize my booking",
+      "activateDeposit": "Activate deposit"
+    },
+    "deposit": {
+      "status": {
+        "activated": "Deposit: activated",
+        "todo": "Deposit: to activate",
+        "none": "No deposit"
+      },
+      "toastPayFirst": "Payment required",
+      "toastPayFirstDesc": "You can activate the deposit after paying for the rental."
+    },
+    "status": {
+      "paymentConfirmed": "Payment confirmed",
+      "depositPending": "Deposit pending",
+      "readyToGo": "Ready to go",
+      "paymentDepositValidated": "Payment and deposit validated",
+      "pending": "Pending",
+      "pending_payment": "Pending payment",
+      "confirmed": "Confirmed",
+      "rejected": "Rejected",
+      "declined": "Declined",
+      "accepted": "Accepted",
+      "closed": "Closed",
+      "active": "Ongoing",
+      "completed": "Completed",
+      "terminated": "Terminated",
+      "cancelled": "Cancelled"
+    },
+    "cancel": {
+      "title": "Cancel booking",
+      "description": "Select a reason or write your message.",
+      "reason": {
+        "dateChange": "Date change",
+        "otherOption": "Found another option",
+        "personalIssue": "Personal issue",
+        "bookingError": "Booking error",
+        "custom": "Other reason (custom)"
+      },
+      "reasonLabel": "Explain your reason",
+      "reasonPlaceholder": "Ex: My schedule changed...",
+      "back": "Back",
+      "confirm": "Confirm",
+      "processing": "Cancelling..."
+    },
+    "toasts": {
+      "cancelError": "Unable to cancel booking: {{error}}",
+      "cancelledDescription": "Your booking has been cancelled. The owner will be notified.",
+      "unexpectedError": "An error occurred",
+      "reasonRequired": "Reason required",
+      "reasonRequiredDescription": "Please select a reason or enter a message.",
+      "cancelledSimple": "Your booking has been cancelled.",
+      "comingSoon": "Coming soon",
+      "comingSoonDescription": "Booking confirmation will be available soon"
+    },
+    "details": {
+      "title": "Your booking details",
+      "referenceNumber": "Booking #{{referenceNumber}}",
+      "createdAt": "Created on {{date}}",
+      "yearLabel": "Year {{year}}",
+      "clientInfo": "Client information",
+      "lastName": "Last name",
+      "firstName": "First name",
+      "phone": "Phone",
+      "email": "Email",
+      "notProvided": "Not provided",
+      "pickupZone": "Pickup zone",
+      "returnZone": "Return zone",
+      "hotelName": "Hotel",
+      "notes": "Notes",
+      "notSpecified": "Not specified",
+      "rentalDates": "Rental dates",
+      "baseRate": "Base rate",
+      "pricePerDayFormat": "{{price}}/day × {{duration}}",
+      "downloadPdf": "Download PDF",
+      "close": "Close"
+    }
+  },
+  "ownerVehicles": {
+    "loading": "Loading...",
+    "header": {
+      "title": "My vehicles",
+      "subtitle": "Manage your vehicles and your bookings"
+    },
+    "kycRequired": {
+      "title": "KYC verification required",
+      "description": "To publish your vehicles, you must complete your identity verification."
+    },
+    "empty": {
+      "title": "No vehicles",
+      "description": "Start by adding your first vehicle to the platform."
+    },
+    "vehicleTypeModal": {
+      "title": "Which type of vehicle would you like to add?",
+      "description": "Choose the type of vehicle you want to publish on the platform.",
+      "carLabel": "Car",
+      "motoLabel": "Moto / Scooter",
+      "accommodationLabel": "Accommodation",
+      "cancel": "Cancel"
+    },
+    "card": {
+      "pricePerDay": "Price/day",
+      "year": "Year",
+      "fuel": "Fuel",
+      "actions": {
+        "manage": "Manage vehicle",
+        "viewPublic": "View public listing"
+      }
+    },
+    "addCard": {
+      "title": "Add a vehicle",
+      "description": "Click here to add a new vehicle to your fleet and start renting it",
+      "badge": "New vehicle"
+    },
+    "motoPlaceholder": {
+      "title": "Moto / Scooter",
+      "description": "The form to add a motorbike or scooter will be available soon.",
+      "backToVehicles": "Back to my vehicles"
+    },
+    "motoForm": {
+      "title": "Add a motorbike / scooter",
+      "brand": "Brand",
+      "brandPlaceholder": "e.g. Honda",
+      "model": "Model",
+      "modelPlaceholder": "e.g. PCX 125",
+      "year": "Year",
+      "mileage": "Mileage (approx.)",
+      "kind": "Type",
+      "kindPlaceholder": "Select",
+      "kindMoto": "Motorbike",
+      "kindScooter": "Scooter",
+      "engineCapacity": "Engine capacity (cc)",
+      "licensePlate": "Licence plate (optional)",
+      "seats": "Number of seats",
+      "fuel": "Fuel",
+      "fuelPlaceholder": "Select",
+      "transmission": "Transmission",
+      "transmissionPlaceholder": "Select",
+      "dailyPrice": "Price per day (€)",
+      "description": "Description (optional)",
+      "descriptionPlaceholder": "Describe the condition of the bike, included equipment (helmet, top case, etc.)...",
+      "cancel": "Cancel",
+      "submit": "Create vehicle",
+      "saving": "Creating...",
+      "successTitle": "Motorbike / scooter added successfully",
+      "successDescription": "Your vehicle has been created. You can now manage it in your vehicles list.",
+      "errors": {
+        "required": "Please fill at least brand, model, year and daily price.",
+        "year": "Please enter a valid year.",
+        "price": "Please enter a valid daily price.",
+        "generic": "Unable to create the vehicle. Please try again."
+      },
+      "photos": {
+        "sectionTitle": "Vehicle photos",
+        "sectionSubtitle": "Add at least one photo of your motorbike or scooter to attract more renters.",
+        "primaryLabel": "Main photo",
+        "primaryHint": "Front-left – recommended angle to highlight your motorbike/scooter",
+        "profileLabel": "Side view",
+        "profileHint": "Side view to clearly show the bike’s profile",
+        "interiorLabel": "Details / Equipment",
+        "interiorHint": "For example: dashboard, seat, top case, storage, etc.",
+        "addMore": "Add photos",
+        "addMoreLimit": "Limit reached (3 extra photos)",
+        "slotLabel": "Photo {{index}}",
+        "slotOptional": "Optional",
+        "changePhoto": "Change photo",
+        "deletePhoto": "Delete",
+        "invalidType": "Please select a valid image file.",
+        "tooLarge": "The photo must be smaller than 10MB.",
+        "minRequired": "Please add at least one photo of your motorbike or scooter.",
+        "added": "Photo added",
+        "addedTitle": "Photo added",
+        "addedDescription": "Your photo has been added successfully.",
+        "additionalAdded": "Additional photo added",
+        "additionalAddedDescription": "Your additional photo has been added successfully.",
+        "removed": "Photo removed",
+        "removedTitle": "Photo removed",
+        "removedDescription": "The photo has been removed successfully."
+      }
+    },
+    "accommodationForm": {
+      "title": "Add accommodation",
+      "category": "Accommodation type",
+      "categoryPlaceholder": "Select",
+      "categoryVilla": "Villa",
+      "categoryBungalow": "Bungalow",
+      "categoryMaison": "House",
+      "categoryChambre": "Room",
+      "categoryAppartement": "Apartment",
+      "name": "Accommodation name",
+      "namePlaceholder": "e.g. Flamboyants Villa",
+      "capacity": "Guest capacity",
+      "nightlyPrice": "Price per night",
+      "nightlyPriceHint": "Enter either amount — € equivalent shown to travelers at today's rate",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe your accommodation, amenities, location...",
+      "submit": "Create accommodation",
+      "saving": "Creating...",
+      "successTitle": "Accommodation added successfully",
+      "successDescription": "Your listing has been created. You can manage it in your vehicles list.",
+      "errors": {
+        "required": "Please fill in type, name, capacity and price per night.",
+        "price": "Please enter a valid price per night (minimum 1,000 Ar).",
+        "capacity": "Please enter a capacity between 1 and 20 guests.",
+        "generic": "Unable to create the accommodation. Please try again."
+      },
+      "photos": {
+        "sectionTitle": "Accommodation photos",
+        "sectionSubtitle": "Add at least one photo to showcase your accommodation.",
+        "minRequired": "Please add at least one photo of your accommodation."
+      }
+    },
+    "availabilityDialog": {
+      "title": "Confirm availability change",
+      "intro": "By disabling your vehicle's availability:",
+      "point1": "It will no longer appear in search results",
+      "point2": "Customers will no longer be able to make new bookings",
+      "point3": "Existing bookings remain valid",
+      "confirmQuestion": "Are you sure you want to continue?",
+      "cancel": "Cancel",
+      "confirm": "Confirm deactivation"
+    },
+    "accessDenied": {
+      "title": "Access denied",
+      "description": "You must be logged in to access this page.",
+      "login": "Log in"
+    },
+    "toasts": {
+      "cannotDisable": {
+        "title": "Cannot disable",
+        "description": "This vehicle has active or future bookings. Cancel those bookings first."
+      },
+      "saveStatusError": {
+        "title": "Error",
+        "description": "Unable to save status: {{message}}"
+      },
+      "statusUpdated": {
+        "title": "Status updated",
+        "available": "The vehicle is now available",
+        "unavailable": "The vehicle is now unavailable"
+      },
+      "genericError": {
+        "title": "Error",
+        "description": "An error occurred while saving."
+      },
+      "mustBeLoggedIn": {
+        "title": "Error",
+        "description": "You must be logged in to access this page"
+      },
+      "loadVehiclesError": {
+        "title": "Error",
+        "description": "Unable to load your vehicles"
+      }
+    }
+  },
+  "dictionary": {
+    "back": "Back to dictionary",
+    "definitionsTitle": "Definitions",
+    "derivationLabel": "Derivation:",
+    "etymologyTitle": "Etymology",
+    "noResults": "No results for this search.",
+    "originLabel": "Origin:",
+    "relatedWordsLabel": "Related words:",
+    "searchPlaceholder": "Search for a word...",
+    "sourcesTitle": "Sources",
+    "title": "Dictionary"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "dictionary": "Dictionary",
+    "home": "Home",
+    "login": "Login"
+  },
+  "whatsapp": {
+    "contactOnly": "WhatsApp contact only",
+    "contactOnlyShort": "WhatsApp only",
+    "sendEmail": "Send an email",
+    "directLine": "Direct line",
+    "directLineShort": "Call us",
+    "directLineAria": "Call us at +261 37 34 379 12",
+    "floatingButtonAria": "Contact Rentanoo on WhatsApp",
+    "floatingBubbleMessage": "Hello! I'm Chris, the manager of Rentanoo. I'm here to answer your questions.",
+    "floatingBubbleResponseHint": "Typical reply within 2 hours.",
+    "floatingDragHint": "Hold to move"
+  },
+  "contact": {
+    "title": "Contact us",
+    "intro": "Prefer to write to us? Fill out the form below.",
+    "formTitle": "Contact form",
+    "formDescription": "All fields marked with an asterisk (*) are required.",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Your full name",
+    "email": "Email address",
+    "emailPlaceholder": "your@email.com",
+    "phone": "Phone number",
+    "phonePlaceholder": "+33 6 12 34 56 78",
+    "subject": "Subject",
+    "subjectPlaceholder": "Subject of your message",
+    "message": "Message",
+    "messagePlaceholder": "Your message...",
+    "attachment": "Attachment",
+    "attachmentHint": "Accepted formats: PDF, JPG, PNG, DOC, DOCX (max 10MB)",
+    "optional": "optional",
+    "send": "Send",
+    "sending": "Sending...",
+    "success": "Message sent!",
+    "successDescription": "Your message has been sent successfully. We will reply as soon as possible.",
+    "error": "Error",
+    "errorGeneric": "Error, please try again.",
+    "errorNetwork": "Unable to contact the server. Please check your internet connection.",
+    "errorTimeout": "The request took too long. Please try again.",
+    "fileTooLarge": "File must not exceed 10MB"
+  },
+  "depositModal": {
+    "title": "Activate deposit",
+    "description": "No immediate charge.\n\nYou are simply registering your card to secure the deposit of {{amount}}.\nA hold may be placed automatically 48h before departure, then released 48h after return if everything is in order.\n\nSimple, secure and no surprises.",
+    "amountLabel": "Deposit amount: {{amount}}",
+    "learnMore": "Learn more about deposit and damage",
+    "loading": "Loading form...",
+    "submit": "Register my card",
+    "submitting": "Registering...",
+    "cancel": "Cancel"
+  },
+  "seo": {
+    "home": {
+      "title": "Nosy Be rentals – Scooters, motorbikes & accommodations | Rentanoo",
+      "description": "Rent a scooter, motorbike or accommodation in Nosy Be in a few clicks. Airport or hotel delivery. 100% online booking on Rentanoo."
+    },
+    "accommodationHubs": {
+      "vacances": {
+        "title": "Vacation rentals Nosy Be"
+      },
+      "appartement": {
+        "title": "Apartment rental Nosy Be"
+      },
+      "villa": {
+        "title": "Villa rental Nosy Be"
+      },
+      "bungalow": {
+        "title": "Bungalow rental Nosy Be"
+      }
+    },
+    "contact": {
+      "title": "Contact – Scooter rental Nosy Be | Rentanoo",
+      "description": "Questions about your scooter rental in Nosy Be? Contact Rentanoo: booking, airport or hotel delivery, assistance."
+    },
+    "legal": {
+      "title": "Legal notice – Rentanoo Nosy Be",
+      "description": "Legal notice, terms of use and privacy policy of Rentanoo, scooter rental service in Nosy Be, Madagascar."
+    },
+    "rentMyCar": {
+      "title": "Become an owner – Scooter or car in Nosy Be | Rentanoo",
+      "description": "List your scooter or car for rent in Nosy Be with Rentanoo. Simple process, easy management, extra income."
+    },
+    "rentMyCarRegister": {
+      "title": "Owner registration – Nosy Be | Rentanoo",
+      "description": "Create your Rentanoo owner account and list your vehicle for rent in Nosy Be. Info and conditions in minutes."
+    },
+    "sinistreCaution": {
+      "title": "Damage & deposit – Scooter rental Nosy Be | Rentanoo",
+      "description": "In case of incident during your scooter rental in Nosy Be: procedure, deposit, documents and insurance. Rentanoo supports you."
+    },
+    "meteoNosyBe": {
+      "title": "Nosy Be weather today – 7-day forecast | Rentanoo",
+      "description": "Live weather in Nosy Be: current temperature, 7-day forecast, rainy season tips and advice for your stay in Madagascar."
+    },
+    "tauxChange": {
+      "title": "Euro to Ariary exchange rate Madagascar today | Rentanoo",
+      "description": "Live EUR/MGA rate for Madagascar: today's rate, 14-day trend and ariary equivalent for your expenses in Nosy Be."
+    },
+    "volsNosyBe": {
+      "title": "Nosy Be flights today – Fascène arrivals & departures | Rentanoo",
+      "description": "Flight schedules at Nosy Be Fascène airport (NOS): today's arrivals and departures, airlines and live status."
+    },
+    "notFound": {
+      "title": "Page not found – Rentanoo",
+      "description": "This page does not exist. Return to the homepage to rent a scooter in Nosy Be with Rentanoo."
+    },
+    "vehicleLoading": {
+      "title": "Loading… | Rentanoo",
+      "description": "Rent your scooter in Nosy Be in a few clicks. Delivery to airport or hotel. Helmets and insurance included. Book online."
+    },
+    "vehicleNotFound": {
+      "title": "Vehicle not found – Rentanoo",
+      "description": "This vehicle does not exist or is no longer available. Return to the homepage to discover our scooters in Nosy Be."
+    }
+  },
+  "sinistreCaution": {
+    "metaTitle": "Damage & deposit | RENTANOO - Nosy Be rental",
+    "metaDescription": "In case of incident during your rental: damage and deposit procedure, card insurance, documents to provide. Rentanoo supports you.",
+    "mailSubject": "Quick update following your return inspection",
+    "illustrationComingSoon": "Illustration coming soon (we'll add it later)",
+    "hero": {
+      "subtitle": "Damage & deposit",
+      "title": "Don't panic: we stay calm and take it step by step.",
+      "description": "A small incident can happen during a rental. Here we explain what happens next simply, to avoid stress and keep things smooth.",
+      "bullet1": "No immediate charge",
+      "bullet2": "The deposit is not charged automatically",
+      "bullet3": "It only serves (if needed) to advance real costs",
+      "bullet4": "Never beyond the justified amount",
+      "ctaProcess": "Understand the procedure",
+      "ctaContact": "Contact Rentanoo",
+      "tip": "Tip: keep this link, it's meant to be shared from our emails."
+    },
+    "illustration": {
+      "hero": "Header illustration (relaxed couple + scooter, Nosy Be)",
+      "process": "Process illustration (timeline / steps)",
+      "caution": "Deposit illustration (justified amount)",
+      "assurance": "Insurance illustration (card / protection)",
+      "documents": "Documents illustration (invoice / papers)",
+      "cta": "Zen + process illustration (renter)",
+      "faq": "FAQ / support illustration"
+    },
+    "process": {
+      "title": "How it works, in concrete terms",
+      "subtitle": "We keep things simple: the owner quotes, Rentanoo verifies, then we inform you before any decision.",
+      "step1Title": "1) Owner's quote (48h max)",
+      "step1Desc": "The owner estimates the repairs needed precisely.",
+      "step2Title": "2) Rentanoo verification",
+      "step2Desc": "We ensure amounts are consistent, justified and documented.",
+      "step3Title": "3) Information + next steps",
+      "step3Desc": "Nothing happens \"behind your back\". We keep you informed before any action."
+    },
+    "caution": {
+      "title": "The deposit: what it's really for",
+      "subtitle": "The deposit isn't there to \"punish\". It mainly serves to advance real costs if a repair is needed — and only with supporting documents.",
+      "bullet1": "No automatic charge",
+      "bullet2": "If withheld: only for justified costs",
+      "bullet3": "Never beyond the repair amount",
+      "note": "Important: if damages are below the deposit amount, the remainder is not charged."
+    },
+    "assurance": {
+      "title": "Card payment: a real advantage",
+      "subtitle": "In many cases, you can use your card insurance (or travel/personal insurance).",
+      "card": "The deposit can serve to advance costs, then you can request reimbursement through your insurance, depending on your contract.",
+      "note": "(We don't replace your insurance: we help you build a clear file.)"
+    },
+    "documents": {
+      "title": "Documents: we make it easy for you",
+      "subtitle": "Rentanoo will provide the documents needed for your file (invoice, supporting documents, useful elements).",
+      "bullet1": "Invoice / supporting documents",
+      "bullet2": "File elements (photos if needed)",
+      "bullet3": "Booking references"
+    },
+    "cta": {
+      "title": "Key points reminder (stay calm)",
+      "subtitle": "In short: don't panic, we handle this calmly.",
+      "bullet1": "No immediate charge: nothing is taken \"automatically\".",
+      "bullet2": "The deposit only serves as an advance if needed.",
+      "bullet3": "Never beyond the real and justified repair amount.",
+      "bullet4": "We'll provide invoice + documents for your insurance (card / travel).",
+      "bullet5": "The owner has up to 48h to quote, then Rentanoo verifies.",
+      "button": "Contact Rentanoo"
+    },
+    "faq": {
+      "intro": "Frequently asked questions — we answer simply.",
+      "q1": "Will my entire deposit be charged?",
+      "a1": "No. If there are repairs, only the part corresponding to real and justified costs can be withheld. Nothing is done without verification.",
+      "q2": "When can an amount be withheld?",
+      "a2": "Only if damage is confirmed and quoted (estimate/invoice), then validated after Rentanoo verification.",
+      "q3": "Why not go directly through the vehicle insurance?",
+      "a3": "Depending on the case, vehicle insurance may involve specific procedures and delays. The \"deposit + documents\" route is often faster to restore the vehicle, while allowing you to get reimbursed via your insurance (card / travel).",
+      "q4": "Can I use my card insurance?",
+      "a4": "Often yes. Many cards include coverage (conditions vary). Card payment is a real plus: we provide the documents you need for your file.",
+      "q5": "What documents will I receive?",
+      "a5": "Depending on the case: invoice, supporting documents, file elements and useful references. Everything needed to submit a reimbursement request calmly.",
+      "q6": "What if I disagree with the amount?",
+      "a6": "You can reply and discuss with the team. The goal: a fair, documented solution without tension.",
+      "q7": "What are the deadlines?",
+      "a7": "The owner has up to 48h to quote. Then Rentanoo verifies the documents. You're informed at each important step."
+    },
+    "contact": {
+      "title": "A question? We're here.",
+      "description": "If something isn't clear, contact us: we reply quickly, and always calmly.",
+      "emailCta": "Email support",
+      "homeCta": "Back to home",
+      "tip": "Tip: in your message, include your booking reference if you have it."
+    }
+  },
+  "meteoNosyBePage": {
+    "eyebrow": "Madagascar · Nosy Be",
+    "title": "Nosy Be weather today",
+    "intro": "Check live weather in Nosy Be and the 7-day forecast to plan your trip: beaches, scooter rides and water activities.",
+    "liveLabel": "Current temperature",
+    "localTime": "Local time",
+    "timezone": "Indian/Antananarivo timezone (UTC+3)",
+    "forecastTitle": "7-day weather forecast in Nosy Be",
+    "sourceNote": "Source: Open-Meteo numerical models. May differ from Météo Madagascar or La Chaîne Météo bulletins, which sometimes include local analysis.",
+    "tableDay": "Day",
+    "tableCondition": "Conditions",
+    "tableTemp": "Min / Max",
+    "seoBlockTitle": "Climate and seasons in Nosy Be",
+    "seoBlock": "Nosy Be has a tropical climate with a dry season from May to November and a rainy season from December to April. Temperatures stay mild year-round (25–32 °C). Before booking your scooter rental, check today's weather to plan beach trips, Hell-Ville market or coastal rides. Rentanoo delivers to Fascène airport or directly to your hotel.",
+    "faqTitle": "FAQ — Nosy Be weather",
+    "faq": {
+      "items": [
+        {
+          "q": "What is the best time to visit Nosy Be?",
+          "a": "High season is the dry season (May–November): clearer skies, calm sea and ideal conditions to explore the island by scooter."
+        },
+        {
+          "q": "Is it always hot in Nosy Be?",
+          "a": "Temperatures are around 25–30 °C. Humidity can be higher in the rainy season; pack light rain protection."
+        },
+        {
+          "q": "Is the forecast reliable for scooter rental planning?",
+          "a": "24–48 h forecasts are reliable. For a week, use them as a trend and keep some flexibility in your plans."
+        }
+      ]
+    },
+    "ctaTitle": "Ready to explore Nosy Be?",
+    "ctaText": "Rent a scooter online with Rentanoo: fast booking, airport or hotel delivery, helmet included.",
+    "ctaRent": "Rent a scooter",
+    "ctaExchange": "Euro / Ariary rate"
+  },
+  "tauxChangePage": {
+    "eyebrow": "Madagascar · MGA",
+    "title": "Euro to Ariary exchange rate Madagascar",
+    "intro": "Track the EUR/MGA rate for your spending in Madagascar: today's rate, recent trend and ariary equivalent to budget your stay in Nosy Be.",
+    "liveLabel": "Today's rate",
+    "liveSource": "Frankfurter reference rate (updated daily).",
+    "manualSource": "Indicative rate set by Rentanoo for price display.",
+    "historyTitle": "EUR → Ariary trend (last 14 days)",
+    "historyHint": "Frankfurter data — actual exchange office or bank rates may vary slightly.",
+    "tableDate": "Date",
+    "tableRate": "1 € in Ariary (MGA)",
+    "seoBlockTitle": "Understanding Euro Ariary exchange in Madagascar",
+    "seoBlock": "The ariary (MGA) is Madagascar's official currency. The Euro/Ariary rate fluctuates on international markets; in Nosy Be, tourist businesses often accept euros but give change in ariary. Rentanoo displays scooter rental prices in euros with the ariary equivalent to help you compare. For local expenses (restaurants, tours, fuel), keep some cash in ariary and check the rate before exchanging large amounts.",
+    "faqTitle": "FAQ — Madagascar exchange rate",
+    "faq": {
+      "items": [
+        {
+          "q": "What is today's Euro Ariary rate in Madagascar?",
+          "a": "The rate at the top of this page is updated daily via a reference source (Frankfurter). Local exchange offices may differ by a few ariary."
+        },
+        {
+          "q": "Can you pay in euros in Nosy Be?",
+          "a": "Euros are sometimes accepted in tourism, but ariary remains the everyday currency. It's best to exchange part of your budget to MGA."
+        },
+        {
+          "q": "How does Rentanoo use this rate?",
+          "a": "Our rental prices are shown in euros with an ariary equivalent calculated at the day's rate for transparent booking."
+        }
+      ]
+    },
+    "ctaTitle": "Book your scooter with € and Ar prices",
+    "ctaText": "Compare available models and confirm online — delivery to Fascène airport or your hotel in Nosy Be.",
+    "ctaRent": "Browse scooters",
+    "ctaWeather": "Nosy Be weather"
+  },
+  "volsNosyBePage": {
+    "eyebrow": "Fascène Airport · NOS",
+    "title": "Nosy Be flights — arrivals & departures",
+    "intro": "Check flight schedules at Nosy Be Fascène airport: upcoming arrivals and departures, 7-day programme, airlines and status. Perfect to sync your scooter rental with your flight.",
+    "officialDisclaimerTitle": "Indicative times — check the official airport site",
+    "officialDisclaimerText": "Schedules shown here come from a third-party source (AeroDataBox) and may be incomplete or differ from Fascène airport's live programme. If in doubt or before you travel, confirm on the official airport website.",
+    "officialDisclaimerLink": "Official schedules on nosybe-airport.aero",
+    "nextArrival": "Next arrival",
+    "nextDeparture": "Next departure",
+    "forecastTitle": "Pick a day",
+    "forecastHint": "7-day schedule from today (Nosy Be time). Data refreshed twice daily.",
+    "dayToday": "Today",
+    "dayTomorrow": "Tomorrow",
+    "arrivalsTitle": "Arrivals",
+    "departuresTitle": "Departures",
+    "tableTime": "Time",
+    "tableFlight": "Flight",
+    "tableAirline": "Airline",
+    "tableFrom": "From",
+    "tableTo": "To",
+    "tableStatus": "Status",
+    "noFlights": "No flights in the displayed window",
+    "unavailable": "Flight schedules temporarily unavailable",
+    "notConfigured": "Flight schedules will appear once the data source (AeroDataBox) is activated.",
+    "sourceNote": "Source: AeroDataBox. Indicative times refreshed twice daily — confirm with your airline before travel.",
+    "seoBlockTitle": "Nosy Be Fascène Airport (NOS)",
+    "seoBlock": "Fascène airport serves Nosy Be with connections mainly from Antananarivo (TNR) and seasonal international flights. Rentanoo delivers your scooter directly at the airport on landing — book online and save time on arrival.",
+    "faqTitle": "FAQ — Nosy Be flights",
+    "faq": {
+      "items": [
+        {
+          "q": "What is Nosy Be airport IATA code?",
+          "a": "NOS (Fascène). Main airport on Nosy Be island, about 20 minutes from Hell-Ville."
+        },
+        {
+          "q": "Can I pick up my scooter at the airport?",
+          "a": "Yes. Rentanoo offers airport pickup at Fascène when booking online."
+        },
+        {
+          "q": "Are displayed times guaranteed?",
+          "a": "No. These are indicative schedules from a third-party source. For the official programme and live status, see nosybe-airport.aero/vols/ or contact your airline."
+        }
+      ]
+    },
+    "ctaTitle": "Land in Nosy Be with peace of mind",
+    "ctaText": "Book your scooter with airport delivery — helmet included, 100% online booking.",
+    "ctaRent": "Rent a scooter",
+    "ctaWeather": "Nosy Be weather",
+    "ctaExchange": "Euro / Ariary rate"
+  },
+  "explorerFilters": {
+    "categories": {
+      "accommodation": "Accommodation",
+      "scooter": "Scooters",
+      "moto": "Motorcycles",
+      "quad": "Quads / Buggys",
+      "car": "Cars"
+    },
+    "sub": {
+      "accommodation": {
+        "appartement": "Apartment",
+        "villa": "Villa",
+        "bungalow": "Bungalow",
+        "maison": "House",
+        "chambre": "Room"
+      },
+      "engine": {
+        "50cc": "50cc",
+        "125cc": "125cc",
+        "150cc": "150cc",
+        "200cc": "200cc",
+        "200plus": "200cc+",
+        "250plus": "250cc+",
+        "300cc": "300cc"
+      },
+      "car": {
+        "citadine": "City car",
+        "suv": "SUV",
+        "4x4": "4x4",
+        "van": "Van",
+        "luxe": "Luxury"
+      },
+      "quad": {
+        "buggy": "Buggy",
+        "300cc": "300cc"
+      }
+    },
+    "comingSoon": "Coming soon",
+    "listingsCount_one": "{{count}} listing",
+    "listingsCount": "{{count}} listings",
+    "moreFilters": "More filters",
+    "viewResults": "View results",
+    "reset": "Reset",
+    "mainCategoryAria": "{{label}}, {{count}} listings available, filter",
+    "subFilterAria": "{{label}}, {{count}} listings available, filter",
+    "empty": {
+      "cta": {
+        "request": "Send a request"
+      },
+      "waPrefill": {
+        "car": "Hello Rentanoo,\n\nI would like to rent a car in Nosy Be. Please notify me when offers become available.\n\nThank you.",
+        "scooter": "Hello Rentanoo,\n\nI would like to rent a scooter in Nosy Be. Please notify me about matching availability.\n\nThank you.",
+        "moto": "Hello Rentanoo,\n\nI would like to rent a motorcycle in Nosy Be. Please notify me about matching availability.\n\nThank you.",
+        "quad": "Hello Rentanoo,\n\nI would like to rent a quad or buggy in Nosy Be. Please notify me about availability.\n\nThank you.",
+        "accommodation": {
+          "generic": "Hello Rentanoo,\n\nI am looking for accommodation in Nosy Be. Please contact me when offers become available.",
+          "appartement": "Hello Rentanoo,\n\nI am looking for an apartment in Nosy Be. Please contact me when offers become available.",
+          "villa": "Hello Rentanoo,\n\nI am looking for a villa in Nosy Be. Please contact me when this type of accommodation becomes available.",
+          "bungalow": "Hello Rentanoo,\n\nI am looking for a bungalow in Nosy Be. Please keep me informed when new accommodations are published.",
+          "maison": "Hello Rentanoo,\n\nI am looking for a house in Nosy Be. Please contact me when this type of accommodation becomes available.",
+          "chambre": "Hello Rentanoo,\n\nI am looking for a room in Nosy Be. Please contact me when this type of accommodation becomes available."
+        }
+      },
+      "accommodation": {
+        "title": "More accommodation coming soon",
+        "description": "We are currently expanding our accommodation catalogue in Nosy Be.",
+        "appartement": {
+          "title": "Apartments coming soon",
+          "description": "We are currently expanding our apartment catalogue."
+        },
+        "villa": {
+          "title": "Villas coming soon",
+          "description": "We are currently expanding our accommodation catalogue."
+        },
+        "bungalow": {
+          "title": "Bungalows coming soon",
+          "description": "Come back soon to discover our new accommodations."
+        },
+        "maison": {
+          "title": "Houses coming soon",
+          "description": "We are currently expanding our house catalogue."
+        },
+        "chambre": {
+          "title": "Rooms coming soon",
+          "description": "We are currently expanding our room catalogue."
+        }
+      },
+      "scooter": {
+        "title": "Scooters coming soon",
+        "description": "This selection will be available soon on Rentanoo.",
+        "50cc": {
+          "title": "50cc scooters coming soon",
+          "description": "We are preparing 50cc scooters for Nosy Be. Check back soon."
+        }
+      },
+      "moto": {
+        "title": "Motorcycles coming soon",
+        "description": "This category will be available soon on Rentanoo."
+      },
+      "quad": {
+        "title": "Quads & Buggys available",
+        "description": "Explore Nosy Be differently — rent a quad or buggy with Rentanoo."
+      },
+      "car": {
+        "title": "Cars coming soon",
+        "description": "We are preparing our vehicle offer. Check back soon or contact us to be notified."
+      }
+    }
+  },
+  "homeResults": {
+    "titleAll": "All available rentals",
+    "titleAccommodation": "Available accommodation",
+    "titleScooter": "Available scooters",
+    "titleMoto": "Available motorcycles",
+    "titleQuad": "Available quads & buggys",
+    "titleCar": "Available cars",
+    "countAll": "{{count}} listing(s)",
+    "countAccommodation": "{{count}} accommodation(s)",
+    "countScooter": "{{count}} scooter(s)",
+    "countMoto": "{{count}} motorcycle(s)",
+    "countQuad": "{{count}} quad(s)",
+    "countCar": "{{count}} car(s)",
+    "noMatchAll": "No listings match your filters.",
+    "noMatchAccommodation": "No accommodation matches your filters.",
+    "noMatchScooter": "No scooter matches your filters.",
+    "noMatchMoto": "No motorcycle matches your filters.",
+    "noMatchQuad": "No quad matches your filters.",
+    "noMatchCar": "No car matches your filters.",
+    "emptyAll": "No listings available at the moment.",
+    "emptyAccommodation": "No accommodation available at the moment."
+  },
+  "categoryShowcase": {
+    "title": "What would you like to rent in Nosy Be?",
+    "subtitle": "Discover our rental solutions available today and those coming soon.",
+    "sectionAvailable": "Available now",
+    "sectionComingSoon": "Coming soon",
+    "badgeAvailable": "Available now",
+    "badgeComingSoon": "Coming soon",
+    "viewAllAvailable": "View all available rentals",
+    "button": "Explore",
+    "items": {
+      "scooter": {
+        "label": "Scooter"
+      },
+      "moto": {
+        "label": "Motorbike"
+      },
+      "quad": {
+        "label": "Quad",
+        "waPrefillMessage": "Hello Rentanoo,\n\nI'm interested in renting a quad in Nosy Be.\n\nCould you let me know as soon as this service becomes available?\n\nThank you."
+      },
+      "boat": {
+        "label": "Boat",
+        "waPrefillMessage": "Hello Rentanoo,\n\nI'm interested in renting a boat in Nosy Be.\n\nCould you let me know as soon as this service becomes available?\n\nThank you."
+      },
+      "accommodation": {
+        "label": "Accommodation",
+        "waPrefillMessage": "Hello Rentanoo,\n\nI'm interested in the accommodations offered by Rentanoo (villa, house, bungalow).\n\nCould you let me know as soon as this service becomes available?\n\nThank you."
+      }
+    }
+  }
+}
