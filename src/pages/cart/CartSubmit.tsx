@@ -288,14 +288,14 @@ export default function CartSubmit() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary-soft/5 to-secondary-soft/10 pt-20">
+    <div className="min-h-screen bg-[#F4F2EE] pt-20">
       <SubmitProgressOverlay open={submitting} stepIndex={submitStep} />
       <div className="container mx-auto px-4 py-8 max-w-2xl">
-        <Card>
+        <Card className="border border-[#D8D5CF] shadow-sm">
           <CardHeader>
-            <CardTitle className="flex items-center gap-3">
-              <ShoppingCart className="h-7 w-7 text-primary" />
-              Valider ma demande groupée ({items.length} élément{items.length > 1 ? "s" : ""})
+            <CardTitle className="flex items-center gap-3 font-display text-[#0D1E26]">
+              <ShoppingCart className="h-7 w-7 text-[#097870]" />
+              Confirme ta demande groupée ({items.length} élément{items.length > 1 ? "s" : ""})
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -422,7 +422,7 @@ export default function CartSubmit() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <p className="text-sm text-muted-foreground rounded-lg bg-muted/40 p-3">
+                  <p className="text-sm text-[#6B8A8D] rounded-lg bg-[#F4F2EE] border border-[#D8D5CF] p-3">
                     Pas besoin de compte — on crée un espace gratuit pour toi pour suivre ta demande.
                   </p>
                   <div className="grid gap-4 md:grid-cols-2">
@@ -476,10 +476,10 @@ export default function CartSubmit() {
                 <Label htmlFor="notes">Notes (optionnel)</Label>
                 <textarea
                   id="notes"
-                  className="w-full min-h-[100px] rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  className="w-full min-h-[100px] rounded-md border border-[#D8D5CF] bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#097870]/20"
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Précisions sur votre demande..."
+                  placeholder="Précisions sur ta demande..."
                 />
               </div>
 
@@ -511,15 +511,15 @@ export default function CartSubmit() {
                 </AccordionItem>
               </Accordion>
 
-              <p className="text-sm text-muted-foreground rounded-lg bg-muted/40 p-3">
-                Cette demande n'est pas un paiement — chaque propriétaire valide votre demande individuellement.
+              <p className="text-sm text-[#6B8A8D] rounded-lg bg-[#F4F2EE] border border-[#D8D5CF] p-3">
+                Cette demande n'est pas un paiement — chaque propriétaire valide ta demande individuellement.
               </p>
 
               <div className="flex justify-end gap-3 pt-4">
-                <Button type="button" variant="outline" onClick={() => navigate("/")}>
+                <Button type="button" variant="outline" className="border-[#D8D5CF] text-[#0D1E26] hover:bg-[#F4F2EE]" onClick={() => navigate("/")}>
                   Annuler
                 </Button>
-                <Button type="submit" disabled={!canSubmit}>
+                <Button type="submit" variant="ember" disabled={!canSubmit}>
                   {submitting ? "Envoi en cours..." : "Envoyer ma demande"}
                 </Button>
               </div>
