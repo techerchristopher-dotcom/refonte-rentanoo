@@ -12,6 +12,7 @@ const devPort = Number(process.env.VITE_DEV_PORT || 3002);
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: mode === "production" ? "/refonte-rentanoo/" : "/",
   server: {
     host: "::",
     port: devPort,
