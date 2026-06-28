@@ -337,24 +337,10 @@ export default function MotoVehicleDetails() {
     try {
       setLoading(true);
 
-      // Charger tous les véhicules depuis Supabase
-      const allVehicles = await SupabaseVehiclesService.getAvailableVehicles();
+      // Requête ciblée par short_id (pas tout le catalogue)
+      const { data: supabaseVehicle } = await SupabaseVehiclesService.getVehicleByShortId(license);
 
-      if (import.meta.env.DEV) console.log("🏍️ [DEBUG] Tous les véhicules chargés:", allVehicles.length);
       if (import.meta.env.DEV) console.log("🏍️ [DEBUG] License recherchée (moto):", license);
-
-      // Afficher les 8 premiers caractères de chaque véhicule pour debug
-      allVehicles.forEach((v, index) => {
-        const vehicleLicense = v.id.substring(0, 8).toUpperCase();
-        if (import.meta.env.DEV) console.log(
-          `🏍️ [DEBUG] Véhicule ${index}: ID=${v.id}, License=${vehicleLicense}, Match=${vehicleLicense === license}`
-        );
-      });
-
-      // Trouver le véhicule qui correspond à la license (license générée à partir des 8 premiers caractères de l'ID)
-      const supabaseVehicle = allVehicles.find(
-        (v) => v.id.substring(0, 8).toUpperCase() === license.toUpperCase()
-      );
 
       if (supabaseVehicle) {
         // Guard : vérifier qu'il s'agit bien d'une moto
@@ -1058,8 +1044,6 @@ export default function MotoVehicleDetails() {
   const primaryPhoto = photos.find((p) => p.isPrimary) || photos[0];
   const dailyRate = vehicle.dailyPrice;
 
-  const originalRate = Math.round(dailyRate * 1.2);
-
   const nextPhoto = () => {
     setSelectedPhotoIndex((prev) => (prev + 1) % photos.length);
   };
@@ -1076,114 +1060,94 @@ export default function MotoVehicleDetails() {
   };
 
   const PricingCard = ({ isMobile = false }: { isMobile?: boolean }) => (
-    <Card className={`${isMobile ? "shadow-xl border-t" : "lg:shadow-lg"}`}>
-      <CardContent className="p-6">
-        <div className="space-y-4">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <DualPrice
-                amountMga={dailyRate}
-                variant="client"
-                primaryClassName="text-2xl font-bold text-primary"
-                secondaryClassName="text-sm"
-              />
-              <span className="text-sm text-muted-foreground line-through">
-                {formatClientInline(originalRate)}
-              </span>
-            </div>
-            <p className="text-muted-foreground">
-              {t("par_jour")}
-            </p>
+    <div className={`bg-white rounded-2xl border border-[#D8D5CF] p-6 space-y-4 ${isMobile ? 'shadow-xl' : 'shadow-sm'}`}>
+      <div>
+        <DualPrice
+          amountMga={dailyRate}
+          variant="client"
+          primaryClassName="font-mono font-bold text-2xl text-[#097870]"
+          secondaryClassName="text-sm text-[#6B8A8D]"
+        />
+        <p className="text-[#6B8A8D] text-sm mt-0.5">{t("par_jour")}</p>
 
-            <Link
-              to="/politique-annulation"
-              className="mt-2 inline-flex items-center gap-1.5 text-xs text-success hover:underline"
-            >
-              <Clock className="h-3.5 w-3.5" />
-              Annulation gratuite jusqu'à 48h avant le retrait
-            </Link>
+        <Link
+          to="/politique-annulation"
+          className="mt-2 inline-flex items-center gap-1.5 text-xs text-[#097870] hover:underline"
+        >
+          <Clock className="h-3.5 w-3.5" />
+          Annulation gratuite jusqu'à 48h avant le retrait
+        </Link>
 
-            {vehicleRentalInfo && (
-              <div className="mt-3 pt-3 border-t border-muted">
-                <p className="text-sm text-muted-foreground mb-1">
-                  {t("booking.baseRateLabel")}
-                </p>
-                <DualPrice
-                  amountMga={vehicleRentalInfo.totalCost}
-                  variant="client"
-                  primaryClassName="text-3xl font-bold text-primary"
-                  secondaryClassName="text-sm"
-                />
-                <p className="text-sm text-muted-foreground">
-                  {formatLegacyFormattedPrice(t, vehicleRentalInfo, (mga) => formatClient(mga).primary)}
-                </p>
-                <p className="text-xs text-muted-foreground mt-2 italic">
-                  {t("booking.excludingFeesNote")}
-                </p>
-                <p className="text-[10px] text-muted-foreground mt-1">{footnote}</p>
-              </div>
-            )}
-          </div>
-
-          <Button
-            size="lg"
-            onClick={(e) => openCartModal(e.currentTarget)}
-            disabled={isCartFull}
-            className="w-full bg-gradient-to-r from-primary to-primary/80 hover:opacity-90"
-          >
-            <ShoppingCart className="h-5 w-5 mr-2" />
-            {isCartFull ? "Panier plein (10/10)" : "Simuler mon tarif gratuitement"}
-          </Button>
-
-          {(() => {
-            return vehicle && navigationState?.rentalCalculation;
-          })() && (
-            <VehicleServiceOptions
-              vehicle={vehicle as any}
-              rentalDays={navigationState!.rentalCalculation!.rentalDays}
+        {vehicleRentalInfo && (
+          <div className="mt-3 pt-3 border-t border-[#D8D5CF]">
+            <p className="text-sm text-[#6B8A8D] mb-1">{t("booking.baseRateLabel")}</p>
+            <DualPrice
+              amountMga={vehicleRentalInfo.totalCost}
+              variant="client"
+              primaryClassName="font-mono font-bold text-2xl text-[#097870]"
+              secondaryClassName="text-sm text-[#6B8A8D]"
             />
-          )}
+            <p className="text-sm text-[#6B8A8D] mt-1">
+              {formatLegacyFormattedPrice(t, vehicleRentalInfo, (mga) => formatClient(mga).primary)}
+            </p>
+            <p className="text-xs text-[#6B8A8D] mt-2 italic">{t("booking.excludingFeesNote")}</p>
+            <p className="text-[10px] text-[#6B8A8D] mt-1">{footnote}</p>
+          </div>
+        )}
+      </div>
 
-          <Badge variant="secondary" className="w-full justify-center py-1">
-            <CheckCircle className="h-4 w-4 mr-1" />
-            {t("booking.freeCancellation")}
-          </Badge>
+      <button
+        onClick={(e) => openCartModal(e.currentTarget as HTMLElement)}
+        disabled={isCartFull}
+        className="w-full flex items-center justify-center gap-2 bg-[#E8622F] text-white font-display font-semibold py-4 rounded-xl hover:bg-[#E8622F]/90 transition-colors text-base disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <ShoppingCart className="h-5 w-5" />
+        {isCartFull ? "Panier plein (10/10)" : "Simuler mon tarif gratuitement"}
+      </button>
 
-          <a
-            href={`${whatsappBaseUrl}?text=${encodeURIComponent(`Bonjour, j'ai une question sur ${vehicle ? `${vehicle.brand} ${vehicle.model}` : "ce véhicule"}${license ? ` (réf: ${license})` : ""}.`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackWhatsAppFabEvent("whatsapp_pdp_click", { page_path: `/moto/${license}`, vehicle_ref: license ?? "" })}
-            className="flex items-center justify-center gap-2 w-full rounded-lg border border-green-200 bg-green-50 px-4 py-2.5 text-sm text-green-700 hover:bg-green-100 transition-colors"
-          >
-            <MessageSquare className="h-4 w-4 shrink-0" />
-            Une question avant de réserver ? Écris-nous sur WhatsApp
-          </a>
-        </div>
+      {vehicle && navigationState?.rentalCalculation && (
+        <VehicleServiceOptions
+          vehicle={vehicle as any}
+          rentalDays={navigationState.rentalCalculation.rentalDays}
+        />
+      )}
 
-        <Separator className="my-6" />
+      <div className="flex items-center justify-center gap-1.5 text-sm text-[#097870]">
+        <CheckCircle className="h-4 w-4" />
+        <span>{t("booking.freeCancellation")}</span>
+      </div>
 
-        <div>
-          <h3 className="font-semibold mb-4">
-            {t("booking.includedInPrice")}
-          </h3>
-          <div className="space-y-3 text-sm">
-            <div className="flex items-center gap-2">
-              <Shield className="h-4 w-4 text-green-500" />
-              <span>{t("booking.included.insurance")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-blue-500" />
-              <span>{t("booking.included.roadside")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-purple-500" />
-              <span>{t("booking.included.extraDrivers")}</span>
-            </div>
+      <a
+        href={`${whatsappBaseUrl}?text=${encodeURIComponent(`Bonjour, j'ai une question sur ${vehicle ? `${vehicle.brand} ${vehicle.model}` : "ce véhicule"}${license ? ` (réf: ${license})` : ""}.`)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => trackWhatsAppFabEvent("whatsapp_pdp_click", { page_path: `/moto/${license}`, vehicle_ref: license ?? "" })}
+        className="flex items-center justify-center gap-2 w-full border border-[#097870] text-[#097870] font-display font-medium py-3 rounded-xl hover:bg-[#097870]/5 transition-colors text-sm"
+      >
+        <MessageSquare className="h-4 w-4 shrink-0" />
+        💬 Poser une question sur WhatsApp
+      </a>
+
+      <Separator className="my-2" />
+
+      <div>
+        <h3 className="font-display font-semibold text-[#0D1E26] mb-3 text-sm">{t("booking.includedInPrice")}</h3>
+        <div className="space-y-2 text-sm">
+          <div className="flex items-center gap-2 text-[#0D1E26]">
+            <Shield className="h-4 w-4 text-[#097870]" />
+            <span>{t("booking.included.insurance")}</span>
+          </div>
+          <div className="flex items-center gap-2 text-[#0D1E26]">
+            <Phone className="h-4 w-4 text-[#097870]" />
+            <span>{t("booking.included.roadside")}</span>
+          </div>
+          <div className="flex items-center gap-2 text-[#0D1E26]">
+            <Users className="h-4 w-4 text-[#097870]" />
+            <span>{t("booking.included.extraDrivers")}</span>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 
   const seoInput = {
@@ -1220,7 +1184,7 @@ export default function MotoVehicleDetails() {
   });
 
   return (
-    <div className={`min-h-screen flex flex-col bg-background ${hideMobileBookingBar ? "pb-0" : "pb-20"} lg:pb-0`}>
+    <div className={`min-h-screen flex flex-col bg-[#F4F2EE] ${hideMobileBookingBar ? "pb-0" : "pb-20"} lg:pb-0`}>
       <Seo
         title={buildVehicleSeoTitle(seoInput)}
         description={buildVehicleSeoDescription(seoInput)}
@@ -1228,44 +1192,52 @@ export default function MotoVehicleDetails() {
         structuredData={structuredData}
         extraStructuredData={breadcrumbSchema}
       />
-      <main className="flex-1 py-4 md:py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <Button
-            variant="ghost"
-            onClick={() => navigate(-1)}
-            className="mb-6"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            {t("motoDetails.back")}
-          </Button>
 
-          <Breadcrumb className="mb-4">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Accueil</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Location {typeLabel} à Nosy Be</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>
-                  {vehicle.brand} {vehicle.model}
-                  {vehicle.year ? ` (${vehicle.year})` : ""}
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+      {/* Header avec breadcrumb */}
+      <div className="bg-white border-b border-[#D8D5CF] py-4 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              onClick={() => navigate(-1)}
+              className="text-[#6B8A8D] hover:text-[#0D1E26] -ml-2"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              {t("motoDetails.back")}
+            </Button>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/" className="text-[#6B8A8D] hover:text-[#097870]">Accueil</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/" className="text-[#6B8A8D] hover:text-[#097870]">Location {typeLabel} à Nosy Be</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="text-[#0D1E26] font-medium">
+                    {vehicle.brand} {vehicle.model}
+                    {vehicle.year ? ` (${vehicle.year})` : ""}
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </div>
+      </div>
 
-          <div className="lg:grid lg:grid-cols-3 lg:gap-8">
-            <div className="lg:col-span-2 space-y-6">
-              <div className="space-y-4">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-muted">
+      <main className="flex-1">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Colonne gauche — 7/12 */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="rounded-2xl overflow-hidden bg-white shadow-sm">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={
                       photos[selectedPhotoIndex]?.url ||
@@ -1301,15 +1273,15 @@ export default function MotoVehicleDetails() {
                 </div>
 
                 {photos.length > 1 && (
-                  <div className="grid grid-cols-6 gap-2">
+                  <div className="grid grid-cols-6 gap-2 p-2 bg-white">
                     {photos.slice(0, 6).map((photo, index) => (
                       <button
                         key={photo.id}
                         onClick={() => setSelectedPhotoIndex(index)}
                         className={`aspect-square rounded-lg overflow-hidden transition-all ${
                           selectedPhotoIndex === index
-                            ? "ring-2 ring-primary"
-                            : "hover:ring-2 hover:ring-primary/50"
+                            ? "ring-2 ring-[#097870]"
+                            : "hover:ring-2 hover:ring-[#097870]/50"
                         }`}
                       >
                         <img
@@ -1321,30 +1293,29 @@ export default function MotoVehicleDetails() {
                     ))}
                   </div>
                 )}
-              </div>
+              </div>{/* end gallery rounded-2xl */}
 
               <div className="lg:hidden mb-6">
-                <PricingCard />
+                <PricingCard isMobile />
               </div>
 
+              {/* Titre + badges */}
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <Badge variant="secondary" className="text-sm">
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
+                  <span className="px-3 py-1 rounded-full bg-[#097870] text-white font-mono text-xs uppercase tracking-wide">
+                    {vehicle.vehicleType || 'moto'}
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-[#097870]/10 text-[#097870] font-mono text-xs">
                     {vehicle.license}
-                  </Badge>
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="font-semibold">5.0</span>
-                      <span className="text-muted-foreground">(24 avis)</span>
-                    </div>
+                  </span>
+                  <div className="ml-auto flex items-center gap-2">
                     <ShareButton
                       title={`${vehicle.brand} ${vehicle.model} — Location moto à Nosy Be`}
                     />
                   </div>
                 </div>
 
-                <h1 className="text-3xl md:text-4xl font-bold mb-3">
+                <h1 className="font-display font-bold text-3xl text-[#0D1E26] mb-2">
                   {buildVehicleH1Title({
                     brand: vehicle.brand,
                     model: vehicle.model,
@@ -1353,7 +1324,7 @@ export default function MotoVehicleDetails() {
                   })}
                 </h1>
 
-                <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-4">
+                <div className="flex flex-wrap items-center gap-3 text-[#6B8A8D] text-sm mb-3">
                   <span>{vehicle.mileage.toLocaleString()} km</span>
                   <span>•</span>
                   <span>{vehicle.year}</span>
@@ -1363,9 +1334,13 @@ export default function MotoVehicleDetails() {
                       <span>{t("vehicle.places", { count: vehicle.seats })}</span>
                     </>
                   )}
+                  {engineCapacity && (
+                    <>
+                      <span>•</span>
+                      <span>{engineCapacity} cc</span>
+                    </>
+                  )}
                 </div>
-
-                {/* Badges spécifiques voiture (Parking réservé / Transmission) masqués pour la page moto */}
               </div>
 
               {ENABLE_PICKUP_ZONES_SECTION && (
@@ -1569,62 +1544,8 @@ export default function MotoVehicleDetails() {
                         ))}
                       </div>
 
-                      <div className="space-y-4">
-                        <div className="border-t pt-4">
-                          <div className="flex items-start gap-3">
-                            <Avatar className="h-8 w-8">
-                              <AvatarImage src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" />
-                              <AvatarFallback>M</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className="font-medium">Marie</span>
-                                <div className="flex">
-                                  {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star
-                                      key={star}
-                                      className="h-3 w-3 fill-yellow-400 text-yellow-400"
-                                    />
-                                  ))}
-                                </div>
-                              </div>
-                              <p className="text-sm text-muted-foreground mb-1">
-                                {t("motoDetails.reviews.sample1.meta")}
-                              </p>
-                              <p className="text-sm">
-                                {t("motoDetails.reviews.sample1.text")}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="border-t pt-4">
-                          <div className="flex items-start gap-3">
-                            <Avatar className="h-8 w-8">
-                              <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" />
-                              <AvatarFallback>J</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className="font-medium">Jean</span>
-                                <div className="flex">
-                                  {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star
-                                      key={star}
-                                      className="h-3 w-3 fill-yellow-400 text-yellow-400"
-                                    />
-                                  ))}
-                                </div>
-                              </div>
-                              <p className="text-sm text-muted-foreground mb-1">
-                                {t("motoDetails.reviews.sample2.meta")}
-                              </p>
-                              <p className="text-sm">
-                                {t("motoDetails.reviews.sample2.text")}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="text-sm text-muted-foreground py-4 text-center">
+                        Aucun avis pour le moment. Soyez le premier à évaluer cette moto !
                       </div>
                     </CardContent>
                   </CollapsibleContent>
@@ -1656,7 +1577,7 @@ export default function MotoVehicleDetails() {
                       <div className="space-y-4">
                         <div className="flex items-center gap-3">
                           <CheckCircle className="h-5 w-5 text-green-500" />
-                          <span>{t("motoDetails.insurance.items.axa")}</span>
+                          <span>Assurance multirisque incluse</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="h-5 w-5 text-green-500" />
@@ -1772,17 +1693,19 @@ export default function MotoVehicleDetails() {
               </Collapsible>
             </div>
 
-            <div className="hidden lg:block">
-              <div className="sticky top-24 h-fit">
+            {/* Colonne droite — 5/12 — sticky */}
+            <div className="lg:col-span-5">
+              <div className="sticky top-24">
                 <PricingCard />
               </div>
             </div>
+
           </div>
         </div>
       </main>
 
       {!hideMobileBookingBar && (
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#D8D5CF]">
         <div className="p-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
@@ -1791,10 +1714,10 @@ export default function MotoVehicleDetails() {
                   <DualPrice
                     amountMga={vehicleRentalInfo.totalCost}
                     variant="client"
-                    primaryClassName="text-2xl font-bold text-primary"
-                    secondaryClassName="text-xs"
+                    primaryClassName="font-mono font-bold text-xl text-[#097870]"
+                    secondaryClassName="text-xs text-[#6B8A8D]"
                   />
-                  <div className="text-xs text-muted-foreground tabular-nums">
+                  <div className="text-xs text-[#6B8A8D] tabular-nums">
                     {getVehicleCardTotalSummary(t, vehicleRentalInfo, (mga) => formatClient(mga).primary)}
                   </div>
                 </>
@@ -1803,23 +1726,22 @@ export default function MotoVehicleDetails() {
                   <DualPrice
                     amountMga={dailyRate}
                     variant="client"
-                    primaryClassName="text-xl font-bold text-primary"
-                    secondaryClassName="text-xs"
+                    primaryClassName="font-mono font-bold text-xl text-[#097870]"
+                    secondaryClassName="text-xs text-[#6B8A8D]"
                     inline
                   />
-                  <span className="text-sm text-muted-foreground">{t("par_jour")}</span>
+                  <span className="text-xs text-[#6B8A8D]">{t("par_jour")}</span>
                 </div>
               )}
             </div>
-            <Button
-              size="lg"
-              onClick={(e) => openCartModal(e.currentTarget)}
+            <button
+              onClick={(e) => openCartModal(e.currentTarget as HTMLElement)}
               disabled={isCartFull}
-              className="bg-gradient-to-r from-primary to-primary/80 hover:opacity-90 px-6 flex-shrink-0"
+              className="flex items-center gap-2 bg-[#E8622F] text-white font-display font-semibold px-5 py-3 rounded-xl hover:bg-[#E8622F]/90 transition-colors text-sm disabled:opacity-50 flex-shrink-0"
             >
-              <ShoppingCart className="h-4 w-4 mr-2" />
-              {isCartFull ? "Panier plein" : "Simuler mon tarif gratuitement"}
-            </Button>
+              <ShoppingCart className="h-4 w-4" />
+              {isCartFull ? "Panier plein" : "Simuler mon tarif"}
+            </button>
           </div>
         </div>
       </div>
