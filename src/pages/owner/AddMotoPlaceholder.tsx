@@ -35,7 +35,7 @@ export default function AddMotoPlaceholder() {
   // 🔍 ÉTAPE 1 - DIAGNOSTIC RENDER (preuve qu'on modifie le bon composant)
   const COMPONENT_FILE_PATH = "src/pages/owner/AddMotoPlaceholder.tsx";
   const BUILD_VERSION = "v2.0-diagnostic";
-  console.log("[ADD-MOTO] render", { 
+  if (import.meta.env.DEV) console.log("[ADD-MOTO] render", { 
     file: COMPONENT_FILE_PATH,
     version: BUILD_VERSION,
     timestamp: new Date().toISOString()
@@ -69,7 +69,7 @@ export default function AddMotoPlaceholder() {
   const [loading, setLoading] = useState(false);
 
   const handlePhotoUpload = (photoType: "frontLeft" | "profileLeft" | "interior", file: File) => {
-    console.log("[Moto] handlePhotoUpload called", { photoType, fileName: file?.name, fileType: file?.type, fileSize: file?.size });
+    if (import.meta.env.DEV) console.log("[Moto] handlePhotoUpload called", { photoType, fileName: file?.name, fileType: file?.type, fileSize: file?.size });
     if (!file.type.startsWith("image/")) {
       toast({
         title: t("common.error", "Erreur"),
@@ -115,7 +115,7 @@ export default function AddMotoPlaceholder() {
   const handleMainPhotoChange = (photoType: "frontLeft" | "profileLeft" | "interior", e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log("[ADD-MOTO] onChange fired", { photoType, fileName: file.name, filesCount: 1 });
+      if (import.meta.env.DEV) console.log("[ADD-MOTO] onChange fired", { photoType, fileName: file.name, filesCount: 1 });
       handlePhotoUpload(photoType, file);
     }
     // Reset input pour permettre de sélectionner le même fichier à nouveau
@@ -128,7 +128,7 @@ export default function AddMotoPlaceholder() {
   };
 
   const handleAdditionalPhotoUpload = (file: File, index: number) => {
-    console.log("[Moto] handleAdditionalPhotoUpload called", { index, fileName: file?.name, fileType: file?.type, fileSize: file?.size });
+    if (import.meta.env.DEV) console.log("[Moto] handleAdditionalPhotoUpload called", { index, fileName: file?.name, fileType: file?.type, fileSize: file?.size });
     if (!file.type.startsWith("image/")) {
       toast({
         title: t("common.error", "Erreur"),
@@ -194,7 +194,7 @@ export default function AddMotoPlaceholder() {
   const handleAdditionalPhotoChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log("[ADD-MOTO] onChange fired (additional)", { index, fileName: file.name, filesCount: 1 });
+      if (import.meta.env.DEV) console.log("[ADD-MOTO] onChange fired (additional)", { index, fileName: file.name, filesCount: 1 });
       handleAdditionalPhotoUpload(file, index);
     }
     // Reset input pour permettre de sélectionner le même fichier à nouveau
@@ -205,11 +205,11 @@ export default function AddMotoPlaceholder() {
   const handleAddMorePhotosChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files?.length) {
-      console.log("[ADD-MOTO] No files selected");
+      if (import.meta.env.DEV) console.log("[ADD-MOTO] No files selected");
       return;
     }
     
-    console.log("[ADD-MOTO] onChange fired (addMore)", { filesCount: files.length });
+    if (import.meta.env.DEV) console.log("[ADD-MOTO] onChange fired (addMore)", { filesCount: files.length });
     
     Array.from(files)
       .slice(0, 3 - additionalPhotos.length)
@@ -224,7 +224,7 @@ export default function AddMotoPlaceholder() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    console.log("[Moto] handleSubmit called", {
+    if (import.meta.env.DEV) console.log("[Moto] handleSubmit called", {
       hasUser: !!user,
       hasFrontLeft: !!vehiclePhotos.frontLeft,
       hasProfileLeft: !!vehiclePhotos.profileLeft,
@@ -415,7 +415,7 @@ export default function AddMotoPlaceholder() {
 
     setLoading(true);
     try {
-      console.log("[Moto] Creating vehicle via SupabaseVehiclesService.createVehicle");
+      if (import.meta.env.DEV) console.log("[Moto] Creating vehicle via SupabaseVehiclesService.createVehicle");
       const { data, error } = await SupabaseVehiclesService.createVehicle({
         owner_id: user.id,
         brand: brand.trim(),
@@ -452,7 +452,7 @@ export default function AddMotoPlaceholder() {
       }
 
       // Upload des photos une fois le véhicule créé
-      console.log("[Moto] Vehicle created, starting photo upload", {
+      if (import.meta.env.DEV) console.log("[Moto] Vehicle created, starting photo upload", {
         vehicleId: data.id,
         hasFrontLeft: !!vehiclePhotos.frontLeft,
         hasProfileLeft: !!vehiclePhotos.profileLeft,
@@ -467,7 +467,7 @@ export default function AddMotoPlaceholder() {
       );
 
       if (photoResult.uploadedPhotos.length > 0) {
-        console.log(
+        if (import.meta.env.DEV) console.log(
           `${photoResult.uploadedPhotos.length} photos moto/scooter uploadées avec succès`
         );
       }
@@ -540,7 +540,7 @@ export default function AddMotoPlaceholder() {
             <CardContent>
               <form 
                 onSubmit={(e) => {
-                  console.log("[ADD-MOTO] form onSubmit called", {
+                  if (import.meta.env.DEV) console.log("[ADD-MOTO] form onSubmit called", {
                     timestamp: new Date().toISOString()
                   });
                   handleSubmit(e);
@@ -548,7 +548,7 @@ export default function AddMotoPlaceholder() {
                 onClick={(e) => {
                   // Log tous les clics dans le form pour voir ce qui déclenche le submit
                   if (e.target instanceof HTMLLabelElement) {
-                    console.log("[ADD-MOTO] form click on label", {
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] form click on label", {
                       htmlFor: e.target.htmlFor,
                       timestamp: new Date().toISOString()
                     });
@@ -563,11 +563,11 @@ export default function AddMotoPlaceholder() {
                   accept="image/*"
                   style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none', width: '1px', height: '1px' }}
                   onChange={(e) => {
-                    console.log("[ADD-MOTO] input onChange fired (frontLeft)");
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] input onChange fired (frontLeft)");
                     handleMainPhotoChange("frontLeft", e);
                   }}
                   onClick={(e) => {
-                    console.log("[ADD-MOTO] input onClick fired (frontLeft)", {
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] input onClick fired (frontLeft)", {
                       timestamp: new Date().toISOString()
                     });
                   }}
@@ -578,11 +578,11 @@ export default function AddMotoPlaceholder() {
                   accept="image/*"
                   style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none', width: '1px', height: '1px' }}
                   onChange={(e) => {
-                    console.log("[ADD-MOTO] input onChange fired (profileLeft)");
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] input onChange fired (profileLeft)");
                     handleMainPhotoChange("profileLeft", e);
                   }}
                   onClick={(e) => {
-                    console.log("[ADD-MOTO] input onClick fired (profileLeft)", {
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] input onClick fired (profileLeft)", {
                       timestamp: new Date().toISOString()
                     });
                   }}
@@ -593,11 +593,11 @@ export default function AddMotoPlaceholder() {
                   accept="image/*"
                   style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none', width: '1px', height: '1px' }}
                   onChange={(e) => {
-                    console.log("[ADD-MOTO] input onChange fired (interior)");
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] input onChange fired (interior)");
                     handleMainPhotoChange("interior", e);
                   }}
                   onClick={(e) => {
-                    console.log("[ADD-MOTO] input onClick fired (interior)", {
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] input onClick fired (interior)", {
                       timestamp: new Date().toISOString()
                     });
                   }}
@@ -609,14 +609,14 @@ export default function AddMotoPlaceholder() {
                   multiple
                   style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none', width: '1px', height: '1px' }}
                   onChange={(e) => {
-                    console.log("[ADD-MOTO] input onChange fired (additional)", {
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] input onChange fired (additional)", {
                       filesCount: e.target.files?.length || 0,
                       timestamp: new Date().toISOString()
                     });
                     handleAddMorePhotosChange(e);
                   }}
                   onClick={(e) => {
-                    console.log("[ADD-MOTO] input onClick fired (additional)", {
+                    if (import.meta.env.DEV) console.log("[ADD-MOTO] input onClick fired (additional)", {
                       timestamp: new Date().toISOString()
                     });
                   }}
@@ -1094,7 +1094,7 @@ export default function AddMotoPlaceholder() {
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                console.log("[ADD-MOTO] button click change (frontLeft)");
+                                if (import.meta.env.DEV) console.log("[ADD-MOTO] button click change (frontLeft)");
                                 const input = document.getElementById("moto-photo-frontLeft") as HTMLInputElement;
                                 if (input) {
                                   input.click();
@@ -1115,7 +1115,7 @@ export default function AddMotoPlaceholder() {
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                console.log("[ADD-MOTO] button click (frontLeft)");
+                                if (import.meta.env.DEV) console.log("[ADD-MOTO] button click (frontLeft)");
                                 const input = document.getElementById("moto-photo-frontLeft") as HTMLInputElement;
                                 if (input) {
                                   input.click();
@@ -1155,7 +1155,7 @@ export default function AddMotoPlaceholder() {
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                console.log("[ADD-MOTO] button click change (profileLeft)");
+                                if (import.meta.env.DEV) console.log("[ADD-MOTO] button click change (profileLeft)");
                                 const input = document.getElementById("moto-photo-profileLeft") as HTMLInputElement;
                                 if (input) {
                                   input.click();
@@ -1176,7 +1176,7 @@ export default function AddMotoPlaceholder() {
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                console.log("[ADD-MOTO] button click (profileLeft)");
+                                if (import.meta.env.DEV) console.log("[ADD-MOTO] button click (profileLeft)");
                                 const input = document.getElementById("moto-photo-profileLeft") as HTMLInputElement;
                                 if (input) {
                                   input.click();
@@ -1216,7 +1216,7 @@ export default function AddMotoPlaceholder() {
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                console.log("[ADD-MOTO] button click change (interior)");
+                                if (import.meta.env.DEV) console.log("[ADD-MOTO] button click change (interior)");
                                 const input = document.getElementById("moto-photo-interior") as HTMLInputElement;
                                 if (input) {
                                   input.click();
@@ -1237,7 +1237,7 @@ export default function AddMotoPlaceholder() {
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                console.log("[ADD-MOTO] button click (interior)");
+                                if (import.meta.env.DEV) console.log("[ADD-MOTO] button click (interior)");
                                 const input = document.getElementById("moto-photo-interior") as HTMLInputElement;
                                 if (input) {
                                   input.click();
@@ -1267,18 +1267,18 @@ export default function AddMotoPlaceholder() {
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        console.log("[ADD-MOTO] button click detected", { 
+                        if (import.meta.env.DEV) console.log("[ADD-MOTO] button click detected", { 
                           timestamp: new Date().toISOString()
                         });
                         const input = document.getElementById("moto-photo-additional") as HTMLInputElement;
                         if (input && !input.disabled) {
-                          console.log("[ADD-MOTO] triggering input.click()", {
+                          if (import.meta.env.DEV) console.log("[ADD-MOTO] triggering input.click()", {
                             inputExists: !!input,
                             inputDisabled: input.disabled,
                             inputType: input.type
                           });
                           input.click();
-                          console.log("[ADD-MOTO] input.click() executed");
+                          if (import.meta.env.DEV) console.log("[ADD-MOTO] input.click() executed");
                         } else {
                           console.warn("[ADD-MOTO] input not found or disabled", {
                             inputExists: !!input,
@@ -1330,7 +1330,7 @@ export default function AddMotoPlaceholder() {
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              console.log("[ADD-MOTO] button click (additional)", { index });
+                              if (import.meta.env.DEV) console.log("[ADD-MOTO] button click (additional)", { index });
                               const input = document.getElementById(`moto-photo-additional-${index}`) as HTMLInputElement;
                               if (input) {
                                 input.click();
@@ -1366,7 +1366,7 @@ export default function AddMotoPlaceholder() {
                                 onClick={(e) => {
                                   e.preventDefault();
                                   e.stopPropagation();
-                                  console.log("[ADD-MOTO] button click change (additional)", { index });
+                                  if (import.meta.env.DEV) console.log("[ADD-MOTO] button click change (additional)", { index });
                                   const input = document.getElementById(`moto-photo-additional-${index}`) as HTMLInputElement;
                                   if (input) {
                                     input.click();

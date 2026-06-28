@@ -105,14 +105,14 @@ export async function saveStep1Draft({
   checkinId,
   step1,
 }: SaveStep1DraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 1 (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 1 (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // ✅ Appel DIRECT à Supabase (pattern identique à supabaseVehiclesService)
   const { data, error } = await SupabaseCheckinService.saveCheckinDraft({
@@ -138,7 +138,7 @@ export async function saveStep1Draft({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),
@@ -181,14 +181,14 @@ export async function saveStep2Draft({
   checkinId,
   step2,
 }: SaveStep2DraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 2 (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 2 (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // ✅ Appel DIRECT à Supabase
   const { data, error } = await SupabaseCheckinService.saveCheckinDraft({
@@ -214,7 +214,7 @@ export async function saveStep2Draft({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step2 réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step2 réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),
@@ -257,14 +257,14 @@ export async function saveStep3Draft({
   checkinId,
   step3,
 }: SaveStep3DraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 3 (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 3 (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // ✅ Appel DIRECT à Supabase
   const { data, error } = await SupabaseCheckinService.saveCheckinDraft({
@@ -290,7 +290,7 @@ export async function saveStep3Draft({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step3 réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step3 réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),
@@ -360,13 +360,13 @@ export async function saveStep3ZoneDraft({
   scopeSides,
   propreteExterieure,
 }: SaveStep3ZoneDraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde partielle Step3 (zone)", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde partielle Step3 (zone)", {
     zoneKey,
     bookingId,
     hasCheckinId: !!checkinId,
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // 1) Charger le check-in existant (par ID si dispo, sinon par bookingId)
   let existing: import('./supabaseCheckinService').CheckinDepart | null = null;
@@ -449,7 +449,7 @@ export async function saveStep3ZoneDraft({
     throw new Error("Réponse Supabase invalide : ID manquant (zone)");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde zone Step3 OK:", { zoneKey, checkinId: data.id });
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde zone Step3 OK:", { zoneKey, checkinId: data.id });
   return {
     checkinId: data.id,
     status: data.status || "draft",
@@ -507,14 +507,14 @@ export async function saveStep4Draft({
   checkinId,
   step4,
 }: SaveStep4DraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 4 (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 4 (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // ✅ Appel DIRECT à Supabase
   const { data, error } = await SupabaseCheckinService.saveCheckinDraft({
@@ -540,7 +540,7 @@ export async function saveStep4Draft({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step4 réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step4 réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),
@@ -600,13 +600,13 @@ export async function saveStep4SectionDraft({
   propreteGenerale,
   equipements,
 }: SaveStep4SectionDraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde partielle Step4 (section)", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde partielle Step4 (section)", {
     sectionKey,
     bookingId,
     hasCheckinId: !!checkinId,
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // 1) Charger le check-in existant (par ID si dispo, sinon par bookingId)
   let existing: import('./supabaseCheckinService').CheckinDepart | null = null;
@@ -659,7 +659,7 @@ export async function saveStep4SectionDraft({
     throw new Error("Réponse Supabase invalide : ID manquant (section)");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde section Step4 OK:", { sectionKey, checkinId: data.id });
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde section Step4 OK:", { sectionKey, checkinId: data.id });
   return {
     checkinId: data.id,
     status: data.status || "draft",
@@ -735,14 +735,14 @@ export async function saveStep5Draft({
   checkinId,
   step5,
 }: SaveStep5DraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 5 (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 5 (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // ✅ Appel DIRECT à Supabase
   const { data, error } = await SupabaseCheckinService.saveCheckinDraft({
@@ -768,7 +768,7 @@ export async function saveStep5Draft({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step5 réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step5 réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),
@@ -816,14 +816,14 @@ export async function saveStep6Draft({
   checkinId,
   step6,
 }: SaveStep6DraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 6 (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 6 (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // ✅ Appel DIRECT à Supabase
   const { data, error } = await SupabaseCheckinService.saveCheckinDraft({
@@ -849,7 +849,7 @@ export async function saveStep6Draft({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step6 réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step6 réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),
@@ -898,14 +898,14 @@ export async function saveStep7Draft({
   checkinId,
   step7,
 }: SaveStep7DraftArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 7 (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🚀 Sauvegarde Étape 7 (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // ✅ Appel DIRECT à Supabase
   const { data, error } = await SupabaseCheckinService.saveCheckinDraft({
@@ -931,7 +931,7 @@ export async function saveStep7Draft({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step7 réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step7 réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),
@@ -973,11 +973,11 @@ export async function finalizeCheckinDepart(params: {
     };
   };
 }): Promise<{ data: CheckinDepart | null; error: string | null; pdfError?: string | null }> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🎯 FINALISATION État des lieux");
-  console.log("[CHECKIN_SERVICE] 📦 Checkin ID:", params.checkinId);
-  console.log("[CHECKIN_SERVICE] 📋 Booking ID:", params.bookingId);
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🎯 FINALISATION État des lieux");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📦 Checkin ID:", params.checkinId);
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📋 Booking ID:", params.bookingId);
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   try {
     // ============================================================================
@@ -1007,7 +1007,7 @@ export async function finalizeCheckinDepart(params: {
     // ============================================================================
     // ÉTAPE 2 : Sauvegarder Step 7 (signatures + validatedAt)
     // ============================================================================
-    console.log("[CHECKIN_SERVICE] 📝 Étape 2 : Sauvegarde Step 7...");
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📝 Étape 2 : Sauvegarde Step 7...");
 
     try {
       await saveStep7Draft({
@@ -1017,7 +1017,7 @@ export async function finalizeCheckinDepart(params: {
         checkinId: params.checkinId,
         step7: params.step7Payload,
       });
-      console.log("[CHECKIN_SERVICE] ✅ Step 7 sauvegardée avec succès");
+      if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Step 7 sauvegardée avec succès");
     } catch (step7Error: any) {
       console.error("[CHECKIN_SERVICE] ❌ Erreur sauvegarde Step 7:", step7Error);
       return {
@@ -1029,7 +1029,7 @@ export async function finalizeCheckinDepart(params: {
     // ============================================================================
     // ÉTAPE 3 : Créer le snapshot légal
     // ============================================================================
-    console.log("[CHECKIN_SERVICE] 📸 Étape 3 : Création du snapshot légal...");
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📸 Étape 3 : Création du snapshot légal...");
 
     const snapshotResult = await SupabaseCheckinService.createLegalSnapshot(params.checkinId, {
       version: "1.0",
@@ -1048,13 +1048,13 @@ export async function finalizeCheckinDepart(params: {
       console.warn("[CHECKIN_SERVICE] ⚠️ Snapshot déjà existant (force=false)");
       // On continue quand même, le snapshot existe déjà
     } else {
-      console.log("[CHECKIN_SERVICE] ✅ Snapshot légal créé avec succès");
+      if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Snapshot légal créé avec succès");
     }
 
     // ============================================================================
     // ÉTAPE 4 : Changer le statut vers "completed"
     // ============================================================================
-    console.log("[CHECKIN_SERVICE] 🔒 Étape 4 : Changement de statut vers 'completed'...");
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🔒 Étape 4 : Changement de statut vers 'completed'...");
 
     const { data: finalizedCheckin, error: statusError } = await SupabaseCheckinService.updateCheckinStatus(
       params.checkinId,
@@ -1069,7 +1069,7 @@ export async function finalizeCheckinDepart(params: {
       };
     }
 
-    console.log("[CHECKIN_SERVICE] ✅ Statut mis à jour:", {
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Statut mis à jour:", {
       checkinId: params.checkinId,
       status: finalizedCheckin.status,
     });
@@ -1082,7 +1082,7 @@ export async function finalizeCheckinDepart(params: {
         (typeof import.meta !== "undefined" && import.meta.env?.VITE_N8N_WEBHOOK_CHECKIN_DEPART_URL) ||
         "https://n8n.srv1285649.hstgr.cloud/webhook/checkin-depart-updated";
 
-      console.log("[CHECKIN_SERVICE] 📧 Appel webhook n8n pour envoi email EDL...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📧 Appel webhook n8n pour envoi email EDL...");
 
       try {
         const n8nPayload = {
@@ -1115,7 +1115,7 @@ export async function finalizeCheckinDepart(params: {
             statusText: n8nResponse.statusText,
           });
         } else {
-          console.log("[CHECKIN_SERVICE] ✅ Webhook n8n appelé avec succès");
+          if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Webhook n8n appelé avec succès");
         }
       } catch (n8nError: any) {
         // Ne pas bloquer la finalisation si le webhook échoue
@@ -1132,7 +1132,7 @@ export async function finalizeCheckinDepart(params: {
 
     // ⭐ Instrumentation : Log pour tracer les déclenchements email (DIAG 6 emails)
     const correlationId = `${params.checkinId}_${Date.now()}`;
-    console.log(`[CHECKIN_SERVICE] 📧 Email trigger correlationId=${correlationId}`, {
+    if (import.meta.env.DEV) console.log(`[CHECKIN_SERVICE] 📧 Email trigger correlationId=${correlationId}`, {
       checkinId: params.checkinId,
       bookingId: params.bookingId,
       status: finalizedCheckin.status,
@@ -1143,7 +1143,7 @@ export async function finalizeCheckinDepart(params: {
     // ============================================================================
     // ÉTAPE 5 : Générer le PDF d'état des lieux (non-bloquant)
     // ============================================================================
-    console.log("[CHECKIN_SERVICE] 📄 Étape 5 : Génération du PDF...");
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📄 Étape 5 : Génération du PDF...");
 
     // ⚠️ IMPORTANT : La génération PDF est NON-BLOQUANTE
     // Si le PDF échoue, la finalisation reste réussie (status = "completed")
@@ -1153,16 +1153,16 @@ export async function finalizeCheckinDepart(params: {
 
     try {
       // ⚠️ Import dynamique pour éviter de charger le module (et html2canvas/jsPDF) au chargement
-      console.log("[CHECKIN_SERVICE] 📄 Import dynamique du service PDF...");
+      if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📄 Import dynamique du service PDF...");
       const { generateCheckinDepartPdf } = await import("./checkinDepartPdfService");
-      console.log("[CHECKIN_SERVICE] 📄 Import dynamique OK, fonction disponible:", typeof generateCheckinDepartPdf);
+      if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📄 Import dynamique OK, fonction disponible:", typeof generateCheckinDepartPdf);
       
-      console.log("[CHECKIN_SERVICE] 📄 Appel à generateCheckinDepartPdf avec skipStatusCheck: true");
+      if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📄 Appel à generateCheckinDepartPdf avec skipStatusCheck: true");
       const pdfResult = await generateCheckinDepartPdf(params.checkinId, {
         skipStatusCheck: true, // Bypasser la vérification de status car on vient de le changer
       });
       
-      console.log("[CHECKIN_SERVICE] 📄 Résultat génération PDF:", {
+      if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📄 Résultat génération PDF:", {
         checkinId: params.checkinId,
         hasError: !!pdfResult.error,
         hasPublicUrl: !!pdfResult.publicUrl,
@@ -1171,14 +1171,14 @@ export async function finalizeCheckinDepart(params: {
       });
       
       // 🔍 LOG DE DEBUG TRÈS VISIBLE
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-      console.log("🔍 [DEBUG PHASE 2] ANALYSE pdfResult:");
-      console.log("🔍 [DEBUG PHASE 2] pdfResult.error:", pdfResult.error);
-      console.log("🔍 [DEBUG PHASE 2] pdfResult.publicUrl:", pdfResult.publicUrl);
-      console.log("🔍 [DEBUG PHASE 2] pdfResult.pdfStoragePath:", pdfResult.pdfStoragePath);
-      console.log("🔍 [DEBUG PHASE 2] pdfResult.error existe?", 'error' in pdfResult);
-      console.log("🔍 [DEBUG PHASE 2] pdfResult.error est truthy?", !!pdfResult.error);
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] ANALYSE pdfResult:");
+      if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] pdfResult.error:", pdfResult.error);
+      if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] pdfResult.publicUrl:", pdfResult.publicUrl);
+      if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] pdfResult.pdfStoragePath:", pdfResult.pdfStoragePath);
+      if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] pdfResult.error existe?", 'error' in pdfResult);
+      if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] pdfResult.error est truthy?", !!pdfResult.error);
+      if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
       if (pdfResult.error) {
         // ⭐ Phase 2 : Stocker l'erreur PDF pour la remonter au front
@@ -1192,7 +1192,7 @@ export async function finalizeCheckinDepart(params: {
       } else if (pdfResult.publicUrl) {
         // ✅ PDF généré avec succès
         // Note : generateCheckinDepartPdf met déjà à jour legal_pdf_url en interne
-        console.log("[CHECKIN_SERVICE] ✅ PDF généré avec succès:", {
+        if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ PDF généré avec succès:", {
           checkinId: params.checkinId,
           publicUrl: pdfResult.publicUrl,
           pdfStoragePath: pdfResult.pdfStoragePath,
@@ -1202,7 +1202,7 @@ export async function finalizeCheckinDepart(params: {
         const { data: refreshedCheckin } = await SupabaseCheckinService.getCheckinById(params.checkinId);
         if (refreshedCheckin) {
           Object.assign(finalizedCheckin, refreshedCheckin);
-          console.log("[CHECKIN_SERVICE] ✅ Checkin rechargé avec legal_pdf_url:", refreshedCheckin.legal_pdf_url);
+          if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Checkin rechargé avec legal_pdf_url:", refreshedCheckin.legal_pdf_url);
         }
       } else {
         // ⭐ Phase 2 : Cas où le PDF est généré mais l'URL publique est absente
@@ -1226,26 +1226,26 @@ export async function finalizeCheckinDepart(params: {
       console.error("[CHECKIN_SERVICE] ❌ legal_pdf_url restera NULL (peut être régénéré plus tard)");
     }
 
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("[CHECKIN_SERVICE] ✅ État des lieux finalisé avec succès !");
-    console.log("[CHECKIN_SERVICE] 📦 Checkin ID:", finalizedCheckin.id);
-    console.log("[CHECKIN_SERVICE] 📊 Status:", finalizedCheckin.status);
-    console.log("[CHECKIN_SERVICE] 📄 PDF URL:", finalizedCheckin.legal_pdf_url || "NULL (non généré)");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ État des lieux finalisé avec succès !");
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📦 Checkin ID:", finalizedCheckin.id);
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Status:", finalizedCheckin.status);
+    if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📄 PDF URL:", finalizedCheckin.legal_pdf_url || "NULL (non généré)");
     // ⭐ Phase 2 : Logger l'état du PDF pour faciliter le debugging
     if (pdfError) {
       console.error("[CHECKIN_SERVICE] ⚠️ PDF non généré - Erreur:", pdfError);
     } else {
-      console.log("[CHECKIN_SERVICE] ✅ PDF généré avec succès");
+      if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ PDF généré avec succès");
     }
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
     // ⭐ Phase 2 : Retourner pdfError pour informer le front
     // 🔍 LOG DE DEBUG TRÈS VISIBLE
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("🔍 [DEBUG PHASE 2] VALEUR DE pdfError AVANT RETOUR:", pdfError);
-    console.log("🔍 [DEBUG PHASE 2] Type de pdfError:", typeof pdfError);
-    console.log("🔍 [DEBUG PHASE 2] legal_pdf_url dans finalizedCheckin:", finalizedCheckin.legal_pdf_url);
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] VALEUR DE pdfError AVANT RETOUR:", pdfError);
+    if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] Type de pdfError:", typeof pdfError);
+    if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] legal_pdf_url dans finalizedCheckin:", finalizedCheckin.legal_pdf_url);
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     
     const returnValue = {
       data: finalizedCheckin,
@@ -1253,8 +1253,8 @@ export async function finalizeCheckinDepart(params: {
       pdfError: pdfError || null,
     };
     
-    console.log("🔍 [DEBUG PHASE 2] VALEUR RETOURNÉE:", JSON.stringify(returnValue, null, 2));
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("🔍 [DEBUG PHASE 2] VALEUR RETOURNÉE:", JSON.stringify(returnValue, null, 2));
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     
     return returnValue;
   } catch (error: any) {
@@ -1302,14 +1302,14 @@ export async function saveStep3DraftMoto({
   checkinId,
   step3,
 }: SaveStep3DraftMotoArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🏍️ Sauvegarde Étape 3 MOTO (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🏍️ Sauvegarde Étape 3 MOTO (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // Adapter la structure moto pour compatibilité avec l'extraction automatique du service
   // Le service attend : zonesPhotos.avant, zonesPhotos.droit, zonesPhotos.gauche, zonesPhotos.arriere
@@ -1363,7 +1363,7 @@ export async function saveStep3DraftMoto({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step3 Moto réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step3 Moto réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),
@@ -1417,14 +1417,14 @@ export async function saveStep5DraftMoto({
   checkinId,
   step5,
 }: SaveStep5DraftMotoArgs): Promise<SaveDraftResponse> {
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("[CHECKIN_SERVICE] 🏍️ Sauvegarde Étape 5 MOTO (DIRECT Supabase)");
-  console.log("[CHECKIN_SERVICE] 📊 Context:", {
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 🏍️ Sauvegarde Étape 5 MOTO (DIRECT Supabase)");
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] 📊 Context:", {
     bookingId,
     hasCheckinId: !!checkinId,
     action: checkinId ? "UPDATE" : "INSERT",
   });
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+  if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   // Le service n'extrait pas automatiquement photos_accessoires depuis step5
   // Il faut les ajouter dans data.step5.photos pour qu'elles soient persistées
@@ -1461,7 +1461,7 @@ export async function saveStep5DraftMoto({
     throw new Error("Réponse Supabase invalide : ID manquant");
   }
 
-  console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step5 Moto réussie:", {
+  if (import.meta.env.DEV) console.log("[CHECKIN_SERVICE] ✅ Sauvegarde Step5 Moto réussie:", {
     checkinId: data.id,
     status: data.status,
     dataKeys: Object.keys(data.data || {}),

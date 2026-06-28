@@ -468,11 +468,11 @@ export const checkinReturnService = {
   }): Promise<{ data: CheckinReturn | null; error: string | null; snapshotError?: string | null; pdfError?: string | null }> {
     const { checkinReturnId, bookingId, ownerId, renterId, step7Payload } = params;
 
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("[CheckinReturnService] 🎯 FINALISATION État des lieux retour");
-    console.log("[CheckinReturnService] 📦 Checkin Return ID:", checkinReturnId);
-    console.log("[CheckinReturnService] 📋 Booking ID:", bookingId);
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    if (import.meta.env.DEV) console.log("[CheckinReturnService] 🎯 FINALISATION État des lieux retour");
+    if (import.meta.env.DEV) console.log("[CheckinReturnService] 📦 Checkin Return ID:", checkinReturnId);
+    if (import.meta.env.DEV) console.log("[CheckinReturnService] 📋 Booking ID:", bookingId);
+    if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
     try {
       // ============================================================================
@@ -549,7 +549,7 @@ export const checkinReturnService = {
       // ============================================================================
       // ÉTAPE 3 : Créer le snapshot légal complet
       // ============================================================================
-      console.log("[CheckinReturnService] 📸 Étape 3 : Création du snapshot légal...");
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] 📸 Étape 3 : Création du snapshot légal...");
 
       const snapshotResult = await SupabaseCheckinReturnService.createReturnSnapshot(checkinReturnId, {
         version: "return-1.0",
@@ -568,13 +568,13 @@ export const checkinReturnService = {
       if (!snapshotResult.snapshotCreated) {
         console.warn("[CheckinReturnService] ⚠️ Snapshot déjà existant (force=false)");
       } else {
-        console.log("[CheckinReturnService] ✅ Snapshot légal créé avec succès");
+        if (import.meta.env.DEV) console.log("[CheckinReturnService] ✅ Snapshot légal créé avec succès");
       }
 
       // ============================================================================
       // ÉTAPE 4 : Changer le statut vers "completed"
       // ============================================================================
-      console.log("[CheckinReturnService] 🔒 Étape 4 : Changement de statut vers 'completed'...");
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] 🔒 Étape 4 : Changement de statut vers 'completed'...");
 
       const statusResult = await SupabaseCheckinReturnService.updateReturnStatus(checkinReturnId, "completed");
       if (statusResult.error || !statusResult.data) {
@@ -585,7 +585,7 @@ export const checkinReturnService = {
         };
       }
 
-      console.log("[CheckinReturnService] ✅ Statut mis à jour:", {
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] ✅ Statut mis à jour:", {
         checkinReturnId,
         status: statusResult.data.status,
       });
@@ -608,9 +608,9 @@ export const checkinReturnService = {
         };
 
         const bodyStr = JSON.stringify(n8nPayload);
-        console.log("[CheckinReturnService] 📧 Appel webhook n8n pour envoi email EDL retour...");
+        if (import.meta.env.DEV) console.log("[CheckinReturnService] 📧 Appel webhook n8n pour envoi email EDL retour...");
         // DEBUG : preuve que le body part bien (si n8n reçoit body: {}, vérifier côté n8n)
-        console.log("[CheckinReturnService] DEBUG webhook:", {
+        if (import.meta.env.DEV) console.log("[CheckinReturnService] DEBUG webhook:", {
           url: n8nWebhookUrl,
           method: "POST",
           body: bodyStr,
@@ -641,7 +641,7 @@ export const checkinReturnService = {
               statusText: n8nResponse.statusText,
             });
           } else {
-            console.log("[CheckinReturnService] ✅ Webhook n8n (EDL retour) appelé avec succès");
+            if (import.meta.env.DEV) console.log("[CheckinReturnService] ✅ Webhook n8n (EDL retour) appelé avec succès");
           }
         } catch (n8nError: any) {
           // Ne pas bloquer la finalisation si le webhook échoue
@@ -660,7 +660,7 @@ export const checkinReturnService = {
       // ============================================================================
       // ÉTAPE 4.5 : Mettre à jour le statut de la réservation de "confirmed" à "terminated"
       // ============================================================================
-      console.log("[CheckinReturnService] 🔄 Étape 4.5 : Vérification et mise à jour du statut de la réservation...");
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] 🔄 Étape 4.5 : Vérification et mise à jour du statut de la réservation...");
       
       try {
         // Récupérer le statut actuel de la réservation directement depuis Supabase
@@ -674,7 +674,7 @@ export const checkinReturnService = {
         if (fetchError) {
           console.error("[CheckinReturnService] ⚠️ Erreur lors de la récupération du statut de la réservation:", fetchError);
         } else if (currentBooking && currentBooking.status === 'confirmed') {
-          console.log("[CheckinReturnService] 🔄 Statut de la réservation actuel: 'confirmed', mise à jour vers 'terminated'...");
+          if (import.meta.env.DEV) console.log("[CheckinReturnService] 🔄 Statut de la réservation actuel: 'confirmed', mise à jour vers 'terminated'...");
           
           const { SupabaseBookingsService } = await import("./supabase/bookings");
           const bookingStatusResult = await SupabaseBookingsService.updateBookingStatus(bookingId, 'terminated');
@@ -683,10 +683,10 @@ export const checkinReturnService = {
             console.error("[CheckinReturnService] ⚠️ Erreur lors de la mise à jour du statut de la réservation:", bookingStatusResult.error);
             // Ne pas bloquer la finalisation du check-in retour si la mise à jour du statut échoue
           } else {
-            console.log("[CheckinReturnService] ✅ Statut de la réservation mis à jour vers 'terminated'");
+            if (import.meta.env.DEV) console.log("[CheckinReturnService] ✅ Statut de la réservation mis à jour vers 'terminated'");
           }
         } else {
-          console.log("[CheckinReturnService] ℹ️ Statut de la réservation:", currentBooking?.status, "- pas de mise à jour nécessaire");
+          if (import.meta.env.DEV) console.log("[CheckinReturnService] ℹ️ Statut de la réservation:", currentBooking?.status, "- pas de mise à jour nécessaire");
         }
       } catch (bookingStatusError: any) {
         console.error("[CheckinReturnService] ⚠️ Exception lors de la mise à jour du statut de la réservation:", bookingStatusError);
@@ -696,7 +696,7 @@ export const checkinReturnService = {
       // ============================================================================
       // ÉTAPE 5 : Générer le PDF d'état des lieux retour (non-bloquant)
       // ============================================================================
-      console.log("[CheckinReturnService] 📄 Étape 5 : Génération du PDF...");
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] 📄 Étape 5 : Génération du PDF...");
 
       // ⚠️ IMPORTANT : La génération PDF est NON-BLOQUANTE
       // Si le PDF échoue, la finalisation reste réussie (status = "completed")
@@ -704,16 +704,16 @@ export const checkinReturnService = {
 
       try {
         // ⚠️ Import dynamique pour éviter de charger le module (et html2canvas/jsPDF) au chargement
-        console.log("[CheckinReturnService] 📄 Import dynamique du service PDF...");
+        if (import.meta.env.DEV) console.log("[CheckinReturnService] 📄 Import dynamique du service PDF...");
         const { generateCheckinReturnPdf } = await import("./checkinReturnPdfService");
-        console.log("[CheckinReturnService] 📄 Import dynamique OK, fonction disponible:", typeof generateCheckinReturnPdf);
+        if (import.meta.env.DEV) console.log("[CheckinReturnService] 📄 Import dynamique OK, fonction disponible:", typeof generateCheckinReturnPdf);
         
-        console.log("[CheckinReturnService] 📄 Appel à generateCheckinReturnPdf avec skipStatusCheck: true");
+        if (import.meta.env.DEV) console.log("[CheckinReturnService] 📄 Appel à generateCheckinReturnPdf avec skipStatusCheck: true");
         const pdfResult = await generateCheckinReturnPdf(checkinReturnId, {
           skipStatusCheck: true, // Bypasser la vérification de status car on vient de le changer
         });
         
-        console.log("[CheckinReturnService] 📄 Résultat génération PDF:", {
+        if (import.meta.env.DEV) console.log("[CheckinReturnService] 📄 Résultat génération PDF:", {
           checkinReturnId,
           hasError: !!pdfResult.error,
           hasPublicUrl: !!pdfResult.publicUrl,
@@ -732,7 +732,7 @@ export const checkinReturnService = {
         } else if (pdfResult.publicUrl) {
           // ✅ PDF généré avec succès
           // Note : generateCheckinReturnPdf met déjà à jour legal_pdf_url en interne
-          console.log("[CheckinReturnService] ✅ PDF généré avec succès:", {
+          if (import.meta.env.DEV) console.log("[CheckinReturnService] ✅ PDF généré avec succès:", {
             checkinReturnId,
             publicUrl: pdfResult.publicUrl,
             pdfStoragePath: pdfResult.pdfStoragePath,
@@ -742,7 +742,7 @@ export const checkinReturnService = {
           const { data: refreshedCheckinReturn } = await SupabaseCheckinReturnService.getReturnById(checkinReturnId);
           if (refreshedCheckinReturn) {
             Object.assign(statusResult.data, refreshedCheckinReturn);
-            console.log("[CheckinReturnService] ✅ Checkin retour rechargé avec legal_pdf_url:", refreshedCheckinReturn.legal_pdf_url);
+            if (import.meta.env.DEV) console.log("[CheckinReturnService] ✅ Checkin retour rechargé avec legal_pdf_url:", refreshedCheckinReturn.legal_pdf_url);
           }
         } else {
           pdfError = "PDF généré mais URL publique absente";
@@ -764,17 +764,17 @@ export const checkinReturnService = {
         console.error("[CheckinReturnService] ❌ legal_pdf_url restera NULL (peut être régénéré plus tard)");
       }
 
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-      console.log("[CheckinReturnService] ✅ État des lieux retour finalisé avec succès !");
-      console.log("[CheckinReturnService] 📦 Checkin Return ID:", statusResult.data.id);
-      console.log("[CheckinReturnService] 📊 Status:", statusResult.data.status);
-      console.log("[CheckinReturnService] 📄 PDF URL:", statusResult.data.legal_pdf_url || "NULL (non généré)");
+      if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] ✅ État des lieux retour finalisé avec succès !");
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] 📦 Checkin Return ID:", statusResult.data.id);
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] 📊 Status:", statusResult.data.status);
+      if (import.meta.env.DEV) console.log("[CheckinReturnService] 📄 PDF URL:", statusResult.data.legal_pdf_url || "NULL (non généré)");
       if (pdfError) {
         console.error("[CheckinReturnService] ⚠️ PDF non généré - Erreur:", pdfError);
       } else {
-        console.log("[CheckinReturnService] ✅ PDF généré avec succès");
+        if (import.meta.env.DEV) console.log("[CheckinReturnService] ✅ PDF généré avec succès");
       }
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      if (import.meta.env.DEV) console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
       return {
         data: statusResult.data,
