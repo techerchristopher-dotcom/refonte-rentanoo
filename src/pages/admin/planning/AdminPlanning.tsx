@@ -256,9 +256,9 @@ function FilterChip({
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium",
         "transition-all duration-150 ease-out select-none",
-        "border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-1",
+        "border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#097870]/40 focus-visible:ring-offset-1",
         active
-          ? "bg-primary text-primary-foreground border-primary shadow-sm hover:bg-primary/90"
+          ? "bg-[#097870] text-white border-[#097870] shadow-sm hover:bg-[#097870]/90"
           : "bg-background text-foreground border-border hover:bg-muted hover:border-border/80",
         disabled && "opacity-50 cursor-not-allowed hover:bg-background"
       )}
@@ -270,7 +270,7 @@ function FilterChip({
           className={cn(
             "ml-0.5 inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 rounded-full text-[10px] sm:text-[11px] font-semibold tabular-nums",
             active
-              ? "bg-primary-foreground/20 text-primary-foreground"
+              ? "bg-white/20 text-white"
               : "bg-muted text-muted-foreground"
           )}
         >
@@ -817,9 +817,9 @@ export default function AdminPlanning() {
     <TooltipProvider>
       <div className="space-y-4 sm:space-y-6">
         <div className="min-w-0">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Planning agence</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold font-display text-foreground">Planning agence</h1>
           <p className="mt-1 text-sm">
-            <Link to="/admin" className="text-primary font-medium hover:underline">
+            <Link to="/admin" className="text-[#097870] font-medium hover:text-[#097870]/80">
               ← Tableau de bord
             </Link>
           </p>
@@ -1095,7 +1095,7 @@ export default function AdminPlanning() {
           </CardHeader>
           <CardContent className="px-2 sm:px-6">
             {dragging && !isMobile && (
-              <div className="mb-2 flex items-center gap-2 rounded-md border border-primary/30 bg-primary/5 px-3 py-2 text-sm text-primary">
+              <div className="mb-2 flex items-center gap-2 rounded-md border border-[#097870]/30 bg-[#097870]/5 px-3 py-2 text-sm text-[#097870]">
                 <span>Glissez vers un jour libre pour déplacer la réservation.</span>
                 <button type="button" className="ml-auto text-xs underline opacity-70 hover:opacity-100" onClick={cancelDrag}>
                   Annuler
@@ -1310,7 +1310,7 @@ export default function AdminPlanning() {
                                         <div className="text-xs text-muted-foreground italic">Glisser pour changer de véhicule</div>
                                       )}
                                       <div className="pt-1 text-xs">
-                                        <Link to={`/admin/bookings/${b.booking.id}`} className="text-primary hover:underline">
+                                        <Link to={`/admin/bookings/${b.booking.id}`} className="text-[#097870] hover:text-[#097870]/80">
                                           Ouvrir la fiche →
                                         </Link>
                                       </div>

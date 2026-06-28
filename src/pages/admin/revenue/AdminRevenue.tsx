@@ -94,10 +94,10 @@ export default function AdminRevenue() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-foreground">Encaissements</h1>
+        <h1 className="text-3xl font-bold font-display text-foreground">Encaissements</h1>
         <p className="text-muted-foreground text-sm">Récapitulatif des paiements enregistrés par période.</p>
         <p className="mt-2 text-sm">
-          <Link to="/admin" className="text-primary font-medium hover:underline">
+          <Link to="/admin" className="text-[#097870] font-medium hover:text-[#097870]/80">
             ← Tableau de bord
           </Link>
         </p>
@@ -126,28 +126,28 @@ export default function AdminRevenue() {
       </Card>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="border-l-4 border-l-[#097870]">
           <CardHeader className="pb-2">
             <CardDescription>Total encaissé</CardDescription>
             <AdminRevenueAmount amountMga={summary.total} />
           </CardHeader>
         </Card>
-        <Card>
+        <Card className="border-l-4 border-l-[#097870]">
           <CardHeader className="pb-2">
             <CardDescription>Espèces</CardDescription>
-            <AdminRevenueAmount amountMga={summary.totalCash} className="text-emerald-700 dark:text-emerald-400" />
+            <AdminRevenueAmount amountMga={summary.totalCash} className="text-[#097870]" />
           </CardHeader>
         </Card>
-        <Card>
+        <Card className="border-l-4 border-l-[#097870]">
           <CardHeader className="pb-2">
             <CardDescription>CB (terminal)</CardDescription>
-            <AdminRevenueAmount amountMga={summary.totalCardTerminal} className="text-sky-700 dark:text-sky-400" />
+            <AdminRevenueAmount amountMga={summary.totalCardTerminal} className="text-[#097870]" />
           </CardHeader>
         </Card>
-        <Card>
+        <Card className="border-l-4 border-l-[#097870]">
           <CardHeader className="pb-2">
             <CardDescription>Stripe (en ligne)</CardDescription>
-            <AdminRevenueAmount amountMga={summary.totalStripe} className="text-violet-700 dark:text-violet-400" />
+            <AdminRevenueAmount amountMga={summary.totalStripe} className="text-[#097870]" />
           </CardHeader>
         </Card>
       </div>
@@ -203,7 +203,7 @@ export default function AdminRevenue() {
                         <DualPrice amountMga={b.total_price} variant="admin" inline className="justify-end" />
                       </td>
                       <td className="py-2">
-                        <Link to={`/admin/bookings/${b.id}`} className="text-primary text-xs hover:underline">
+                        <Link to={`/admin/bookings/${b.id}`} className="text-[#097870] text-xs hover:text-[#097870]/80">
                           Voir
                         </Link>
                       </td>

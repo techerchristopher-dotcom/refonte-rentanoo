@@ -13,12 +13,12 @@ export default function ReportsDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Rapports & indicateurs</h1>
+        <h1 className="text-2xl font-bold font-display">Rapports & indicateurs</h1>
         <p className="text-sm text-muted-foreground">Vue d'ensemble de l'activité atelier et stock</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="border-l-4 border-l-[#097870]">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Scooters disponibles</CardTitle>
           </CardHeader>
@@ -27,19 +27,19 @@ export default function ReportsDashboard() {
             <span className="text-sm font-normal text-muted-foreground"> / {summary?.scootersTotal ?? 0}</span>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-l-4 border-l-[#E8622F]">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">En panne / maintenance</CardTitle>
           </CardHeader>
-          <CardContent className="text-2xl font-bold text-amber-600">{summary?.scootersInMaintenance ?? 0}</CardContent>
+          <CardContent className="text-2xl font-bold text-[#E8622F]">{summary?.scootersInMaintenance ?? 0}</CardContent>
         </Card>
-        <Card>
+        <Card className="border-l-4 border-l-[#E8622F]">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Stock bas</CardTitle>
           </CardHeader>
           <CardContent className="text-2xl font-bold text-red-600">{summary?.lowStockCount ?? 0}</CardContent>
         </Card>
-        <Card>
+        <Card className="border-l-4 border-l-[#097870]">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-muted-foreground">Coût réparations (30j)</CardTitle>
           </CardHeader>
@@ -72,9 +72,9 @@ export default function ReportsDashboard() {
         <CardContent className="p-0 overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Scooter</TableHead>
-                <TableHead>Coût réparations</TableHead>
+              <TableRow className="bg-[#F4F2EE] border-b border-[#D8D5CF]">
+                <TableHead className="font-display text-sm">Scooter</TableHead>
+                <TableHead className="font-display text-sm">Coût réparations</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -88,7 +88,7 @@ export default function ReportsDashboard() {
                 summary!.topCostlyScooters.map((s) => (
                   <TableRow key={s.vehicle_id}>
                     <TableCell>
-                      <Link to={`/admin/fleet/${s.vehicle_id}`} className="text-primary hover:underline">
+                      <Link to={`/admin/fleet/${s.vehicle_id}`} className="text-[#097870] hover:text-[#097870]/80">
                         {s.label}
                       </Link>
                     </TableCell>
