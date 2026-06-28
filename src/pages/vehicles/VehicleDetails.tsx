@@ -1368,8 +1368,6 @@ export default function VehicleDetails() {
                     })}
                   </div>
                 )}
-              </div>
-
               </div>{/* end gallery rounded-2xl */}
 
               {/* Mobile: Price card appears here, right after photos - NOT STICKY */}
