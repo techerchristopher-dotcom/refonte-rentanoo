@@ -145,7 +145,7 @@ function QuadCard({ v, photos, animDelay, isNew }: { v: SupabaseVehicle; photos:
   return (
     <Link
       to={path}
-      className="group flex flex-col rounded-xl border bg-card overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lagoon focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary animate-fade-up"
+      className="group flex flex-col rounded-xl border bg-white overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lagoon focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean animate-fade-up"
       style={{ animationDelay: `${animDelay}ms`, animationFillMode: "both" }}
     >
       <div className="relative h-44 bg-muted overflow-hidden">
@@ -333,7 +333,7 @@ export default function LocationQuadNosyBePage() {
           </div>
 
           <h1
-            className={cn("mt-4 text-3xl font-bold tracking-tight md:text-5xl md:leading-[1.1] lg:text-[3.25rem]", !prefersReducedMotion && "animate-fade-up")}
+            className={cn("mt-4 text-3xl font-bold tracking-tight md:text-5xl md:leading-[1.1] lg:text-[3.25rem] font-display", !prefersReducedMotion && "animate-fade-up")}
             style={fadeUp(100)}
           >
             Location quad à Nosy Be
@@ -397,7 +397,7 @@ export default function LocationQuadNosyBePage() {
             </span>
             {" "}disponible{listings.length > 1 ? "s" : ""} cette semaine à Nosy Be
           </p>
-          <h2 className="text-xl font-bold mb-5 tracking-tight">Quads disponibles à Nosy Be</h2>
+          <h2 className="text-xl font-bold mb-5 tracking-tight font-display">Quads disponibles à Nosy Be</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {listings.map((v, i) => {
               const primaryUrl = (v as unknown as { primaryPhotoUrl?: string }).primaryPhotoUrl;
@@ -560,10 +560,10 @@ export default function LocationQuadNosyBePage() {
           title="Prêt à explorer Nosy Be en quad ?"
           text="Réservez votre quad en quelques minutes. Disponibilité en temps réel, confirmation immédiate."
         >
-          <Button asChild className="bg-white text-primary font-semibold hover:bg-white/90 shadow-md">
+          <Button asChild className="bg-ember text-white font-semibold hover:bg-ember/90 shadow-md rounded-xl">
             <Link to="/?cat=quad">Voir les quads disponibles</Link>
           </Button>
-          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10 rounded-xl">
             <Link to="/">Accueil Rentanoo</Link>
           </Button>
         </SeoCtaPanel>
