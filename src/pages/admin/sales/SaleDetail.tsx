@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import { jsPDF } from "jspdf";
 import { Download, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,7 +25,8 @@ export default function SaleDetail() {
     parts: { sku: string; name: string } | null;
   }>;
 
-  const generateReceipt = () => {
+  const generateReceipt = async () => {
+    const { jsPDF } = await import('jspdf')
     const doc = new jsPDF();
     doc.setFontSize(16);
     doc.text("Reçu — Rentanoo Nosy Be", 20, 20);

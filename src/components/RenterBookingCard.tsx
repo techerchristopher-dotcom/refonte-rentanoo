@@ -55,8 +55,6 @@ import { enUS } from 'date-fns/locale/en-US'
 import { it as itLocale } from 'date-fns/locale/it'
 import { de as deLocale } from 'date-fns/locale/de'
 import { Separator } from '@/components/ui/separator'
-import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
 import { Download } from 'lucide-react'
 import { BookingMoreActionsMenu } from '@/components/BookingMoreActionsMenu'
 import { formatCurrency } from '@/utils/currency'
@@ -680,6 +678,9 @@ export default function RenterBookingCard({
       // Récupérer l'élément à exporter (toute la modal sauf le bouton fermer)
       const modalContent = document.querySelector('[data-modal-content]')
       if (!modalContent) return
+
+      const { default: html2canvas } = await import('html2canvas')
+      const { default: jsPDF } = await import('jspdf')
 
       // Capturer le contenu en image haute qualité
       const canvas = await html2canvas(modalContent as HTMLElement, {
