@@ -9,8 +9,16 @@ import { calculateRentalCost, createRentalCalculation, createVehicleRentalInfo }
 import { VehicleFilters, RentalCalculation, VehicleRentalInfo } from "@/types";
 import { SupabaseVehiclesService, Vehicle as SupabaseVehicle } from "@/services/supabaseVehiclesService";
 import { trackMetaSearchInitiateCheckout } from "@/lib/metaPixel";
+import { NavbarNew } from "@/components/layout/NavbarNew";
+import { HomeLiveTicker } from "@/components/home/HomeLiveTicker";
+import { HomeHero } from "@/components/home/HomeHero";
+import { HomeSearchBar } from "@/components/home/HomeSearchBar";
+import { HomeCategoryCards } from "@/components/home/HomeCategoryCards";
+import { HomeFeaturedListings } from "@/components/home/HomeFeaturedListings";
+import { HowItWorksSimple } from "@/components/home/HowItWorksSimple";
+import { HomeTrustSection } from "@/components/home/HomeTrustSection";
+import { FooterNew } from "@/components/layout/FooterNew";
 
-const Footer = lazy(() => import("@/components/layout/footer").then((m) => ({ default: m.Footer })));
 const HomeResults = lazy(() => import("@/components/home/HomeResults").then((m) => ({ default: m.HomeResults })));
 import { HomeBlogPreview } from "@/components/home/HomeBlogPreview";
 import { useToast } from "@/hooks/use-toast";
@@ -683,7 +691,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-soft">
+    <div className="min-h-screen">
       <Seo
         title={t("seo.home.title")}
         description={t("seo.home.description")}
@@ -702,63 +710,25 @@ const Index = () => {
           },
         }}
       />
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-lagoon bg-[length:200%_200%] animate-gradient-shift text-white py-16 lg:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white animate-fade-up [animation-delay:0ms]">
-              {t(
-                "home.heroTitle",
-                "Louez votre scooter à Nosy Be en quelques clics"
-              )}
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto font-medium animate-fade-up [animation-delay:120ms]">
-              {t(
-                "home.heroSubtitle",
-                "RENTANOO, la première plateforme de location de scooters 100 % en ligne"
-              )}
-            </p>
 
-            {showCatalogUi ? (
-              <div className="animate-fade-up [animation-delay:220ms]">
-                <HomeHeroTrustStrip
-                  vehicleCount={vehicles.length}
-                  minPriceLabel={minPriceLabel}
-                />
-              </div>
-            ) : null}
+      {/* Navbar fixe transparente → blanche au scroll */}
+      <NavbarNew />
 
-            <div className="animate-fade-up [animation-delay:280ms]">
-              <HomeDayContextStrip variant="hero" />
-            </div>
+      {/* Ticker temps réel */}
+      <HomeLiveTicker />
 
-            {/* 🎨 Nouvelle SearchBar style Airbnb */}
-            <div className="animate-fade-up [animation-delay:340ms]">
-              <SearchBarAirbnb
-                searchText={searchText}
-                onSearchTextChange={setSearchText}
-                startDate={startDate || null}
-                endDate={endDate || null}
-                onStartDateChange={(date) => setStartDate(date || undefined)}
-                onEndDateChange={(date) => setEndDate(date || undefined)}
-                startTime={startTime}
-                endTime={endTime}
-                onStartTimeChange={setStartTime}
-                onEndTimeChange={setEndTime}
-                onSearch={handleSearch}
-                searching={searching}
-                onResetSearch={handleResetSearch}
-              />
-            </div>
+      {/* Hero plein écran */}
+      <HomeHero />
 
-          </div>
-        </section>
+      {/* SearchBar glassmorphism — chevauchement hero */}
+      <HomeSearchBar />
 
-        {/* Filters & Results — lazy + rendu différé pour LCP (H1 prioritaire) */}
+      {/* Catalogue de véhicules existant (logique préservée) */}
+      <div id="search-results" className="scroll-mt-4">
         {!showResults ? (
-          <div id="search-results" className="min-h-[400px] scroll-mt-4" aria-hidden="true" />
+          <div className="min-h-[400px]" aria-hidden="true" />
         ) : (
-          <Suspense fallback={<div id="search-results" className="min-h-[400px] scroll-mt-4" />}>
+          <Suspense fallback={<div className="min-h-[400px]" />}>
             <HomeResults
               filteredVehicles={filteredVehicles}
               loading={loading}
@@ -775,27 +745,39 @@ const Index = () => {
             />
           </Suspense>
         )}
+      </div>
 
-        {/* Bloc texte SEO — location scooter Nosy Be, livraison, assurance */}
-        <section className="py-10">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-xl font-semibold text-foreground mb-3">
-                {t("home.seoBlockTitle")}
-              </h2>
-              <p className="text-muted-foreground text-base leading-relaxed">
-                {t("home.seoBlock")}
-              </p>
-            </div>
+      {/* Catégories visuelles */}
+      <HomeCategoryCards />
+
+      {/* Offres phares depuis Supabase */}
+      <HomeFeaturedListings />
+
+      {/* Comment ça marche */}
+      <HowItWorksSimple />
+
+      {/* Stats + témoignages */}
+      <HomeTrustSection />
+
+      {/* Blog preview */}
+      <HomeBlogPreview />
+
+      {/* Bloc SEO texte */}
+      <section className="py-10 bg-[#F4F2EE]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-xl font-semibold text-foreground mb-3">
+              {t("home.seoBlockTitle")}
+            </h2>
+            <p className="text-muted-foreground text-base leading-relaxed">
+              {t("home.seoBlock")}
+            </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Blog preview — 3 derniers articles */}
-        <HomeBlogPreview />
-      </main>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
+      {/* Footer refonte */}
+      <FooterNew />
     </div>
   );
 };
