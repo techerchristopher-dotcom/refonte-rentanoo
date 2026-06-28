@@ -166,10 +166,10 @@ export default function MeteoNosyBePage() {
         <SeoFaqSection title={t("meteoNosyBePage.faqTitle")} items={faqItems} />
 
         <SeoCtaPanel title={t("meteoNosyBePage.ctaTitle")} text={t("meteoNosyBePage.ctaText")}>
-          <Button asChild className="bg-white text-primary font-semibold hover:bg-white/90 shadow-md">
+          <Button asChild className="bg-ember text-white font-semibold hover:bg-ember/90 shadow-md rounded-xl">
             <Link to="/">{t("meteoNosyBePage.ctaRent")}</Link>
           </Button>
-          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10 rounded-xl">
             <Link to={SEO_EXCHANGE_PATH}>{t("meteoNosyBePage.ctaExchange")}</Link>
           </Button>
         </SeoCtaPanel>
