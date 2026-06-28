@@ -78,7 +78,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
     <nav className="flex flex-col gap-4 py-2">
       {NAV_GROUPS.map((group) => (
         <div key={group.title}>
-          <p className="px-3 mb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          <p className="px-3 mb-1 text-xs font-semibold uppercase tracking-wide text-white/40">
             {group.title}
           </p>
           <ul className="space-y-0.5">
@@ -93,13 +93,13 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
                     to={item.to}
                     onClick={onNavigate}
                     className={cn(
-                      "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
+                      "group flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
                       active
-                        ? "bg-primary/10 text-primary font-medium"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                        ? "bg-[#097870] text-white font-medium"
+                        : "text-white/70 hover:bg-white/5 hover:text-white"
                     )}
                   >
-                    <Icon className="h-4 w-4 shrink-0" />
+                    <Icon className={cn("h-4 w-4 shrink-0", active ? "text-white" : "text-white/60 group-hover:text-white")} />
                     {item.label}
                   </Link>
                 </li>
@@ -126,14 +126,14 @@ export function BackOfficeSidebar() {
               Menu back-office
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-72 overflow-y-auto">
+          <SheetContent side="left" className="w-72 overflow-y-auto bg-[#0B1A1F]">
             <NavContent onNavigate={() => setOpen(false)} />
           </SheetContent>
         </Sheet>
       </div>
 
       {/* Desktop sidebar */}
-      <aside className="hidden lg:block w-56 shrink-0 border-r border-border pr-4">
+      <aside className="hidden lg:block w-56 shrink-0 bg-[#0B1A1F] rounded-xl pr-4 pl-2 py-4">
         <NavContent />
       </aside>
     </>
