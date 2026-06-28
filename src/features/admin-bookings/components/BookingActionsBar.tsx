@@ -57,7 +57,7 @@ function PaymentMethodPicker({
         htmlFor="pay-cash"
         className={cn(
           "flex items-center gap-2 rounded-lg border px-3 py-2.5 cursor-pointer transition-colors",
-          value === "cash" ? "border-primary bg-primary/5" : "border-border hover:bg-muted/50",
+          value === "cash" ? "border-[#097870] bg-[#097870]/5" : "border-border hover:bg-muted/50",
           disabled && "opacity-50 cursor-not-allowed"
         )}
       >
@@ -69,7 +69,7 @@ function PaymentMethodPicker({
         htmlFor="pay-card"
         className={cn(
           "flex items-center gap-2 rounded-lg border px-3 py-2.5 cursor-pointer transition-colors",
-          value === "card" ? "border-primary bg-primary/5" : "border-border hover:bg-muted/50",
+          value === "card" ? "border-[#097870] bg-[#097870]/5" : "border-border hover:bg-muted/50",
           disabled && "opacity-50 cursor-not-allowed"
         )}
       >
@@ -168,7 +168,7 @@ export function BookingActionsBar({
             </div>
 
             {paymentSummary ? (
-              <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400">{paymentSummary}</p>
+              <p className="text-sm font-medium text-[#097870]">{paymentSummary}</p>
             ) : null}
 
             {showAdminPaymentChoice ? (
@@ -180,11 +180,11 @@ export function BookingActionsBar({
                   disabled={collectLoading || payLoading}
                 />
                 {paymentMethod === "cash" ? (
-                  <Button type="button" onClick={onCollectCash} disabled={collectLoading} className="w-full sm:w-auto">
+                  <Button type="button" onClick={onCollectCash} disabled={collectLoading} className="w-full sm:w-auto bg-[#E8622F] hover:bg-[#E8622F]/90 text-white">
                     {collectLoading ? "Encaissement…" : "Encaisser en espèces"}
                   </Button>
                 ) : (
-                  <Button type="button" onClick={onPayCard} disabled={payLoading} className="w-full sm:w-auto">
+                  <Button type="button" onClick={onPayCard} disabled={payLoading} className="w-full sm:w-auto bg-[#097870] hover:bg-[#097870]/90 text-white">
                     {payLoading ? "Ouverture Stripe…" : "Payer par CB"}
                   </Button>
                 )}
