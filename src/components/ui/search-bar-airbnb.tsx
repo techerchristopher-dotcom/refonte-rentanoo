@@ -428,7 +428,7 @@ export function SearchBarAirbnb({
             onValidate={() => {
               setShowDatePicker(false);
               setActiveField(null);
-              if (openTimeAfterDates || true) {
+              if (openTimeAfterDates) {
                 setShowTimePicker(true);
                 setActiveField('travelers');
               }
