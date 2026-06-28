@@ -233,7 +233,10 @@ export default function ExteriorInspectionAccordionSimple({
   const damageReports = watch("damageReports") || []
   const zonesHasDamage = watch("exteriorInspection.zonesHasDamage") || {}
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  
+
+  // Refs pour les inputs fichier des photos de zone (un par step, hors du map pour respecter les Rules of Hooks)
+  const zonePhotoInputRefs = useRef<(HTMLInputElement | null)[]>([])
+
   // State pour tracker les zones complètes (feedback visuel)
   const [completedZones, setCompletedZones] = useState<Set<string>>(new Set())
   // State pour mettre en avant les zones invalides (bordures/badges)
@@ -1068,7 +1071,6 @@ export default function ExteriorInspectionAccordionSimple({
                       <>
                         {/* Photo globale */}
                         {(() => {
-                          const zonePhotoInputRef = useRef<HTMLInputElement | null>(null)
                           const currentZoneKey = zoneKey || (isTrunkStep ? "coffre" : null)
                           const zonePhotos = currentZoneKey ? (watch(`exteriorInspection.zonesPhotos.${currentZoneKey}`) || []) : []
                           const main = zonePhotos[0] as any
@@ -1163,7 +1165,7 @@ export default function ExteriorInspectionAccordionSimple({
                               </div>
                               
                               <input
-                                ref={zonePhotoInputRef}
+                                ref={(el) => { zonePhotoInputRefs.current[idx] = el }}
                                 type="file"
                                 accept="image/*"
                                 capture="environment"
@@ -1179,7 +1181,7 @@ export default function ExteriorInspectionAccordionSimple({
                                     type="button"
                                     onClick={(e) => {
                                       e.stopPropagation()
-                                      zonePhotoInputRef.current?.click()
+                                      zonePhotoInputRefs.current[idx]?.click()
                                     }}
                                     className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
                                   >
@@ -1194,7 +1196,7 @@ export default function ExteriorInspectionAccordionSimple({
                                     className="group cursor-pointer"
                                     onClick={(e) => {
                                       e.stopPropagation()
-                                      zonePhotoInputRef.current?.click()
+                                      zonePhotoInputRefs.current[idx]?.click()
                                     }}
                                   >
                                     <img
@@ -1225,7 +1227,7 @@ export default function ExteriorInspectionAccordionSimple({
                                       type="button"
                                       onClick={(e) => {
                                         e.stopPropagation()
-                                        zonePhotoInputRef.current?.click()
+                                        zonePhotoInputRefs.current[idx]?.click()
                                       }}
                                       className="mt-3 text-xs text-blue-700 hover:text-blue-800 underline"
                                     >
