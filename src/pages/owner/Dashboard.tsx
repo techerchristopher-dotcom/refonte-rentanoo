@@ -152,7 +152,7 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="min-h-screen bg-[#F4F2EE]">
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="flex flex-col lg:flex-row gap-6">
             <OwnerSidebar />
@@ -167,14 +167,14 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-[#F4F2EE]">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-6">
           <OwnerSidebar />
           <main className="flex-1 min-w-0">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-800 mb-2">
+          <h1 className="font-display text-3xl font-bold text-[#0D1E26] mb-2">
             Mon Dashboard
           </h1>
           <p className="text-muted-foreground">
@@ -186,15 +186,15 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           
           {/* Total véhicules */}
-          <Card className="border-l-4 border-l-primary">
+          <Card className="border-l-4 border-l-[#0FBFB0]">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
+              <CardTitle className="font-display text-sm font-medium text-muted-foreground">
                 Véhicules en location
               </CardTitle>
-              <Car className="h-5 w-5 text-primary" />
+              <Car className="h-5 w-5 text-[#0FBFB0]" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{stats.totalVehicles}</div>
+              <div className="font-display text-3xl font-bold">{stats.totalVehicles}</div>
               <p className="text-xs text-muted-foreground mt-1">
                 Véhicules publiés
               </p>
@@ -202,15 +202,15 @@ export default function Dashboard() {
           </Card>
 
           {/* Réservations actives */}
-          <Card className="border-l-4 border-l-green-600">
+          <Card className="border-l-4 border-l-[#097870]">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
+              <CardTitle className="font-display text-sm font-medium text-muted-foreground">
                 Réservations actives
               </CardTitle>
-              <Calendar className="h-5 w-5 text-green-600" />
+              <Calendar className="h-5 w-5 text-[#097870]" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{stats.activeBookings}</div>
+              <div className="font-display text-3xl font-bold">{stats.activeBookings}</div>
               <p className="text-xs text-muted-foreground mt-1">
                 En cours ou confirmées
               </p>
@@ -218,15 +218,15 @@ export default function Dashboard() {
           </Card>
 
           {/* Demandes en attente */}
-          <Card className="border-l-4 border-l-warning">
+          <Card className="border-l-4 border-l-amber-500">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
+              <CardTitle className="font-display text-sm font-medium text-muted-foreground">
                 Demandes en attente
               </CardTitle>
-              <AlertCircle className="h-5 w-5 text-warning" />
+              <AlertCircle className="h-5 w-5 text-amber-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{stats.pendingRequests}</div>
+              <div className="font-display text-3xl font-bold">{stats.pendingRequests}</div>
               <p className="text-xs text-muted-foreground mt-1">
                 Nécessitent votre attention
               </p>
@@ -234,18 +234,18 @@ export default function Dashboard() {
           </Card>
 
           {/* CA ce mois */}
-          <Card className="border-l-4 border-l-success">
+          <Card className="border-l-4 border-l-[#E8622F]">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
+              <CardTitle className="font-display text-sm font-medium text-muted-foreground">
                 CA ce mois
               </CardTitle>
-              <DollarSign className="h-5 w-5 text-success" />
+              <DollarSign className="h-5 w-5 text-[#E8622F]" />
             </CardHeader>
             <CardContent>
               <DualPrice
                 amountMga={stats.monthlyRevenue}
                 variant="admin"
-                primaryClassName="text-3xl font-bold tabular-nums"
+                primaryClassName="font-display text-3xl font-bold tabular-nums"
                 secondaryClassName="text-sm text-muted-foreground"
               />
               <p className="text-xs text-muted-foreground mt-1">
@@ -269,7 +269,7 @@ export default function Dashboard() {
                 </div>
                 <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
               </div>
-              <CardTitle className="text-xl">Mes véhicules</CardTitle>
+              <CardTitle className="font-display text-xl">Mes véhicules</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
@@ -288,7 +288,7 @@ export default function Dashboard() {
                 </div>
                 <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
               </div>
-              <CardTitle className="text-xl">Mes réservations</CardTitle>
+              <CardTitle className="font-display text-xl">Mes réservations</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
@@ -306,7 +306,7 @@ export default function Dashboard() {
                 </div>
                 <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-warning group-hover:translate-x-1 transition-all" />
               </div>
-              <CardTitle className="text-xl">Mes litiges</CardTitle>
+              <CardTitle className="font-display text-xl">Mes litiges</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
@@ -324,7 +324,7 @@ export default function Dashboard() {
                 </div>
                 <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-success group-hover:translate-x-1 transition-all" />
               </div>
-              <CardTitle className="text-xl">Mes commissions</CardTitle>
+              <CardTitle className="font-display text-xl">Mes commissions</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
