@@ -490,17 +490,20 @@ const OwnerBookings = () => {
 
   const handleAcceptRequest = async (request: BookingRequest) => {
     try {
-      // TODO: Implémenter l'acceptation de la demande
+      const { error } = await supabase
+        .from('bookings')
+        .update({ status: 'confirmed', updated_at: new Date().toISOString() })
+        .eq('id', request.id)
+      if (error) throw error
       toast({
-        title: "Demande acceptée",
-        description: "La demande a été acceptée avec succès",
+        title: "Réservation confirmée",
+        description: "Le locataire a été notifié.",
       });
-      await loadData(); // Recharger les données
-    } catch (error) {
-      console.error('Erreur lors de l\'acceptation:', error);
+      await loadData();
+    } catch {
       toast({
         title: "Erreur",
-        description: "Impossible d'accepter la demande",
+        description: "Impossible de confirmer.",
         variant: "destructive",
       });
     }
@@ -508,17 +511,20 @@ const OwnerBookings = () => {
 
   const handleRejectRequest = async (request: BookingRequest) => {
     try {
-      // TODO: Implémenter le refus de la demande
+      const { error } = await supabase
+        .from('bookings')
+        .update({ status: 'declined', updated_at: new Date().toISOString() })
+        .eq('id', request.id)
+      if (error) throw error
       toast({
-        title: "Demande refusée",
-        description: "La demande a été refusée",
+        title: "Réservation refusée",
+        description: "Le locataire a été informé.",
       });
-      await loadData(); // Recharger les données
-    } catch (error) {
-      console.error('Erreur lors du refus:', error);
+      await loadData();
+    } catch {
       toast({
         title: "Erreur",
-        description: "Impossible de refuser la demande",
+        description: "Impossible de refuser.",
         variant: "destructive",
       });
     }

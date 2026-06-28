@@ -309,16 +309,22 @@ const OwnerBookingDiscussion = () => {
 
   const handleAcceptRequest = async () => {
     try {
-      // TODO: Implémenter l'acceptation de la demande
+      const bookingId = conversation?.bookingId;
+      if (!bookingId) throw new Error('Booking ID introuvable');
+      const { error } = await supabase
+        .from('bookings')
+        .update({ status: 'confirmed', updated_at: new Date().toISOString() })
+        .eq('id', bookingId)
+      if (error) throw error
+      setBookingStatus('confirmed');
       toast({
-        title: "Demande acceptée",
-        description: "Vous avez accepté la demande de location",
+        title: "Réservation confirmée",
+        description: "Le locataire a été notifié.",
       });
-    } catch (error) {
-      console.error('Erreur lors de l\'acceptation:', error);
+    } catch {
       toast({
         title: "Erreur",
-        description: "Impossible d'accepter la demande",
+        description: "Impossible de confirmer.",
         variant: "destructive",
       });
     }
@@ -326,16 +332,22 @@ const OwnerBookingDiscussion = () => {
 
   const handleRejectRequest = async () => {
     try {
-      // TODO: Implémenter le refus de la demande
+      const bookingId = conversation?.bookingId;
+      if (!bookingId) throw new Error('Booking ID introuvable');
+      const { error } = await supabase
+        .from('bookings')
+        .update({ status: 'declined', updated_at: new Date().toISOString() })
+        .eq('id', bookingId)
+      if (error) throw error
+      setBookingStatus('declined');
       toast({
-        title: "Demande refusée",
-        description: "Vous avez refusé la demande de location",
+        title: "Réservation refusée",
+        description: "Le locataire a été informé.",
       });
-    } catch (error) {
-      console.error('Erreur lors du refus:', error);
+    } catch {
       toast({
         title: "Erreur",
-        description: "Impossible de refuser la demande",
+        description: "Impossible de refuser.",
         variant: "destructive",
       });
     }
