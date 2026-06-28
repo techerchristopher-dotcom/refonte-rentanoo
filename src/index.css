@@ -83,6 +83,30 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+  /* === Rentanoo Design Tokens === */
+  --ocean-deep: #0B1A1F;
+  --ocean: #097870;
+  --ocean-glow: #0FBFB0;
+  --ember: #E8622F;
+  --sand: #F4F2EE;
+  --night: #0D1E26;
+  --mist: #6B8A8D;
+
+  /* shadcn remapping → nouveaux tokens */
+  --background: var(--sand);
+  --foreground: var(--night);
+  --primary: 168 64% 25%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 16 80% 54%;
+  --accent-foreground: 0 0% 100%;
+  --muted: 40 20% 90%;
+  --muted-foreground: 195 15% 49%;
+  --border: 40 15% 83%;
+  --radius: 0.75rem;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
   }
 
   .dark {
@@ -134,8 +158,13 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
   }
 }
+
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
 
 /* ===== ANIMATIONS POUR LA RECHERCHE DE VILLES ===== */
 
