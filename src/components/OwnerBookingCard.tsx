@@ -56,8 +56,6 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import { Separator } from '@/components/ui/separator'
-import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { ConversationsService } from '@/services/supabase/conversations'
 import { MessagesService } from '@/services/supabase/messages'
@@ -725,6 +723,9 @@ export default function OwnerBookingCard({
         })
         return
       }
+
+      const { default: html2canvas } = await import('html2canvas')
+      const { default: jsPDF } = await import('jspdf')
 
       // Capturer le contenu en image haute qualité
       const canvas = await html2canvas(modalContent as HTMLElement, {

@@ -464,6 +464,12 @@ All colors MUST be HSL.
   .whatsapp-bubble-exit {
     animation: none !important;
   }
+
+  /* Supprime le ping de pulsation Tailwind sur le FAB WhatsApp */
+  .animate-ping {
+    animation: none !important;
+    opacity: 0 !important;
+  }
 }
 
 @keyframes cart-badge-pulse {

@@ -254,7 +254,7 @@ export function WhatsAppFloatingButton() {
           aria-hidden={bubblePhase === "fading"}
         >
           <div className="relative mr-1">
-            <div className="rounded-2xl rounded-br-md border border-[#25D366]/25 bg-white px-3.5 py-2.5 text-left text-xs leading-snug text-foreground shadow-[0_8px_24px_-6px_rgba(37,211,102,0.35),0_4px_12px_rgba(0,0,0,0.08)]">
+            <div className="font-body rounded-2xl rounded-br-md border border-[#25D366]/25 bg-white px-3.5 py-2.5 text-left text-xs leading-snug text-foreground shadow-[0_8px_24px_-6px_rgba(37,211,102,0.35),0_4px_12px_rgba(0,0,0,0.08)]">
               <p>{bubbleMessage}</p>
               <p className="mt-1.5 text-[11px] text-muted-foreground">{responseHint}</p>
             </div>

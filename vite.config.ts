@@ -38,6 +38,13 @@ export default defineConfig(({ mode }) => ({
         // 404 quand Safari mobile garde un index.html en cache après redéploiement.
         // Cf. 404 sur /assets/currency-*.js.
         experimentalMinChunkSize: 20_000,
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-supabase': ['@supabase/supabase-js'],
+          'vendor-stripe': ['@stripe/stripe-js'],
+          'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-select', '@radix-ui/react-tabs'],
+          'vendor-form': ['react-hook-form', 'zod', '@hookform/resolvers'],
+        },
       },
     },
   },
