@@ -78,6 +78,7 @@
     "addDates": "Daten hinzufügen",
     "selectDates": "Daten auswählen",
     "comingSoon": "Bald verfügbar",
+    "default_location": "Nosy Be, Madagaskar",
     "vehicle": {
       "fuel": {
         "gasoline": "Benzin",
@@ -90,7 +91,8 @@
         "automatic": "Automatik"
       },
       "places_one": "{{count}} Sitzplatz",
-      "places_other": "{{count}} Sitzplätze"
+      "places_other": "{{count}} Sitzplätze",
+      "places": "{{count}} Sitzplätze"
     },
     "duration": {
       "day_one": "{{count}} Tag",
@@ -114,6 +116,179 @@
       "time": "Uhrzeit",
       "launchSearch": "Suche starten",
       "searching": "Suche läuft…"
+    }
+  },
+  "vehicle": {
+    "places": "{{count}} Sitzplätze",
+    "fuel": {
+      "gasoline": "Benzin",
+      "diesel": "Diesel",
+      "electric": "Elektrisch",
+      "hybrid": "Hybrid"
+    },
+    "transmission": {
+      "manual": "Manuell",
+      "automatic": "Automatik"
+    },
+    "places_one": "{{count}} Sitzplatz",
+    "places_other": "{{count}} Sitzplätze"
+  },
+  "pricing": {
+    "total_for_duration": "gesamt {{total}} ({{duration}})",
+    "perDayShort": "Tag",
+    "perNightShort": "Nacht",
+    "totalExcludingOptions": "also {{total}} (ohne Zusatzoptionen)",
+    "cardTotalSummary": "{{duration}} · {{total}} gesamt"
+  },
+  "accommodationCard": {
+    "filterLabel": "Unterkünfte",
+    "typeFallback": "Unterkunft"
+  },
+  "locationArea": {
+    "label": "Viertel",
+    "placeholder": "Viertel auswählen",
+    "loading": "Laden…",
+    "addNew": "Neuen Standort hinzufügen",
+    "newNamePlaceholder": "z. B. Ambatoloaka",
+    "create": "Hinzufügen",
+    "creating": "Wird hinzugefügt…",
+    "createdTitle": "Viertel hinzugefügt",
+    "createdDescription": "{{name}} ist jetzt ausgewählt.",
+    "errors": {
+      "loadTitle": "Fehler",
+      "createTitle": "Viertel konnte nicht hinzugefügt werden",
+      "createUnknown": "Unbekannter Fehler",
+      "requiredTitle": "Viertel erforderlich",
+      "required": "Das Viertel ist für eine verfügbare Unterkunft obligatorisch."
+    }
+  },
+  "homeFilters": {
+    "area": {
+      "all": "Alle Viertel"
+    }
+  },
+  "listingOwner": {
+    "tab": "Eigentümer",
+    "tabShort": "Eigent.",
+    "intro": "Öffentlich auf dem Inserat angezeigte Identität. Leer lassen, um das Profil des Verwalterkontos zu verwenden.",
+    "displayName": "Angezeigter Name",
+    "displayNamePlaceholder": "z. B. Residenz Ambatoloaka, Jean Dupont…",
+    "photo": "Logo oder Foto des Eigentümers",
+    "chooseFile": "Datei auswählen",
+    "removePhoto": "Entfernen",
+    "uploading": "Wird hochgeladen…",
+    "photoHelper": "Zulässige Formate: JPG, PNG, WebP. Max. Größe: 5 MB",
+    "ownerType": "Eigentümertyp",
+    "previewHint": "Vorschau des angezeigten Eigentümers",
+    "types": {
+      "individual": "Privatperson",
+      "agency": "Agentur",
+      "residence": "Residenz / Unterkunft",
+      "platformManaged": "Von der Plattform verwaltet"
+    },
+    "stats": {
+      "listings": "Inserate",
+      "thisListing": "Dieses Inserat"
+    },
+    "toasts": {
+      "nameRequired": "Bitte geben Sie zuerst den angezeigten Namen ein, bevor Sie ein Foto hinzufügen.",
+      "uploadSuccess": "Foto des Eigentümers gespeichert.",
+      "uploadError": "Foto des Eigentümers konnte nicht hochgeladen werden.",
+      "removeSuccess": "Foto des Eigentümers entfernt."
+    }
+  },
+  "listingTerms": {
+    "car": {
+      "statsVehicles": "Fahrzeuge",
+      "statsThis": "Dieses Auto",
+      "rentalLabel": "Fahrzeugmiete",
+      "startDateLabel": "Abfahrt",
+      "endDateLabel": "Rückgabe",
+      "perNight": "pro Tag",
+      "pickupLocation": "Abholort",
+      "returnLocation": "Rückgabeort",
+      "reviews": {
+        "sample1": {
+          "meta": "Vor 2 Wochen • 3 Tage Miete",
+          "text": "Fahrzeug in einwandfreiem Zustand, sehr sauber. Pierre ist ein aufmerksamer und verfügbarer Gastgeber. Sehr zu empfehlen!"
+        },
+        "sample2": {
+          "meta": "Vor 1 Monat • 5 Tage Miete",
+          "text": "Ausgezeichnetes Fahrzeug, um die Insel zu entdecken. Sparsam und zuverlässig. Perfekte Kommunikation mit dem Eigentümer."
+        }
+      }
+    },
+    "moto": {
+      "statsVehicles": "Fahrzeuge",
+      "statsThis": "Dieses Motorrad",
+      "rentalLabel": "Fahrzeugmiete",
+      "startDateLabel": "Abfahrt",
+      "endDateLabel": "Rückgabe",
+      "perNight": "pro Tag",
+      "pickupLocation": "Abholort",
+      "returnLocation": "Rückgabeort",
+      "reviews": {
+        "sample1": {
+          "meta": "Vor 2 Wochen • 3 Tage Miete",
+          "text": "Fahrzeug in einwandfreiem Zustand, sehr sauber. Pierre ist ein aufmerksamer und verfügbarer Gastgeber. Sehr zu empfehlen!"
+        },
+        "sample2": {
+          "meta": "Vor 1 Monat • 5 Tage Miete",
+          "text": "Ausgezeichnetes Fahrzeug, um die Insel zu entdecken. Sparsam und zuverlässig. Perfekte Kommunikation mit dem Eigentümer."
+        }
+      }
+    },
+    "accommodation": {
+      "statsVehicles": "Unterkünfte",
+      "statsThis": "Diese Unterkunft",
+      "rentalLabel": "Unterkunftsmiete",
+      "startDateLabel": "Anreise",
+      "endDateLabel": "Abreise",
+      "perNight": "pro Nacht",
+      "pickupLocation": "Anreiseort",
+      "returnLocation": "Abreiseort",
+      "reviews": {
+        "sample1": {
+          "meta": "Vor 2 Wochen • 3 Übernachtungen",
+          "text": "Einwandfreie Unterkunft, sehr sauber und gut gelegen. Der Gastgeber ist aufmerksam und verfügbar. Sehr zu empfehlen!"
+        },
+        "sample2": {
+          "meta": "Vor 1 Monat • 5 Übernachtungen",
+          "text": "Hervorragende Unterkunft, um Nosy Be zu entdecken. Komfortabel und ruhig. Perfekte Kommunikation mit dem Eigentümer."
+        }
+      }
+    }
+  },
+  "accommodationDetails": {
+    "back": "Zurück",
+    "loading": "Unterkunft wird geladen...",
+    "descriptionTitle": "Beschreibung",
+    "descriptionHeading": "{{name}} mieten in Nosy Be",
+    "errors": {
+      "vehicleIncompatible": {
+        "title": "Inkompatibles Inserat",
+        "description": "Diese Seite ist für Unterkünfte reserviert."
+      },
+      "vehicleNotFound": {
+        "title": "Unterkunft nicht gefunden",
+        "description": "Diese Unterkunft ist nicht mehr verfügbar."
+      },
+      "loadError": {
+        "title": "Ladefehler",
+        "description": "Diese Unterkunft konnte nicht geladen werden."
+      },
+      "loginRequired": {
+        "title": "Anmeldung erforderlich",
+        "description": "Bitte melden Sie sich an, um diese Unterkunft zu buchen."
+      },
+      "bookingError": {
+        "title": "Buchungsfehler",
+        "description": "Die Buchungsanfrage konnte nicht erstellt werden."
+      },
+      "unexpectedError": {
+        "title": "Fehler",
+        "description": "Es ist ein unerwarteter Fehler aufgetreten."
+      }
     }
   },
   "home": {
@@ -214,6 +389,18 @@
       },
       "resultsFound_one": "{{count}} Fahrzeug gefunden",
       "resultsFound_other": "{{count}} Fahrzeuge gefunden"
+    }
+  },
+  "footer": {
+    "brand": "RENTANOO",
+    "description": "Mietplattform in Nosy Be: Roller, Motorrad, Auto und Unterkunft. 100 % online buchbar.",
+    "location": "Nosy Be, Madagaskar",
+    "copyright": "© 2025 RENTANOO. Alle Rechte vorbehalten.",
+    "madeWith": "Made with ❤️ in Nosy Be",
+    "nav": {
+      "scooters": "Roller & Motorräder",
+      "cars": "Autos",
+      "accommodation": "Unterkünfte"
     }
   },
   "motoDetails": {
@@ -321,14 +508,6 @@
       "paragraph2": "Im Streitfall können Sie eine Verbraucherschlichtung in Anspruch nehmen oder das zuständige Gericht anrufen.",
       "ctaConditions": "Allgemeine Geschäftsbedingungen",
       "ctaMore": "Mehr erfahren"
-    }
-  },
-  "footer": {
-    "description": "Mietplattform in Nosy Be: Roller, Motorrad, Auto und Unterkunft. 100 % online buchbar.",
-    "nav": {
-      "scooters": "Roller & Motorräder",
-      "cars": "Autos",
-      "accommodation": "Unterkünfte"
     }
   },
   "profile": {
@@ -530,6 +709,9 @@
       "saveLicense": "Meine Führerscheindaten speichern",
       "uploading": "Wird hochgeladen...",
       "saveAll": "Gesamtes Profil speichern",
+      "avatar": {
+        "changePhoto": "Foto ändern"
+      },
       "license": {
         "change": "Ändern",
         "delete": "Löschen",
@@ -723,7 +905,9 @@
         "activated": "Kaution: aktiviert",
         "todo": "Kaution: zu aktivieren",
         "none": "Keine Kaution"
-      }
+      },
+      "toastPayFirst": "Zahlung erforderlich",
+      "toastPayFirstDesc": "Sie können die Kaution nach der Zahlung der Miete aktivieren."
     },
     "status": {
       "paymentConfirmed": "Zahlung bestätigt",
@@ -810,6 +994,7 @@
       "description": "Wählen Sie den Fahrzeugtyp, den Sie auf der Plattform veröffentlichen möchten.",
       "carLabel": "Auto",
       "motoLabel": "Motorrad / Roller",
+      "accommodationLabel": "Unterkunft",
       "cancel": "Abbrechen"
     },
     "card": {
@@ -890,6 +1075,38 @@
         "removed": "Foto gelöscht",
         "removedTitle": "Foto gelöscht",
         "removedDescription": "Das Foto wurde erfolgreich gelöscht."
+      }
+    },
+    "accommodationForm": {
+      "title": "Unterkunft hinzufügen",
+      "category": "Unterkunftstyp",
+      "categoryPlaceholder": "Auswählen",
+      "categoryVilla": "Villa",
+      "categoryBungalow": "Bungalow",
+      "categoryMaison": "Haus",
+      "categoryChambre": "Zimmer",
+      "categoryAppartement": "Wohnung",
+      "name": "Name der Unterkunft",
+      "namePlaceholder": "z. B. Villa les Flamboyants",
+      "capacity": "Gastkapazität",
+      "nightlyPrice": "Preis pro Nacht",
+      "nightlyPriceHint": "Geben Sie einen davon an — €-Äquivalent wird Reisenden zum Tageskurs angezeigt",
+      "description": "Beschreibung",
+      "descriptionPlaceholder": "Beschreiben Sie Ihre Unterkunft, die Ausstattung, die Lage...",
+      "submit": "Unterkunft erstellen",
+      "saving": "Wird erstellt...",
+      "successTitle": "Unterkunft erfolgreich hinzugefügt",
+      "successDescription": "Ihr Inserat wurde erstellt. Sie können es in Ihrer Fahrzeugliste verwalten.",
+      "errors": {
+        "required": "Bitte geben Sie Typ, Name, Kapazität und Preis pro Nacht an.",
+        "price": "Bitte geben Sie einen gültigen Nachtpreis ein (mindestens 1.000 Ar).",
+        "capacity": "Bitte geben Sie eine Kapazität zwischen 1 und 20 Gästen ein.",
+        "generic": "Die Unterkunft konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+      },
+      "photos": {
+        "sectionTitle": "Unterkunftsfotos",
+        "sectionSubtitle": "Fügen Sie mindestens ein Foto hinzu, um Ihre Unterkunft hervorzuheben.",
+        "minRequired": "Bitte fügen Sie mindestens ein Foto Ihrer Unterkunft hinzu."
       }
     },
     "availabilityDialog": {
@@ -974,7 +1191,30 @@
     "optionsSubtotal": "Optionen Zwischensumme",
     "subtotal": "Zwischensumme",
     "serviceFee": "Servicegebühr ({{percent}}%)",
+    "reservationFee": "Buchungsgebühr ({{percent}}%)",
     "totalToPay": "GESAMT ZU ZAHLEN",
+    "paymentMethod": {
+      "title": "Zahlungsmethode",
+      "recommended": "Empfohlen",
+      "previewError": "Die Buchungsgebühren konnten nicht geladen werden. Online-Kartenzahlung wird standardmäßig angewendet.",
+      "savingsAmount": "Sparen Sie {{amount}}",
+      "cardOnline": {
+        "label": "Online per Karte zahlen",
+        "hint": "Sichere Zahlung via Stripe"
+      },
+      "cashOnSite": {
+        "label": "Zahlung bei der Agentur",
+        "hint": "Zahlung bei Schlüsselübergabe",
+        "accommodation": {
+          "label": "Vor-Ort-Zahlung",
+          "hint": "Zahlung bei Ihrer Ankunft in der Unterkunft"
+        },
+        "badge": "Zahlung bei der Agentur",
+        "modalHint": "Zahlung bei Schlüsselübergabe in der Agentur."
+      },
+      "noOnlinePaymentRequired": "Keine Online-Zahlung erforderlich",
+      "serviceFeeGeneric": "Servicegebühren"
+    },
     "confirmBooking": "Ich bestätige meine Buchungsanfrage",
     "benefits": {
       "quickResponse": "Schnelle Antwort",
@@ -1083,6 +1323,8 @@
     "successDescription": "Ihre Nachricht wurde erfolgreich gesendet. Wir werden Ihnen so schnell wie möglich antworten.",
     "error": "Fehler",
     "errorGeneric": "Fehler, bitte versuchen Sie es erneut.",
+    "errorNetwork": "Server nicht erreichbar. Bitte überprüfen Sie Ihre Internetverbindung.",
+    "errorTimeout": "Die Anfrage hat zu lange gedauert. Bitte versuchen Sie es erneut.",
     "fileTooLarge": "Die Datei darf 10MB nicht überschreiten"
   },
   "depositModal": {
@@ -1099,6 +1341,20 @@
     "home": {
       "title": "Rollervermietung Nosy Be – Online-Buchung | Rentanoo",
       "description": "Mieten Sie Ihren Roller in Nosy Be in wenigen Klicks. Lieferung zum Flughafen oder Hotel. Helme und Versicherung inklusive. Online buchen."
+    },
+    "accommodationHubs": {
+      "vacances": {
+        "title": "Ferienvermietung Nosy Be"
+      },
+      "appartement": {
+        "title": "Wohnungsvermietung Nosy Be"
+      },
+      "villa": {
+        "title": "Villavermietung Nosy Be"
+      },
+      "bungalow": {
+        "title": "Bungalowvermietung Nosy Be"
+      }
     },
     "contact": {
       "title": "Kontakt – Rollervermietung Nosy Be | Rentanoo",
@@ -1390,27 +1646,133 @@
   },
   "explorerFilters": {
     "categories": {
-      "quad": "Quads / Buggys"
+      "accommodation": "Unterkünfte",
+      "scooter": "Roller",
+      "moto": "Motorräder",
+      "quad": "Quads / Buggys",
+      "car": "Autos"
     },
     "sub": {
+      "accommodation": {
+        "appartement": "Wohnung",
+        "villa": "Villa",
+        "bungalow": "Bungalow",
+        "maison": "Haus",
+        "chambre": "Zimmer"
+      },
+      "engine": {
+        "50cc": "50ccm",
+        "125cc": "125ccm",
+        "150cc": "150ccm",
+        "200cc": "200ccm",
+        "200plus": "200ccm+",
+        "250plus": "250ccm+",
+        "300cc": "300ccm"
+      },
+      "car": {
+        "citadine": "Stadtauto",
+        "suv": "SUV",
+        "4x4": "4x4",
+        "van": "Van",
+        "luxe": "Luxus"
+      },
       "quad": {
         "buggy": "Buggy",
-        "300cc": "300cc"
+        "300cc": "300ccm"
       }
     },
+    "comingSoon": "Bald verfügbar",
+    "listingsCount_one": "{{count}} Inserat",
+    "listingsCount": "{{count}} Inserate",
+    "moreFilters": "Mehr Filter",
+    "viewResults": "Ergebnisse anzeigen",
+    "reset": "Zurücksetzen",
+    "mainCategoryAria": "{{label}}, {{count}} Inserate verfügbar, filtern",
+    "subFilterAria": "{{label}}, {{count}} Inserate verfügbar, filtern",
     "empty": {
+      "cta": {
+        "request": "Anfrage stellen"
+      },
       "waPrefill": {
-        "quad": "Hallo Rentanoo,\n\nIch möchte ein Quad oder Buggy in Nosy Be mieten. Bitte benachrichtigen Sie mich über verfügbare Angebote.\n\nDanke."
+        "car": "Hallo Rentanoo,\n\nIch möchte ein Auto in Nosy Be mieten. Bitte benachrichtigen Sie mich, sobald ein Angebot verfügbar ist.\n\nDanke.",
+        "scooter": "Hallo Rentanoo,\n\nIch möchte einen Roller in Nosy Be mieten. Bitte benachrichtigen Sie mich über verfügbare Angebote.\n\nDanke.",
+        "moto": "Hallo Rentanoo,\n\nIch möchte ein Motorrad in Nosy Be mieten. Bitte benachrichtigen Sie mich über verfügbare Angebote.\n\nDanke.",
+        "quad": "Hallo Rentanoo,\n\nIch möchte ein Quad oder Buggy in Nosy Be mieten. Bitte benachrichtigen Sie mich über verfügbare Angebote.\n\nDanke.",
+        "accommodation": {
+          "generic": "Hallo Rentanoo,\n\nIch suche eine Unterkunft in Nosy Be. Bitte kontaktieren Sie mich, wenn Angebote verfügbar sind.",
+          "appartement": "Hallo Rentanoo,\n\nIch suche eine Wohnung in Nosy Be. Bitte kontaktieren Sie mich, wenn Angebote verfügbar sind.",
+          "villa": "Hallo Rentanoo,\n\nIch suche eine Villa in Nosy Be. Bitte kontaktieren Sie mich, wenn Unterkünfte dieser Art verfügbar sind.",
+          "bungalow": "Hallo Rentanoo,\n\nIch suche einen Bungalow in Nosy Be. Kommen Sie bald zurück, um neue Unterkünfte zu entdecken — halten Sie mich bitte auf dem Laufenden.",
+          "maison": "Hallo Rentanoo,\n\nIch suche ein Haus in Nosy Be. Bitte kontaktieren Sie mich, wenn Unterkünfte dieser Art verfügbar sind.",
+          "chambre": "Hallo Rentanoo,\n\nIch suche ein Zimmer in Nosy Be. Bitte kontaktieren Sie mich, wenn Unterkünfte dieser Art verfügbar sind."
+        }
+      },
+      "accommodation": {
+        "title": "Unterkünfte bald erweitert",
+        "description": "Wir erweitern derzeit unser Unterkunftskatalog in Nosy Be.",
+        "appartement": {
+          "title": "Wohnungen bald verfügbar",
+          "description": "Wir erweitern derzeit unseren Wohnungskatalog."
+        },
+        "villa": {
+          "title": "Villen bald verfügbar",
+          "description": "Wir erweitern derzeit unseren Unterkunftskatalog."
+        },
+        "bungalow": {
+          "title": "Bungalows bald verfügbar",
+          "description": "Kommen Sie bald zurück, um unsere neuen Unterkünfte zu entdecken."
+        },
+        "maison": {
+          "title": "Häuser bald verfügbar",
+          "description": "Wir erweitern derzeit unseren Hauskatalog."
+        },
+        "chambre": {
+          "title": "Zimmer bald verfügbar",
+          "description": "Wir erweitern derzeit unseren Zimmerkatalog."
+        }
+      },
+      "scooter": {
+        "title": "Roller bald verfügbar",
+        "description": "Diese Auswahl wird bald auf Rentanoo verfügbar sein.",
+        "50cc": {
+          "title": "50ccm-Roller bald verfügbar",
+          "description": "Wir bereiten 50ccm-Roller für Nosy Be vor. Kommen Sie bald zurück."
+        }
+      },
+      "moto": {
+        "title": "Motorräder bald verfügbar",
+        "description": "Diese Kategorie wird bald auf Rentanoo verfügbar sein."
       },
       "quad": {
         "title": "Quads & Buggys verfügbar",
         "description": "Entdecken Sie Nosy Be auf andere Weise – mieten Sie ein Quad oder Buggy bei Rentanoo."
+      },
+      "car": {
+        "title": "Autos bald verfügbar",
+        "description": "Wir bereiten derzeit unser Fahrzeugangebot vor. Kommen Sie bald zurück oder kontaktieren Sie uns, um über Verfügbarkeiten informiert zu werden."
       }
     }
   },
   "homeResults": {
+    "titleAll": "Alle verfügbaren Mietangebote",
+    "titleAccommodation": "Verfügbare Unterkünfte",
+    "titleScooter": "Verfügbare Roller",
+    "titleMoto": "Verfügbare Motorräder",
     "titleQuad": "Verfügbare Quads & Buggys",
+    "titleCar": "Verfügbare Autos",
+    "countAll": "{{count}} Inserat(e)",
+    "countAccommodation": "{{count}} Unterkunft(en)",
+    "countScooter": "{{count}} Roller",
+    "countMoto": "{{count}} Motorrad/räder",
     "countQuad": "{{count}} Quad(s)",
-    "noMatchQuad": "Kein Quad entspricht Ihren Filtern."
+    "countCar": "{{count}} Auto(s)",
+    "noMatchAll": "Kein Inserat entspricht Ihren Filtern.",
+    "noMatchAccommodation": "Keine Unterkunft entspricht Ihren Filtern.",
+    "noMatchScooter": "Kein Roller entspricht Ihren Filtern.",
+    "noMatchMoto": "Kein Motorrad entspricht Ihren Filtern.",
+    "noMatchQuad": "Kein Quad entspricht Ihren Filtern.",
+    "noMatchCar": "Kein Auto entspricht Ihren Filtern.",
+    "emptyAll": "Derzeit sind keine Inserate verfügbar.",
+    "emptyAccommodation": "Derzeit sind keine Unterkünfte verfügbar."
   }
 }
