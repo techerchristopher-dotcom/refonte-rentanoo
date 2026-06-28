@@ -44,11 +44,11 @@ export function BookingDetailHeader({
           Planning
         </Link>
         <span className="text-border">·</span>
-        <Link to="/admin/bookings" className="text-primary font-medium hover:underline">
+        <Link to="/admin/bookings" className="text-[#097870] font-medium hover:text-[#097870]/80">
           Toutes les réservations
         </Link>
         <span className="text-border">·</span>
-        <Link to="/admin/bookings/new" className="text-primary font-medium hover:underline">
+        <Link to="/admin/bookings/new" className="text-[#097870] font-medium hover:text-[#097870]/80">
           Nouvelle réservation
         </Link>
       </div>
@@ -57,7 +57,7 @@ export function BookingDetailHeader({
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-2 min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold font-display text-foreground tracking-tight">
                 {formatBookingRef(referenceNumber)}
               </h1>
               <BookingStatusBadge status={status} />
@@ -79,9 +79,9 @@ export function BookingDetailHeader({
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-lg bg-muted/40 px-4 py-3">
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-lg bg-[#F4F2EE] px-4 py-3">
           <div className="flex items-start gap-3 min-w-0">
-            <CalendarRange className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <CalendarRange className="h-5 w-5 text-[#097870] shrink-0 mt-0.5" />
             <div className="min-w-0">
               <div className="font-medium text-foreground">
                 {formatDateFr(startDate, startTime)} → {formatDateFr(endDate, endTime)}

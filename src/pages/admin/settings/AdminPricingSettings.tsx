@@ -228,7 +228,7 @@ export default function AdminPricingSettings() {
   return (
     <div className="max-w-4xl space-y-8">
       <div>
-        <h1 className="text-2xl font-bold">Tarification & options</h1>
+        <h1 className="text-2xl font-bold font-display">Tarification & options</h1>
         <p className="text-muted-foreground text-sm mt-1">
           Frais de service, catalogue d'options et caution, configurables par catégorie de bien.
           Les changements se reflètent immédiatement côté client (nouvelles réservations).
@@ -276,7 +276,7 @@ export default function AdminPricingSettings() {
               ))}
             </TableBody>
           </Table>
-          <Button className="mt-4" onClick={() => void saveFees()} disabled={savingFees}>
+          <Button className="mt-4 bg-[#097870] hover:bg-[#097870]/90 text-white" onClick={() => void saveFees()} disabled={savingFees}>
             {savingFees ? "Enregistrement…" : "Enregistrer les frais"}
           </Button>
         </CardContent>
@@ -391,7 +391,7 @@ export default function AdminPricingSettings() {
                 </label>
               ))}
             </div>
-            <Button onClick={() => void createOption()} disabled={creatingOption}>
+            <Button onClick={() => void createOption()} disabled={creatingOption} className="bg-[#E8622F] hover:bg-[#E8622F]/90 text-white">
               <Plus className="h-4 w-4 mr-2" />
               {creatingOption ? "Création…" : "Créer l'option"}
             </Button>
@@ -418,7 +418,7 @@ export default function AdminPricingSettings() {
               />
             </div>
           ))}
-          <Button onClick={() => void saveDeposit()} disabled={savingDeposit}>
+          <Button onClick={() => void saveDeposit()} disabled={savingDeposit} className="bg-[#097870] hover:bg-[#097870]/90 text-white">
             {savingDeposit ? "Enregistrement…" : "Enregistrer la caution"}
           </Button>
         </CardContent>

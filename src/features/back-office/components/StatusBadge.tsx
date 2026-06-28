@@ -4,12 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const STATUS_COLORS: Record<OperationalStatus, string> = {
-  available: "bg-green-100 text-green-800 border-green-200",
-  rented: "bg-blue-100 text-blue-800 border-blue-200",
-  reserved: "bg-purple-100 text-purple-800 border-purple-200",
-  maintenance: "bg-amber-100 text-amber-800 border-amber-200",
-  broken: "bg-red-100 text-red-800 border-red-200",
-  accident: "bg-orange-100 text-orange-800 border-orange-200",
+  available: "bg-[#097870]/10 text-[#097870] border-[#097870]/20",
+  rented: "bg-[#097870]/10 text-[#097870] border-[#097870]/20",
+  reserved: "bg-amber-100 text-amber-700 border-amber-200",
+  maintenance: "bg-amber-100 text-amber-700 border-amber-200",
+  broken: "bg-red-100 text-red-700 border-red-200",
+  accident: "bg-red-100 text-red-700 border-red-200",
   retired: "bg-gray-100 text-gray-600 border-gray-200",
 };
 

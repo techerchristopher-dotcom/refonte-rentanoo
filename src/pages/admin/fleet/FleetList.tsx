@@ -31,10 +31,10 @@ export default function FleetList() {
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold">Parc scooters</h1>
+          <h1 className="text-2xl font-bold font-display">Parc scooters</h1>
           <p className="text-sm text-muted-foreground">{scooters?.length ?? 0} scooter(s)</p>
         </div>
-        <Button asChild>
+        <Button asChild className="bg-[#E8622F] hover:bg-[#E8622F]/90 text-white">
           <Link to="/admin/fleet/new">
             <Plus className="h-4 w-4 mr-2" />
             Nouveau scooter
@@ -76,14 +76,14 @@ export default function FleetList() {
         <CardContent className="p-0 overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Code</TableHead>
-                <TableHead>Scooter</TableHead>
-                <TableHead>Immat.</TableHead>
-                <TableHead>Km</TableHead>
-                <TableHead>Statut parc</TableHead>
-                <TableHead>Site</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+              <TableRow className="bg-[#F4F2EE] border-b border-[#D8D5CF]">
+                <TableHead className="font-display text-sm">Code</TableHead>
+                <TableHead className="font-display text-sm">Scooter</TableHead>
+                <TableHead className="font-display text-sm">Immat.</TableHead>
+                <TableHead className="font-display text-sm">Km</TableHead>
+                <TableHead className="font-display text-sm">Statut parc</TableHead>
+                <TableHead className="font-display text-sm">Site</TableHead>
+                <TableHead className="text-right font-display text-sm">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -123,7 +123,7 @@ export default function FleetList() {
                     </TableCell>
                     <TableCell>
                       {s.available ? (
-                        <span className="text-xs font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded-full">
+                        <span className="text-xs font-medium text-[#097870] bg-[#097870]/10 px-2 py-0.5 rounded-full">
                           Publié
                         </span>
                       ) : (

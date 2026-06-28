@@ -158,7 +158,7 @@ export default function AdminExchangeSettings() {
   return (
     <div className="max-w-lg space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Taux de change EUR / Ariary</h1>
+        <h1 className="text-2xl font-bold font-display">Taux de change EUR / Ariary</h1>
         <p className="text-muted-foreground text-sm mt-1">
           Affichage double monnaie et encaissements en ariary. Mode live : taux mid-market Frankfurter, sans marge.
         </p>
@@ -180,7 +180,7 @@ export default function AdminExchangeSettings() {
               htmlFor="mode-manual"
               className={cn(
                 "flex items-start gap-3 rounded-lg border p-4 cursor-pointer",
-                mode === "manual" ? "border-primary bg-primary/5" : "border-border"
+                mode === "manual" ? "border-[#097870] bg-[#097870]/5" : "border-border"
               )}
             >
               <RadioGroupItem value="manual" id="mode-manual" className="mt-0.5" />
@@ -195,7 +195,7 @@ export default function AdminExchangeSettings() {
               htmlFor="mode-live"
               className={cn(
                 "flex items-start gap-3 rounded-lg border p-4 cursor-pointer",
-                mode === "live" ? "border-primary bg-primary/5" : "border-border"
+                mode === "live" ? "border-[#097870] bg-[#097870]/5" : "border-border"
               )}
             >
               <RadioGroupItem value="live" id="mode-live" className="mt-0.5" />
@@ -230,7 +230,7 @@ export default function AdminExchangeSettings() {
                   disabled={loading || saving}
                 />
               </div>
-              <Button type="button" onClick={() => void runSaveManual()} disabled={loading || saving}>
+              <Button type="button" onClick={() => void runSaveManual()} disabled={loading || saving} className="bg-[#097870] hover:bg-[#097870]/90 text-white">
                 {saving ? "Enregistrement…" : "Enregistrer le taux fixe"}
               </Button>
             </>

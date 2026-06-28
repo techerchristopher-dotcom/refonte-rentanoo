@@ -18,10 +18,10 @@ export default function SalesList() {
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold">Ventes comptoir</h1>
+          <h1 className="text-2xl font-bold font-display">Ventes comptoir</h1>
           <p className="text-sm text-muted-foreground">Pièces vendues aux clients</p>
         </div>
-        <Button asChild>
+        <Button asChild className="bg-[#E8622F] hover:bg-[#E8622F]/90 text-white">
           <Link to="/admin/sales/new">
             <Plus className="h-4 w-4 mr-2" />
             Nouvelle vente
@@ -33,13 +33,13 @@ export default function SalesList() {
         <CardContent className="p-0 overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Client</TableHead>
-                <TableHead>Total</TableHead>
-                <TableHead>Marge</TableHead>
-                <TableHead>Paiement</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+              <TableRow className="bg-[#F4F2EE] border-b border-[#D8D5CF]">
+                <TableHead className="font-display text-sm">Date</TableHead>
+                <TableHead className="font-display text-sm">Client</TableHead>
+                <TableHead className="font-display text-sm">Total</TableHead>
+                <TableHead className="font-display text-sm">Marge</TableHead>
+                <TableHead className="font-display text-sm">Paiement</TableHead>
+                <TableHead className="text-right font-display text-sm">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

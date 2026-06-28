@@ -185,16 +185,16 @@ export default function AdminBookingsList() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-foreground">Toutes les réservations</h1>
+        <h1 className="text-3xl font-bold font-display text-foreground">Toutes les réservations</h1>
         <p className="text-muted-foreground text-sm mt-1">
           Vue opérationnelle — web et agence. Complémentaire du{" "}
-          <Link to="/admin/planning" className="text-primary font-medium hover:underline">
+          <Link to="/admin/planning" className="text-[#097870] font-medium hover:text-[#097870]/80">
             planning
           </Link>
           .
         </p>
         <p className="mt-2 text-sm">
-          <Link to="/admin" className="text-primary font-medium hover:underline">
+          <Link to="/admin" className="text-[#097870] font-medium hover:text-[#097870]/80">
             ← Tableau de bord
           </Link>
         </p>
@@ -304,23 +304,23 @@ export default function AdminBookingsList() {
             <PageLoader />
           ) : (
             <>
-              <div className="overflow-x-auto rounded-md border border-border">
+              <div className="overflow-x-auto rounded-md border border-[#D8D5CF]">
                 <Table>
                   <TableHeader>
-                    <TableRow>
-                      <TableHead className="whitespace-nowrap">Réf.</TableHead>
-                      <TableHead>Client</TableHead>
-                      <TableHead>Véhicule</TableHead>
-                      <TableHead className="whitespace-nowrap">Début</TableHead>
-                      <TableHead className="whitespace-nowrap">Fin</TableHead>
-                      <TableHead className="whitespace-nowrap">Source</TableHead>
-                      <TableHead className="whitespace-nowrap">Statut</TableHead>
-                      <TableHead>Paiement</TableHead>
-                      <TableHead>Caution</TableHead>
-                      <TableHead>Contrat</TableHead>
-                      <TableHead className="whitespace-nowrap">EDL départ</TableHead>
-                      <TableHead className="whitespace-nowrap">EDL retour</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
+                    <TableRow className="bg-[#F4F2EE]">
+                      <TableHead className="whitespace-nowrap font-display text-sm">Réf.</TableHead>
+                      <TableHead className="font-display text-sm">Client</TableHead>
+                      <TableHead className="font-display text-sm">Véhicule</TableHead>
+                      <TableHead className="whitespace-nowrap font-display text-sm">Début</TableHead>
+                      <TableHead className="whitespace-nowrap font-display text-sm">Fin</TableHead>
+                      <TableHead className="whitespace-nowrap font-display text-sm">Source</TableHead>
+                      <TableHead className="whitespace-nowrap font-display text-sm">Statut</TableHead>
+                      <TableHead className="font-display text-sm">Paiement</TableHead>
+                      <TableHead className="font-display text-sm">Caution</TableHead>
+                      <TableHead className="font-display text-sm">Contrat</TableHead>
+                      <TableHead className="whitespace-nowrap font-display text-sm">EDL départ</TableHead>
+                      <TableHead className="whitespace-nowrap font-display text-sm">EDL retour</TableHead>
+                      <TableHead className="text-right font-display text-sm">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -347,7 +347,7 @@ export default function AdminBookingsList() {
                             {row.end_time ? ` ${row.end_time}` : ""}
                           </TableCell>
                           <TableCell>
-                            <span className="rounded px-1.5 py-0.5 text-[10px] font-semibold bg-slate-900/10 text-slate-900 dark:text-slate-100 dark:bg-slate-100/10">
+                            <span className="rounded px-1.5 py-0.5 text-[10px] font-semibold bg-[#0D1E26]/10 text-[#0D1E26]">
                               {sourceLabel(row.pricing_mode)}
                             </span>
                           </TableCell>
@@ -359,7 +359,7 @@ export default function AdminBookingsList() {
                           <TableCell className="text-xs">{edlCell(row.edl_return_done)}</TableCell>
                           <TableCell className="text-right whitespace-nowrap">
                             <div className="flex flex-col items-end gap-1 sm:flex-row sm:justify-end">
-                              <Button asChild variant="default" size="sm">
+                              <Button asChild size="sm" className="bg-[#097870] hover:bg-[#097870]/90 text-white">
                                 <Link to={`/admin/bookings/${row.id}`}>Fiche</Link>
                               </Button>
                               <Button asChild variant="ghost" size="sm" className="h-8 px-2" title="EDL départ">

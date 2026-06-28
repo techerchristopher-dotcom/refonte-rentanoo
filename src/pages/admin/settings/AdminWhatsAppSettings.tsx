@@ -115,7 +115,7 @@ export default function AdminWhatsAppSettings() {
   return (
     <div className="max-w-lg space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Contact WhatsApp</h1>
+        <h1 className="text-2xl font-bold font-display">Contact WhatsApp</h1>
         <p className="text-muted-foreground text-sm mt-1">
           Numéro WhatsApp Business et photo affichée sur le bouton flottant mobile.
         </p>
@@ -140,7 +140,7 @@ export default function AdminWhatsAppSettings() {
               disabled={busy}
             />
           </div>
-          <Button type="button" onClick={() => void runSavePhone()} disabled={busy}>
+          <Button type="button" onClick={() => void runSavePhone()} disabled={busy} className="bg-[#097870] hover:bg-[#097870]/90 text-white">
             {savingPhone ? "Enregistrement…" : "Enregistrer le numéro"}
           </Button>
         </CardContent>
