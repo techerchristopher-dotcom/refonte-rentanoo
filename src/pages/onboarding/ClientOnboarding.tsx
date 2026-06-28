@@ -4,10 +4,10 @@ import { useAuth } from "@/contexts/AuthContext";
 import { ProfileService } from "@/services/supabase/profile";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, CheckCircle2, Clock, Lock } from "lucide-react";
+import { Loader2, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { loadBookingResumeIntent } from "@/lib/bookingResumeIntent";
 import { buildAuthLink } from "@/lib/safeRedirectPath";
@@ -129,7 +129,7 @@ export default function ClientOnboarding() {
     const { data, error } = await ProfileService.getCurrentUserProfile();
 
     if (error || !data) {
-      setCheckError("Impossible de vérifier votre statut.");
+      setCheckError("Impossible de vérifier ton statut.");
       setShowResend(true);
       setChecking(false);
       return;
@@ -145,7 +145,7 @@ export default function ClientOnboarding() {
     });
 
     if (data.kycStatus !== "verified") {
-      setCheckError("Votre compte n'est pas encore confirmé. Vérifiez votre email.");
+      setCheckError("Ton compte n'est pas encore confirmé. Vérifie ton email.");
       setShowResend(true);
     } else {
       setCheckError(null);
@@ -172,7 +172,7 @@ export default function ClientOnboarding() {
         phone,
       });
       if (error || !data) {
-        setCompletionError(error || "Enregistrement impossible. Réessayez.");
+        setCompletionError(error || "Enregistrement impossible. Réessaye.");
         return;
       }
       await refreshUser();
@@ -191,7 +191,7 @@ export default function ClientOnboarding() {
       });
       toast({
         title: "Profil enregistré",
-        description: "Vous pouvez poursuivre votre inscription.",
+        description: "Tu peux poursuivre ton inscription.",
       });
     } finally {
       setSavingProfile(false);
@@ -250,13 +250,13 @@ export default function ClientOnboarding() {
       console.log("[RESEND N8N] ok");
       toast({
         title: "Email renvoyé",
-        description: "Vérifiez votre boîte mail.",
+        description: "Vérifie ta boîte mail.",
       });
     } catch (error) {
       console.error("[RESEND N8N] failed", error);
       toast({
         title: "Erreur",
-        description: "Impossible de renvoyer l'email. Réessayez.",
+        description: "Impossible de renvoyer l'email. Réessaye.",
         variant: "destructive",
       });
     } finally {
@@ -273,218 +273,246 @@ export default function ClientOnboarding() {
   const resumeIntent = loadBookingResumeIntent();
 
   return (
-    <div className="min-h-screen bg-gradient-soft flex items-center justify-center p-4">
-      <Card className="w-full max-w-lg shadow-card">
-        <CardHeader>
-          <CardTitle className="text-2xl">Onboarding</CardTitle>
-          <CardDescription>Complétez votre inscription</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Barre de progression */}
-          <div className="flex gap-1">
-            {[1, 2, 3, 4].map((s) => (
-              <div
-                key={s}
-                className={`h-2 flex-1 rounded-full transition-colors ${
-                  s < currentStep ? "bg-primary" : s === currentStep ? "bg-primary/70" : "bg-muted"
-                }`}
-              />
-            ))}
+    <div className="min-h-screen bg-[#F4F2EE] flex items-center justify-center p-4">
+      <Card className="w-full max-w-lg shadow-lg rounded-2xl border-0">
+        <CardContent className="p-8 space-y-8">
+          {/* En-tête */}
+          <div className="text-center">
+            <span className="font-display font-bold text-2xl text-[#0D1E26] block mb-1">Rentanoo</span>
+            <h1 className="font-display font-bold text-xl text-[#0D1E26]">Bienvenue !</h1>
+            <p className="font-body text-[#6B8A8D] text-sm mt-1">Complète ton inscription en quelques étapes</p>
           </div>
 
-          {/* Liste des étapes */}
-          <ul className="space-y-3">
-            {STEPS.map((step) => {
-              const status = getStepStatus(step.id);
-              const icon =
-                status === "done" ? (
-                  <CheckCircle2 className="h-5 w-5 text-green-600" />
-                ) : status === "current" ? (
-                  <Clock className="h-5 w-5 text-primary" />
-                ) : (
-                  <Lock className="h-5 w-5 text-muted-foreground" />
+          {/* Stepper numéroté avec ligne de connexion */}
+          <div className="relative">
+            {/* Ligne de connexion */}
+            <div className="absolute top-5 left-5 right-5 h-0.5 bg-[#D8D5CF]" style={{ left: 'calc(20px + 1.25rem)', right: 'calc(20px + 1.25rem)' }} />
+            <div
+              className="absolute top-5 h-0.5 bg-[#E8622F] transition-all duration-500"
+              style={{
+                left: 'calc(20px + 1.25rem)',
+                width: `${((currentStep - 1) / (STEPS.length - 1)) * 100}%`,
+                maxWidth: 'calc(100% - 40px - 2.5rem)',
+              }}
+            />
+
+            <div className="flex justify-between relative z-10">
+              {STEPS.map((step) => {
+                const status = getStepStatus(step.id);
+                return (
+                  <div key={step.id} className="flex flex-col items-center gap-2">
+                    {/* Cercle numéroté */}
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm transition-all duration-300 ${
+                        status === "done"
+                          ? "bg-[#E8622F] text-white shadow-md"
+                          : status === "current"
+                          ? "bg-[#E8622F] text-white shadow-lg ring-4 ring-[#E8622F]/20"
+                          : "bg-white border-2 border-[#D8D5CF] text-[#6B8A8D]"
+                      }`}
+                    >
+                      {status === "done" ? (
+                        <CheckCircle2 className="h-5 w-5" />
+                      ) : (
+                        step.id
+                      )}
+                    </div>
+                    {/* Label */}
+                    <span
+                      className={`font-body text-xs text-center max-w-[64px] leading-tight ${
+                        status === "locked"
+                          ? "text-[#6B8A8D]/50"
+                          : status === "done"
+                          ? "text-[#E8622F]"
+                          : "text-[#0D1E26] font-medium"
+                      }`}
+                    >
+                      {step.label}
+                    </span>
+                  </div>
                 );
-              return (
-                <li key={step.id} className="flex items-center gap-3">
-                  {icon}
-                  <span
-                    className={
-                      status === "locked"
-                        ? "text-muted-foreground"
-                        : status === "done"
-                        ? "text-green-600"
-                        : "font-medium"
-                    }
-                  >
-                    {step.label}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+              })}
+            </div>
+          </div>
 
           {/* Actions selon l'étape */}
-          {authLoading || (hasSession && profileLoading) ? (
-            <div className="flex items-center justify-center gap-2 py-4">
-              <Loader2 className="h-5 w-5 animate-spin" />
-              <span className="text-sm text-muted-foreground">Chargement...</span>
-            </div>
-          ) : currentStep === 1 ? (
-            <div className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Connectez-vous pour continuer votre onboarding.
-              </p>
-              <Button
-                onClick={() =>
-                  navigate(
-                    buildAuthLink("/auth/login", resumeIntent?.path ?? null)
-                  )
-                }
-                className="w-full bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
-              >
-                Se connecter
-              </Button>
-            </div>
-          ) : currentStep === 2 ? (
-            <div className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Confirmez votre compte via l'email reçu, puis revenez ici.
-              </p>
-              {checkError && (
-                <p className="text-sm text-destructive">{checkError}</p>
-              )}
-              <Button
-                onClick={handleConfirmAccount}
-                disabled={checking}
-                className="w-full bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
-              >
-                {checking ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Vérification...
-                  </>
-                ) : (
-                  "J'ai confirmé mon compte"
-                )}
-              </Button>
-              {showResend && (
+          <div className="space-y-4">
+            {authLoading || (hasSession && profileLoading) ? (
+              <div className="flex items-center justify-center gap-2 py-6">
+                <Loader2 className="h-5 w-5 animate-spin text-[#097870]" />
+                <span className="font-body text-sm text-[#6B8A8D]">Chargement...</span>
+              </div>
+            ) : currentStep === 1 ? (
+              <>
+                <p className="font-body text-sm text-[#6B8A8D]">
+                  Connecte-toi pour continuer ton onboarding.
+                </p>
                 <Button
-                  onClick={handleResendEmail}
-                  disabled={resending || !session?.user?.email}
-                  variant="outline"
-                  className="w-full"
+                  onClick={() =>
+                    navigate(
+                      buildAuthLink("/auth/login", resumeIntent?.path ?? null)
+                    )
+                  }
+                  className="w-full h-11 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
                 >
-                  {resending ? (
+                  Se connecter
+                </Button>
+              </>
+            ) : currentStep === 2 ? (
+              <>
+                <div className="bg-[#097870]/5 border border-[#097870]/20 rounded-xl px-4 py-3">
+                  <p className="font-body text-sm text-[#0D1E26]">
+                    Confirme ton compte via l'email reçu, puis reviens ici.
+                  </p>
+                </div>
+                {checkError && (
+                  <p className="font-body text-sm text-red-600">{checkError}</p>
+                )}
+                <Button
+                  onClick={handleConfirmAccount}
+                  disabled={checking}
+                  className="w-full h-11 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
+                >
+                  {checking ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Envoi...
+                      Vérification...
                     </>
                   ) : (
-                    "Renvoyer l'email"
+                    "J'ai confirmé mon compte"
                   )}
                 </Button>
-              )}
-              <Button
-                onClick={handleRefresh}
-                disabled={refreshing || checking}
-                variant="ghost"
-                size="sm"
-                className="w-full text-muted-foreground"
-              >
-                {refreshing ? "Rafraîchissement..." : "Rafraîchir"}
-              </Button>
-            </div>
-          ) : currentStep === 3 ? (
-            <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">
-                Pour utiliser la plateforme, nous avons besoin de votre prénom, nom et téléphone. La connexion Google ne
-                fournit pas toujours ces informations : complétez-les ci-dessous.
-              </p>
-              {profileError && (
-                <p className="text-sm text-destructive">Impossible de charger le profil.</p>
-              )}
-              {completionError && (
-                <p className="text-sm text-destructive">{completionError}</p>
-              )}
-              <div className="space-y-2">
-                <Label htmlFor="onboarding-first">Prénom</Label>
-                <Input
-                  id="onboarding-first"
-                  autoComplete="given-name"
-                  value={completionFirst}
-                  onChange={(e) => setCompletionFirst(e.target.value)}
-                  disabled={savingProfile || profileLoading}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="onboarding-last">Nom</Label>
-                <Input
-                  id="onboarding-last"
-                  autoComplete="family-name"
-                  value={completionLast}
-                  onChange={(e) => setCompletionLast(e.target.value)}
-                  disabled={savingProfile || profileLoading}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="onboarding-phone">Téléphone</Label>
-                <Input
-                  id="onboarding-phone"
-                  type="tel"
-                  autoComplete="tel"
-                  inputMode="tel"
-                  placeholder="Ex. +261 32 …"
-                  value={completionPhone}
-                  onChange={(e) => setCompletionPhone(e.target.value)}
-                  disabled={savingProfile || profileLoading}
-                />
-              </div>
-              <Button
-                onClick={handleCompleteProfile}
-                disabled={savingProfile || profileLoading}
-                className="w-full bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
-              >
-                {savingProfile ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Enregistrement...
-                  </>
-                ) : (
-                  "Enregistrer et continuer"
+                {showResend && (
+                  <Button
+                    onClick={handleResendEmail}
+                    disabled={resending || !session?.user?.email}
+                    variant="outline"
+                    className="w-full h-11 border border-[#D8D5CF] rounded-xl font-body"
+                  >
+                    {resending ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Envoi...
+                      </>
+                    ) : (
+                      "Renvoyer l'email"
+                    )}
+                  </Button>
                 )}
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                className="w-full"
-                onClick={() => navigate("/profile")}
-                disabled={savingProfile}
-              >
-                Plus de détails sur ma page profil
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full text-muted-foreground"
-                onClick={handleRefresh}
-                disabled={refreshing || savingProfile}
-              >
-                {refreshing ? "Rafraîchissement..." : "Rafraîchir les données"}
-              </Button>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              <p className="text-sm text-muted-foreground">Votre inscription est terminée.</p>
-              <Button
-                onClick={() => navigate(resumeIntent?.path ?? "/")}
-                className="w-full bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
-              >
-                {resumeIntent
-                  ? "Reprendre ma réservation"
-                  : "Accéder à l\u2019accueil"}
-              </Button>
-            </div>
-          )}
+                <Button
+                  onClick={handleRefresh}
+                  disabled={refreshing || checking}
+                  variant="ghost"
+                  size="sm"
+                  className="w-full font-body text-[#6B8A8D] hover:text-[#097870]"
+                >
+                  {refreshing ? "Rafraîchissement..." : "Rafraîchir"}
+                </Button>
+              </>
+            ) : currentStep === 3 ? (
+              <>
+                <div className="bg-[#097870]/5 border border-[#097870]/20 rounded-xl px-4 py-3">
+                  <p className="font-body text-sm text-[#0D1E26]">
+                    Pour utiliser la plateforme, nous avons besoin de ton prénom, nom et téléphone. La connexion Google ne fournit pas toujours ces informations.
+                  </p>
+                </div>
+                {profileError && (
+                  <p className="font-body text-sm text-red-600">Impossible de charger le profil.</p>
+                )}
+                {completionError && (
+                  <p className="font-body text-sm text-red-600">{completionError}</p>
+                )}
+                <div className="space-y-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="onboarding-first" className="font-body text-[#0D1E26] text-sm">Prénom</Label>
+                    <Input
+                      id="onboarding-first"
+                      autoComplete="given-name"
+                      value={completionFirst}
+                      onChange={(e) => setCompletionFirst(e.target.value)}
+                      disabled={savingProfile || profileLoading}
+                      className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="onboarding-last" className="font-body text-[#0D1E26] text-sm">Nom</Label>
+                    <Input
+                      id="onboarding-last"
+                      autoComplete="family-name"
+                      value={completionLast}
+                      onChange={(e) => setCompletionLast(e.target.value)}
+                      disabled={savingProfile || profileLoading}
+                      className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="onboarding-phone" className="font-body text-[#0D1E26] text-sm">Téléphone</Label>
+                    <Input
+                      id="onboarding-phone"
+                      type="tel"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      placeholder="Ex. +261 32 …"
+                      value={completionPhone}
+                      onChange={(e) => setCompletionPhone(e.target.value)}
+                      disabled={savingProfile || profileLoading}
+                      className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                    />
+                  </div>
+                </div>
+                <Button
+                  onClick={handleCompleteProfile}
+                  disabled={savingProfile || profileLoading}
+                  className="w-full h-11 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
+                >
+                  {savingProfile ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Enregistrement...
+                    </>
+                  ) : (
+                    "Enregistrer et continuer"
+                  )}
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full h-11 border border-[#D8D5CF] rounded-xl font-body"
+                  onClick={() => navigate("/profile")}
+                  disabled={savingProfile}
+                >
+                  Plus de détails sur ma page profil
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full font-body text-[#6B8A8D] hover:text-[#097870]"
+                  onClick={handleRefresh}
+                  disabled={refreshing || savingProfile}
+                >
+                  {refreshing ? "Rafraîchissement..." : "Rafraîchir les données"}
+                </Button>
+              </>
+            ) : (
+              <>
+                <div className="text-center py-4">
+                  <div className="w-16 h-16 rounded-full bg-[#E8622F]/10 flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle2 className="h-8 w-8 text-[#E8622F]" />
+                  </div>
+                  <p className="font-display font-bold text-lg text-[#0D1E26] mb-1">Inscription terminée !</p>
+                  <p className="font-body text-sm text-[#6B8A8D]">Ton profil est prêt. Bonne location !</p>
+                </div>
+                <Button
+                  onClick={() => navigate(resumeIntent?.path ?? "/")}
+                  className="w-full h-11 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
+                >
+                  {resumeIntent
+                    ? "Reprendre ma réservation"
+                    : "Accéder à l’accueil"}
+                </Button>
+              </>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>
