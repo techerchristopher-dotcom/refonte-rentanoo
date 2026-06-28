@@ -17,7 +17,7 @@ const heroAccents: Record<SeoHeroTheme, string> = {
 };
 
 export function SeoPageShell({ children }: { children: ReactNode }) {
-  return <div className="min-h-screen flex flex-col bg-background">{children}</div>;
+  return <div className="min-h-screen flex flex-col bg-sand">{children}</div>;
 }
 
 export function SeoPageHero({
@@ -56,14 +56,14 @@ export function SeoPageHero({
       <div className="relative mx-auto max-w-4xl px-4 py-14 md:py-20">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-gradient-to-r from-amber-200/80 to-transparent" aria-hidden />
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-100/90">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-100/90 font-display">
             {eyebrow}
           </p>
         </div>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-5xl md:leading-[1.1] lg:text-[3.25rem]">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-5xl md:leading-[1.1] lg:text-[3.25rem] font-display">
           {title}
         </h1>
-        <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-white/80">{intro}</p>
+        <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-white/80 font-body">{intro}</p>
         {children}
       </div>
 
@@ -208,7 +208,7 @@ export function SeoDataPanel({
     <section className={cn("mx-auto max-w-4xl px-4 py-12 md:py-14", className)}>
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
-          <h2 className="premium-section-title text-xl font-bold tracking-tight md:text-2xl">{title}</h2>
+          <h2 className="premium-section-title text-xl font-bold tracking-tight md:text-2xl font-display">{title}</h2>
         </div>
         {hint ? (
           <p className="text-xs leading-relaxed text-muted-foreground sm:max-w-xs sm:text-right">{hint}</p>
@@ -329,7 +329,7 @@ export function SeoDayPills({
 }
 
 export function SeoContentSection({ children }: { children: ReactNode }) {
-  return <section className="mx-auto max-w-4xl px-4 pb-16">{children}</section>;
+  return <section className="mx-auto max-w-4xl px-4 pb-16 font-body">{children}</section>;
 }
 
 export function SeoFaqSection({
@@ -341,7 +341,7 @@ export function SeoFaqSection({
 }) {
   return (
     <div className="mt-14">
-      <h2 className="premium-section-title text-xl font-bold tracking-tight md:text-2xl">{title}</h2>
+      <h2 className="premium-section-title text-xl font-bold tracking-tight md:text-2xl font-display">{title}</h2>
       <Accordion
         type="single"
         collapsible

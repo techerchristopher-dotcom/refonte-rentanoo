@@ -51,7 +51,7 @@ function MiniListingCard({ v }: { v: SupabaseVehicle }) {
   return (
     <Link
       to={path}
-      className="group flex flex-col rounded-xl border bg-card shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+      className="group flex flex-col rounded-xl border bg-white shadow-sm hover:shadow-md transition-shadow overflow-hidden"
     >
       <div className="h-40 bg-muted overflow-hidden">
         {photo ? (
@@ -137,12 +137,12 @@ export function SeoCategoryPage({
       <SeoPageHero theme="exchange" eyebrow={eyebrow} title={heroTitle} intro={heroIntro} />
 
       {/* Highlights */}
-      <section className="border-b bg-muted/30">
+      <section className="border-b bg-white/60">
         <div className="container mx-auto px-4 py-6 max-w-4xl">
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {highlights.map((h) => (
-              <li key={h} className="flex items-center gap-2 text-sm text-foreground">
-                <CheckCircle2 className="h-4 w-4 text-primary shrink-0" aria-hidden />
+              <li key={h} className="flex items-center gap-2 text-sm text-night font-body">
+                <CheckCircle2 className="h-4 w-4 text-ocean shrink-0" aria-hidden />
                 {h}
               </li>
             ))}
@@ -153,7 +153,7 @@ export function SeoCategoryPage({
       {/* Listings */}
       {listings.length > 0 && (
         <section className="container mx-auto px-4 py-10 max-w-5xl">
-          <h2 className="text-xl font-bold mb-5 tracking-tight">Annonces disponibles</h2>
+          <h2 className="text-xl font-bold mb-5 tracking-tight font-display">Annonces disponibles</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {listings.map((v) => <MiniListingCard key={v.id} v={v} />)}
           </div>
@@ -184,10 +184,10 @@ export function SeoCategoryPage({
         <SeoFaqSection title={faqTitle} items={faqItems} />
 
         <SeoCtaPanel title={ctaTitle} text={ctaText}>
-          <Button asChild className="bg-white text-primary font-semibold hover:bg-white/90 shadow-md">
+          <Button asChild className="bg-ember text-white font-semibold hover:bg-ember/90 shadow-md rounded-xl">
             <Link to={ctaHref}>{ctaLabel}</Link>
           </Button>
-          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10">
+          <Button asChild variant="outline" className="border-white/50 bg-transparent text-white hover:bg-white/10 rounded-xl">
             <Link to="/">Accueil Rentanoo</Link>
           </Button>
         </SeoCtaPanel>
