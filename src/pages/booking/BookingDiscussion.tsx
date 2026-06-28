@@ -708,7 +708,7 @@ const BookingDiscussion = () => {
     };
 
     loadConversation();
-  }, [vehicle, navigate, currentBooking]);
+  }, [vehicle, navigate, bookingIdFromUrl]);
 
   const formatDate = (date: string) => {
     const locale = getDateLocale(i18n.language);
@@ -1023,406 +1023,393 @@ const BookingDiscussion = () => {
     );
   }
 
+  // Helper badge statut
+  const getStatusBadge = () => {
+    const status = bookingStatus || currentBooking?.status;
+    if (!status) return null;
+    if (status === 'accepted' || status === 'confirmed' || status === 'paid') {
+      return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#097870]/10 text-[#097870] border border-[#097870]/20">● Confirmé</span>;
+    }
+    if (status === 'cancelled' || status === 'rejected') {
+      return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#6B8A8D]/10 text-[#6B8A8D] border border-[#6B8A8D]/20">● Annulé</span>;
+    }
+    return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#E8622F]/10 text-[#E8622F] border border-[#E8622F]/20">● En attente</span>;
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-[#F4F2EE]">
       <main className="container mx-auto px-4 py-6 max-w-7xl">
         {/* En-tête avec bouton retour */}
         <div className="flex items-center mb-6">
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => vehicle && navigate(getPublicListingPath(vehicle))}
-            className="mr-4 hover:bg-slate-200"
+            className="mr-4 hover:bg-[#097870]/10 text-[#0D1E26]"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             {t("motoDetails.back")}
           </Button>
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-slate-800">
+            <h1 className="font-display font-bold text-2xl text-[#0D1E26]">
               {isOwner ? t("booking.discussion.withRenter") : t("booking.discussion.withOwner")}
             </h1>
-            {isOwner && (
-              <Badge className="mt-2 bg-blue-600">
-                <Car className="h-3 w-3 mr-1" />
-                {t("booking.discussion.role.owner")}
-              </Badge>
-            )}
-            {isRenter && (
-              <Badge className="mt-2 bg-green-600">
-                👤 {t("booking.discussion.role.renter")}
-              </Badge>
-            )}
+            <div className="flex items-center gap-2 mt-1">
+              {isOwner && (
+                <Badge className="bg-[#097870]/10 text-[#097870] border-[#097870]/20 border font-normal">
+                  <Car className="h-3 w-3 mr-1" />
+                  {t("booking.discussion.role.owner")}
+                </Badge>
+              )}
+              {isRenter && (
+                <Badge className="bg-[#E8622F]/10 text-[#E8622F] border-[#E8622F]/20 border font-normal">
+                  👤 {t("booking.discussion.role.renter")}
+                </Badge>
+              )}
+              {getStatusBadge()}
+            </div>
           </div>
         </div>
 
-        {/* Interface de conversation style Facebook Messenger */}
-        <div className="max-w-4xl mx-auto">
-          <Card className="shadow-lg border-0 bg-white h-[700px] flex flex-col">
-            {/* Header avec informations du véhicule */}
-            <CardHeader className="border-b bg-slate-50">
-              <div className="flex items-center justify-between gap-4">
+        {/* Layout sidebar + chat */}
+        <div className="flex flex-col md:flex-row gap-4 h-[calc(100vh-4rem)] md:h-[700px]">
+
+          {/* ── Sidebar 1/3 (desktop) ── */}
+          <aside className="w-full md:w-1/3 shrink-0 flex flex-col gap-3">
+            <Card className="shadow-sm border border-[#D8D5CF] bg-white">
+              <CardContent className="p-4 space-y-4">
+                {/* Photo + nom véhicule */}
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12">
+                  <Avatar className="h-14 w-14 rounded-xl">
                     {(() => {
-                      // Récupérer la photo principale (isPrimary) ou la première disponible
                       const photosArray = Object.values(vehiclePhotos);
                       const primaryPhoto = photosArray.find(p => p.isPrimary) || photosArray[0];
-                      
-                      // Fallback vers vehicleImageUrl ou bookingData si pas de photos dans vehiclePhotos
-                      const imageUrl = primaryPhoto?.url 
-                        || vehicleImageUrl 
-                        || bookingData?.vehicle?.imageUrl;
-                      
+                      const imageUrl = primaryPhoto?.url || vehicleImageUrl || bookingData?.vehicle?.imageUrl;
                       return imageUrl ? (
-                        <AvatarImage src={imageUrl} />
+                        <AvatarImage src={imageUrl} className="object-cover" />
                       ) : (
-                        <AvatarFallback className="bg-blue-600 text-white">
+                        <AvatarFallback className="bg-[#097870] text-white rounded-xl">
                           <Car className="h-6 w-6" />
                         </AvatarFallback>
                       );
                     })()}
                   </Avatar>
-                  <div>
-                    <h3 className="font-semibold text-slate-800">
+                  <div className="min-w-0">
+                    <h3 className="font-display font-bold text-[#0D1E26] truncate">
                       {vehicle.brand} {vehicle.model}
                     </h3>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-xs text-[#6B8A8D] truncate">
                       {bookingData?.rentalInfo?.pickupLocation || vehicle.location || t("motoDetails.notSpecified")}
-                    </p>
-                    <p className="text-xs text-slate-400 mt-1">
-                      {t("booking.discussion.dateRange", {
-                        startDate: bookingData?.rentalInfo?.startDate ? formatDate(bookingData.rentalInfo.startDate) : (startDate ? formatDate(startDate) : 'N/A'),
-                        endDate: bookingData?.rentalInfo?.endDate ? formatDate(bookingData.rentalInfo.endDate) : (endDate ? formatDate(endDate) : 'N/A')
-                      })}
                     </p>
                   </div>
                 </div>
-                <div className="text-right">
+
+                <Separator />
+
+                {/* Badge statut */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-medium text-[#6B8A8D] uppercase tracking-wide">Statut</span>
+                  {getStatusBadge() || <span className="text-xs text-[#6B8A8D]">—</span>}
+                </div>
+
+                {/* Dates */}
+                {((bookingData?.rentalInfo?.startDate && bookingData?.rentalInfo?.endDate) || (startDate && endDate)) && (
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <Calendar className="h-4 w-4 text-[#6B8A8D] mt-0.5 shrink-0" />
+                      <div className="text-xs text-[#0D1E26]">
+                        <div className="font-medium">
+                          {bookingData?.rentalInfo?.startDate ? formatDate(bookingData.rentalInfo.startDate) : formatDate(startDate)}
+                        </div>
+                        <div className="text-[#6B8A8D]">→ {bookingData?.rentalInfo?.endDate ? formatDate(bookingData.rentalInfo.endDate) : formatDate(endDate)}</div>
+                      </div>
+                    </div>
+                    {bookingData?.rentalInfo?.pickupLocation && (
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-[#6B8A8D] shrink-0" />
+                        <span className="text-xs text-[#0D1E26] truncate">{bookingData.rentalInfo.pickupLocation}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <Separator />
+
+                {/* Prix total */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-medium text-[#6B8A8D]">{calculateRealDuration()}</span>
                   <ClientMgaPrice
                     amountMga={calculateTotalPrice()}
                     className="items-end"
-                    primaryClassName="text-lg font-bold text-primary"
+                    primaryClassName="text-base font-bold text-[#097870]"
                   />
-                  <div className="text-xs text-muted-foreground mt-0.5">
-                    {calculateRealDuration()}
-                  </div>
                 </div>
-              </div>
-            </CardHeader>
 
-            {/* Bouton Détails réservation */}
-            <div className="border-b bg-slate-50 p-3 flex justify-center items-center gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  navigate('/me/renter/bookings');
-                }}
-                className="hover:bg-slate-200"
-              >
-                <FileText className="h-4 w-4 mr-2" />
-                {t("booking.discussion.viewBookingDetails")}
-              </Button>
-              
-              {(() => {
-                const isPendingPayment =
-                  currentBooking?.status === "pending_payment" || bookingStatus === "pending_payment";
-                if (!isPendingPayment) return null;
+                {/* Bouton voir réservations */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full text-xs border-[#D8D5CF] hover:bg-[#F4F2EE]"
+                  onClick={() => navigate('/me/renter/bookings')}
+                >
+                  <FileText className="h-3.5 w-3.5 mr-1.5" />
+                  {t("booking.discussion.viewBookingDetails")}
+                </Button>
 
-                const paymentMethod = getPaymentMethodFromBooking(currentBooking ?? {});
-                const isCash = isCashOnSitePayment(paymentMethod);
+                {/* Bouton Payer — variant ember, visible uniquement si pending_payment */}
+                {(() => {
+                  const isPendingPayment =
+                    currentBooking?.status === "pending_payment" || bookingStatus === "pending_payment";
+                  if (!isPendingPayment) return null;
 
-                if (isCash) {
+                  const paymentMethod = getPaymentMethodFromBooking(currentBooking ?? {});
+                  const isCash = isCashOnSitePayment(paymentMethod);
+
+                  if (isCash) {
+                    return (
+                      <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">
+                        <p className="font-semibold">
+                          {t("booking.paymentMethod.noOnlinePaymentRequired", "Aucun paiement en ligne n'est nécessaire")}
+                        </p>
+                        <p className="text-amber-800 mt-0.5">
+                          {t("booking.paymentMethod.cashOnSite.modalHint", "Règlement à l'agence.")}
+                        </p>
+                      </div>
+                    );
+                  }
+
                   return (
-                    <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 max-w-md">
-                      <p className="font-semibold">
-                        {t("booking.paymentMethod.noOnlinePaymentRequired", "Aucun paiement en ligne n'est nécessaire")}
-                      </p>
-                      <p className="text-amber-800 mt-1 text-xs">
-                        {t("booking.paymentMethod.cashOnSite.modalHint", "Règlement lors de la remise des clés à l'agence.")}
-                      </p>
-                    </div>
+                    <Button
+                      variant="ember"
+                      className="w-full shadow-sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePayNow();
+                      }}
+                    >
+                      <CreditCard className="h-4 w-4 mr-2" />
+                      {t("booking.discussion.payRental")}
+                      <Shield className="h-3.5 w-3.5 ml-2 opacity-75" />
+                    </Button>
                   );
-                }
+                })()}
+              </CardContent>
+            </Card>
+          </aside>
 
-                return (
-                  <Button
-                    size="lg"
-                    className="bg-gradient-lagoon hover:opacity-90 text-white shadow-lg"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handlePayNow();
-                    }}
-                  >
-                    <CreditCard className="h-5 w-5 mr-2" />
-                    {t("booking.discussion.payRental")}
-                    <Shield className="h-4 w-4 ml-2 opacity-75" />
-                  </Button>
-                );
-              })()}
-            </div>
-            
-            {/* Zone des messages */}
-            <CardContent className="flex-1 flex flex-col p-0 min-h-0">
-              <div className="flex-1 overflow-y-auto p-4 space-y-6 max-h-[60vh]">
-                {/* Message initial avec détails */}
-                {/* Affichage dynamique selon le rôle */}
-                <div className={`flex items-end gap-2 ${isRenter ? 'justify-end' : 'justify-start'}`}>
-                  {/* Avatar pour le message initial à gauche (si propriétaire voit la demande) */}
-                  {!isRenter && (
-                    <Avatar className="w-8 h-8 flex-shrink-0">
-                      {currentUser?.avatarUrl ? (
-                        <AvatarImage src={currentUser.avatarUrl} />
-                      ) : (
-                        <AvatarFallback className="bg-green-600 text-white text-xs">
-                          {currentUser?.firstName?.[0] || currentUser?.lastName?.[0] || 'L'}
-                        </AvatarFallback>
-                      )}
-                    </Avatar>
-                  )}
-                  
-                  <div className="max-w-xs lg:max-w-md">
-                    <div className={`${isRenter ? 'bg-green-600 text-white rounded-2xl rounded-br-md' : 'bg-gray-100 text-gray-800 rounded-2xl rounded-bl-md'} p-4 shadow-sm`}>
-                      <p className="text-sm mb-3">
-                        {isRenter ? t("booking.discussion.initialMessage.renter") : t("booking.discussion.initialMessage.owner")}
-                      </p>
-                      
-                      {/* Récapitulatif dans la bulle */}
-                      <div className={`${isRenter ? 'bg-white/10' : 'bg-white/90'} rounded-lg p-3 space-y-3`}>
-                        {/* Photo et infos véhicule */}
-                        <div className="flex items-center gap-3">
-                          <div className={`w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 ${isRenter ? 'bg-white/20' : 'bg-gray-200'}`}>
-                            <img 
-                              src={(() => {
-                                // Priorité 1: Photo depuis vehiclePhotos (Supabase)
-                                const photosArray = Object.values(vehiclePhotos);
-                                const primaryPhoto = photosArray.find(p => p.isPrimary) || photosArray[0];
-                                if (primaryPhoto?.url) return primaryPhoto.url;
-                                
-                                // Priorité 2: bookingData vehicle imageUrl
-                                if (bookingData?.vehicle?.imageUrl) return bookingData.vehicle.imageUrl;
-                                
-                                // Priorité 3: vehicleImageUrl
-                                if (vehicleImageUrl) return vehicleImageUrl;
-                                
-                                // Fallback: placeholder
-                                return `https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop&crop=center`;
-                              })()}
-                              alt={`${bookingData?.vehicle?.brand || vehicle.brand} ${bookingData?.vehicle?.model || vehicle.model}`}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                // Fallback si l'image ne charge pas
-                                const target = e.target as HTMLImageElement;
-                                if (!target.src.includes('unsplash.com')) {
-                                  target.src = `https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop&crop=center`;
-                                }
-                              }}
-                            />
+          {/* ── Zone chat 2/3 (desktop) ── */}
+          <div className="flex-1 min-w-0 flex flex-col">
+            <Card className="shadow-sm border border-[#D8D5CF] bg-white flex-1 flex flex-col min-h-0">
+              {/* Messages scrollables */}
+              <CardContent className="flex-1 flex flex-col p-0 min-h-0">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                  {/* Message initial récapitulatif */}
+                  <div className={`flex items-end gap-2 ${isRenter ? 'justify-end' : 'justify-start'}`}>
+                    {!isRenter && (
+                      <Avatar className="w-8 h-8 flex-shrink-0">
+                        {currentUser?.avatarUrl ? (
+                          <AvatarImage src={currentUser.avatarUrl} />
+                        ) : (
+                          <AvatarFallback className="bg-[#097870] text-white text-xs">
+                            {currentUser?.firstName?.[0] || currentUser?.lastName?.[0] || 'L'}
+                          </AvatarFallback>
+                        )}
+                      </Avatar>
+                    )}
+
+                    <div className="max-w-xs lg:max-w-md">
+                      <div className={`font-body ${isRenter ? 'bg-[#097870] text-white rounded-2xl rounded-br-md' : 'bg-[#F4F2EE] text-[#0D1E26] rounded-2xl rounded-bl-md'} p-4 shadow-sm`}>
+                        <p className="text-sm mb-3">
+                          {isRenter ? t("booking.discussion.initialMessage.renter") : t("booking.discussion.initialMessage.owner")}
+                        </p>
+
+                        <div className={`${isRenter ? 'bg-white/10' : 'bg-white/80'} rounded-lg p-3 space-y-3`}>
+                          <div className="flex items-center gap-3">
+                            <div className={`w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 ${isRenter ? 'bg-white/20' : 'bg-gray-200'}`}>
+                              <img
+                                src={(() => {
+                                  const photosArray = Object.values(vehiclePhotos);
+                                  const primaryPhoto = photosArray.find(p => p.isPrimary) || photosArray[0];
+                                  if (primaryPhoto?.url) return primaryPhoto.url;
+                                  if (bookingData?.vehicle?.imageUrl) return bookingData.vehicle.imageUrl;
+                                  if (vehicleImageUrl) return vehicleImageUrl;
+                                  return `https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop&crop=center`;
+                                })()}
+                                alt={`${bookingData?.vehicle?.brand || vehicle.brand} ${bookingData?.vehicle?.model || vehicle.model}`}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  if (!target.src.includes('unsplash.com')) {
+                                    target.src = `https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop&crop=center`;
+                                  }
+                                }}
+                              />
+                            </div>
+                            <div className="flex-grow">
+                              <h4 className={`font-semibold text-sm ${isRenter ? 'text-white' : 'text-[#0D1E26]'}`}>
+                                {bookingData?.vehicle?.brand || vehicle.brand} {bookingData?.vehicle?.model || vehicle.model}
+                              </h4>
+                              <p className={`text-xs ${isRenter ? 'text-white/80' : 'text-[#6B8A8D]'}`}>
+                                {bookingData?.vehicle?.color || vehicle.color} • {bookingData?.vehicle?.year || vehicle.year}
+                              </p>
+                            </div>
                           </div>
-                          <div className="flex-grow">
-                            <h4 className={`font-semibold ${isRenter ? 'text-white' : 'text-gray-800'}`}>
-                              {bookingData?.vehicle?.brand || vehicle.brand} {bookingData?.vehicle?.model || vehicle.model}
-                            </h4>
-                            <p className={`text-xs ${isRenter ? 'text-white/80' : 'text-gray-600'}`}>
-                              {bookingData?.vehicle?.color || vehicle.color} • {bookingData?.vehicle?.year || vehicle.year} • ID: {bookingData?.vehicle?.license || vehicle.license}
-                            </p>
-                          </div>
-                        </div>
-                        
-                        {/* Dates */}
-                        {(bookingData?.rentalInfo?.startDate && bookingData?.rentalInfo?.endDate) || (startDate && endDate) ? (
-                          <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                              <Calendar className={`h-4 w-4 ${isRenter ? 'text-white/80' : 'text-gray-600'}`} />
-                              <span className={`text-xs ${isRenter ? 'text-white/90' : 'text-gray-800'}`}>
-                                {t("booking.discussion.dateRange", {
-                                  startDate: bookingData?.rentalInfo?.startDate ? formatDate(bookingData.rentalInfo.startDate) : formatDate(startDate),
-                                  endDate: bookingData?.rentalInfo?.endDate ? formatDate(bookingData.rentalInfo.endDate) : formatDate(endDate)
-                                })}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Clock className={`h-4 w-4 ${isRenter ? 'text-white/80' : 'text-gray-600'}`} />
-                              <span className={`text-xs ${isRenter ? 'text-white/90' : 'text-gray-800'}`}>
-                                {t("booking.discussion.departureTime", {
-                                  startTime: bookingData?.rentalInfo?.startTime || (startDate ? formatTime(startDate) : t("motoDetails.notSpecified"))
-                                })}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <MapPin className={`h-4 w-4 ${isRenter ? 'text-white/80' : 'text-gray-600'}`} />
-                              <span className={`text-xs ${isRenter ? 'text-white/90' : 'text-gray-800'}`}>
-                                {t("booking.discussion.pickupLocation", {
-                                  pickupLocation: bookingData?.rentalInfo?.pickupLocation || vehicle.location || t("motoDetails.notSpecified")
-                                })}
-                              </span>
-                            </div>
-                            {bookingData?.rentalInfo?.returnLocation &&
-                              bookingData.rentalInfo.returnLocation !== bookingData.rentalInfo.pickupLocation && (
+
+                          {(bookingData?.rentalInfo?.startDate && bookingData?.rentalInfo?.endDate) || (startDate && endDate) ? (
+                            <div className="space-y-1.5">
                               <div className="flex items-center gap-2">
-                                <MapPin className={`h-4 w-4 ${isRenter ? 'text-white/80' : 'text-gray-600'}`} />
-                                <span className={`text-xs ${isRenter ? 'text-white/90' : 'text-gray-800'}`}>
-                                  {t("booking.discussion.returnLocation", {
-                                    returnLocation: bookingData.rentalInfo.returnLocation
+                                <Calendar className={`h-3.5 w-3.5 ${isRenter ? 'text-white/80' : 'text-[#6B8A8D]'}`} />
+                                <span className={`text-xs ${isRenter ? 'text-white/90' : 'text-[#0D1E26]'}`}>
+                                  {t("booking.discussion.dateRange", {
+                                    startDate: bookingData?.rentalInfo?.startDate ? formatDate(bookingData.rentalInfo.startDate) : formatDate(startDate),
+                                    endDate: bookingData?.rentalInfo?.endDate ? formatDate(bookingData.rentalInfo.endDate) : formatDate(endDate)
                                   })}
                                 </span>
                               </div>
-                            )}
-                          </div>
-                        ) : null}
-                        
-                        {/* Options supplémentaires */}
-                        {formatSelectedServices() && (
-                          <div className="space-y-2">
-                            <div className={`border-t ${isRenter ? 'border-white/20' : 'border-gray-300'} pt-2`}>
-                              <span className={`text-xs font-medium ${isRenter ? 'text-white/80' : 'text-gray-700'}`}>{t("booking.discussion.additionalOptions")}</span>
-                              <div className={`text-xs mt-1 whitespace-pre-line ${isRenter ? 'text-white/90' : 'text-gray-800'}`}>
+                              <div className="flex items-center gap-2">
+                                <MapPin className={`h-3.5 w-3.5 ${isRenter ? 'text-white/80' : 'text-[#6B8A8D]'}`} />
+                                <span className={`text-xs ${isRenter ? 'text-white/90' : 'text-[#0D1E26]'}`}>
+                                  {bookingData?.rentalInfo?.pickupLocation || vehicle.location || t("motoDetails.notSpecified")}
+                                </span>
+                              </div>
+                            </div>
+                          ) : null}
+
+                          {formatSelectedServices() && (
+                            <div className={`border-t ${isRenter ? 'border-white/20' : 'border-[#D8D5CF]'} pt-2`}>
+                              <span className={`text-xs font-medium ${isRenter ? 'text-white/80' : 'text-[#6B8A8D]'}`}>{t("booking.discussion.additionalOptions")}</span>
+                              <div className={`text-xs mt-1 whitespace-pre-line ${isRenter ? 'text-white/90' : 'text-[#0D1E26]'}`}>
                                 {formatSelectedServices()}
                               </div>
                             </div>
-                          </div>
-                        )}
-                        
-                        {/* Prix */}
-                        <div className={`border-t ${isRenter ? 'border-white/20' : 'border-gray-300'} pt-2`}>
-                          <div className="flex justify-between items-end gap-3">
-                            <div className={`flex flex-col ${isRenter ? 'text-white/80' : 'text-gray-700'}`}>
-                              {(() => {
-                                const pricePerDay = currentBooking?.price_per_day || bookingData?.rentalInfo?.pricePerDay || vehicle.dailyPrice;
-                                const realDuration = calculateRealDuration();
-                                const { secondary } = formatClient(pricePerDay);
-                                return (
-                                  <>
-                                    <span className="text-xs">
-                                      {formatClientInline(pricePerDay)} × {realDuration}
-                                    </span>
-                                    <span className={`text-[10px] mt-0.5 ${isRenter ? 'text-white/60' : 'text-gray-500'}`}>
-                                      {secondary} / {t("pricing.perDayShort")}
-                                    </span>
-                                  </>
-                                );
-                              })()}
-                            </div>
-                            <ClientMgaPrice
-                              amountMga={calculateTotalPrice()}
-                              primaryClassName={`font-bold text-lg ${isRenter ? "text-white" : "text-gray-800"}`}
-                              secondaryClassName={`mt-0.5 text-xs tabular-nums ${isRenter ? "text-white/70" : "text-gray-600"}`}
-                            />
-                          </div>
-                          {(() => {
-                            const optionsTotal = currentBooking?.options_total || bookingData?.rentalInfo?.optionsTotal || 0;
-                            if (optionsTotal > 0) {
-                              return (
-                                <div className={`text-xs mt-1 ${isRenter ? 'text-white/70' : 'text-gray-600'}`}>
-                                  {t("booking.discussion.optionsTotal", { optionsTotal: formatClientInline(optionsTotal) })}
-                                </div>
-                              );
-                            }
-                            return null;
-                          })()}
-                        </div>
-                      </div>
-                      
-                      <p className={`${isRenter ? 'text-xs text-white/80' : 'text-xs text-gray-700'} mt-3`}>
-                        {isRenter ? t("booking.discussion.confirmAvailability.renter") : t("booking.discussion.confirmAvailability.owner")}
-                      </p>
-                    </div>
-                    <p className={`text-xs text-slate-500 mt-1 ${isRenter ? 'text-right' : 'text-left'}`}>
-                      {formatTime(new Date().toISOString())}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Messages existants */}
-                {messages.map((msg) => {
-                  const isCurrentUser = msg.senderId === currentUserId;
-                  // Déterminer si c'est un message du propriétaire ou du locataire
-                  const msgSenderIsOwner = msg.senderId === ownerId;
-                  
-                  return (
-                    <div
-                      key={msg.id}
-                      className={`flex items-end gap-2 ${isCurrentUser ? 'justify-end' : 'justify-start'}`}
-                    >
-                      {/* Avatar uniquement pour les messages de gauche (autre personne) */}
-                      {!isCurrentUser && (
-                        <Avatar className="w-8 h-8 flex-shrink-0">
-                          {msgSenderIsOwner && owner?.avatarUrl ? (
-                            <AvatarImage src={owner.avatarUrl} />
-                          ) : !msgSenderIsOwner && currentUser?.avatarUrl ? (
-                            <AvatarImage src={currentUser.avatarUrl} />
-                          ) : (
-                            <AvatarFallback className={`${msgSenderIsOwner ? 'bg-blue-600' : 'bg-green-600'} text-white text-xs`}>
-                              {msgSenderIsOwner 
-                                ? (owner?.firstName?.[0] || owner?.lastName?.[0] || 'P')
-                                : (currentUser?.firstName?.[0] || currentUser?.lastName?.[0] || 'L')
-                              }
-                            </AvatarFallback>
                           )}
-                        </Avatar>
-                      )}
-                      
-                      <div className="max-w-xs lg:max-w-md">
-                        <div
-                          className={`px-4 py-3 rounded-2xl shadow-sm ${
-                            isCurrentUser
-                              ? 'bg-green-600 text-white rounded-br-md'
-                              : 'bg-gray-100 text-gray-800 rounded-bl-md'
-                          }`}
-                        >
-                          <p className="text-sm">{msg.content}</p>
+
+                          <div className={`border-t ${isRenter ? 'border-white/20' : 'border-[#D8D5CF]'} pt-2`}>
+                            <div className="flex justify-between items-end gap-3">
+                              <div className={`flex flex-col ${isRenter ? 'text-white/80' : 'text-[#6B8A8D]'}`}>
+                                {(() => {
+                                  const pricePerDay = currentBooking?.price_per_day || bookingData?.rentalInfo?.pricePerDay || vehicle.dailyPrice;
+                                  const realDuration = calculateRealDuration();
+                                  const { secondary } = formatClient(pricePerDay);
+                                  return (
+                                    <>
+                                      <span className="text-xs">{formatClientInline(pricePerDay)} × {realDuration}</span>
+                                      <span className={`text-[10px] mt-0.5 ${isRenter ? 'text-white/60' : 'text-[#6B8A8D]'}`}>
+                                        {secondary} / {t("pricing.perDayShort")}
+                                      </span>
+                                    </>
+                                  );
+                                })()}
+                              </div>
+                              <ClientMgaPrice
+                                amountMga={calculateTotalPrice()}
+                                primaryClassName={`font-bold text-base ${isRenter ? "text-white" : "text-[#097870]"}`}
+                                secondaryClassName={`mt-0.5 text-xs tabular-nums ${isRenter ? "text-white/70" : "text-[#6B8A8D]"}`}
+                              />
+                            </div>
+                          </div>
                         </div>
-                        <p className={`text-xs mt-1 ${
-                          isCurrentUser ? 'text-right text-slate-500' : 'text-left text-slate-500'
-                        }`}>
-                          {formatTime(msg.createdAt)}
+
+                        <p className={`text-xs mt-3 ${isRenter ? 'text-white/80' : 'text-[#6B8A8D]'}`}>
+                          {isRenter ? t("booking.discussion.confirmAvailability.renter") : t("booking.discussion.confirmAvailability.owner")}
                         </p>
                       </div>
+                      <p className={`text-xs text-[#6B8A8D] mt-1 ${isRenter ? 'text-right' : 'text-left'}`}>
+                        {formatTime(new Date().toISOString())}
+                      </p>
                     </div>
-                  );
-                })}
+                  </div>
 
-                {/* Div invisible pour scroll automatique */}
-                <div ref={messagesEndRef} />
-              </div>
-              
-              {/* Zone de saisie fixe en bas */}
-              {conversation?.status === 'active' ? (
-                <div className="border-t p-4 bg-white">
-                  <div className="flex items-center gap-3">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-green-600 text-white text-xs">
-                        {currentUser?.firstName?.[0]}{currentUser?.lastName?.[0]}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1 relative">
-                      <Input
-                        placeholder={t("booking.discussion.messagePlaceholder")}
-                        className="rounded-full border-0 bg-gray-100 pr-12 focus:bg-white focus:ring-2 focus:ring-green-500/20"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                      />
-                      <Button
-                        size="sm"
-                        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full h-8 w-8 p-0 bg-green-600 hover:bg-green-700"
-                        onClick={handleSendMessage}
-                        disabled={!message.trim()}
+                  {/* Messages existants */}
+                  {messages.map((msg) => {
+                    const isCurrentUser = msg.senderId === currentUserId;
+                    const msgSenderIsOwner = msg.senderId === ownerId;
+
+                    return (
+                      <div
+                        key={msg.id}
+                        className={`flex items-end gap-2 ${isCurrentUser ? 'justify-end' : 'justify-start'}`}
                       >
-                        <Send className="h-4 w-4" />
-                      </Button>
+                        {!isCurrentUser && (
+                          <Avatar className="w-8 h-8 flex-shrink-0">
+                            {msgSenderIsOwner && owner?.avatarUrl ? (
+                              <AvatarImage src={owner.avatarUrl} />
+                            ) : !msgSenderIsOwner && currentUser?.avatarUrl ? (
+                              <AvatarImage src={currentUser.avatarUrl} />
+                            ) : (
+                              <AvatarFallback className={`${msgSenderIsOwner ? 'bg-[#097870]' : 'bg-[#E8622F]'} text-white text-xs`}>
+                                {msgSenderIsOwner
+                                  ? (owner?.firstName?.[0] || owner?.lastName?.[0] || 'P')
+                                  : (currentUser?.firstName?.[0] || currentUser?.lastName?.[0] || 'L')
+                                }
+                              </AvatarFallback>
+                            )}
+                          </Avatar>
+                        )}
+
+                        <div className="max-w-xs lg:max-w-md">
+                          <div
+                            className={`font-body px-4 py-3 rounded-2xl shadow-sm ${
+                              isCurrentUser
+                                ? msgSenderIsOwner
+                                  ? 'bg-[#097870] text-white rounded-br-md'
+                                  : 'bg-[#F4F2EE] text-[#0D1E26] rounded-br-md'
+                                : msgSenderIsOwner
+                                  ? 'bg-[#097870] text-white rounded-bl-md'
+                                  : 'bg-[#F4F2EE] text-[#0D1E26] rounded-bl-md'
+                            }`}
+                          >
+                            <p className="text-sm">{msg.content}</p>
+                          </div>
+                          <p className={`text-xs mt-1 text-[#6B8A8D] ${isCurrentUser ? 'text-right' : 'text-left'}`}>
+                            {formatTime(msg.createdAt)}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  <div ref={messagesEndRef} />
+                </div>
+
+                {/* Zone de saisie */}
+                {conversation?.status === 'active' ? (
+                  <div className="border-t border-[#D8D5CF] p-4 bg-white shrink-0">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="h-8 w-8 shrink-0">
+                        <AvatarFallback className="bg-[#097870] text-white text-xs">
+                          {currentUser?.firstName?.[0]}{currentUser?.lastName?.[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 relative">
+                        <Input
+                          placeholder={t("booking.discussion.messagePlaceholder")}
+                          className="rounded-full border border-[#D8D5CF] bg-[#F4F2EE] pr-12 focus:bg-white focus:ring-2 focus:ring-[#097870]/20 font-body"
+                          value={message}
+                          onChange={(e) => setMessage(e.target.value)}
+                          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                        />
+                        <Button
+                          size="sm"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full h-8 w-8 p-0 bg-[#097870] hover:bg-[#097870]/90"
+                          onClick={handleSendMessage}
+                          disabled={!message.trim()}
+                        >
+                          <Send className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ) : (
-                <div className="border-t p-4 bg-white">
-                  <div className="text-center text-sm text-red-600 bg-red-50 border border-red-200 py-3 rounded-lg">
-                    {t("booking.discussion.conversationCancelled")}
+                ) : (
+                  <div className="border-t border-[#D8D5CF] p-4 bg-white shrink-0">
+                    <div className="text-center text-sm text-[#E8622F] bg-[#E8622F]/10 border border-[#E8622F]/20 py-3 rounded-lg">
+                      {t("booking.discussion.conversationCancelled")}
+                    </div>
                   </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+                )}
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </main>
 

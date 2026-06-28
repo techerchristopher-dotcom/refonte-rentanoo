@@ -80,9 +80,9 @@ export function PaymentFlowModal({
       <DialogContent className="w-[95vw] max-w-[calc(100vw-2rem)] sm:max-w-xl md:max-w-2xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8">
         <div className="space-y-6 overflow-y-auto flex-1 min-h-0">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">Confirmer et payer</DialogTitle>
+            <DialogTitle className="font-display font-bold text-2xl text-[#0D1E26]">Confirme et paie</DialogTitle>
             <DialogDescription>
-              Étapes de confirmation et paiement sécurisé de votre location.
+              Étapes de confirmation et paiement sécurisé de ta location.
             </DialogDescription>
           </DialogHeader>
           {/* Étape 1 — Payer ma location */}
@@ -96,7 +96,7 @@ export function PaymentFlowModal({
               )}>
                 <div className="flex items-center gap-2 md:gap-3 flex-wrap min-w-0">
                   <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0">1</div>
-                  <div className="font-semibold min-w-0 truncate">Étape 1 — Payer ma location</div>
+                  <div className="font-display font-semibold min-w-0 truncate">Étape 1 — Payer ta location</div>
                   {isStep1ActuallyComplete && (
                     <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-xs font-semibold shrink-0">✅ Terminé</span>
                   )}
@@ -188,7 +188,7 @@ export function PaymentFlowModal({
               <ClientPriceRow label="Sous-total" amountMga={reservation.montantDeBase} />
               <ClientPriceRow label={serviceFeeLabel} amountMga={reservation.fraisService} />
               <div className="flex justify-between items-start gap-3 pt-2 border-t">
-                <span className="font-semibold min-w-0 truncate inline-flex items-center gap-1.5">
+                <span className="font-display font-semibold min-w-0 truncate inline-flex items-center gap-1.5">
                   Total TTC à payer
                   <TooltipProvider>
                     <Tooltip>
@@ -265,13 +265,17 @@ export function PaymentFlowModal({
             {!isCash && (
               <>
                 <div className="text-xs text-[#6B7280] text-center">
-                  Vous serez redirigé vers une page Stripe sécurisée pour effectuer votre paiement, puis automatiquement renvoyé ici.
+                  Tu seras redirigé vers une page Stripe sécurisée pour effectuer ton paiement, puis automatiquement renvoyé ici.
                 </div>
                 <div className="pt-2 text-center text-sm text-[#9CA3AF]">
                   ✅ Transactions vérifiées — 🔐 Paiement crypté — 🕒 Confirmation instantanée
                 </div>
               </>
             )}
+            {/* Bandeau sécurité Stripe en bas de modal */}
+            <div className="flex items-center justify-center gap-2 pt-2 pb-1">
+              <span className="text-xs font-medium text-[#6B8A8D]">🔒 Sécurisé par Stripe</span>
+            </div>
             </CollapsibleContent>
           </Collapsible>
         </div>
@@ -287,8 +291,9 @@ export function PaymentFlowModal({
           ) : !isStep1ActuallyComplete ? (
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
+                variant="ember"
                 disabled={isPaying}
-                className={cn("w-full min-w-0 sm:flex-1 justify-center bg-gradient-lagoon hover:opacity-90 text-white font-bold py-3 disabled:opacity-70 disabled:cursor-wait whitespace-normal break-words")}
+                className={cn("w-full min-w-0 sm:flex-1 justify-center font-bold py-3 disabled:opacity-70 disabled:cursor-wait whitespace-normal break-words")}
                 onClick={handlePayNow}
               >
                 {isPaying ? (
@@ -299,7 +304,7 @@ export function PaymentFlowModal({
                 ) : (
                   <>
                     <span className="shrink-0 mr-2">🔒</span>
-                    Payer {payLabel} via Stripe et confirmer ma location
+                    Payer {payLabel} via Stripe et confirmer ta location
                   </>
                 )}
               </Button>
