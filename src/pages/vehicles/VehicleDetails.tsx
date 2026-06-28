@@ -1059,7 +1059,6 @@ export default function VehicleDetails() {
 
   const primaryPhoto = photos.find(p => p.isPrimary) || photos[0];
   const dailyRate = vehicle.dailyPrice;
-  const originalRate = Math.round(dailyRate * 1.2);
   
   // Récupérer les informations de location depuis le state de navigation ou sessionStorage
   const routerNavState = location.state as {
@@ -1107,117 +1106,94 @@ export default function VehicleDetails() {
 
   // Sticky Pricing Component
   const PricingCard = ({ isMobile = false }: { isMobile?: boolean }) => (
-    <Card className={`${isMobile ? 'shadow-xl border-t' : 'lg:shadow-lg'}`}>
-      <CardContent className="p-6">
-        <div className="space-y-4">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <DualPrice
-                amountMga={dailyRate}
-                variant="client"
-                primaryClassName="text-2xl font-bold text-primary"
-                secondaryClassName="text-sm"
-              />
-              <span className="text-sm text-muted-foreground line-through">{formatClientInline(originalRate)}</span>
-            </div>
-            <p className="text-muted-foreground">par jour</p>
+    <div className={`bg-white rounded-2xl border border-[#D8D5CF] p-6 space-y-4 ${isMobile ? 'shadow-xl' : 'shadow-sm'}`}>
+      <div>
+        <DualPrice
+          amountMga={dailyRate}
+          variant="client"
+          primaryClassName="font-mono font-bold text-2xl text-[#097870]"
+          secondaryClassName="text-sm text-[#6B8A8D]"
+        />
+        <p className="text-[#6B8A8D] text-sm mt-0.5">par jour</p>
 
-            <Link
-              to="/politique-annulation"
-              className="mt-2 inline-flex items-center gap-1.5 text-xs text-success hover:underline"
-            >
-              <Clock className="h-3.5 w-3.5" />
-              Annulation gratuite jusqu'à 48h avant le retrait
-            </Link>
+        <Link
+          to="/politique-annulation"
+          className="mt-2 inline-flex items-center gap-1.5 text-xs text-[#097870] hover:underline"
+        >
+          <Clock className="h-3.5 w-3.5" />
+          Annulation gratuite jusqu'à 48h avant le retrait
+        </Link>
 
-            {/* Afficher le total si des dates sont sélectionnées */}
-            {vehicleRentalInfo && (
-              <div className="mt-3 pt-3 border-t border-muted">
-                <p className="text-sm text-muted-foreground mb-1">
-                  Tarif de base* :
-                </p>
-                <DualPrice
-                  amountMga={vehicleRentalInfo.totalCost}
-                  variant="client"
-                  primaryClassName="text-3xl font-bold text-primary"
-                  secondaryClassName="text-sm"
-                />
-                <p className="text-sm text-muted-foreground mt-1">
-                  {formatLegacyFormattedPrice(t, vehicleRentalInfo, (mga) => formatClient(mga).primary)}
-                </p>
-                <p className="text-xs text-muted-foreground mt-2 italic">
-                  * Hors options et frais de service
-                </p>
-                <p className="text-[10px] text-muted-foreground mt-1">{footnote}</p>
-              </div>
-            )}
-          </div>
-
-          <Button
-            size="lg"
-            onClick={(e) => openCartModal(e.currentTarget)}
-            disabled={isCartFull}
-            className="w-full bg-gradient-to-r from-primary to-primary/80 hover:opacity-90"
-          >
-            <ShoppingCart className="h-5 w-5 mr-2" />
-            {isCartFull ? "Panier plein (10/10)" : "Simuler mon tarif gratuitement"}
-          </Button>
-
-          {/* Services supplémentaires proposés par ce véhicule */}
-          {(() => {
-            if (import.meta.env.DEV) console.log('🔍 [VehicleDetails] Condition VehicleServiceOptions:', {
-              vehicle: !!vehicle,
-              navigationState: !!navigationState,
-              rentalCalculation: !!navigationState?.rentalCalculation,
-              vehicleId: vehicle?.id,
-              rentalDays: navigationState?.rentalCalculation?.rentalDays
-            });
-            return vehicle && navigationState?.rentalCalculation;
-          })() && (
-            <VehicleServiceOptions 
-              vehicle={vehicle}
-              rentalDays={navigationState.rentalCalculation.rentalDays}
+        {vehicleRentalInfo && (
+          <div className="mt-3 pt-3 border-t border-[#D8D5CF]">
+            <p className="text-sm text-[#6B8A8D] mb-1">Tarif de base* :</p>
+            <DualPrice
+              amountMga={vehicleRentalInfo.totalCost}
+              variant="client"
+              primaryClassName="font-mono font-bold text-2xl text-[#097870]"
+              secondaryClassName="text-sm text-[#6B8A8D]"
             />
-          )}
+            <p className="text-sm text-[#6B8A8D] mt-1">
+              {formatLegacyFormattedPrice(t, vehicleRentalInfo, (mga) => formatClient(mga).primary)}
+            </p>
+            <p className="text-xs text-[#6B8A8D] mt-2 italic">* Hors options et frais de service</p>
+            <p className="text-[10px] text-[#6B8A8D] mt-1">{footnote}</p>
+          </div>
+        )}
+      </div>
 
-          <Badge variant="secondary" className="w-full justify-center py-1">
-            <CheckCircle className="h-4 w-4 mr-1" />
-            Annulation gratuite
-          </Badge>
+      <button
+        onClick={(e) => openCartModal(e.currentTarget as HTMLElement)}
+        disabled={isCartFull}
+        className="w-full flex items-center justify-center gap-2 bg-[#E8622F] text-white font-display font-semibold py-4 rounded-xl hover:bg-[#E8622F]/90 transition-colors text-base disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <ShoppingCart className="h-5 w-5" />
+        {isCartFull ? "Panier plein (10/10)" : "Simuler mon tarif gratuitement"}
+      </button>
 
-          <a
-            href={`${whatsappBaseUrl}?text=${encodeURIComponent(`Bonjour, j'ai une question sur ${vehicle ? `${vehicle.brand} ${vehicle.model}` : "ce véhicule"}${license ? ` (réf: ${license})` : ""}.`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackWhatsAppFabEvent("whatsapp_pdp_click", { page_path: `/vehicle/${license}`, vehicle_ref: license ?? "" })}
-            className="flex items-center justify-center gap-2 w-full rounded-lg border border-green-200 bg-green-50 px-4 py-2.5 text-sm text-green-700 hover:bg-green-100 transition-colors"
-          >
-            <MessageSquare className="h-4 w-4 shrink-0" />
-            Une question avant de réserver ? Écris-nous sur WhatsApp
-          </a>
-        </div>
+      {vehicle && navigationState?.rentalCalculation && (
+        <VehicleServiceOptions
+          vehicle={vehicle}
+          rentalDays={navigationState.rentalCalculation.rentalDays}
+        />
+      )}
 
-        <Separator className="my-6" />
+      <div className="flex items-center justify-center gap-1.5 text-sm text-[#097870]">
+        <CheckCircle className="h-4 w-4" />
+        <span>Annulation gratuite</span>
+      </div>
 
-        <div>
-          <h3 className="font-semibold mb-4">Inclus dans le prix</h3>
-          <div className="space-y-3 text-sm">
-            <div className="flex items-center gap-2">
-              <Shield className="h-4 w-4 text-green-500" />
-              <span>Assurance multirisque</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-blue-500" />
-              <span>Assistance routière 24/7</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-purple-500" />
-              <span>Conducteurs additionnels gratuits</span>
-            </div>
+      <a
+        href={`${whatsappBaseUrl}?text=${encodeURIComponent(`Bonjour, j'ai une question sur ${vehicle ? `${vehicle.brand} ${vehicle.model}` : "ce véhicule"}${license ? ` (réf: ${license})` : ""}.`)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => trackWhatsAppFabEvent("whatsapp_pdp_click", { page_path: `/vehicle/${license}`, vehicle_ref: license ?? "" })}
+        className="flex items-center justify-center gap-2 w-full border border-[#097870] text-[#097870] font-display font-medium py-3 rounded-xl hover:bg-[#097870]/5 transition-colors text-sm"
+      >
+        <MessageSquare className="h-4 w-4 shrink-0" />
+        💬 Poser une question sur WhatsApp
+      </a>
+
+      <Separator className="my-2" />
+
+      <div>
+        <h3 className="font-display font-semibold text-[#0D1E26] mb-3 text-sm">Inclus dans le prix</h3>
+        <div className="space-y-2 text-sm">
+          <div className="flex items-center gap-2 text-[#0D1E26]">
+            <Shield className="h-4 w-4 text-[#097870]" />
+            <span>Assurance multirisque</span>
+          </div>
+          <div className="flex items-center gap-2 text-[#0D1E26]">
+            <Phone className="h-4 w-4 text-[#097870]" />
+            <span>Assistance routière 24/7</span>
+          </div>
+          <div className="flex items-center gap-2 text-[#0D1E26]">
+            <Users className="h-4 w-4 text-[#097870]" />
+            <span>Conducteurs additionnels gratuits</span>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 
   const seoInput = {
@@ -1254,7 +1230,7 @@ export default function VehicleDetails() {
   });
 
   return (
-    <div className={`min-h-screen flex flex-col bg-background ${hideMobileBookingBar ? "pb-0" : "pb-20"} lg:pb-0`}>
+    <div className={`min-h-screen flex flex-col bg-[#F4F2EE] ${hideMobileBookingBar ? "pb-0" : "pb-20"} lg:pb-0`}>
       <Seo
         title={buildVehicleSeoTitle(seoInput)}
         description={buildVehicleSeoDescription(seoInput)}
@@ -1262,48 +1238,54 @@ export default function VehicleDetails() {
         structuredData={structuredData}
         extraStructuredData={breadcrumbSchema}
       />
-      <main className="flex-1 py-4 md:py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          {/* Back Button */}
-          <Button
-            variant="ghost"
-            onClick={() => navigate(-1)}
-            className="mb-6"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Retour
-          </Button>
 
-          <Breadcrumb className="mb-4">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Accueil</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Location {typeLabel} à Nosy Be</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>
-                  {vehicle.brand} {vehicle.model}
-                  {vehicle.year ? ` (${vehicle.year})` : ""}
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+      {/* Header avec breadcrumb */}
+      <div className="bg-white border-b border-[#D8D5CF] py-4 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              onClick={() => navigate(-1)}
+              className="text-[#6B8A8D] hover:text-[#0D1E26] -ml-2"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Retour
+            </Button>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/" className="text-[#6B8A8D] hover:text-[#097870]">Accueil</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/" className="text-[#6B8A8D] hover:text-[#097870]">Location {typeLabel} à Nosy Be</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="text-[#0D1E26] font-medium">
+                    {vehicle.brand} {vehicle.model}
+                    {vehicle.year ? ` (${vehicle.year})` : ""}
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </div>
+      </div>
 
-          <div className="lg:grid lg:grid-cols-3 lg:gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-6">
+      <main className="flex-1">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Colonne gauche — 7/12 */}
+            <div className="lg:col-span-7 space-y-6">
               
               {/* Photos Gallery */}
-              <div className="space-y-4">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-muted">
+              <div className="rounded-2xl overflow-hidden bg-white shadow-sm">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   {(() => {
                     const currentPhoto = photos[selectedPhotoIndex] || primaryPhoto;
                     const imageUrl = currentPhoto?.url || "https://images.unsplash.com/photo-1549924231-f129b911e442?w=800&h=600&fit=crop";
@@ -1354,7 +1336,7 @@ export default function VehicleDetails() {
                 
                 {/* Photo Thumbnails */}
                 {photos.length > 1 && (
-                  <div className="grid grid-cols-6 gap-2">
+                  <div className="grid grid-cols-6 gap-2 p-2 bg-white">
                     {photos.slice(0, 6).map((photo, index) => {
                       const isSupabaseUrl = photo.url.includes('supabase.co/storage');
                       const srcSet = isSupabaseUrl ? generateSrcSet(photo.url, IMAGE_WIDTHS.THUMBNAIL) : undefined;
@@ -1365,9 +1347,9 @@ export default function VehicleDetails() {
                           key={photo.id}
                           onClick={() => setSelectedPhotoIndex(index)}
                           className={`aspect-square rounded-lg overflow-hidden transition-all ${
-                            selectedPhotoIndex === index 
-                              ? "ring-2 ring-primary" 
-                              : "hover:ring-2 hover:ring-primary/50"
+                            selectedPhotoIndex === index
+                              ? "ring-2 ring-[#097870]"
+                              : "hover:ring-2 hover:ring-[#097870]/50"
                           }`}
                         >
                           <img
@@ -1386,30 +1368,30 @@ export default function VehicleDetails() {
                     })}
                   </div>
                 )}
-              </div>
+              </div>{/* end gallery rounded-2xl */}
 
               {/* Mobile: Price card appears here, right after photos - NOT STICKY */}
               <div className="lg:hidden mb-6">
-                <PricingCard />
+                <PricingCard isMobile />
               </div>
 
-              {/* Vehicle Title and Info */}
+              {/* Titre + badges */}
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <Badge variant="secondary" className="text-sm">{vehicle.license}</Badge>
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="font-semibold">5.0</span>
-                      <span className="text-muted-foreground">(24 avis)</span>
-                    </div>
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
+                  <span className="px-3 py-1 rounded-full bg-[#097870] text-white font-mono text-xs uppercase tracking-wide">
+                    {vehicle.vehicleType || 'voiture'}
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-[#097870]/10 text-[#097870] font-mono text-xs">
+                    {vehicle.license}
+                  </span>
+                  <div className="ml-auto flex items-center gap-2">
                     <ShareButton
                       title={`${vehicle.brand} ${vehicle.model} — Location à Nosy Be`}
                     />
                   </div>
                 </div>
-                
-                <h1 className="text-3xl md:text-4xl font-bold mb-3">
+
+                <h1 className="font-display font-bold text-3xl text-[#0D1E26] mb-2">
                   {buildVehicleH1Title({
                     brand: vehicle.brand,
                     model: vehicle.model,
@@ -1417,24 +1399,22 @@ export default function VehicleDetails() {
                     vehicleType: vehicle.vehicleType,
                   })}
                 </h1>
-                
-                <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-4">
+
+                <div className="flex flex-wrap items-center gap-3 text-[#6B8A8D] text-sm mb-3">
                   <span>{vehicle.mileage.toLocaleString()} km</span>
                   <span>•</span>
                   <span>{vehicle.year}</span>
                   <span>•</span>
                   <span>5 places</span>
+                  <span>•</span>
+                  <span className="capitalize">{transmissionLabels[vehicle.transmission]}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline" className="flex items-center gap-1">
+                  <span className="flex items-center gap-1 px-2 py-1 rounded-full border border-[#D8D5CF] text-xs text-[#6B8A8D]">
                     <MapPin className="h-3 w-3" />
                     Parking réservé
-                  </Badge>
-                  <Badge variant="outline" className="flex items-center gap-1">
-                    <Settings className="h-3 w-3" />
-                    {transmissionLabels[vehicle.transmission]}
-                  </Badge>
+                  </span>
                 </div>
               </div>
 
@@ -1635,56 +1615,8 @@ export default function VehicleDetails() {
                         ))}
                       </div>
 
-                      <div className="space-y-4">
-                        <div className="border-t pt-4">
-                          <div className="flex items-start gap-3">
-                            <Avatar className="h-8 w-8">
-                              <AvatarImage src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" />
-                              <AvatarFallback>M</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className="font-medium">Marie</span>
-                                <div className="flex">
-                                  {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                                  ))}
-                                </div>
-                              </div>
-                              <p className="text-sm text-muted-foreground mb-1">
-                                Il y a 2 semaines • 3 jours de location
-                              </p>
-                              <p className="text-sm">
-                                Véhicule en parfait état, très propre. Pierre est un hôte attentionné et disponible. Je recommande vivement !
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="border-t pt-4">
-                          <div className="flex items-start gap-3">
-                            <Avatar className="h-8 w-8">
-                              <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" />
-                              <AvatarFallback>J</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className="font-medium">Jean</span>
-                                <div className="flex">
-                                  {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                                  ))}
-                                </div>
-                              </div>
-                              <p className="text-sm text-muted-foreground mb-1">
-                                Il y a 1 mois • 5 jours de location
-                              </p>
-                              <p className="text-sm">
-                                Excellent véhicule pour découvrir l'île. Économique et fiable. Communication parfaite avec le propriétaire.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="text-sm text-muted-foreground py-4 text-center">
+                        Aucun avis pour le moment. Soyez le premier à évaluer ce véhicule !
                       </div>
                     </CardContent>
                   </CollapsibleContent>
@@ -1710,7 +1642,7 @@ export default function VehicleDetails() {
                       <div className="space-y-4">
                         <div className="flex items-center gap-3">
                           <CheckCircle className="h-5 w-5 text-green-500" />
-                          <span>Assurance multirisque fournie par AXA</span>
+                          <span>Assurance multirisque incluse</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="h-5 w-5 text-green-500" />
@@ -1806,19 +1738,20 @@ export default function VehicleDetails() {
               </Collapsible>
             </div>
 
-            {/* Sticky Sidebar - Only visible on desktop */}
-            <div className="hidden lg:block">
-              <div className="sticky top-24 h-fit">
+            {/* Colonne droite — 5/12 — sticky */}
+            <div className="lg:col-span-5">
+              <div className="sticky top-24">
                 <PricingCard />
               </div>
             </div>
+
           </div>
         </div>
       </main>
       
-      {/* Mobile Sticky Bottom Price Card */}
+      {/* Mobile Sticky Bottom Price Bar */}
       {!hideMobileBookingBar && (
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#D8D5CF]">
         <div className="p-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
@@ -1827,10 +1760,10 @@ export default function VehicleDetails() {
                   <DualPrice
                     amountMga={vehicleRentalInfo.totalCost}
                     variant="client"
-                    primaryClassName="text-2xl font-bold text-primary"
-                    secondaryClassName="text-xs"
+                    primaryClassName="font-mono font-bold text-xl text-[#097870]"
+                    secondaryClassName="text-xs text-[#6B8A8D]"
                   />
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-xs text-[#6B8A8D]">
                     {formatClientInline(dailyRate)}/jour • Hors options
                   </div>
                 </>
@@ -1839,23 +1772,22 @@ export default function VehicleDetails() {
                   <DualPrice
                     amountMga={dailyRate}
                     variant="client"
-                    primaryClassName="text-xl font-bold text-primary"
-                    secondaryClassName="text-xs"
+                    primaryClassName="font-mono font-bold text-xl text-[#097870]"
+                    secondaryClassName="text-xs text-[#6B8A8D]"
                     inline
                   />
-                  <span className="text-sm text-muted-foreground">par jour</span>
+                  <span className="text-xs text-[#6B8A8D]">par jour</span>
                 </div>
               )}
             </div>
-            <Button
-              size="lg"
-              onClick={(e) => openCartModal(e.currentTarget)}
+            <button
+              onClick={(e) => openCartModal(e.currentTarget as HTMLElement)}
               disabled={isCartFull}
-              className="bg-gradient-to-r from-primary to-primary/80 hover:opacity-90 px-6 flex-shrink-0"
+              className="flex items-center gap-2 bg-[#E8622F] text-white font-display font-semibold px-5 py-3 rounded-xl hover:bg-[#E8622F]/90 transition-colors text-sm disabled:opacity-50 flex-shrink-0"
             >
-              <ShoppingCart className="h-4 w-4 mr-2" />
-              {isCartFull ? "Panier plein" : "Simuler mon tarif gratuitement"}
-            </Button>
+              <ShoppingCart className="h-4 w-4" />
+              {isCartFull ? "Panier plein" : "Simuler mon tarif"}
+            </button>
           </div>
         </div>
       </div>

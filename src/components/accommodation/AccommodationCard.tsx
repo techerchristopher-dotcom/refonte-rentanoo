@@ -111,7 +111,7 @@ export function AccommodationCard({
   return (
     <Card
       className={cn(
-        "overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lagoon hover:scale-[1.02] bg-gradient-to-br from-card to-card/50",
+        "overflow-hidden cursor-pointer rounded-xl transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] bg-white",
         className
       )}
       onClick={onClick}
@@ -142,16 +142,16 @@ export function AccommodationCard({
           );
         })()}
         <div className="absolute top-3 left-3">
-          <Badge variant="secondary" className="bg-card/90 backdrop-blur-sm">
+          <span className="px-2 py-0.5 rounded-full bg-[#E8622F] text-white font-mono text-xs">
             {vehicle.license}
-          </Badge>
+          </span>
         </div>
       </div>
 
       <CardContent className="p-4">
         <div className="mb-3">
-          <h3 className="font-semibold text-lg text-foreground">{displayName}</h3>
-          <p className="text-sm text-muted-foreground">{typeLabel}</p>
+          <h3 className="font-display font-semibold text-lg text-[#0D1E26]">{displayName}</h3>
+          <p className="text-sm text-[#6B8A8D]">{typeLabel}</p>
         </div>
 
         <div className="flex flex-wrap gap-2 mb-4">
@@ -269,7 +269,7 @@ export function AccommodationCard({
         {/* CTA Button */}
         {onClick && (
           <Button
-            className="w-full mt-4 bg-gradient-lagoon hover:opacity-90 shadow-soft"
+            className="w-full mt-4 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white font-display font-semibold rounded-xl"
             onClick={(e) => {
               e.stopPropagation();
               onClick();

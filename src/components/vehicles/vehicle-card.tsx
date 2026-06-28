@@ -155,9 +155,9 @@ export function VehicleCard({ vehicle, primaryPhoto, onClick, className, rentalI
   };
 
   return (
-    <Card 
+    <Card
       className={cn(
-        "overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lagoon hover:scale-[1.02] bg-gradient-to-br from-card to-card/50",
+        "overflow-hidden cursor-pointer rounded-xl transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] bg-white",
         className
       )}
       onClick={onClick}
@@ -191,26 +191,26 @@ export function VehicleCard({ vehicle, primaryPhoto, onClick, className, rentalI
           );
         })()}
         <div className="absolute top-3 left-3">
-          <Badge variant="secondary" className="bg-card/90 backdrop-blur-sm">
+          <span className="px-2 py-0.5 rounded-full bg-[#097870] text-white font-mono text-xs">
             {vehicle.license}
-          </Badge>
+          </span>
         </div>
         <div className="absolute top-3 right-3">
           {vehicle.hasAC && (
-            <Badge variant="secondary" className="bg-primary-soft/20 backdrop-blur-sm text-primary">
-              <Wind className="h-3 w-3 mr-1" />
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[#097870] font-mono text-xs">
+              <Wind className="h-3 w-3" />
               Clim
-            </Badge>
+            </span>
           )}
         </div>
       </div>
       <CardContent className="p-4">
         {/* Title & Year */}
         <div className="mb-3">
-          <h3 className="font-semibold text-lg text-foreground">
+          <h3 className="font-display font-semibold text-lg text-[#0D1E26]">
             {vehicle.brand} {vehicle.model}
           </h3>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-[#6B8A8D]">
             {vehicle.year} • {vehicle.color}
           </p>
         </div>
@@ -266,8 +266,8 @@ export function VehicleCard({ vehicle, primaryPhoto, onClick, className, rentalI
 
         {/* CTA Button */}
         {onClick && (
-          <Button 
-            className="w-full mt-4 bg-gradient-lagoon hover:opacity-90 shadow-soft"
+          <Button
+            className="w-full mt-4 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white font-display font-semibold rounded-xl"
             onClick={(e) => {
               e.stopPropagation();
               onClick();
