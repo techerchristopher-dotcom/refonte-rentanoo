@@ -370,8 +370,8 @@ export default function RenterBookingCard({
       return {
         badgeLabel: t('bookings.status.paymentConfirmed'),
         badgeNote: t('bookings.status.depositPending'),
-        badgeColorClass: 'bg-orange-100 text-orange-800 border border-orange-300 rounded-full px-3 py-1 text-sm font-medium',
-        noteColorClass: 'text-orange-700 text-xs font-medium',
+        badgeColorClass: 'bg-amber-100 text-amber-700 rounded-full px-3 py-1 text-sm font-medium font-body',
+        noteColorClass: 'text-amber-600 text-xs font-body font-medium',
         showDepositCTA: true,
         depositCTALabel: t('bookings.card.activateDeposit', 'Activer la caution')
       }
@@ -382,19 +382,19 @@ export default function RenterBookingCard({
       return {
         badgeLabel: t('bookings.status.readyToGo'),
         badgeNote: t('bookings.status.paymentDepositValidated'),
-        badgeColorClass: 'bg-green-100 text-green-800 border border-green-300 rounded-full px-3 py-1 text-sm font-medium',
-        noteColorClass: 'text-green-700 text-xs font-medium',
+        badgeColorClass: 'bg-[#097870]/10 text-[#097870] rounded-full px-3 py-1 text-sm font-medium font-body',
+        noteColorClass: 'text-[#097870] text-xs font-body font-medium',
         showDepositCTA: false
       }
     }
 
     // Cas C: active OU (confirmed + deposit paid/card_registered + dates chevauchantes)
-    if (booking.status === 'active' || 
+    if (booking.status === 'active' ||
         (booking.status === 'confirmed' && depositOk && startDate <= now && endDate >= now)) {
       return {
         badgeLabel: t('bookings.status.active'),
         badgeNote: null,
-        badgeColorClass: 'bg-green-100 text-green-800 border border-green-300 rounded-full px-3 py-1 text-sm font-medium',
+        badgeColorClass: 'bg-[#097870]/10 text-[#097870] rounded-full px-3 py-1 text-sm font-medium font-body',
         noteColorClass: null,
         showDepositCTA: false
       }
@@ -405,7 +405,7 @@ export default function RenterBookingCard({
       return {
         badgeLabel: t('bookings.status.completed'),
         badgeNote: null,
-        badgeColorClass: 'bg-gray-100 text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm font-medium',
+        badgeColorClass: 'bg-gray-100 text-gray-600 rounded-full px-3 py-1 text-sm font-medium font-body',
         noteColorClass: null,
         showDepositCTA: false
       }
@@ -414,9 +414,13 @@ export default function RenterBookingCard({
     // Cas E: cancelled, rejected, declined
     if (booking.status === 'cancelled' || booking.status === 'rejected' || booking.status === 'declined') {
       return {
-        badgeLabel: t('bookings.status.cancelled'),
+        badgeLabel: booking.status === 'declined'
+          ? t('bookings.status.declined', 'Refusée')
+          : t('bookings.status.cancelled', 'Annulée'),
         badgeNote: null,
-        badgeColorClass: 'bg-gray-100 text-gray-500 border border-gray-300 rounded-full px-3 py-1 text-sm font-medium',
+        badgeColorClass: booking.status === 'declined'
+          ? 'bg-red-100 text-red-700 rounded-full px-3 py-1 text-sm font-medium font-body'
+          : 'bg-gray-100 text-gray-600 rounded-full px-3 py-1 text-sm font-medium font-body',
         noteColorClass: null,
         showDepositCTA: false
       }
