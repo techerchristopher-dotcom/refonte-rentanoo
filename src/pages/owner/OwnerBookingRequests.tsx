@@ -196,11 +196,14 @@ const OwnerBookingRequests = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
-        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">En attente</Badge>;
+      case 'active':
+        return <Badge variant="secondary" className="bg-amber-100 text-amber-700">En attente</Badge>;
       case 'accepted':
-        return <Badge variant="secondary" className="bg-green-100 text-green-800">Acceptée</Badge>;
+      case 'closed':
+        return <Badge variant="secondary" className="bg-[#097870]/10 text-[#097870]">Acceptée</Badge>;
       case 'rejected':
-        return <Badge variant="secondary" className="bg-red-100 text-red-800">Refusée</Badge>;
+      case 'declined':
+        return <Badge variant="secondary" className="bg-red-100 text-red-700">Refusée</Badge>;
       default:
         return <Badge variant="secondary">Inconnu</Badge>;
     }
@@ -219,10 +222,10 @@ const OwnerBookingRequests = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-gradient-soft">
+      <div className="min-h-screen flex flex-col bg-[#F4F2EE]">
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#097870] mx-auto mb-4"></div>
             <p className="text-muted-foreground">Chargement des demandes...</p>
           </div>
         </main>
@@ -231,7 +234,7 @@ const OwnerBookingRequests = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-soft">
+    <div className="min-h-screen flex flex-col bg-[#F4F2EE]">
       <main className="flex-1 py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           {/* Header */}
@@ -245,7 +248,7 @@ const OwnerBookingRequests = () => {
               Retour aux réservations
             </Button>
             
-            <h1 className="text-3xl font-bold text-foreground mb-2">
+            <h1 className="font-display text-3xl font-bold text-[#0D1E26] mb-2">
               Demandes de location
             </h1>
             <p className="text-muted-foreground">
@@ -353,10 +356,9 @@ const OwnerBookingRequests = () => {
                             {request.status === 'active' && (
                               <>
                                 <Button
-                                  variant="outline"
                                   size="sm"
                                   onClick={() => handleAcceptRequest(request)}
-                                  className="text-green-600 border-green-200 hover:bg-green-50"
+                                  className="bg-[#E8622F] hover:bg-[#E8622F]/90 text-white font-display font-semibold"
                                 >
                                   <CheckCircle className="h-4 w-4 mr-2" />
                                   Accepter
@@ -365,7 +367,6 @@ const OwnerBookingRequests = () => {
                                   variant="outline"
                                   size="sm"
                                   onClick={() => handleRejectRequest(request)}
-                                  className="text-red-600 border-red-200 hover:bg-red-50"
                                 >
                                   <XCircle className="h-4 w-4 mr-2" />
                                   Refuser
