@@ -6,7 +6,8 @@ import { getPublicListingPath } from '@/utils/vehicleType'
 
 interface FeaturedVehicle {
   id: string
-  name: string
+  brand: string
+  model: string
   vehicle_type: string | null
   price_per_day: number
   license: string | null
@@ -35,14 +36,15 @@ export function HomeFeaturedListings() {
   const [vehicles, setVehicles] = useState<FeaturedVehicle[]>([])
 
   useEffect(() => {
-    supabase
-      .from('vehicles')
-      .select('id, name, vehicle_type, price_per_day, license, vehicle_photos(photo_url, is_primary)')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const query = supabase.from('vehicles') as any
+    query
+      .select('id, brand, model, vehicle_type, price_per_day, license, vehicle_photos(photo_url, is_primary)')
       .eq('is_active', true)
       .order('created_at', { ascending: false })
       .limit(4)
-      .then(({ data }) => {
-        if (data) setVehicles(data as FeaturedVehicle[])
+      .then(({ data }: { data: FeaturedVehicle[] | null }) => {
+        if (data) setVehicles(data)
       })
   }, [])
 
@@ -78,7 +80,7 @@ export function HomeFeaturedListings() {
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={getPhoto(vehicle)}
-                    alt={vehicle.name}
+                    alt={`${vehicle.brand} ${vehicle.model}`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
@@ -90,7 +92,7 @@ export function HomeFeaturedListings() {
                 </div>
                 {/* Infos */}
                 <div className="p-4">
-                  <h3 className="font-display font-semibold text-[#0D1E26] mb-1 truncate">{vehicle.name}</h3>
+                  <h3 className="font-display font-semibold text-[#0D1E26] mb-1 truncate">{`${vehicle.brand} ${vehicle.model}`}</h3>
                   <div className="flex items-center gap-0.5 mb-2">
                     {[1, 2, 3, 4, 5].map(s => (
                       <Star key={s} className="h-3 w-3 fill-[#E8622F] text-[#E8622F]" />
