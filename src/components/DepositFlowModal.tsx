@@ -126,10 +126,11 @@ function DepositPaymentForm({
         <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
           <Button
             type="submit"
+            variant="ember"
             disabled={!stripe || isSubmitting}
-            className="w-full sm:flex-1 bg-gradient-lagoon hover:opacity-90 text-white order-2 sm:order-1"
+            className="w-full sm:flex-1 order-2 sm:order-1"
           >
-            {isSubmitting ? t("depositModal.submitting", "Enregistrement...") : t("depositModal.submit", "Enregistrer ma carte")}
+            {isSubmitting ? t("depositModal.submitting", "Enregistrement...") : t("depositModal.submit", "Enregistre ta carte")}
           </Button>
           <Button
             type="button"
@@ -221,8 +222,8 @@ export function DepositFlowModal({
       >
         {/* HEADER — shrink-0 */}
         <DialogHeader className="shrink-0">
-          <DialogTitle id="deposit-modal-title" className="text-xl font-bold">
-            {t("depositModal.title", "Activer la caution")}
+          <DialogTitle id="deposit-modal-title" className="font-display font-bold text-xl text-[#0D1E26]">
+            {t("depositModal.title", "Activer ta caution")}
           </DialogTitle>
           <DialogDescription className="sr-only">
             {t(
@@ -280,6 +281,9 @@ export function DepositFlowModal({
                     {error}
                   </div>
                 )}
+                <div className="flex items-center justify-center gap-2 pt-1">
+                  <span className="text-xs font-medium text-[#6B8A8D]">🔒 Sécurisé par Stripe</span>
+                </div>
               </DepositPaymentForm>
             </Elements>
           ) : (
