@@ -382,28 +382,7 @@ export default function Login() {
                     </div>
                   )}
 
-                  {/* Demo Accounts - Moved inside email form */}
-                  {!showForgotPassword && (
-                    <div className="border-t pt-4">
-                      <p className="text-xs font-medium text-muted-foreground mb-2 text-center">
-                        Comptes de démonstration :
-                      </p>
-                      <div className="grid gap-1">
-                        {demoAccounts.map((account) => (
-                          <Button
-                            key={account.email}
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDemoLogin(account.email, account.password)}
-                            className="justify-start text-xs h-8"
-                          >
-                            <span className="font-medium">{account.role}</span>
-                            <span className="ml-auto text-muted-foreground text-xs">{account.email}</span>
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  {/* Demo Accounts supprimés en production */}
                 </div>
               )}
             </div>
