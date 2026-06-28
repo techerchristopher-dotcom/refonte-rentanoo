@@ -4,10 +4,9 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Car, Eye, EyeOff, ChevronDown, ChevronUp } from "lucide-react";
+import { Eye, EyeOff, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -80,7 +79,7 @@ export default function Login() {
         const friendlyMessage =
           error.message?.toLowerCase().includes("invalid login") ||
           error.message?.toLowerCase().includes("invalid_credentials")
-            ? "Identifiants invalides. Vérifiez votre email, votre mot de passe, ou réinitialisez votre mot de passe."
+            ? "Identifiants invalides. Vérifiez votre email, votre mot de passe, ou réinitialise ton mot de passe."
             : error.message;
         toast({
           title: "Erreur de connexion",
@@ -133,8 +132,8 @@ export default function Login() {
       }
 
       toast({
-        title: "📧 Email envoyé !",
-        description: `Un lien de réinitialisation a été envoyé à ${data.email}. Vérifiez votre boîte de réception.`,
+        title: "Email envoyé !",
+        description: `Un lien de réinitialisation a été envoyé à ${data.email}. Vérifie ta boîte de réception.`,
       });
       setShowForgotPassword(false);
       forgotPasswordForm.reset();
@@ -150,113 +149,231 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-soft flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center space-x-2 group">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-lagoon rounded-2xl shadow-lagoon group-hover:shadow-soft transition-shadow">
-              <Car className="h-7 w-7 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-lagoon bg-clip-text text-transparent">
-              Rentanoo
-            </span>
-          </Link>
+    <div className="min-h-screen bg-[#F4F2EE] flex">
+      {/* Panneau gauche : brand */}
+      <div className="hidden lg:flex lg:w-1/2 bg-[#0B1A1F] items-center justify-center p-12 relative overflow-hidden">
+        {/* Décoration subtile */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#097870] blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full bg-[#E8622F] blur-3xl" />
         </div>
-
-        <Card className="shadow-card">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">Se connecter</CardTitle>
-            <CardDescription>
-              Accédez à votre compte Rentanoo
-            </CardDescription>
-          </CardHeader>
-          
-          <CardContent>
-            {/* Cart context banner */}
-            {searchParams.get("redirect")?.includes("/panier") && (
-              <div className="mb-4 rounded-lg bg-primary/10 border border-primary/20 px-4 py-3 text-sm text-primary font-medium text-center">
-                Connecte-toi ou crée un compte pour envoyer ta demande de réservation — ton panier est sauvegardé.
+        <div className="text-center relative z-10">
+          <span className="font-display font-bold text-5xl text-white block mb-6">Rentanoo</span>
+          <p className="font-body text-white/60 text-lg leading-relaxed">
+            Nosy Be comme tu l'imagines.<br />Sans les galères.
+          </p>
+          <div className="mt-12 flex flex-col gap-3 text-left">
+            {[
+              "Location de voitures à Nosy Be",
+              "Propriétaires vérifiés",
+              "Paiement 100% sécurisé",
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-3 text-white/50 text-sm font-body">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#097870] flex-shrink-0" />
+                {item}
               </div>
-            )}
+            ))}
+          </div>
+        </div>
+      </div>
 
-            {/* Social Login Buttons */}
-            <div className="space-y-3">
+      {/* Panneau droit : formulaire */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+        <div className="w-full max-w-sm">
+          {/* Logo mobile uniquement */}
+          <div className="lg:hidden text-center mb-8">
+            <span className="font-display font-bold text-3xl text-[#0D1E26]">Rentanoo</span>
+          </div>
+
+          <h1 className="font-display font-bold text-3xl text-[#0D1E26] mb-2">
+            Connecte-toi
+          </h1>
+          <p className="font-body text-[#6B8A8D] mb-8">
+            Pas encore de compte ?{" "}
+            <Link
+              to={buildAuthLink("/auth/register", searchParams.get("redirect"))}
+              className="text-[#097870] hover:underline font-medium"
+            >
+              Créer un compte
+            </Link>
+          </p>
+
+          {/* Cart context banner */}
+          {searchParams.get("redirect")?.includes("/panier") && (
+            <div className="mb-6 rounded-xl bg-[#097870]/10 border border-[#097870]/20 px-4 py-3 text-sm text-[#097870] font-medium text-center font-body">
+              Connecte-toi pour envoyer ta demande de réservation — ton panier est sauvegardé.
+            </div>
+          )}
+
+          {/* Google OAuth */}
+          <div className="space-y-3">
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full h-12 border border-[#D8D5CF] rounded-xl hover:bg-[#F4F2EE] font-body"
+              onClick={async () => {
+                setLoading(true);
+                try {
+                  await supabase.auth.signInWithOAuth({
+                    provider: "google",
+                    options: {
+                      redirectTo: buildAuthCallbackUrl(
+                        AUTH_CALLBACK_URL,
+                        searchParams.get("redirect")
+                      ),
+                    },
+                  });
+                } catch (error) {
+                  toast({
+                    title: "Erreur",
+                    description: "Erreur lors de la connexion avec Google",
+                    variant: "destructive",
+                  });
+                  setLoading(false);
+                }
+              }}
+              disabled={loading}
+              data-testid="btn-google-login-header"
+              aria-label="Continuer avec Google (connexion)"
+            >
+              <GoogleIcon className="h-5 w-5 mr-3" />
+              {loading ? "Redirection..." : "Continuer avec Google"}
+            </Button>
+          </div>
+
+          {/* Séparateur */}
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-[#D8D5CF]" />
+            </div>
+            <div className="relative flex justify-center">
               <Button
                 type="button"
-                variant="outline"
-                className="w-full h-12 border-2 hover:bg-gray-50"
-                onClick={async () => {
-                  setLoading(true);
-                  try {
-                    await supabase.auth.signInWithOAuth({
-                      provider: "google",
-                      options: {
-                        redirectTo: buildAuthCallbackUrl(
-                          AUTH_CALLBACK_URL,
-                          searchParams.get("redirect")
-                        ),
-                      },
-                    });
-                  } catch (error) {
-                    toast({
-                      title: "Erreur",
-                      description: "Erreur lors de la connexion avec Google",
-                      variant: "destructive",
-                    });
-                    setLoading(false);
-                  }
-                }}
-                disabled={loading}
-                data-testid="btn-google-login-header"
-                aria-label="Continuer avec Google (connexion)"
+                variant="ghost"
+                onClick={() => setShowEmailForm(!showEmailForm)}
+                className="bg-[#F4F2EE] px-4 text-sm text-[#6B8A8D] hover:text-[#0D1E26] transition-colors font-body"
               >
-                <GoogleIcon className="h-5 w-5 mr-3" />
-                {loading ? "Redirection..." : "Continuer avec Google"}
+                OU PAR EMAIL
+                {showEmailForm ? (
+                  <ChevronUp className="ml-2 h-4 w-4" />
+                ) : (
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                )}
               </Button>
             </div>
+          </div>
 
-            {/* Toggle Email Form Button */}
-            <div className="relative mt-6">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  onClick={() => setShowEmailForm(!showEmailForm)}
-                  className="bg-background px-4 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  OU PAR EMAIL
-                  {showEmailForm ? (
-                    <ChevronUp className="ml-2 h-4 w-4" />
-                  ) : (
-                    <ChevronDown className="ml-2 h-4 w-4" />
-                  )}
-                </Button>
-              </div>
-            </div>
+          {/* Formulaire email — animé */}
+          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            showEmailForm ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+          }`}>
+            {showEmailForm && (
+              <div className="space-y-4">
+                {!showForgotPassword ? (
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="font-body text-[#0D1E26]">Email</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="email"
+                                placeholder="toi@exemple.com"
+                                className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-            {/* Email Form - Animated */}
-            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-              showEmailForm ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
-            }`}>
-              {showEmailForm && (
-                <div className="space-y-4 pt-4">
-                  {!showForgotPassword ? (
-                    <Form {...form}>
-                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                      <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="font-body text-[#0D1E26]">Mot de passe</FormLabel>
+                            <FormControl>
+                              <div className="relative">
+                                <Input
+                                  type={showPassword ? "text" : "password"}
+                                  placeholder="••••••••"
+                                  className="border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
+                                  {...field}
+                                />
+                                <Button
+                                  type="button"
+                                  variant="ghost"
+                                  size="sm"
+                                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                  onClick={() => setShowPassword(!showPassword)}
+                                >
+                                  {showPassword ? (
+                                    <EyeOff className="h-4 w-4 text-[#6B8A8D]" />
+                                  ) : (
+                                    <Eye className="h-4 w-4 text-[#6B8A8D]" />
+                                  )}
+                                </Button>
+                              </div>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      {/* Mot de passe oublié */}
+                      <div className="flex justify-end">
+                        <Button
+                          type="button"
+                          variant="link"
+                          className="p-0 h-auto font-normal text-sm text-[#097870] hover:underline font-body"
+                          onClick={() => {
+                            setShowForgotPassword(true);
+                            if (form.getValues("email")) {
+                              forgotPasswordForm.setValue("email", form.getValues("email"));
+                            }
+                          }}
+                        >
+                          Mot de passe oublié ?
+                        </Button>
+                      </div>
+
+                      <Button
+                        type="submit"
+                        className="w-full h-11 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
+                        disabled={loading}
+                      >
+                        {loading ? "Connexion..." : "Se connecter"}
+                      </Button>
+                    </form>
+                  </Form>
+                ) : (
+                  /* Formulaire mot de passe oublié */
+                  <div className="animate-fade-in">
+                    <Form {...forgotPasswordForm}>
+                      <form onSubmit={forgotPasswordForm.handleSubmit(handleForgotPassword)} className="space-y-4">
+                        <div className="text-center border-b border-[#D8D5CF] pb-4 mb-4">
+                          <h3 className="font-display text-lg font-semibold text-[#097870]">Réinitialiser le mot de passe</h3>
+                          <p className="font-body text-sm text-[#6B8A8D] mt-2">
+                            Saisis ton adresse email et nous t'enverrons un lien de réinitialisation
+                          </p>
+                        </div>
+
                         <FormField
-                          control={form.control}
+                          control={forgotPasswordForm.control}
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Email</FormLabel>
+                              <FormLabel className="font-body text-[#0D1E26]">Adresse email</FormLabel>
                               <FormControl>
                                 <Input
                                   type="email"
-                                  placeholder="votre@email.com"
+                                  placeholder="toi@exemple.com"
+                                  className="h-12 border border-[#D8D5CF] rounded-xl focus:ring-[#097870] focus:border-[#097870] font-body"
                                   {...field}
                                 />
                               </FormControl>
@@ -264,152 +381,44 @@ export default function Login() {
                             </FormItem>
                           )}
                         />
-                        
-                        <FormField
-                          control={form.control}
-                          name="password"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Mot de passe</FormLabel>
-                              <FormControl>
-                                <div className="relative">
-                                  <Input
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="••••••••"
-                                    {...field}
-                                  />
-                                  <Button
-                                    type="button"
-                                    variant="ghost"
-                                    size="sm"
-                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                  >
-                                    {showPassword ? (
-                                      <EyeOff className="h-4 w-4" />
-                                    ) : (
-                                      <Eye className="h-4 w-4" />
-                                    )}
-                                  </Button>
-                                </div>
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
 
-                        {/* Forgot Password Link */}
-                        <div className="flex justify-between items-center">
-                          <div></div>
+                        <div className="flex space-x-3 pt-2">
                           <Button
                             type="button"
-                            variant="link"
-                            className="p-0 h-auto font-normal text-sm text-primary hover:underline"
+                            variant="outline"
+                            className="flex-1 h-12 border border-[#D8D5CF] rounded-xl font-body"
                             onClick={() => {
-                              setShowForgotPassword(true);
-                              // Copie l'email du formulaire de connexion vers le formulaire de réinitialisation
-                              if (form.getValues("email")) {
-                                forgotPasswordForm.setValue("email", form.getValues("email"));
-                              }
+                              setShowForgotPassword(false);
+                              forgotPasswordForm.reset();
                             }}
                           >
-                            Mot de passe oublié ?
+                            Annuler
+                          </Button>
+                          <Button
+                            type="submit"
+                            className="flex-1 h-12 bg-[#E8622F] hover:bg-[#E8622F]/90 text-white rounded-xl font-body font-medium"
+                            disabled={!forgotPasswordForm.formState.isValid}
+                          >
+                            Envoyer le lien
                           </Button>
                         </div>
-
-                        <Button
-                          type="submit"
-                          className="w-full bg-gradient-lagoon hover:opacity-90 shadow-lagoon"
-                          disabled={loading}
-                        >
-                          {loading ? "Connexion..." : "Se connecter"}
-                        </Button>
                       </form>
                     </Form>
-                  ) : (
-                    /* Forgot Password Form - Animated */
-                    <div className="animate-fade-in">
-                      <Form {...forgotPasswordForm}>
-                        <form onSubmit={forgotPasswordForm.handleSubmit(handleForgotPassword)} className="space-y-4">
-                          <div className="text-center border-b pb-4 mb-4">
-                            <h3 className="text-lg font-semibold text-primary">Réinitialiser le mot de passe</h3>
-                            <p className="text-sm text-muted-foreground mt-2">
-                              Saisissez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe
-                            </p>
-                          </div>
-                          
-                          <FormField
-                            control={forgotPasswordForm.control}
-                            name="email"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Adresse email</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    type="email"
-                                    placeholder="Entrez votre email"
-                                    className="h-12"
-                                    {...field}
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          
-                          <div className="flex space-x-3 pt-2">
-                            <Button
-                              type="button"
-                              variant="outline"
-                              className="flex-1 h-12"
-                              onClick={() => {
-                                setShowForgotPassword(false);
-                                forgotPasswordForm.reset();
-                              }}
-                            >
-                              Annuler
-                            </Button>
-                            <Button
-                              type="submit"
-                              className="flex-1 h-12 bg-gradient-lagoon hover:opacity-90"
-                              disabled={!forgotPasswordForm.formState.isValid}
-                            >
-                              Envoyer le lien
-                            </Button>
-                          </div>
-                        </form>
-                      </Form>
-                    </div>
-                  )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
 
-                  {/* Demo Accounts supprimés en production */}
-                </div>
-              )}
-            </div>
-
-            {/* Register Link */}
-            <div className="text-center mt-6">
-              <p className="text-sm text-muted-foreground">
-                Pas encore de compte ?{" "}
-                <Link
-                  to={buildAuthLink("/auth/register", searchParams.get("redirect"))}
-                  className="font-medium text-primary hover:underline"
-                >
-                  S'inscrire
-                </Link>
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Back to Home */}
-        <div className="text-center mt-6">
-          <Link
-            to="/"
-            className="text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            ← Retour à l'accueil
-          </Link>
+          {/* Retour accueil */}
+          <div className="text-center mt-8">
+            <Link
+              to="/"
+              className="text-sm text-[#6B8A8D] hover:text-[#097870] transition-colors font-body"
+            >
+              ← Retour à l'accueil
+            </Link>
+          </div>
         </div>
       </div>
     </div>
